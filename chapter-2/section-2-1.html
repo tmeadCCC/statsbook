@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>2.1 Tables and Graphs for Qualitative Data</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;700&display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:11px/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+.math{font-style:italic;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;line-height:1.15;margin:0 .1em}
+.frac .num{border-bottom:1px solid currentColor;padding:0 .2em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-1/index.html" title="Unit 1: Data and Descriptive Statistics">Unit 1</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 2: Visual Representation of Data</a></nav><span class="where">Section 2.1</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span id="s21"></span><span class="b" style="font-size:1.4em">Section 2.1: Tables and Graphs </span><span class="b" style="font-size:1.4em">for</span><span class="b" style="font-size:1.4em"> Qualitative Data</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Calculate and understand frequency and relative frequency.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Create frequency and relative frequency tables.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Create bar graphs, pie charts, and pareto charts.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Create side-by-side bar graphs.</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Recall that qualitative variables are names of a characteristic of the individual.  These could be nominal (name only) or ordinal (when there is a natural order).  This section discusses how to visualize qualitative data.  Sections 2.2 and 2.3 will cover visualization of quantitative data.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">When working with qualitative variables, we consider how often each observation appears in the data.  This called the <span class="b">frequency</span> of the observation.  The <span class="b">relative frequency</span> is the proportion or percent the observation appears in the data.  </p>
+<p class="empty"></p>
+<h2 class="subhead">Frequency and Relative Frequency Tables</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 1</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">The <span class="b">frequency</span> of an observation is the number of times it occurs in the data.</p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">The<span class="b"> Relative Frequency</span> of an observation is the number of times it appears in the data (the frequency), divided by the total number of observations in the data set (the sum of all frequencies).  <span class="math">Relative Frequency =Frequency/Total</span>.  This can be expressed as a fraction, a decimal, or a percent.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF">:  What is your favorite type of pizza?</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">A survey asked respondents to identify their favorite pizza.  The sample of 40 responses is listed </span><span style="background:#DBE5F1">in </span><span class="b" style="background:#DBE5F1">T</span><span class="b" style="background:#DBE5F1">able 1</span><span style="background:#DBE5F1">.</span><span style="background:#DBE5F1">  </span><span style="background:#DBE5F1">Who are the individuals? What type of data was collected?  </span><span style="background:#DBE5F1">Find</span><span style="background:#DBE5F1"> the frequency and relative frequency of the category “Pepperoni”</span><span style="background:#DBE5F1">.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(9*var(--u))"></p>
+<div class="tblwrap"><table class="wt"><tr><th scope="colgroup" colspan="2" style="background:#D6DCE4;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:0"><p><span style="color:#C00000">Table 1</span>: Favorite Pizza</p></th><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:0"></td><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:0"></td><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie </span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td></tr></table></div>
+<figure class="float right photo" style="width:245px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image4.jpg" alt="A pizza with pepperoni." style="width:236px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@alanaktion?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Alan Hardman</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/pineapple-pizza?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:  </span>First, note that in this example the individuals are the people who responded to the survey question.  The variable is “Favorite Pizza”, which is qualitative and nominal because it is a name only.   The data are the 40 responses.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The category “Pepperoni” has frequency 12, since “Pepperoni” is listed 12 times in the data set.  (Go ahead, count!)</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The relative frequency of “Pepperoni” is 12 divided by 40.  </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="has-qed" style="padding-left:calc(5.4*var(--u))">Relative Frequency = <span class="math">12/40=0.3=30%</span>, expressed as a fraction, a decimal, and a percent.  Usually, you will be asked to express your answer in only one way. <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 2</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Frequency Table</span> is a table that lists each category appearing in the data and the number of times it appears (the frequency).</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Relative Frequency</span> <span class="b">Table</span> is a table that lists each category appearing in the data and the relative frequency of the category.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 2</span><span class="b" style="color:#FFFFFF">:  What is your favorite type of pizza?</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the data from </span><span class="b" style="background:#DBE5F1">T</span><span class="b" style="background:#DBE5F1">able</span><span class="b" style="background:#DBE5F1"> 1</span><span style="background:#DBE5F1"> to create a frequency and relative frequency table for the variable “Favorite Pizza”.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:</span>To make a frequency table, first list each category and the total in the first column.</p>
+<div class="anno" data-anno><div class="anno-row"><div class="anno-l"><div class="anno-note" data-side="left" data-kind="brace" data-row="3" data-col="0" data-rows="1-5"><p>List of each category</p></div></div><div class="anno-t"><div class="tblwrap"><table class="wt"><tr><th scope="col" style="background:#EEECE1;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Favorite Pizza</p></th><th scope="col" style="background:#EEECE1;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Frequency</p></th></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Pepperoni</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">12</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Cheese</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Veggie</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Hawaiian</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Other</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Total</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr></table></div></div><div class="anno-r"><div class="anno-note" data-side="right" data-kind="arrow" data-row="1" data-col="1"><p>We counted this in example 1</p></div></div></div><svg class="anno-svg" aria-hidden="true"></svg></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">Next, count the number of times each category occurred.  Fill in the frequencies in the frequency column and then add them up to find the total.  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="anno" data-anno><div class="anno-row"><div class="anno-l"></div><div class="anno-t"><div class="tblwrap"><table class="wt"><tr><th scope="col" style="background:#EEECE1;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Favorite Pizza</p></th><th scope="col" style="background:#EEECE1;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Frequency</p></th></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Pepperoni</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">12</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Cheese</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">5</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Veggie</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">6</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Hawaiian</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">7</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Other</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">10</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Total</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">40</p></td></tr></table></div></div><div class="anno-r"><div class="anno-note" data-side="right" data-kind="brace+arrow" data-row="6" data-col="1" data-rows="1-5"><p>The sum of all frequencies is 40</p></div></div></div><svg class="anno-svg" aria-hidden="true"></svg></div><p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">This is the frequency table.  Now to make a relative frequency table, we need to divide each frequency by the total.  Add another column next to the frequency column.  For this example, let’s leave the relative frequencies as decimals.  The first entry is 12 pepperoni, divided by the total, which is 40, so the relative frequency of pepperoni is <span class="math">12/40=0.3</span>.  The relative frequency for the category “cheese” is 5/40 = 0.125.  Continue to fill in the rest of the categories.</p>
+<p class="empty"></p>
+<div class="anno" data-anno><div class="anno-row"><div class="anno-l"></div><div class="anno-t"><div class="tblwrap"><table class="wt"><tr><th scope="col" style="background:#EEECE1;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Favorite Pizza</p></th><th scope="col" style="background:#EEECE1;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Frequency</p></th><th scope="col" style="background:#EEECE1;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Relative Frequency</p></th></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Pepperoni</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">12</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p> 12/40 = 0.3</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Cheese</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">5</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p> 5/40 = 0.125</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Veggie</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">6</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p> 6/40 = 0.15</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Hawaiian</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">7</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p> 7/40 = 0.175</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Other</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">10</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p> 10/40 = 0.25</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Total</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"> 40</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p> 40/40 = 1.000</p></td></tr></table></div></div><div class="anno-r"><div class="anno-note" data-side="right" data-kind="arrow" data-row="6" data-col="2"><p><b>Important Point!</b>  The sum of the relative frequency column will always be either 1 or 100%</p></div></div></div><svg class="anno-svg" aria-hidden="true"></svg></div><p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">We don’t usually leave the fractions in the relative frequency column, but here they are left to remind the reader how the decimals are calculated.   Note that the sum of the frequencies is the total, and the sum of the <span class="i">relative frequencies</span> is 1.  If relative frequency had been given as percentages, the total of the relative frequencies would have been 100%.</p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="tip-badge"><img src="images/image6.svg" alt=""><span class="tip-word">Tip!</span></div></div><p class="empty"></p>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9"><span style="background:#FDE9D9">Remember</span>, sum of the relative frequency column is always 1, or 100%.  Sometimes, when  using decimals that have been rounded, the total will be 0.999, or 1.0001.  These numbers  are equal to 1, when rounded off at the appropriate place.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">Creating frequency and relative frequency tables is an easy task when you are using technology.  In this course, we will use STATBELT Utility- the Statistical Basics Exploratory Learning Tool, to assist with these tasks.  STATBELT Utility runs in your web browser, so there is nothing to install.  You can <a href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="u" style="color:#0000FF">open STATBELT Utility</span><span class="vh"> (opens in a new tab)</span></a>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Using STATBELT Utility to make Frequency and Relative Frequency Tables</span></h3>
+<p style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD">To create a frequency or relative frequency table in STATBELT Utility:</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Type, paste, or import the data into one column, and type a name for the column in its heading.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Follow Descriptive Statistics → Frequency Tables.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>For “Table type,” choose “One variable,” then choose your column for “Variable.”</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Make sure that “Relative frequency” is checked.  “Percent” and the cumulative columns are optional.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>Choose an “Order of categories” if you have an order preference. * </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">6.</span>Click “Show table in a new window.”</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em;background:#EAF1DD"><span class="mk">*</span>The “Order of categories” options-</p>
+<p class="li-cont" style="padding-left:calc(1.6*var(--u) + 1.90em);background:#EAF1DD">“Alphabetical or numerical” puts the categories in alphabetical order, “Largest frequency first” puts them in order by frequency, “Order of first appearance” keeps the order of the column of data, and “Choose my own order” lets you move categories up or down (useful for ordinal data such as Poor, Good, Great).</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em;background:#EAF1DD"><span class="mk">*</span>The table opens in its own window.  Click “Copy table as text” to paste it into a document, or “Copy image” or “Save PNG” to keep a picture of it.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span style="color:#FFFFFF;background:#365F91">Example 3:  Using STATBELT Utility to make a frequency table for Pizza data.</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use STATBELT Utility and the data from Table 1 to create a frequency and relative frequency table for the variable “Favorite Pizza.”  You can type the data into STATBELT Utility, or copy and paste it from the </span><a href="https://docs.google.com/spreadsheets/d/1-504-cGkAVH5kOvwMsFBW-jnBvwpK5-9D5YWqB-2VXQ/edit?usp=sharing" target="_blank" rel="noopener"><span class="u" style="color:#0000FF;background:#DBE5F1">Favorite Pizza data file</span><span class="vh"> (opens in a new tab)</span></a><span style="background:#DBE5F1">.  (If you type the data or copy it from the table, make sure to put the data into one column.  If you open the linked file, the data are already organized in one column, which will make it easier to copy and paste it into STATBELT Utility or Microsoft Excel.)</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>Click on the link to the data and copy the values in the column (not the heading).  Open STATBELT Utility, click in row 1 of Column A, and paste.  Then type a name for the column, such as “Favorite Pizza,” in the column heading.  </p>
+<p class="empty"></p>
+<div class="tblwrap"><table class="wt"><tr><th scope="colgroup" colspan="2" style="background:#D6DCE4;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:0"><p><span style="color:#C00000">Table 1</span>: Favorite Pizza</p></th><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:0"></td><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:0"></td><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie </span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Veggie</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Cheese</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Other</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">Pepperoni</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">Hawaiian</span></p></td></tr></table></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">To create the table, follow Descriptive Statistics → Frequency Tables, then select “Favorite Pizza” for “Variable.”  I left the order as “Alphabetical or numerical,” but you can choose a different order.  Then click “Show table in a new window.”</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u))"><img src="images/tk_s21_menu_ft.png" alt="STATBELT Utility menu path Descriptive Statistics, then Frequency Tables." style="width:734px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_s21_ft_window.png" alt="STATBELT Utility frequency table for the pizza data: Cheese 5, Hawaiian 7, Other 10, Pepperoni 12, Veggie 6, total 40." style="width:563px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">2</span><span class="b">:</span> Frequency table for Favorite Pizza.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Since we will continue to use this data, now is a good time to remind you (and explain how) to save your data.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">STATBELT Utility- Saving Data</span></h3>
+<p style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"><span class="hang" style="min-width:calc(1.8*var(--u))"></span>STATBELT Utility does not keep your data after you close the page, so save your data before you leave.  Select Data → Import or export data, then click “Export data as CSV.”  The file is saved to your computer.  To open it later, select Data → Import or export data and drag the file onto the page, or click “Import CSV or Excel file…” above the data table.</p></div>
+<p class="empty"></p>
+<h2 class="subhead">Bar Graphs</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Now that we have the data summarized by frequency, we can use this information to create a bar graph or pie chart.  This can be done using STATBELT Utility or other technology more easily than by hand.  Displaying the data using graphs will make the data easier to understand.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 3</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Bar Graph</span> is a chart that lists categories on one axis and the frequencies or relative frequencies on the other axis.  Rectangles are drawn for each category where the height of the rectangle is determined by the frequency or relative frequency of the category.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">4</span><span class="b" style="color:#FFFFFF">:  Make the Pizza Data into a Bar Graph</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Make a frequency bar graph for </span><span style="background:#DBE5F1">the </span><span style="background:#DBE5F1">“Favorite Pizza</span><span style="background:#DBE5F1">” </span><span style="background:#DBE5F1">data </span><span style="background:#DBE5F1">in</span><span style="background:#DBE5F1"> </span><span style="background:#DBE5F1">T</span><span style="background:#DBE5F1">able 1.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p style="padding-left:calc(5.85*var(--u));text-indent:calc(-1*calc(5.85*var(--u)))"><span class="hang" style="min-width:calc(5.85*var(--u))"><span class="b">Solution:</span></span>We have previously entered the raw data into a column in STATBELT Utility with the variable name “Favorite Pizza.”  Select Graphs → Bar graph.  </p>
+<p style="padding-left:calc(1.8*var(--u))"><span class="b"><img src="images/tk_s21_menu_bar.png" alt="STATBELT Utility menu path Graphs, then Bar graph." style="width:563px" class=""></span></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(3.6*var(--u))">(1) Select “Favorite Pizza” for “Column”</p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(3.6*var(--u))">(2) select “Frequency” for “Bar height”</p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(3.6*var(--u))">(3) check “Show the value above each bar”</p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(3.6*var(--u))">(4) leave “Order of bars” as “Alphabetical / numerical,” then </p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(3.6*var(--u))">(5) click “Open graph in a new window.”  The result is figure 2.3.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b"><img src="images/tk_s21_bar_options.png" alt="STATBELT Utility options for making a bar graph, with the five steps numbered." style="width:563px" class=""></span></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b"><img src="images/tk_fig2_3_bar.png" alt="Frequency bar graph for favorite pizza data made with STATBELT Utility." style="width:563px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">3</span><span class="b">:  </span>Frequency bar graph for favorite pizza data.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">Notice that the value above the bars for each category is the frequency we calculated in example 2.  Also note that the bars all have the same width, and that the bars are not touching.  These are properties of all proper bar graphs.</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Here are the steps for making bar graphs in STATBELT Utility along with descriptions of the options that are available.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Using STATBELT Utility to make Bar Graphs from Data</span></h3>
+<p style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"><span class="hang" style="min-width:calc(1.8*var(--u))"></span>To create a Bar Graph in STATBELT Utility when you have raw data:</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Enter or import the data.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Follow Graphs → Bar graph.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Choose your column for “Column,” and for “Bar height” select Frequency or Relative frequency.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Optional- </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>“Order of bars”- Allows you to choose the order of the bars left to right.  </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>“Show the value above each bar”- Labels each bar with its frequency or relative frequency.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>“Decimals” and “Colors”- Change the number of decimals shown and the color of the bars.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>The graph opens in its own window, where you can copy it or save it as a picture.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>Click “Open graph in a new window.”</p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">5</span><span class="b" style="color:#FFFFFF">:  Make the Pizza Data into a Relative Frequency Bar Graph</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the data in Table 1 for “Favorite Pizza”</span><span style="background:#DBE5F1"> </span><span style="background:#DBE5F1">to create a</span><span style="background:#DBE5F1"> bar graph</span><span style="background:#DBE5F1"> with </span><span class="b" style="background:#DBE5F1">relative frequency</span><span style="background:#DBE5F1"> as the vertical axis.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>The process is identical to example 4, with one exception.  Instead of selecting “Frequency” for “Bar height,” you select “Relative frequency.”</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_fig2_4_relbar.png" alt="Relative frequency bar graph for pizza data made with STATBELT Utility." style="width:575px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">4</span><span class="b">:  </span>Relative frequency bar graph for favorite pizza data.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">Notice that the <span class="i">shape</span> of the relative frequency bar graph (<span class="b">figure 2.4</span>) looks the same as the shape of the frequency bar graph (<span class="b">figure 2.3</span>) but the value above the bars has changed to the relative frequency values we calculated in example 2.   The shape is the same because only the scale on the vertical axis has changed.</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Since we are using categories, we can arrange the bars of the graph in any order that we would like.  Sometimes, we want to see the most frequent categories grouped together.  For example, you might want to identify the most important concerns people have about their community.  If we arrange the columns from highest to lowest frequency, we have created a <span class="b">Pareto chart</span>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 4</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A<span class="b"> Pareto Chart</span> is a bar graph where the categories are arranged from the highest frequency to the lowest frequency from left to right.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">6</span><span class="b" style="color:#FFFFFF">:  Make the Pizza Data into a Pareto Chart</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the </span><span style="background:#DBE5F1">“Favorite Pizza” data from </span><span class="b" style="background:#DBE5F1">T</span><span class="b" style="background:#DBE5F1">able 1</span><span style="background:#DBE5F1"> to make a Pareto chart.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>Using STATBELT Utility, the process is the same as example 4.  The only change is that for “Order of bars,” you choose “Descending frequency (Pareto chart).”  This will put the categories in order from the highest frequency down to the lowest frequency moving from left to right on the graph.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u))"><img src="images/tk_s21_pareto_order.png" alt="STATBELT Utility option Order of bars set to Descending frequency (Pareto chart)." style="width:392px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_fig2_5_pareto.png" alt="Pareto chart for pizza data made with STATBELT Utility, with an arrow showing the frequencies decreasing from left to right." style="width:563px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">5</span><span class="b">:  </span>Pareto chart for favorite pizza data.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">Note that the categories are now listed in decreasing order from the most popular down to the least popular.  Obviously, Pepperoni is the most popular.  Veggie and cheese will probably be the last slices taken from the table at your party.</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">Pie Charts</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Another common graph that is familiar and is appropriate to use with qualitative data is the <span class="b">pie chart</span>.  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 5</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Pie Chart</span> is a circle divided into sectors, one sector for each category, such that the sector for each category is proportional to its frequency.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Computing the size of each sector (slice of the pie) is complicated.  A full circle contains 360°, and the degree measure of each sector must be computed using the relative frequency of the category.  After computing the angles, you must draw the angles by hand.  In most situations, that would require the use of protractor.  Making pie charts by hand takes more work than bar graphs.  Fortunately, we are going to use technology that will complete the computations and drawing for us.  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Using STATBELT Utility to make Pie Charts from Data</span></h3>
+<p style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"><span class="hang" style="min-width:calc(1.8*var(--u))"></span>To create a Pie Chart in STATBELT Utility when you have raw data:</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Enter or import the data.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Follow Graphs → Pie chart.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Choose your column for “Column.”</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Optional- </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>“Show”- Choose Frequency, Relative frequency, or Percent for the slice labels.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>“Order of categories”- Allows you to choose the order of categories.  </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>“Decimals” and “Colors”- Change the decimals shown and the slice colors.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Check “Show the values on the slices” to label each slice.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>Click “Open chart in a new window.”</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#EAF1DD"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">7</span><span class="b" style="color:#FFFFFF">:  Make the Pizza Data into a Pie Chart</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the data from </span><span style="background:#DBE5F1">Table</span><span style="background:#DBE5F1"> 1 to create a Pie chart using relative frequency for the variable “Favorite Pizza”.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>Return to STATBELT Utility with your pizza data.  Select Graphs → Pie chart, then choose “Favorite Pizza” for “Column.” </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_s21_pie_options.png" alt="STATBELT Utility window with options for making a pie chart." style="width:624px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">For “Show,” choose “Percent” and check “Show the values on the slices.”  The “Order of categories” option allows you to select the order of the categories in the chart.  I left it as “Alphabetical / numerical,” which means alphabetical order of the categories as you move clockwise around the circle.  Finally, click “Open chart in a new window.”  The pie chart is shown in figure 2.6.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_fig2_6_pie.png" alt="Pie chart for pizza data made with STATBELT Utility." style="width:563px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">6</span><span class="b">:  </span>Pie chart for favorite pizza data.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">STATBELT Utility has automatically calculated the correct size for each category, saving us from having to do it by hand.  Thank you, Stat-Man!</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Sometimes, instead of a long column of data, the data are summarized in a table.  STATBELT Utility can be used to create bar graphs, Pareto charts, and pie charts in this situation.  For example, if we wanted to make a bar graph, we select Graphs → Bar graph, then choose “Summarized frequencies from the spreadsheet” for “Data.” </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u))"><span class="b"><img src="images/tk_s21_summary_choice.png" alt="STATBELT Utility Data option set to Summarized frequencies from the spreadsheet." style="width:606px" class=""></span></p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">8</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Creating bar graphs and pie charts from summarized data.</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The data that is summarized in </span><span class="b" style="background:#DBE5F1">Ta</span><span class="b" style="background:#DBE5F1">ble </span><span class="b" style="background:#DBE5F1">2</span><span style="background:#DBE5F1"> </span><span style="background:#DBE5F1">was from a student survey about tattoos.</span><span style="background:#DBE5F1">  </span><span style="background:#DBE5F1">Create a relative frequency bar graph and a pie chart for the summarized data.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<div class="tblwrap center"><table class="wt"><tr><th scope="col" style="background:#D6DCE4;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="color:#C00000">Table 2</span>:  Summarized Tattoo Data</p></th><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"></td></tr><tr><th scope="col" style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:0;vertical-align:middle"><p><span style="font-size:0.9em">What best describes you?</span></p></th><th scope="col" style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><span style="font-size:0.9em">Frequency</span></p></th></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">I have no tattoos</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><span style="font-size:0.9em">59</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">I have one tattoo</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><span style="font-size:0.9em">13</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">I have more than one tattoo</span></p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><span style="font-size:0.9em">35</span></p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p><span style="font-size:0.9em">I have had tattoos removed</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><span style="font-size:0.9em">5</span></p></td></tr></table></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>First, type or copy the table into STATBELT Utility, with the categories in Column A and the frequencies in Column B.  Long category names are shortened on the graph, so we typed short names such as “No tattoos” and “One tattoo.” </p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_s21_tattoo_grid.png" alt="Tattoo data typed into STATBELT Utility." style="width:294px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">Next, select Graphs → Bar graph and choose “Summarized frequencies from the spreadsheet” for “Data.”  Select “What best describes you?” for “Categories” and check the “Frequency” column under “Frequency columns.”  For “Bar height,” select “Relative frequency.”  For “Order of bars,” select “Order first seen in the data.”  Check “Show the value above each bar” and click “Open graph in a new window” when you are ready.</p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_s21_summary_options.png" alt="STATBELT Utility options for a bar graph from summarized data." style="width:624px" class=""></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_fig2_7_tattoo_relbar.png" alt="Relative frequency bar graph for tattoo data made with STATBELT Utility." style="width:563px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">7</span><span class="b">:  </span>Relative frequency bar graph for tattoo data.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">To make the pie chart, follow Graphs → Pie chart and choose “Summarized frequencies from the spreadsheet” for “Data.”  The options for pie charts are the same as for bar graphs.  See the bar graph in figure 2.7 and the pie chart in figure 2.8.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_fig2_8_tattoo_pie.png" alt="Pie chart for tattoo data made with STATBELT Utility." style="width:563px" class=""></p>
+<p style="padding-left:calc(9*var(--u));text-indent:calc(3.6*var(--u))"><span class="b">Figure 2.</span><span class="b">8</span><span class="b">:  </span>Pie chart for tattoo data.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">Side-by-Side and Stacked Bar Graphs</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Often, we want to know if two qualitative variables are related.  One way to visualize two or more qualitative variable is to use a <span class="b">contingency table</span>, or a <span class="b">two-factor table</span> and a side-by-side bar graph.  </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 6</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Contingency table</span> is a data table where each row represents categories for one variable, while the columns represent categories of another variable.  The cell contains the frequency of observations with both the row and column characteristic.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Side-by-side bar graph</span> is a bar graph where each qualitative factor is split into two or more bars, each representing categories of the other variable.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">9</span><span class="b" style="color:#FFFFFF">:  Vaccination Status and Ethnicity</span><span style="color:#FFFFFF"> </span><span style="color:#FFFFFF">Side-by-side Frequency Bar Graph</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The data that is summarized in </span><span class="b" style="background:#DBE5F1">T</span><span class="b" style="background:#DBE5F1">able </span><span class="b" style="background:#DBE5F1">3</span><span style="background:#DBE5F1"> </span><span style="background:#DBE5F1">was from a student survey </span><span style="background:#DBE5F1">in fall 2021 </span><span style="background:#DBE5F1">about vaccination status and ethnicity.   Find the row and column totals and make a side-by-side bar graph displaying the vaccination status of each </span><span style="background:#DBE5F1">race/</span><span style="background:#DBE5F1">ethnicity included in the table.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<div class="tblwrap center"><table class="wt"><tr><th scope="colgroup" colspan="3" style="background:#D6DCE4;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:0"><p><span style="color:#C00000">Table 3</span>:  Vaccination Status by Race or Ethnicity</p></th><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:0"></td><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:0"></td><td style="background:#D6DCE4;border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"></td></tr><tr><th scope="col" style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Vaccination Status</p></th><th scope="col" style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0"><p style="text-align:center">Asian</p></th><th scope="col" style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">Black</p></th><th scope="col" style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">Hispanic</p></th><th scope="col" style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">White</p></th><th scope="col" style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">None of these</p></th></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:1.0px solid #000"><p>Vaccinated</p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:0"><p style="text-align:center">13</p></td><td style="border-top:0;border-left:1.0px solid #000;border-bottom:0;border-right:1.0px solid #000"><p style="text-align:center">11</p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000"><p style="text-align:center">34</p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000"><p style="text-align:center">36</p></td><td style="border-top:0;border-left:0;border-bottom:0;border-right:1.0px solid #000"><p style="text-align:center">5</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p>Unvaccinated</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:0"><p style="text-align:center">3</p></td><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">9</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">14</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">17</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">6</p></td></tr></table></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>To copy the original raw data into STATBELT Utility, open the <a href="https://docs.google.com/spreadsheets/d/1JgrywANKE8-_FHrbg70DOp-Ur2iAopb8nekOa50x7Tc/edit?usp=sharing" target="_blank" rel="noopener"><span class="u" style="color:#0000FF">vaccination data file</span><span class="vh"> (opens in a new tab)</span></a>.  Copy both columns of data (not the headings) and paste them into row 1 of Column A.  Then type “Status” and “Ethnicity” as the names of the two columns.  (You can also download the file as a CSV file and import it, which brings in the column names automatically.)</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">To make the raw data into a contingency table, like the one given above, follow Descriptive Statistics → Frequency Tables and choose “Two variables (two-way or contingency table)” for “Table type.”</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))"><img src="images/tk_s21_menu_ft.png" alt="STATBELT Utility menu path Descriptive Statistics, then Frequency Tables." style="width:661px" class=""></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">Next select “Status” for the “Row variable” and “Ethnicity” for the “Column variable.”  To list the ethnicities in the same order as Table 3, choose “Choose my own order” for “Order of columns,” then click the ▼ arrow next to “None of these” until it is at the bottom of the list.  There are other options that you can ignore for now.  We will discuss them later in the course.  For now, simply click “Show table in a new window.”</p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/tk_s21_twoway_options.png" alt="STATBELT Utility options for a two-way (contingency) table." style="width:600px" class=""></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/tk_fig2_9_twoway.png" alt="Contingency table for vaccination status by ethnicity created by STATBELT Utility." style="width:588px" class=""></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">9</span><span class="b">:  </span>Contingency table for vaccination status.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">The contingency table created by STATBELT Utility in figure 2.9 has a slightly different arrangement than the one we began with, but it carries the same information in addition to displaying the totals for each row and column.  </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">Now, to create the side-by-side bar chart, follow Graphs → Bar graph.  Choose “Ethnicity” for “Column” and select “Status” for the “Group by” option.  Leave “Bar arrangement” as “Split bars (side by side)” and “Show” as “Raw data (counts),” and check “Show the value above each bar.”  So the bars match the order of Table 3, choose “My own order (choose below)” for “Order of bars” and make sure “None of these” is at the bottom of the list.  Then click “Open graph in a new window.”  </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))"><img src="images/tk_s21_sidebyside_options.png" alt="STATBELT Utility bar graph options with Group by set to Status." style="width:588px" class=""></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_fig2_10_sidebyside.png" alt="Side-by-side frequency bar graph for vaccination status by ethnicity made with STATBELT Utility." style="width:600px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">10</span><span class="b">:  </span>Side-by-side frequency bar graph for vaccination status and ethnicity.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">This side-by-side bar graph in <span class="b">figure 2.</span><span class="b">10</span> shows us the frequency of vaccinated and unvaccinated individuals from each race or ethnicity.  For example, 34 Hispanics were vaccinated while 14 were not.  There were 36 White individuals who were vaccinated and 17 unvaccinated.  </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<figure class="float left photo" style="width:245px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image27.jpg" alt="A picture containing person getting a vaccination." style="width:319px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@cdc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">CDC</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on Unsplash</span></p></figure><p style="padding-left:calc(5.4*var(--u))">If you look closely at <span class="b">figure 2.10</span>, you might notice that the tallest bars are for White and Hispanic vaccinated individuals.  But White and Hispanic individuals were also the tallest bars for the unvaccinated groups.  That is because there were more White and Hispanic individuals in the survey than from the other groups.  In fact, there were more unvaccinated White participants then there were vaccinated Asian participants.  It would be accurate to say that there are more vaccinated White individuals than vaccinated Asian individuals (just look at the tallest bars!).  But it’s also true that there were more unvaccinated White individuals than unvaccinated Asian individuals.  Both are correct because the White participants outnumbered Asian participants in both categories, but it is confusing.  To fairly compare the vaccination status of each ethnic group we will instead use relative frequency.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">To compute the relative frequency of vaccination within each group, divide the number vaccinated by the total for that group.  You can find the totals in the contingency table in figure 2.9 or compute them yourself.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(9*var(--u))">Relative frequency for vaccinated Asian = <span class="math">13/16=0.813</span> or 81.3%</p>
+<p class="empty" style="padding-left:calc(9*var(--u))"></p>
+<p style="padding-left:calc(9*var(--u))">Relative frequency for vaccinated “Black” = <span class="math">11/20=0.55</span> or 55%</p>
+<p class="empty" style="padding-left:calc(9*var(--u))"></p>
+<p style="padding-left:calc(9*var(--u))">Relative frequency for vaccinated “Hispanic” = <span class="math">34/48=0.708</span> or 70.8%</p>
+<p class="empty" style="padding-left:calc(9*var(--u))"></p>
+<p style="padding-left:calc(9*var(--u))">Relative frequency for vaccinated “White” = <span class="math">36/53=0.679</span> or 67.9%</p>
+<p class="empty" style="padding-left:calc(9*var(--u))"></p>
+<p style="padding-left:calc(9*var(--u))">Relative frequency for vaccinated “None of these” = <span class="math">5/11=0.455</span> or 45.5%</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">We can now see that although there were more vaccinated White and Hispanic individuals, they did not have the highest rate of vaccinations among their ethnic groups.  Asians had the highest vaccination rate at 81.3%.  Using relative frequency within groups allows us to fairly compensate for different group sizes.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 10</span><span class="b" style="color:#FFFFFF">:  Vaccination data- Side-by-side with relative frequency</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the data summarized in </span><span style="background:#DBE5F1">T</span><span style="background:#DBE5F1">able 3 to make a side-by-side bar graph using relative frequency</span><span style="background:#DBE5F1"> within ethnic groups</span><span style="background:#DBE5F1">.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>To do this, repeat the steps in example 9 to create the bar graph, but this time select “Percents within categories” for “Show.”  </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))"><img src="images/tk_s21_pct_within.png" alt="STATBELT Utility option Show set to Percents within categories." style="width:367px" class=""></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">This will give the percent of each ethnic group that is vaccinated and the percent that is unvaccinated above the bars.  The side-by-side bar graph is shown in <span class="b">figure 2.1</span><span class="b">1</span>.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">Now we can clearly see that the group with the highest vaccination rate is Asian.  We can also see that White and Hispanic are close, and the rate of vaccinations among Black people is slightly lower.  </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The data in this student survey mirrored the estimated population vaccination rates in the United States at the time of this writing.  According to CDC data in April 2022, Asian Americans had the highest vaccination rate at 85%, followed by Hispanic at 65%, White at 63%, and Black at 57%.  These figures were based on data collected from 38 states.</p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/tk_fig2_11_pct_within.png" alt="Side-by-side bar graph of the percent vaccinated and unvaccinated within each ethnicity, made with STATBELT Utility." style="width:649px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.1</span><span class="b">1</span><span class="b">:  </span>Side-by-side relative frequency bar graph for vaccination status and ethnicity.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Another option to visualize the percentage breakdown within each group is to use a <span class="b">stacked bar graph</span>.  </p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 11</span><span class="b" style="color:#FFFFFF">:  Vaccination data- Stacked bar graph</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the data summarized in </span><span class="b" style="background:#DBE5F1">T</span><span class="b" style="background:#DBE5F1">able 3</span><span style="background:#DBE5F1"> to make a </span><span class="b" style="background:#DBE5F1">stacked bar graph</span><span style="background:#DBE5F1">.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>Repeat the steps for the side-by-side bar graph in example 10, but this time select “Stacked bars” for “Bar arrangement.”  Leave “Show” as “Percents within categories.”  The resulting graph is shown in figure 2.12.  Each column represents one ethnicity, and the total height of each column is 100%.  The relative size of the bars in the stack is what allows you to compare the vaccination rates of the different ethnic groups.  The group with the largest orange bar is the group with the highest vaccination rate.  The group with the largest purple portion of the bar has the lowest vaccination rate.  The stacked bar graph gives the same information as the side-by-side bar graph but has a different look. </p>
+<p style="padding-left:calc(5.4*var(--u))"><img src="images/tk_s21_stacked_options.png" alt="STATBELT Utility bar graph options with Bar arrangement set to Stacked bars and Show set to Percents within categories." style="width:588px" class=""></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/tk_fig2_12_stacked.png" alt="Stacked bar graph of the percent vaccinated and unvaccinated within each ethnicity, made with STATBELT Utility." style="width:649px" class=""></p>
+<p style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"><span class="b">Figure 2.1</span><span class="b">2</span><span class="b">:  </span>Stacked relative frequency bar graph for vaccination status and ethnicity.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="text-align:center;padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">One final note.  Please remember that bar graphs, pareto charts, and pie graphs can only be used for qualitative data!  If you have quantitative (numerical) data, whether it is discrete or continuous, we will need to use different procedures and graphs.  That is the topic for section 2.2.</p>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image32.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(4.05*var(--u));background:#7030A0"><span style="color:#FFFFFF">Important Point!</span></h3>
+<p style="padding-left:calc(4.05*var(--u));background:#E3D8EF">Bar graphs, pie charts, and Pareto charts can only be used for <span class="b">qualitative</span> data!  They <span class="b">cannot</span> be used with quantitative (numerical) data.</p></div>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="index.html"><small>Previous</small>Chapter 2 home</a><a class="next" href="section-2-2.html"><small>Next</small>2.2 Tables and Graphs for Quantitative Data</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div><script>
+(function(){
+var NS='http://www.w3.org/2000/svg';
+function cell(t,r,c){var row=t.rows[r];if(!row)return null;var k=0;for(var i=0;i<row.cells.length;i++){var s=row.cells[i].colSpan||1;if(c<k+s)return row.cells[i];k+=s}return null}
+function txt(el){var g=document.createRange();g.selectNodeContents(el);var rs=[].filter.call(g.getClientRects(),function(r){return r.width>0});
+ if(!rs.length)return el.getBoundingClientRect();return{left:Math.min.apply(0,rs.map(function(r){return r.left})),right:Math.max.apply(0,rs.map(function(r){return r.right})),
+ top:Math.min.apply(0,rs.map(function(r){return r.top})),bottom:Math.max.apply(0,rs.map(function(r){return r.bottom}))}}
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+function arrow(svg,x1,y1,x2,y2){svg.appendChild(el('line',{x1:x1,y1:y1,x2:x2,y2:y2,stroke:'#7030A0','stroke-width':1.8}));
+ var a=Math.atan2(y2-y1,x2-x1),L=10;svg.appendChild(el('path',{d:'M'+x2+','+y2+' L'+(x2-L*Math.cos(a-.4))+','+(y2-L*Math.sin(a-.4))+' L'+(x2-L*Math.cos(a+.4))+','+(y2-L*Math.sin(a+.4))+'z',fill:'#7030A0'}))}
+function brace(svg,x,y1,y2,d){var w=7,xm=x+d*w,xt=x+2*d*w,ym=(y1+y2)/2;
+ svg.appendChild(el('path',{d:'M'+x+','+y1+' Q'+xm+','+y1+' '+xm+','+(y1+7)+' L'+xm+','+(ym-7)+' Q'+xm+','+ym+' '+xt+','+ym+' Q'+xm+','+ym+' '+xm+','+(ym+7)+' L'+xm+','+(y2-7)+' Q'+xm+','+y2+' '+x+','+y2,fill:'none',stroke:'#4472C4','stroke-width':2}));return xt}
+function lay(){[].forEach.call(document.querySelectorAll('[data-anno]'),function(box){
+ var svg=box.querySelector('.anno-svg');svg.innerHTML='';box.style.minHeight='';
+ if(getComputedStyle(box.querySelector('.anno-row')).display!=='grid')return;
+ var t=box.querySelector('table'),B=box.getBoundingClientRect(),T=t.getBoundingClientRect(),maxB=T.bottom;
+ ['left','right'].forEach(function(side){var last=-1e9;
+  var ns=[].slice.call(box.querySelectorAll('.anno-note[data-side="'+side+'"]'));
+  ns.forEach(function(n){var col=n.parentElement.getBoundingClientRect(),r=+n.dataset.row,c=+n.dataset.col,k=n.dataset.kind,rows=n.dataset.rows;
+   var R=t.rows[r].getBoundingClientRect(),cy=(R.top+R.bottom)/2,y1,y2,tipx=null,d=side==='left'?-1:1;
+   if(rows){var p=rows.split('-');y1=t.rows[+p[0]].getBoundingClientRect().top+3;y2=t.rows[+p[1]].getBoundingClientRect().bottom-3;
+     if(k==='brace')cy=(y1+y2)/2}
+   var top=Math.max(cy-n.offsetHeight/2,last+8);n.style.top=(top-col.top)+'px';last=top+n.offsetHeight;maxB=Math.max(maxB,last);
+   var nr=n.getBoundingClientRect(),nx=(side==='left'?nr.right:nr.left)-B.left,ny=(nr.top+nr.bottom)/2-B.top;
+   if(k.indexOf('brace')===0){var bx=(side==='left'?T.left-4:T.right+4)-B.left;tipx=brace(svg,bx,y1-B.top,y2-B.top,d)}
+   if(k==='brace'){arrow(svg,nx,ny,tipx-d*3,(y1+y2)/2-B.top)}
+   else{var C=cell(t,r,c),X=txt(C),tx=(side==='left'?X.left-5:X.right+5)-B.left;arrow(svg,nx,ny,tx,cy-B.top)}
+  })});
+ box.style.minHeight=(maxB-B.top+4)+'px'})}
+window.addEventListener('load',lay);window.addEventListener('resize',lay);if(document.fonts)document.fonts.ready.then(lay);lay();
+})();
+</script>
+</body></html>

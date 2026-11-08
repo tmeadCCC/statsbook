@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>1.4 Types of Error in Statistics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;700&display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:11px/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+.math{font-style:italic;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;line-height:1.15;margin:0 .1em}
+.frac .num{border-bottom:1px solid currentColor;padding:0 .2em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+@media (max-width:600px){.sol-lab{width:auto;min-width:calc(5.4*var(--u));padding-right:.35em}}.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+<style>img.comic{width:min(950px,calc(100vw - 32px))!important;max-width:none;display:block;position:relative;left:50%;transform:translateX(-50%)}p.comic-p{padding-left:0!important;text-indent:0!important}</style><style>@media (max-width:480px){p.ex-part{padding-left:calc(2.25*var(--u))!important}}</style></head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-1/index.html" title="Unit 1: Data and Descriptive Statistics">Unit 1</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 1: Basics of Statistics</a></nav><span class="where">Section 1.4</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span class="b" style="font-size:1.4em">Section 1.4: Types of Error in Statistics</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Understand how errors can be introduced during sampling.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Identify and differentiate between sampling errors and non-sampling errors.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Categorize non-sampling errors due to-</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Sampling bias</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Response bias</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Non-response bias</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Identify common sources of non-sampling errors such as-</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Incomplete frame</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Misrepresented answers</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Pollster pressure</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Interviewer error</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Wording of questions</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(1.8*var(--u))"><span class="hang" style="min-width:calc(1.35*var(--u))"><img src="images/image21.svg" alt="Checkbox Checked with solid fill" style="width:50px" class=""></span><span class="hang" style="min-width:calc(3.6*var(--u))"></span><span class="hang" style="min-width:calc(3.6*var(--u))"></span><img src="images/image21.svg" alt="Checkbox Checked with solid fill" style="width:50px" class=""></p>
+<p style="padding-left:calc(1.8*var(--u))"><img src="images/image1.png" alt="Process of statistics flowchart." style="width:747px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 1</span><span class="b">.15</span>.  The process of statistics, with steps one and two complete.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">At this point in the process of statistics, we have (1) identified the population and a question or questions we need answered and (2) collected the data.  To organize and summarize the data (step 3), and to make a meaningful inference (step 4), we need to know that the data is a fair representation of the population.  If the data we collected fairly represents the population, we can feel confident about the results and conclusions we reach.  But if the data we collected is not a representative sample, the results we reach could be incorrect!</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">In this section we will discuss how error is introduced when sampling and identify sources for error we can avoid.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The first thing to note is that using a sample to represent a much larger population will always introduce a (hopefully) small error.  Remember that every sample will be different, and so the results will also be different.  The differences in results from different samples are known as sample variations.  But if our data collection is sound, the different samples will share similar characteristics with the population, and so the results will provide a good estimate for the population.  </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The error introduced by using a sample to represent a population is called the <span class="b">sampling error</span>.  You have probably seen this called a “margin of error” in polling.  This kind of error is expected because you have decided to not complete a census either because it is impossible or extremely difficult.  But if the sample we use is representative of the population, the result from our sample should be close to the result we would get <span class="i">had</span> we used a census.  That is always the hope when using sampling techniques.  <span class="b">A sampling error is necessary and unavoidable when you use a sample to represent a larger population</span>.  It is <span class="i">not </span>a serious flaw in the study.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 1</span><span style="color:#FFFFFF">: </span><span style="color:#FFFFFF">Sampling Error</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Sampling Error</span><span class="b"> –</span> This is the natural error that occurs when using samples to represent a larger population.  Variation between samples will always produce small differences between sample results.  Sampling error is expected and acceptable in any study using samples.  It does not indicate a serious flaw.  Results obtained can be trusted.</p>
+<p class="verdict" style="background:#E3D8EF"><span style="font-size:min(6.4em,16vw)"><img src="images/image23.svg" alt="Thumbs up sign with solid fill" style="width:122px" class=""></span><span style="font-size:min(6.4em,16vw)"><img src="images/image25.svg" alt="Smiling face outline with solid fill" style="width:122px" class=""></span><span style="color:#007F3D;font-size:min(6.4em,16vw)">GOOD!</span></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">The second type of error is due to a serious flaw of some kind.  It is called a <span class="b">non-sampling error</span>.  These types of error are the result of a bias in the data collection, or other serious mistake.  These types of errors render any conclusions you reach unreliable.  Basically, if you have a non-sampling error, your results are useless.  This is a serious error, and you should always take great pains to avoid them!</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">2</span><span style="color:#FFFFFF">: </span><span style="color:#FFFFFF">Non-sampling Error </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Non-sampling Error –</span> This is a serious error that occurs due to mistakes collecting or recording the data.  This error does not occur due to natural variations between samples.  It means that the data do not represent the population, and the results are meaningless, or worse, misleading.  Results obtained cannot be trusted!</p>
+<p class="verdict" style="background:#E3D8EF"><span style="font-size:min(7.2em,16vw)"><img src="images/image27.svg" alt="Thumbs Down with solid fill" style="width:122px" class=""></span><span style="font-size:min(7.2em,16vw)"><img src="images/image29.svg" alt="Sad face outline with solid fill" style="width:122px" class=""></span><span style="color:#C00000;font-size:min(7.2em,16vw)">BAD!</span></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">There are lots of mistakes we can make that will result in non-sampling errors.  In each case, the non-sampling error produces a bias in the data.  A bias is present in the data if some characteristic of the population occurs far more often (or far less often) in the sample than in the population.  In simpler words, some groups are over-represented in the sample while others are under-represented.  For example, if you create a survey intended for college students, but accidentally give it to retired persons, you have created an age-bias.  The results may reflect the population of retired persons, but not the population of college students you intended.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Non-sampling errors can be broken down into three types, depending on whether the error was due to poor techniques in data collection, lack of participation in subjects, or difficulty getting accurate responses from participants.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 3</span><span style="color:#FFFFFF">:  </span><span style="color:#FFFFFF">Non-sampling Error Categories </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">Non-sampling errors can be split into three categories.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Sampling bias</span>- Occurs when the methods used to collect the sample data are flawed.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Non-response bias</span>- Occurs when individuals who fail to respond or complete a  survey differ in  opinion from those who do.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Response bias</span>- Occurs when the answers on the survey do not accurately reflect the true feelings of  the respondent.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<h2 class="subhead">Examples of Sampling Bias</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Recall that to use a simple random sample, we need to have a frame, or a list of all the individuals in the population.  Sometimes it is difficult to get a complete frame.  If the frame is missing sectors of the population, it may contain a bias that could render your results meaningless.  This is known as having an incomplete frame.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition 4</span></span><span style="color:#FFFFFF">Incomplete Frame </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Incomplete Frame</span>- This is a sampling bias that occurs when the frame is missing some segment of the population. </p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(18*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF">:  The 2016 Election Polls</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Prior to the presidential election in 2016, polls showed that </span><span style="background:#DBE5F1">d</span><span style="background:#DBE5F1">emocrat Hilary Clinton had a 7% lead over </span><span style="background:#DBE5F1">r</span><span style="background:#DBE5F1">epublican Donald Trump.  However, Donald Trump was elected president.  Why did the polls get it wrong?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="has-qed" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>There were multiple issues in this survey, some not the fault of the pollsters.  It is always problematic to use a popular vote to predict how the electoral vote will conclude.  But one contributing factor was that the pollsters did not have a complete frame.  When pollsters survey voters, they identify who is a “likely voter” and use them to create the frame.  In 2016, the frame of likely voters included too many democrats and not enough republicans.  They reasoned, in part, that “likely voters” would be people who had voted in the 2012 election.  But many voters who cast votes for Barack Obama did not cast a vote for Hilary Clinton (so democrat voters were overcounted in the polls).  Similarly, there were republican voters who did not vote in 2012 but did show up to vote for Donald Trump (so republican voters were undercounted in the polls).  Since the frame had too many democrats and not enough republicans, it led the pollsters to overestimate the support for Hilary Clinton.  It is worth noting that Hilary Clinton did win the popular vote by a small margin, so the polling was not far off, but the result was much closer than the pollsters predicted. <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Sometimes during personal interviews, the interviewer can intentionally or unintentionally bias the response from the individual with body language or attitude.  Good interviewers are trained to avoid biasing the results.  A positive and outgoing interviewer might get different results from a negative and unfriendly interviewer, even when interviewing the same people and asking the same questions.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">5</span></span><span style="color:#FFFFFF">Interviewer Error </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Interviewer Error</span>- Results when the interviewer biases the response through their body language or attitude. </p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">Another potential source of sampling bias comes from the survey itself. The design of the survey could influence how an individual responds.  This is called questionnaire design error.   For instance, asking for personal information at the beginning of a survey can lead individuals to feel suspicious and guarded in their responses.  Likewise, multiple questions from a specific perspective can lead responders to answer with what they think you are looking for.  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">6</span></span><span style="color:#FFFFFF">Questionnaire Design Error </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Questionnaire Design Error</span>- Results when the design of the survey influences individuals to answer questions in a specific way.</p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(21.6*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 2</span><span class="b" style="color:#FFFFFF">:  A Poorly Designed Questio</span><span class="b" style="color:#FFFFFF">n</span><span class="b" style="color:#FFFFFF">naire</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">A survey was created that asked subjects </span><span style="background:#DBE5F1">about exercise.  The first question asked the respondent if they knew that exercising </span><span style="background:#DBE5F1">three times per week</span><span style="background:#DBE5F1"> would improve their health.  The next question asked the respondent if they exercised </span><span style="background:#DBE5F1">three times </span><span style="background:#DBE5F1">weekly</span><span style="background:#DBE5F1">.  </span><span style="background:#DBE5F1">What is wrong with this survey</span><span style="background:#DBE5F1">?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="float right photo" style="width:245px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image30.jpg" alt="A pair of black shoes and weights on a wooden surface" style="width:269px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Kelly Sikkema</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/exercise?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>Survey takers will often give the answer they think the researchers are looking for in the survey.  The respondent knows that the researchers think everyone should be exercising three times per week since the first question tells them that.  So now they would want to claim they exercise, even if that is false.  They may feel shamed into saying they exercise, when in fact, they might not.  Or they might exaggerate their exercise habits to fit in with what the researchers are looking for.  A better survey would skip the first question or put the questions in the reverse order.  Survey takers are likely to be more honest in answering whether they exercise weekly if the researchers don’t hint that the answer should be “yes.”  </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Sometimes the wording used in a question can cause hidden biases to influence the response.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">7</span></span><span style="color:#FFFFFF">Phrasing of Questions Error and Loaded Questions</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Phrasing of Questions Error</span>- Results when the wording of the questions influences the response.  These may unintentionally happen.  If a question is intentionally worded to elicit a desired response, it is called a <span class="b">loaded question</span>.</p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(18*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">3</span><span class="b" style="color:#FFFFFF">:  A Poorly </span><span class="b" style="color:#FFFFFF">Worded Question</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">F</span><span style="background:#DBE5F1">ollowing </span><span style="background:#DBE5F1">are</span><span style="background:#DBE5F1"> </span><span style="background:#DBE5F1">t</span><span style="background:#DBE5F1">hree</span><span style="background:#DBE5F1"> </span><span style="background:#DBE5F1">versions for</span><span style="background:#DBE5F1"> </span><span style="background:#DBE5F1">a </span><span style="background:#DBE5F1">question on a survey.  </span><span style="background:#DBE5F1">What are the problems with each question as written?  </span><span style="background:#DBE5F1">Which one is worded the best?  </span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">1.</span><span style="background:#DBE5F1"></span><span style="background:#DBE5F1">Do you think </span><span style="background:#DBE5F1">police and fire fighters should be allowed to retire early</span><span style="background:#DBE5F1">?</span><span style="background:#DBE5F1">  (Yes or No)</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">2.</span><span style="background:#DBE5F1"></span><span style="background:#DBE5F1">Do you think police and fire fighters should be forced to retire when they are physically unable to do the job?  (Yes or No)</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">3.</span><span style="background:#DBE5F1">Do you think police and fire fighters should </span><span style="background:#DBE5F1">be allowed to </span><span style="background:#DBE5F1">continue working</span><span style="background:#DBE5F1"> when they are physically unable to do the job?  (Yes or No)</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-label"><span class="b">Solution</span>: </p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span><span class="b">Do you think police and fire fighters should be allowed to retire early?</span><span class="b">  </span>This question has no context.  Many people would respond “No” but might change their response to “Yes” if they were informed the question pertained to workers who were no longer physically capable of doing the job.</p>
+<p class="empty" style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span><span class="b">Do you think police and fire fighters should be forced to retire when they are physically unable to do the job?</span>  This question has a negative connotation.  People will not feel comfortable “forcing” retirement on someone.  For this reason, more people will respond “No” than “Yes.”</p>
+<figure class="float right photo" style="width:319px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image31.jpg" alt="Image of firemen putting out a fire." style="width:287px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@mchesin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Matt C</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/fire-fighter?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p class="empty" style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span><span class="b">Do you think police and fire fighters should be allowed to </span><span class="b">continue working</span><span class="b"> when they are physically unable to do the job?</span> This is really the same question as (2), but this version uses more positive language.  A “No” response to question (3) is the same as a “Yes” response to question (2).  But respondents are more likely to say “No” to forced retirement than they are to say “Yes” to allowing them to continue working.  The difference in the results of the two questions is due to the phrasing of the question and not the feelings of the respondents. </p>
+<p class="empty" style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="padding-left:calc(9*var(--u))">So which question is best?  Probably none of the questions are very good.  It is difficult to write a question that has neither a positive connotation nor a negative connotation.  Entire courses are taught on how to create and design surveys with good questions.  Writing good questions that will correctly gauge how people feel is hard! <span class="hang" style="min-width:calc(3.6*var(--u))"></span><span class="hang" style="min-width:calc(3.6*var(--u))"></span><span class="hang" style="min-width:calc(3.6*var(--u))"></span>     </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(18*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">4</span><span class="b" style="color:#FFFFFF">:  Two Loaded Questions</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Consider the following questions.  What makes each one loaded?  </span><span style="background:#DBE5F1">How </span><span style="background:#DBE5F1">do you think</span><span style="background:#DBE5F1"> most people </span><span style="background:#DBE5F1">would </span><span style="background:#DBE5F1">respond</span><span style="background:#DBE5F1">?  </span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">1.</span><span style="background:#DBE5F1"></span><span style="background:#DBE5F1">Do you think our overpaid politicians should be allowed to vote themselves another pay raise for the taxpayers to cover?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">2.</span><span style="background:#DBE5F1"></span><span style="background:#DBE5F1">Do you think our public servants deserve a small cost-of-living adjustment in their salaries?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-label"><span class="b">Solution</span>: </p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span><span class="b">Do you think our overpaid politicians should be allowed to vote themselves another pay raise for the taxpayers to cover?</span>  This question is clearly designed to get a “No” response.  The word politician has a negative connotation, they are overpaid, they get to vote it for themselves, and all the taxpayers (like us!) pay for it.  All the negative language will cause people to choose “No” without really thinking about it.  Few people would respond “Yes”.</p>
+<p class="empty" style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span><span class="b">Do you think our public servants deserve a small cost-of-living adjustment in their salaries?</span> This second question could be a mirror of the first, but with positive connotations.  Politician has been changed to public servant, pay raise has been changed to small cost-of-living adjustment, and the part about taxpayers paying for the raise is left out.  This question will be answered with a “Yes” far more often than the first version.  But it too is loaded and therefore flawed.</p>
+<p class="has-qed qed-only note" style="padding-left:calc(5.4*var(--u) + 1.90em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">Examples of Nonresponse Bias</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">A nonresponse bias occurs when individuals who fail to respond or complete a survey differ in opinion from those who do.  What are some ways that could happen?  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Sometimes individuals who agree to participate change their mind.  If they don’t complete the survey, it is a nonresponse.  When I give surveys in my classes, sometimes students are absent, so I don’t get an answer.  Again, that is a nonresponse.  These simple nonresponses are okay.  The problem is that sometimes the people who do not respond share an opinion that we miss in the results.  Nonresponses can cause us to make incorrect conclusions when there is a systematic undercounting of people who have the same opinion. </p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(14.4*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 5</span><span class="b" style="color:#FFFFFF">:  A </span><span class="b" style="color:#FFFFFF">Nonresponse Bias</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">In a survey, </span><span style="background:#DBE5F1">the first question asks </span><span style="background:#DBE5F1">subjects to select their gender as either </span><span style="background:#DBE5F1">m</span><span style="background:#DBE5F1">ale or </span><span style="background:#DBE5F1">f</span><span style="background:#DBE5F1">emale</span><span style="background:#DBE5F1">.  </span><span style="background:#DBE5F1">When the survey results are calculated, 4% of survey takers </span><span style="background:#DBE5F1">submitted a blank survey</span><span style="background:#DBE5F1">.  What went wrong</span><span style="background:#DBE5F1">?  </span></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="float right photo" style="width:245px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image32.jpg" alt="Image of a rainbow flag with pronouns they, them." style="width:335px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@katierainbow?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Katie Rainbow </span><span style="font-size:0.9em">🏳</span><span style="font-size:0.9em">️‍</span><span style="font-size:0.9em">🌈</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/nonbinary?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>Not all people identify as male or female.  If you ask people to identify their gender, you need to provide options that represent them.  Pew Research center estimates that about 11% of the LGBTQ+ population in the United States identify as non-binary and would not be able to answer the question (if the only options are male and female).  A non-binary individual could be annoyed by the first question and not complete the survey.  If that happened often, the survey might exclude the opinions of persons who do not identify as male or female.  Could this affect the conclusions?  If the remaining survey questions are about pizza, it might not affect the overall outcome.  But if the survey is about legal protections for marginalized groups, an important segment of the population may have been missed.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">To improve the question, the researchers could add “neither”, “not male or female”, “prefer not to say”, “other”, etc. to the male and female options.  The main point is the survey needs to be designed in such a way that everyone can see themselves fitting into one of the choices.</p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">To avoid nonresponses, it is best to conduct surveys in person.  People are more likely to complete the survey if you are with them while they do it.  If it can’t be done in person, the next best option is to complete the survey by phone.  This is not as effective, since many of us ignore phone calls asking for us to complete surveys.  Our phone numbers change, our charges are too low, service is poor, or any number of things can keep us from participating.  So, nonresponses are more of a problem using the phone.  If you can’t conduct the survey in person or by phone, the last resort is to do it online.  This is the least effective at getting individuals to participate.  Online polls generally get 10-30% response rates.  A response rate of 30% is considered good, but that means that 70% of people did not complete the survey.  It is possible that the 70% of people who did not participate had a very different opinion than the 30% that did.  So, we must be careful when we look at the results.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">You probably get emails, texts, or phone calls regularly asking you to participate in surveys.  How often do you participate?  Most of us ignore most or all attempts to get our feedback.  But every so often, you might find yourself interested in the topic and take the time to fill out the survey.  The type of survey we are discussing is called <span class="b">self-selected</span>, or voluntary.  Self-selected surveys were discussed briefly in section 1.2.  In a self-selected survey, the participants decide whether to participate.  The problem is that only the people who care about the issue will participate.  That might leave a large segment of the population out because they did not respond to the survey.  This is a nonresponse bias, and the results would not be scientifically valid.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">8</span></span><span style="color:#FFFFFF">Self-selected Survey</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Self-selected Survey</span>- Results when the individual decides whether to include themselves in the study.  This will overcount people with strong opinions and undercount people who don’t care about the subject. The results are not reliable!</p></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(21.6*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 6</span><span class="b" style="color:#FFFFFF">:  Does Pineapple belong on Pizza?</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Suppose that 17% of people like pineapple on pizza, while 13% of people do not.  A</span><span style="background:#DBE5F1"> brief</span><span style="background:#DBE5F1"> online poll asks the question “Does pineapple belong on pizza?”.  </span><span style="background:#DBE5F1">There are 20 responses to the survey, </span><span style="background:#DBE5F1">12 responses say “yes” while 8 responses say “no”.  The researchers conclude that </span><span style="background:#DBE5F1">60% of people think pineapple belongs on pizza.  Why is their conclusion in doubt?</span></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>Looking at the diagram in <span class="b">figure 1</span><span class="b">.16</span> we can see that 70% of the population does not care about the question, and those people did not participate in the poll.  All participants came from the strongly opinionated minority.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image33.png" alt="Image of a population split into three groups:  Yes, No, and those who don&#x27;t care." style="width:612px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(1.35*var(--u)))"></p>
+<p style="padding-left:calc(9*var(--u))"><span class="b">Figure 1</span><span class="b">.16</span>:  Population of people and their opinions of pineapple on pizza, and misleading self-selected sample.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<figure class="float right photo" style="width:294px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image34.jpg" alt="A pizza with ham and pineapple." style="width:256px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@bckfwd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">bckfwd</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/pineapple-pizza?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">The math is done correctly since the conclusion is that 12 out of 20, or 60% of responders, say that pineapple belongs on pizza.  But the sample did not include representation from all points of view.  People who don’t care about the question did not participate, only those who felt strongly either way did.  So even though the true percentage of people who think pineapple belongs on pizza is 17%, we are misled by the self-selected survey to think that 60% feel that way.    </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">Examples of Response Bias</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">A response bias occurs when the answers to the survey questions do not accurately reflect the true feelings of the respondent.  This can happen for many reasons.  Sometimes people don’t want to admit to unseemly opinions or behavior.  People can lie, or give the answer they feel is most acceptable, even if it is not accurate.  For example, asking for information regarding potentially embarrassing or private social issues is difficult.  If you ask in a survey if a person is the victim of domestic abuse, many individuals who are abused will not wish to admit it, and will respond negatively, causing your results to be inaccurate.  </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Other times, people will have a view of themselves that is not supported by the facts.  For example, if you ask people how much time they spend on their phones, they might underestimate it.  Any data that is self-reported can potentially be underestimated or overestimated, depending on the personal views of the individual.  In medicine, intake surveys often ask how much time a patient exercises each day and how many alcoholic drinks they consume per week.  Most people will overestimate the amount they exercise and underestimate the amount of alcohol they consume.  It is not necessarily deliberate, but the result is that the data collected are biased.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">9</span></span><span style="color:#FFFFFF">Misrepresented Answers</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Misrepresented Answers</span>- Results when the individual does not give truthful information, either intentionally or unintentionally.  These errors can result when survey takers lie to avoid embarrassment or exaggerate the truth.  The results are not reliable!</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">When people are untruthful because they don’t want to admit to unpopular opinions or bad behavior, we say they are succumbing to <span class="b">pollster pressure</span>.  </p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 7</span><span class="b" style="color:#FFFFFF">:  Pollster Pressure and Misrepresented Answers</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Imagine you are in class and your professor gives a survey with the following questions.  Do you think most people will answer honestly</span><span style="background:#DBE5F1">?  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">1.</span><span style="background:#DBE5F1">Do you regularly use illegal drugs?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">2.</span><span style="background:#DBE5F1">Do you consider yourself to be a racist?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">3.</span><span style="background:#DBE5F1">How often do you wash your hands?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">4.</span><span style="background:#DBE5F1"></span><span style="background:#DBE5F1">Are you a victim of domestic violence?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">5.</span><span style="background:#DBE5F1">Are you verbally abusive </span><span style="background:#DBE5F1">to your family or friends</span><span style="background:#DBE5F1">?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>As you read through those questions, you probably felt pressure to answer the questions with the answer written in red.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Do you regularly use illegal drugs?  <span style="color:#C00000">No</span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Do you consider yourself to be a racist?  <span style="color:#C00000">No</span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>How often do you wash your hands?  <span style="color:#C00000">Very often</span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Are you a victim of domestic violence?  <span style="color:#C00000">No</span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>Are you verbally abusive to your family or friends?  <span style="color:#C00000">No</span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="has-qed note" style="padding-left:calc(5.4*var(--u) + 1.90em)">If a person used illegal drugs, they would likely not want to admit it to their professor, even if the survey was anonymous.  Neither would they want to admit to being a racist, or being abused or verbally abusing others, even if any of these were true.  And of course, we will all claim to wash our hands very often, even if we don’t.  For some people, the social pressure to answer these questions dishonestly is immense.  Again, there are advanced courses on how to create surveys to answer these types of questions without pressure. <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Finally, we should point out that not all errors come from the sample data.  Sometimes, the error is due to a data entry mistake, a bad calculation, or derived from how we interpret the results.   Here are few of the common mistakes we can make even when we have good data collection practices.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">A <span class="b">data entry error</span> can occur either by a researcher making a mistake recording information, or by an individual mistyping a response.  As an example, I asked for my student’s age on a survey in one of my classes.  To my surprise, I had one student in my statistics class who reported that she was 119 years old!  This student was 19 but had mistakenly entered it as 119.  The data error caused the calculation of the average age of my class to be too high.  Data entry errors are difficult to avoid, but if you pay attention, you can catch them and correct them.  If you don’t catch them your results may be unreliable.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Other times, how we interpret the results is the error.  Often, we <span class="b">overgeneralize</span> the results of a survey and assume it applies to a larger population than it does.  For example, if I conduct a survey in California about abortion law, I can’t assume that the results are representative of opinions of the entire country.  If the data was collected from Californians, I can only use the data to assess or describe the opinion of Californians.  </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<figure class="float left photo" style="width:245px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image35.jpg" alt="Abortion rights activists holding a banner that says my body my choice." style="width:298px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@gmalhotra?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Gayatri Malhotra</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/abortion?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p style="padding-left:calc(3.6*var(--u))">Other types of <span class="b">over</span><span class="b">generalizations</span> can happen in designed experiments.  Just because a drug has been shown to be effective for white males between 25 and 35, we cannot conclude it will work for females under 20 years old.  Mechanical parts tested in a lab at 70° Fahrenheit will work outside the lab, assuming it is also 70°.  It would be an overgeneralization to claim that the parts work in freezing temperatures.  If we need to claim the parts work in freezing temperatures, they will need to be tested under those conditions.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">It is also possible that we might observe that two variables are linked, and mistakenly assume that one is causing the other.  Recall that observational studies cannot establish causation!</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">10</span></span><span style="color:#FFFFFF">Cause and Effect Errors</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Cause and Effect Errors</span>- This type of error results when we assume that one variable is the cause of another, just because the two variables are linked by observation. </p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">For example, we might have noticed that wearing masks in public increased while hospitalizations did in 2020.  Those variables are related but wearing masks did not cause hospitalizations to increase.  Neither did hospitalizations cause mask wearing to increase.  Both were caused by a third variable, the presence of the COVID-19 pandemic.  The third variable is called a <span class="b">confounding variable</span>, or a <span class="b">lurking variable</span>.  A confounding variable is one that was not considered in the study but is linked to some or all the explanatory and response variables that were included.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(18*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 8</span><span class="b" style="color:#FFFFFF">:  Cause and Effect Error</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">During the summer months, the price of gasoline increases</span><span style="background:#DBE5F1">, and people</span><span style="background:#DBE5F1"> use more energy to cool their homes.  Is it reasonable to conclude that </span><span style="background:#DBE5F1">increasing </span><span style="background:#DBE5F1">gas prices cause </span><span style="background:#DBE5F1">people to use more energy?</span></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>No.  The confounding variable is the time of year.  During summer, gas prices go up as oil companies charge more for summer travel, and the heat forces people to turn on their air conditioning which uses more energy. </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="tip-badge"><img src="images/image2.png" alt=""><span class="tip-word">Tip!</span></div></div><p class="empty"></p>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9"><span style="background:#FDE9D9">Remember</span>, all samples have some error, called sampling error.  This error is what we  tolerate to avoid having to complete a census.  But we must always avoid non-sampling  errors!  Those are the errors that lead to incorrect conclusions!</p></div>
+<p class="empty"></p>
+<p class="comic-p"><img src="images/image36.jpg" alt="The Adventures of Stat-Man and Data! Episode 1: Stat-Man and Data versus… Loaded Questions and the Biased Sampler! (A text version follows the comic.)" style="width:864px" class="comic">
+<details class="transcript"><summary>Text version of the comic</summary><p class="tr-title">The Adventures of Stat-Man and Data! Episode 1: Stat-Man and Data versus… Loaded Questions and the Biased Sampler!</p><p><b>Caption:</b> When we last saw our hero and Data, they were locked in mortal combat with the evil Biased Sampler!</p><p><b>Data:</b> Watch out, Stat-Man! He’s got a loaded question!</p><p><b>Stat-Man:</b> You cad!</p><p><b>Biased Sampler:</b> That’s right! And now I will manipulate this survey to bend the results to my every whim! Hahahahaha!!!! (BOOM!!!)</p><p>The Biased Sampler’s question appears over a crowd: “Do you think our greedy over-paid politicians deserve to vote themselves another pay raise for the taxpayers to cover?”</p><p><b>Crowd:</b> Hell no! / Those jerks! No!!! / Hey, I’m a taxpayer! No way! / Hell no!</p><p><b>Stat-Man:</b> I know, Data! I’ll use the anti-bias spray in my Stat-Utility belt!</p><p><b>Data:</b> No, Stat-Man! That will only reverse the bias!</p><p>Stat-Man sprays the question (SPRAY!) with a can labeled “Anti-Bias Spray – Do not use on loaded questions.” The question becomes: “Do you think our selfless public servants deserve a small cost-of-living adjustment in their salaries?”</p><p><b>Crowd:</b> Totally! / Great idea! / Yes! / Why not? They are so nice! / I’m all for that!</p><p><b>Biased Sampler:</b> Hey! Your question is just as bad as mine! Just for that, you will feel the power of … Pollster Pressure! (BUZZZZ-A-CLICKITY!)</p><p>A new question appears over the crowd: “Only lame people who don’t know anything and smell bad vote for raises. You don’t vote for raises like those people, do you?”</p><p><b>Crowd:</b> No! / Oh no, no raises. / I think raises are bad because I’m not lame. / That’s a hell to the no, Jack! / Obviously no since I smell good.</p><p><b>Stat-Man:</b> I’ve got to use my super Stat-Man brain… I know!</p><p>Stat-Man throws Data at the Biased Sampler. Stat-Man: Eat Data, weirdo! Data: Hey!</p><p><b>Stat-Man:</b> And once again, statistics saves the day!</p><p><b>Biased Sampler (flattened under Data):</b> Statistics? You just threw your sidekick at me!</p><p><b>Stat-Man:</b> Did I though? Good data tops bad samples!</p><p><b>Biased Sampler:</b> Nuts.</p><p>END! (Signed Terrill Mead, 2022)</p></details></p>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="section-1-3.html"><small>Previous</small>1.3 Observational Studies and Designed Experiments</a><a class="next" href="index.html"><small>Back to</small>Chapter 1 home</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+</body></html>

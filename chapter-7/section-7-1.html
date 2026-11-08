@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>7.1 Continuous Probability Distributions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;family=Source+Sans+3:wght@400;500;700&amp;display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.tbox{margin:1em 0}
+.tbox-row{display:flex;flex-wrap:wrap;gap:.8em 1.2em;justify-content:center;align-items:center;margin:1em 0}
+.tbox-row .tbox{margin:0;flex:0 1 340px;min-width:0}
+.tbox-row .tbox p.empty{display:none}
+.tbox-row .tbox table{font-size:.85em;width:auto !important;max-width:340px}
+.tbox-row .tblwrap{margin:0 !important;width:auto !important}
+.tbox-arrow{font-size:2em;color:#7F6FB0}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:var(--sf,11px)/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+@font-face{font-family:"STIX Two Math";src:url(../fonts/STIXTwoMath-Regular.woff2) format("woff2");font-display:swap}
+math{font-family:"STIX Two Math",math;font-size:1.08em;text-indent:0;math-style:normal}
+p:has(> math.eq){margin-block:.5em}
+math.eq{display:block math;margin:.3em 0;max-width:100%;overflow-x:auto;overflow-y:hidden}
+math.eq-left,math.eq-ind{display:inline math;math-style:normal}
+math.eq-ind{margin-left:calc(3.6*var(--u))}
+math.eq-right{text-align:right}
+.eqa mtd{padding:.3em 0}
+.eqa mtd:first-child{text-align:right}
+.eqa mtd:last-child{text-align:left}
+math .mbox{border:1px solid currentColor;padding:.1em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.icon-abs.check-mark{left:0;top:-.7em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.sol-lab{display:inline-block;width:calc(5.4*var(--u));text-indent:0}
+.sol-pl{display:inline-block;width:2.2em;text-indent:0}
+.kvl.stepl{width:4.4em}
+.tab2{display:grid;align-items:baseline;grid-template-columns:auto 1fr;column-gap:3.6em;row-gap:.15em;margin:0}.tab2>div{min-width:0}.tab2>.sp{height:.6em}
+@media (max-width:640px){.tab2{grid-template-columns:1fr;column-gap:0}}
+p.tkp{text-align:center;padding:0;text-indent:0;margin:.4em 0}p.tkp img{max-width:100%;height:auto}
+.datarow span{display:inline-block;min-width:3.1em;text-indent:0}
+.datarow.dense span{min-width:1.7em}
+.sol-eq{text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+.tbl-pair{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:1em 2em;margin:.6em 0}
+.tbl-pair .tblwrap{margin:0}
+.tbl-pair table.wt{margin:0}
+.callout-row math{font-size:1.2em}
+img.tkwide{max-width:min(1060px,calc(100vw - 32px));display:block;position:relative;left:50%;transform:translateX(-50%);text-indent:0}
+@media (max-width:640px){img.tkwide{left:auto;transform:none;max-width:100%}.mw{display:inline-block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden;vertical-align:middle}}
+.eqs{display:block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden}
+.check-inline{width:1.35em;height:auto;vertical-align:-.3em;margin-left:.3em}
+@media (min-width:601px){th.nowrap{white-space:nowrap}}
+.photo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1em 3em;margin:.8em 0}
+.photo-cred{margin:0;text-align:center}.photo-cred img{display:block;margin:0 auto .3em}.photo-cred figcaption{font-size:1em;line-height:1.3}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+@media (max-width:640px){math.eq-ind{margin-left:0}.tbox-arrow{transform:rotate(90deg)}}
+/* Chapter 3 number lines: drawing with its note beside it (below it on phones) */
+figure.numline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6em 1em;margin:1em 0;max-width:none !important;overflow-x:auto}
+figure.numline svg{flex:0 1 auto;max-width:100%;height:auto}
+.nl-note{display:block;max-width:15em;background:#E6D5FF;border:1px solid #7F7F7F;padding:.35em .7em;text-align:center;font-size:.92em;line-height:1.35}
+.nl-arrow{font-size:2em;color:#7F6FB0}
+@media (max-width:640px){figure.numline{flex-direction:column}.nl-arrow{transform:rotate(90deg);line-height:1}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.callout-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1em 4em;margin:.6em 0}.callout-row>aside.callout{float:none;margin:0;max-width:none}.wl{margin:.6em 0}.wl-pics{max-width:100%;margin:0 auto}.wl.wide .wl-pics{max-width:min(1060px,calc(100vw - 32px));margin-left:50%;transform:translateX(-50%)}.wl-pic{display:block;max-width:100%;height:auto}.wl-flow{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}@media (max-width:600px){.wl-pics{display:none}.wl-flow{position:static!important;width:auto;height:auto;overflow:visible;clip:auto;clip-path:none;white-space:normal}}.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+<style>@media (max-width:480px){p.ex-part{padding-left:calc(2.25*var(--u))!important}}</style></head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-2/index.html" title="Unit 2: Probability and Probability Distributions">Unit 2</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 7: Continuous Random Variables</a></nav><span class="where">Section 7.1</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span class="b" style="font-size:1.4em">Section </span><span class="b" style="font-size:1.4em">7.1</span><span class="b" style="font-size:1.4em">: </span><span class="b" style="font-size:1.4em">Continuous Probability Distributions</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Describe the role of area in finding probability for a continuous random variable.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Describe and interpret uniform distributions.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Use area to find probability from a uniform distribution.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Describe, graph, and interpret a normal distribution.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>Use the empirical rule to find special probabilities from a normal curve.</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">In chapter 6 we found probability for discrete random variables.  There, we could find the probability that exactly 3 tails would occur if you flipped a coin 5 times, or that there would be 12 successes out of 15 free throw attempts.  We now turn to questions about probability for <span class="i">continuous</span> random variables.  Sadly, we can’t find probability using the same methods we used for discrete random variables.  For instance, it would not make sense to find the probability a randomly selected cookie weighs exactly 4.2 ounces.  The weight of cookies is continuous, so there are an infinite number of possible weights.  The chance it weighs exactly one of those infinite possibilities (such as 4.2 ounces) is very close to 0.  Instead, when we deal with continuous random variables, we find probability for a range of values.  For instance, we might find the probability that a cookie weighs between 4.1 and 4.3 ounces.  Using an interval of values for the continuous random variable allows us to find probability.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The key to finding probability for continuous random variables is using area.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Area and Probability</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Assume that you have created a square dartboard with side lengths 1 meter each.  If a dart is thrown at the center of the dartboard, it will randomly land somewhere on the dartboard, shown in </span><span class="b" style="background:#DBE5F1">figure 7.1</span><span style="background:#DBE5F1">.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span>What i<span style="background:#DBE5F1">s the probability it lands at the exact center of the dartboard?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span>What is the probability it lands in the shaded region?</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span>What is the area of the shaded region?</p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image2.png" alt="Image of a square dartboard with one quarter shaded.  The area is 1/2×1/2=1/4 which is also the probability!" style="width:305px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.1</span>:  A square dartboard.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>There are an infinite number of places the dart could land on the dartboard.  There is only one center.  If we use the definition of probability from chapter 5, we could argue that <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mtext>dart hits center</mtext></mrow><mo>)</mo></mrow><mo>≈</mo><mfrac><mrow><mn>1</mn><mtext> center</mtext></mrow><mtext>infinite landing spots</mtext></mfrac><mo>≈</mo><mfrac><mn>1</mn><mo>∞</mo></mfrac><mo>≈</mo><mn>0</mn></math></span>.  In fact, the probability the dart lands in <span class="i">any</span> one spot is <span class="i">effectively zero</span>.  That is why we must use regions and intervals instead of specific points to find probability.  This is true for any continuous random variable.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>The dartboard appears to be split into 4 equal regions, so the probability that the dart lands in the shaded region is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mtext>dart lands in shaded region</mtext></mrow><mo>)</mo></mrow><mo>=</mo><mfrac><mrow><mn>1</mn><mtext> shaded</mtext></mrow><mrow><mn>4</mn><mtext> total</mtext></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>=</mo><mn>0.25</mn></math></span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>Since the shaded region has sides with length ½ meter, we can calculate the area of the square.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<div class="callout-row"><aside class="float right callout" style="background:#E6D5FF;border-color:transparent"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">The area is </span><span class="mw"><math><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>×</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac></math></span> <span style="font-size:0.9em">which is also the probability!</span></p></aside></div><p style="text-align:center;padding-left:calc(7.2*var(--u))"><img src="images/image3.png" alt="Image of a square dartboard with one quarter shaded.  The area is 1/2×1/2=1/4 which is also the probability!" style="width:296px" class=""></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Recall that the area of a rectangle is the length times the width, so the area of the shaded region is <span class="mw"><math><mtext>Area</mtext><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>×</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>=</mo><mn>0.25</mn></math></span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Is it a coincidence that the area of the shaded region is equal to the probability that the dart lands in the shaded region?  No!  When the <span class="b">total area</span> of any region is <span class="b">1</span>, the area of the <span class="b">shaded region represents</span><span class="b"> probability</span>.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image5.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="b" style="color:#FFFFFF">Important Point!</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">We use <span class="b">area</span> of regions to find <span class="b">probability</span> for <span class="b">continuous random variables</span>! When working with continuous random variables, probability can be expressed as a proportion, a percent, or an <span class="b">area</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">1</span><span style="color:#FFFFFF">  </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">When <span class="i">X</span> is a continuous random variable, a probability density function (PDF) is a function used to find probability for ranges of values of <span class="i">X</span>.  A graph of the probability density function for <span class="i">X</span> satisfies:</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The total area under the graph of the PDF is 1.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Area of a shaded region is equal to the probability that <span class="i">X</span> occurs in that region.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p></div>
+<p class="empty"></p>
+<h2 class="subhead">The Uniform Distribution</h2>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">There are many different continuous probability distributions.  We will only work with a few of them in this book in this and later chapters.  The uniform distribution is the easiest of these to understand because the geometry is simple.  That makes finding probability as an area a good place to start.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">2</span><span style="color:#FFFFFF">  </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">A random variable <span class="i">X</span> has a<span class="b"> Uniform Distribution</span> if all outcomes are equally likely.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">For example, rolling a six-sided die has 6 equally likely outcomes.  The discrete random variable <span class="i">X</span> = the number on the roll is a uniform variable.  The probability for each outcome is 1/6, and the probability histogram is shown in <span class="b">figure 7.2</span>.  Notice that the histogram looks like a rectangle with all bars the same height.  Although this is a discrete variable, continuous random variables have the same shape.</p>
+<div class="wl"><div class="wl-pics" style="width:488px"><img class="wl-pic" src="images/wl_7-1_01.svg" alt="" aria-hidden="true" style="width:100.00%;margin-left:0.00%"></div><div class="wl-flow"><p class="empty"></p><aside class="float right callout" style="background:#E6D5FF;border-color:transparent"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">The top is horizontal, and the distribution looks like a rectangle</span><span style="font-size:0.9em">!</span></p></aside><p class="empty"></p><p style="text-align:center;padding-left:calc(3.6*var(--u))"><img src="images/image6.png" alt="Illustration of a uniform random variable.  Figure 7.2:  Uniform distribution for rolling a six-sided die." style="width:671px" class=""></p><p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p></div></div><p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.2</span>:  Uniform distribution for rolling a six-sided die.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">2</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Continuous Uniform Random Variable</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Bay Area Rapid Transit (BART) is the commuter train service in the San Francisco Bay Area.  Commuters use BART trains and can transfer at various stations to Caltrain lines to reach extended destinations not accessible by BART.  BART riders who transfer at the Millbrae station must wait between 9 and 16 minutes for their connecting train according to BART statistics.  Due to scheduling, the wait time for the connection follows a uniform distribution.  Graph the probability density function for </span><span class="i" style="background:#DBE5F1">X</span><span style="background:#DBE5F1"> = the wait time for the connecting train.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image7.jpg" alt="Picture of a BART train.  Photo by Giorgio Trovato on Unsplash." style="width:202px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@giorgiotrovato?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Giorgio Trovato</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/bart-train?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>Since all outcomes are equally likely, the graph of will look like a rectangle.  We know wait times are equally likely to occur any time between 9 and 16 minutes.  So, the base of the rectangle is</p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mn>9</mn><mo>≤</mo><mi>X</mi><mo>≤</mo><mn>16</mn><mn>.</mn></mtd></mtr></mtable></math></span></p>
+<p style="text-align:center;padding-left:calc(3.6*var(--u))"><img src="images/image8.png" alt="The x-axis for the uniform distribution, with x between 9 and 16." style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Next, we add the vertical probability axis.  We draw in the rectangle, but now we must find the height, or probability.</p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/image9.png" alt="The x-axis for the uniform distribution, with x between 9 and 16.  The height is drawn, forming the rectangle.  The total area must be 1." style="width:830px" class=""></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Since the area of the entire region is a rectangle, and the area of the rectangle must be 1, we know that the length of the base multiplied by the height must be 1.  Since the base is 7 minutes, the height must be 1/7.  The completed uniform distribution is shown in figure 7.3.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/image10.png" alt="Figure 7.3:  Uniform distribution for commuter wait times." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.3</span>:  Uniform distribution for commuter wait times.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">3</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Continuous Uniform Random Variable</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the uniform distribution from example 2 to find each of the following probabilities.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What is the probability that a commuter will wait between 9 and 12 minutes?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a commuter will wait more than 10 minutes?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">What is the probability that a commuter will wait longer than 15 minutes?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d)</span><span style="background:#DBE5F1">What is the probability that a commuter will wait between 10 and 15 minutes?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>To find the probability that the commuter waits between 9 and 12 minutes, we find the area of the distribution between 9 and 12.  The base of the shaded rectangle is 12 – 9 = 3 and the height is 1/7.   So, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>9</mn><mo>≤</mo><mi>X</mi><mo>≤</mo><mn>12</mn></mrow><mo>)</mo></mrow><mo>=</mo><mn>3</mn><mo>×</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo>=</mo><mfrac><mn>3</mn><mn>7</mn></mfrac><mo>≈</mo><mn>0.4286</mn></math></span>.  See <span class="b">figure 7.4</span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Interpretation:  A commuter will wait between 9 and 12 minutes about 42.9% of the time.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(7.2*var(--u))"><img src="images/image11.png" alt="Figure 7.4:  The probability a commuter waits between 9 and 12 minutes is 3/7" style="width:830px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.4</span>:  The probability a commuter waits between 9 and 12 minutes.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the probability that the commuter waits longer than 10 minutes, we find the area of the distribution between 10 and 16.  The base is 16 – 10 = 6 in this case.  So, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>10</mn></mrow><mo>)</mo></mrow><mo>=</mo><mn>6</mn><mo>×</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo>=</mo><mfrac><mn>6</mn><mn>7</mn></mfrac><mo>≈</mo><mn>0.8571</mn></math></span>.  See <span class="b">figure 7.5.</span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Interpretation:  A commuter will wait longer than 10 minutes about 85.7% of the time.</p>
+<p class="empty" style="text-align:center;padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(3.6*var(--u))"><img src="images/image12.png" alt="Figure 7.5:  The probability a commuter waits longer than 10 minutes is 6/7." style="width:830px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.5</span>:  The probability a commuter waits longer than 10 minutes.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Notice that the probability <span class="mw"><math><mrow><mo>(</mo><mrow><mi>X</mi><mo>≥</mo><mn>10</mn></mrow><mo>)</mo></mrow><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>10</mn><mo stretchy="false">)</mo></math></span>.  The probability that X = 10 is zero because X is continuous, so we don’t have to be concerned about the difference between “greater than” and “greater than or equal to”.</p>
+<p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>To find the probability that the commuter waits longer than 15 minutes, we find the area of the distribution between 15 and 16.  The base is 16 – 15 = 1 in this case.  So, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>15</mn></mrow><mo>)</mo></mrow><mo>=</mo><mn>1</mn><mo>×</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo>≈</mo><mn>0.1429</mn></math></span>.  See <span class="b">figure 7.</span><span class="b">6</span><span class="b">.</span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Interpretation:  A commuter will wait longer than 15 minutes about 14.3% of the time.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(7.2*var(--u))"><img src="images/image13.png" alt="Figure 7.6:  The probability a commuter waits longer than 15 minutes is 1/7." style="width:830px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.6</span>:  The probability a commuter waits longer than 15 minutes.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">d)</span>To find the probability that the commuter waits between 10 and 15 minutes, we find the area of the distribution between 10 and 15.  The base is 15 – 10 = 5 and the height is still 1/7.  So, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>10</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>15</mn></mrow><mo>)</mo></mrow><mo>=</mo><mn>5</mn><mo>×</mo><mfrac><mn>1</mn><mn>7</mn></mfrac><mo>=</mo><mfrac><mn>5</mn><mn>7</mn></mfrac><mo>≈</mo><mn>0.7143</mn></math></span>.  See <span class="b">figure 7.</span><span class="b">7</span><span class="b">.</span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Interpretation:  A commuter will wait between 10 and 15 minutes about 71.4% of the time.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(3.6*var(--u))"><img src="images/image14.png" alt="Figure 7.7:  The probability a commuter waits between 10 and 15 minutes is 5/7." style="width:830px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.7</span>:  The probability a commuter waits between 10 and 15 minutes.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">The key point to remember is that we are using area to represent probability!  But can we use technology to find probability for a uniform distribution?  Sure!  We will use <a href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="u" style="color:#0000FF">STATBELT Utility- the Statistical Basics Exploratory Learning Tool</span><span class="vh"> (opens in a new tab)</span></a>.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">STATBELT Utility- Probability for Uniform Distributions</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#EAF1DD">To use STATBELT Utility to find probability for a <span class="b">uniform distribution</span>.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Select Calculators → Uniform Distribution Calculator.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Type the minimum and the maximum of the range for the uniform distribution.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Under “Find,” choose the inequality you need and type the value of a.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Choose “P(X &lt; a)” or “P(X &gt; a)” for one value.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Choose “P(a &lt; X &lt; b)” to calculate a probability between two values.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>The probability and a graph appear as soon as you type.  There is no button to click.</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p>
+<p class="note" style="padding-left:calc(1.6*var(--u) + 1.90em)">The calculator gives the probability and shows the probability distribution with the probability shaded as area.  Click “Open graph in a new window” to see a larger graph.</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(0.45*var(--u)))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">4</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Continuous Uniform Random Variable with STATBELT!</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the uniform distribution from example 2 to find each of the following probabilities.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What is the probability that a commuter will wait less than 12 minutes?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a commuter will wait more than 10 minutes?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">What is the probability that a commuter will wait between 10 and 15 minutes?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>First, open STATBELT Utility.  Then select Calculators → Uniform Distribution Calculator.  Since the wait times are between 9 and 16 minutes, type 9 for the “Minimum of the range” and 16 for the “Maximum of the range.”</p>
+<p class="tkp"><img src="images/tk_unif_opts.png" alt="STATBELT Utility Uniform Distribution Calculator. Minimum of the range 9 and maximum 16 are boxed in red with a note: Type 9 for the minimum and 16 for the maximum. Find is set to P(X &lt; a), with a note: Choose “P(X &lt; a)”. Value a is 12, with a note: Type 12 for the value a." style="width:654px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>To find the probability that the commuter waits less than 12 minutes, choose “P(X &lt; a)” under “Find” and type 12 for the value a.  The result is the same as example 3 part (a).</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_unif_a.png" alt="STATBELT Utility Uniform Distribution Calculator graph: uniform distribution from 9 to 16. The area for P(X &lt; 12) is shaded purple. P(X &lt; 12) = 0.4286." style="width:666px" class="tkcol"></p>
+<p class="empty" style="text-align:center;padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the probability that the commuter waits more than 10 minutes, choose “P(X &gt; a)” and type 10 for the value a.  The result is the same as example 3 part (b).</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_unif_b.png" alt="STATBELT Utility Uniform Distribution Calculator graph: uniform distribution from 9 to 16. The area for P(X &gt; 10) is shaded purple. P(X &gt; 10) = 0.8571." style="width:666px" class="tkcol"></p>
+<p class="empty" style="text-align:center;padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>To find the probability that the commuter waits between 10 and 15 minutes, choose “P(a &lt; X &lt; b)” and type 10 for the lower value a and 15 for the upper value b.  The result is the same as example 3 part (d).</p>
+<p class="empty" style="text-align:center;padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_unif_c.png" alt="STATBELT Utility Uniform Distribution Calculator graph: uniform distribution from 9 to 16. The area for P(10 &lt; X &lt; 15) is shaded purple. P(10 &lt; X &lt; 15) = 0.7143." style="width:666px" class="tkcol"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">The Normal Distribution</h2>
+<p class="empty" style="text-align:center;padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The normal distribution, also called the Gaussian distribution after Carl Friedrich Gauss, is the fancy name for what we have been calling the “bell-shaped curve”.  Unlike the uniform distribution, finding area from a normal distribution is very complicated.  Probability from a normal distribution requires the use of multivariable calculus to compute.  So, we will instead discuss the properties of the normal distribution but use technology to compute probability for normal random variables (in section 7.2).</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Normal distributions are determined by their mean and standard deviation.  They are always centered and are symmetric about their mean.  The standard deviation will determine whether the distribution is taller and less spread out or shorter and more widely spread.  See <span class="b">figure 7.8</span> for three normal curves with the same mean <math><mrow style="color:#00641E"><mi>μ</mi><mo>=</mo><mn>25</mn></mrow></math>, but with different standard deviations.  Note that the distribution with the smallest standard deviation (<span class="mw"><math><mrow style="color:#00641E"><mi>σ</mi><mo>=</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></math></span> gives the tallest, narrowest normal curve.  The distribution with the largest standard deviation (<span class="mw"><math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></math></span> has the shortest and widest normal curve.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(3.6*var(--u))"><img src="images/image18.png" alt="Figure 7.8:  Normal distributions with mean 25 and standard deviations 1, 1.5, and 2." style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.8</span>:  Normal distributions with mean 25 and standard deviations 1, 1.5, and 2.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">All normal distributions have certain characteristics in common.</p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Properties of the Normal Distribution</span><span style="color:#FFFFFF">  </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">All <span class="b">Normal Distribution</span><span class="b">s</span> share the following properties:</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>They are unimodal and symmetric about the mean.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The horizontal axis is a horizontal asymptote.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>One standard deviation to the right of the mean, and one standard deviation to the left of the mean  are inflection points (studied in calculus).</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The total area under the curve is exactly 1.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>a</mi><mo>≤</mo><mi>x</mi><mo>≤</mo><mi>b</mi></mrow><mo>)</mo></mrow></math></span> is the area under the curve between <span class="i">x</span> = a and <span class="i">x</span> = b.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The function that gives the curve is given by <span class="mw"><math><mi>f</mi><mrow><mo>(</mo><mrow><mi>x</mi></mrow><mo>)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mi>σ</mi><msqrt><mn>2</mn><mi>π</mi></msqrt></mrow></mfrac><msup><mi>e</mi><mrow><mo form="prefix">−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mrow><mo>(</mo><mrow><mfrac><mrow><mi>x</mi><mo>−</mo><mi>μ</mi></mrow><mi>σ</mi></mfrac></mrow><mo>)</mo></mrow><mn>2</mn></msup></mrow></msup></math></span>.  You will NEVER need to use  this!  We will use technology instead!</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The empirical rule for bell-shaped data:</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">◦</span>The area within one standard deviation of the mean is about 0.68</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">◦</span>The area within two standard deviations of the mean is about 0.95</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">◦</span>The area within three standard deviations of the mean is about 0.997.</p>
+<p class="empty"></p>
+</div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image19.png" alt="A normal curve showing the inflection points, symmetry about the mean, and the x-axis as a horizontal asymptote." style="width:830px" class=""></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image20.png" alt="The empirical rule for bell shaped data, restated with a picture.•	The empirical rule for bell-shaped data:
+o	The area within one standard deviation of the mean is about 0.68
+o	The area within two standard deviations of the mean is about 0.95
+o	The area within three standard deviations of the mean is about 0.997" style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.9</span>:  Normal distribution characteristics.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">As we move into section 7.2, we won’t need to use the empirical rule to estimate probability.  It does, however, help us to visualize the probability that we find using area.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">5</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Drawing a Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Consumers in the U.S. replace their cell phones every 2.8 years, on average, according to statista.com.  Let </span><span class="i" style="background:#DBE5F1">x</span><span style="background:#DBE5F1"> = the replacement time, or lifespan, of a cell phone.  The mean of </span><span class="i" style="background:#DBE5F1">x</span><span style="background:#DBE5F1"> is 2.8 years.  Assume that the standard deviation for replacements is 1.1 years and that replacement times are normally distributed.  Draw a normal curve for this situation.</span></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>Start with a generic bell-shaped graph and mark the mean <math><mi>μ</mi><mo>=</mo><mn>28</mn></math> right down the middle.  Mark the inflection points, which are a little higher than “halfway down” the hill on each side.  The inflection points are one standard deviation above and below the mean.</p>
+<p class="empty" style="text-align:center;padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(3.6*var(--u))"><img src="images/image21.png" alt="Picture of a normal curve with mean at 2.8." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Since the standard deviation is <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>1.1</mn></mrow></math>, subtract <span style="color:#C00000">1.1 </span>from the mean <span style="color:#00641E">2.8</span>, and add <span style="color:#C00000">1.1 </span>to the mean <span style="color:#00641E">2.8</span>.  These are the values one standard deviation below and above the mean.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">One standard deviation below:  <span class="mw"><math><mi style="color:#00641E">μ</mi><mo>−</mo><mi style="color:#C00000">σ</mi><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>−</mo><mn style="color:#C00000">1.1</mn><mo>=</mo><mn>1.7</mn></math></span></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">One standard deviation above:  <span class="mw"><math><mi style="color:#00641E">μ</mi><mo>+</mo><mi style="color:#C00000">σ</mi><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>+</mo><mn style="color:#C00000">1.1</mn><mo>=</mo><mn>3.9</mn></math></span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(3.6*var(--u))"><img src="images/image22.png" alt="Picture of a normal curve with mean at 2.8 and one standard deviation above and below are noted." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Next, mark off another <span style="color:#C00000">1.1 </span>going to the left and another <span style="color:#C00000">1.1 </span>going to the right.  These tick marks are two standard deviations below the mean and two standard deviations above.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Two standard deviations below:  <span class="mw"><math><mi style="color:#00641E">μ</mi><mo>−</mo><mn>2</mn><mo>×</mo><mi style="color:#C00000">σ</mi><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>−</mo><mn>2</mn><mo>×</mo><mn style="color:#C00000">1.1</mn><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>−</mo><mn>2.2</mn><mo>=</mo><mn>0.6</mn></math></span></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Two standard deviations above:  <span class="mw"><math><mi style="color:#00641E">μ</mi><mo>+</mo><mn>2</mn><mo>×</mo><mi style="color:#C00000">σ</mi><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn style="color:#C00000">1.1</mn><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>+</mo><mn>2.2</mn><mo>=</mo><mn>5.0</mn></math></span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/image23.png" alt="Picture of a normal curve with mean at 2.8 and two standard deviations above and below are noted." style="width:830px" class=""></p>
+<p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">To get to three standard deviations above and below, mark off another <span style="color:#C00000">1.1 </span>going to the left and another <span style="color:#C00000">1.1 </span>going to the right.  These tick marks are three standard deviations below the mean and three standard deviations above.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Three standard deviations below:  <span class="mw"><math><mi style="color:#00641E">μ</mi><mo>−</mo><mn>3</mn><mo>×</mo><mi style="color:#C00000">σ</mi><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>−</mo><mn>3</mn><mo>×</mo><mn style="color:#C00000">1.1</mn><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>−</mo><mn>3.3</mn><mo>=</mo><mo form="prefix">−</mo><mn>0.5</mn></math></span></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Three standard deviations above:  <span class="mw"><math><mi style="color:#00641E">μ</mi><mo>+</mo><mn>3</mn><mo>×</mo><mi style="color:#C00000">σ</mi><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>+</mo><mn>3</mn><mo>×</mo><mn style="color:#C00000">1.1</mn><mo>=</mo><mn style="color:#00641E">2.8</mn><mo>+</mo><mn>3.3</mn><mo>=</mo><mn>6.1</mn></math></span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image24.png" alt="Picture of a normal curve with mean at 2.8 and three standard deviations above and below are noted." style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The final version of the normal probability density function with mean 2.8 and standard deviation 1.1 is shown in <span class="b">figure 7.10</span>.</p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image25.png" alt="Figure 7.10:  Normal distribution with mean 2.8 and standard deviation 1.1..  Picture of a normal curve with mean at 2.8 and standard deviation 1.1." style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.10</span>:  Normal distribution with mean 2.8 and standard deviation 1.1.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">6</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">A Normal Distribution with Unknown Mean and Standard Deviation</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Find the mean and standard deviation from the graph of the normal random variable shown in </span><span class="b" style="background:#DBE5F1">figure 7.11</span><span style="background:#DBE5F1">.  </span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image26.png" alt="Figure 7.11:  Normal distribution with unstated mean and standard deviation." style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.11</span>:  Normal distribution with unstated mean and standard deviation.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>The mean is the value in the center of the normal curve, so in this case, the mean is <math><mrow style="color:#00641E"><mi>μ</mi><mo>=</mo><mn>48</mn></mrow></math>.  The inflection points are marked at 55 and 41.  55 – <span style="color:#00641E">48</span> = <span style="color:#C00000">7</span>, and <span style="color:#00641E">48</span> – 41 = <span style="color:#C00000">7</span>, so the standard deviation is <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>7</mn></mrow></math>.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">7</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">A Normal Distribution with Unknown Mean and Standard Deviation</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Find the mean and standard deviation from the graph of the normal random variable shown in </span><span class="b" style="background:#DBE5F1">figure 7.1</span><span class="b" style="background:#DBE5F1">2</span><span style="background:#DBE5F1">. </span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image27.png" alt="Figure 7.12:  Normal distribution with unknown parameters." style="width:780px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.12</span>:  Normal distribution with unknown parameters.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>The mean is the value in the center of the normal curve, but in this example, it is not marked.  Fortunately, the values at the inflection points are marked at 13 and 21.  Since the normal distribution is symmetric, the mean must be exactly halfway between these values.  In other words, the mean is the average of 13 and 21.  So, <span class="mw"><math><mi style="color:#00641E">μ</mi><mo>=</mo><mfrac><mrow><mn>13</mn><mo>+</mo><mn>21</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>34</mn><mn>2</mn></mfrac><mo>=</mo><mn style="color:#00641E">17</mn></math></span>.  Since <span style="color:#00641E">17 </span>is <span style="color:#C00000">4</span> units above 13 and <span style="color:#C00000">4</span> units below 21, the standard deviation is <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>4</mn></mrow></math>.  Conclusion:  The mean is <math><mrow style="color:#00641E"><mi>μ</mi><mo>=</mo><mn>17</mn></mrow></math> and the standard deviation is <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>4</mn></mrow><mo>.</mo></math> See <span class="b">figure 7.13</span>.</p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/image28.png" alt="Figure 7.13:  Normal distribution with mean and standard deviation." style="width:810px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.13</span>:  Normal distribution with mean and standard deviation.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">8</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">A Normal Distribution and the Empirical Rule.</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Use the normal distribution from example 5 to estimate each probability using the empirical rule.</span></p>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Consumers in the U.S. replace their cell phones every 2.8 years, on average, according to statista.com.  Let </span><span class="i" style="background:#DBE5F1">x</span><span style="background:#DBE5F1"> = the replacement time, or lifespan, of a cell phone.  The mean of </span><span class="i" style="background:#DBE5F1">X</span><span style="background:#DBE5F1"> is 2.8 years.  Assume that the standard deviation for replacements is 1.1 years and that replacement times are normally distributed.  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Use the empirical rule to estimate the probability that a cell phone lasts between 1.7 and 3.9 years.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">Use the empirical rule to estimate the probability that a cell phone lasts between 2.8 and 5.0 years.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">Use the empirical rule to estimate the probability that a cell phone lasts longer than 5 years.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>First, figure 7.14 is the normal curve we created in example 5 with the empirical rule percentages noted on the top.</p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image29.png" alt="Figure 7.14:  Normal distribution for cell phone replacement times.  Empirical rule illustration with mean 2.8 and standard deviation 1.1." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">7.14</span>:  Normal distribution for cell phone replacement times.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span style="font-size:0.8em"><img src="images/image30.jpg" alt="Image of a cell phone tossed into the air.  Photo by Neil Soni on Unsplash." style="width:188px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@neilsoniphotography?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Neil Soni</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/cell-phone?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>The probability that a cell phone lasts between 1.7 and 3.9 years before replacement is</p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mi>P</mi><mrow><mo>(</mo><mrow><mn>1.7</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>3.9</mn></mrow><mo>)</mo></mrow></mtd></mtr></mtable></math></span>, shaded in <span class="b">figure 7.15</span>.  Since the interval 1.7 to 3.9 is one standard deviation below the mean to one standard deviation above the mean, the area is approximately 0.68 (or 68%).  Since probability is equal to area, we know that <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>1.7</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>3.9</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.68</mn><mn>.</mn></math></span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">So, the probability that a randomly selected cell phone will have a replacement time between 1.7 and 3.9 years is approximately 0.68.  Alternatively, about 68% of cell phones are replaced between 1.7 and 3.9 years after purchase.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/image31.png" alt="Figure 7.15:  Normal distribution for cell phone replacement times, (1.7&lt;X&lt;3.9)." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.1</span><span class="b">5</span>:  Normal distribution for cell phone replacement times, <span class="mw"><math><mrow><mo>(</mo><mrow><mn>1.7</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>3.9</mn></mrow><mo>)</mo></mrow></math></span>.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>The probability that a cell phone lasts between 2.8 and 5.0 years before replacement is</p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mn>2.8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>5.0</mn><mo stretchy="false">)</mo></math></span>.  This is approximately half of the total area within two standard deviations of the mean.</p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image32.png" alt="Figure 7.16:  Normal distribution for cell phone replacement times, P(0.6&lt;X&lt;5.0)." style="width:830px" class=""></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image33.png" alt="Figure 7.16:  Normal distribution for cell phone replacement times, P(2.8&lt;X&lt;5.0)." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.1</span><span class="b">6</span>:  Normal distribution for cell phone replacement times, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>2.8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>5.0</mn></mrow><mo>)</mo></mrow></math></span>.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">We know <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>0.6</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>5.0</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.95</mn></math></span>, but we only want the right half of this probability.  So, the probability we need is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>2.8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>5.0</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>×</mo><mn>0.95</mn><mo>=</mo><mn>0.475</mn></math></span>.  See <span class="b">figure 7.16</span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">So, about 47.5% of cell phones are replaced between 2.8 ad 5.0 years after purchase.  You can also interpret the result as the probability that one randomly selected cell phone is replaced between 2.8 and 5.0 years is approximately 0.475.</p>
+<p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>The probability that a cell phone lasts longer than 5.0 years before replacement is</p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>5.0</mn><mo stretchy="false">)</mo></math></span>, which is darkly shaded in <span class="b">figure 7.1</span><span class="b">7</span>.    Since the total area under the normal curve is 1, half of the area is to the right of the mean.  We can use subtraction to find the probability that the replacement time is <span class="i">more than</span> 5 years.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The probability we calculated in part (b) is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>2.8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>5.0</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.475</mn></math></span>, lightly shaded in <span class="b">figure 7.1</span><span class="b">7</span>.  The area of the dark shaded portion is the area of the right half of the distribution minus the area that is lightly shaded, or  <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>5.0</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.5</mn><mo>−</mo><mn>0.475</mn><mo>=</mo><mn>0.025</mn></math></span>.  So, there is about a 2.5% chance that a cell phone will last longer than 5 years before it is replaced.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image34.png" alt="Figure 7.17:  Normal distribution for cell phone replacement times, P(X&gt;5.0)." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.1</span><span class="b">7</span>:  Normal distribution for cell phone replacement times, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>5.0</mn></mrow><mo>)</mo></mrow></math></span>.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Finding probability for a normal distribution using the empirical rule is very limited.  For example, if we wanted to find the probability that a cell phone is replaced between 1 and 2 years, the empirical rule doesn’t help because 1 and 2 are not among the increments we marked on the curve.  We will use technology to find the probability for this and most other situations.  That will be covered next in section 7.2.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="index.html"><small>Previous</small>Chapter 7 home</a><a class="next" href="section-7-2.html"><small>Next</small>7.2 The Normal Distribution</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+</body></html>

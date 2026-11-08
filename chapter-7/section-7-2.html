@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>7.2 The Normal Distribution</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;family=Source+Sans+3:wght@400;500;700&amp;display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.tbox{margin:1em 0}
+.tbox-row{display:flex;flex-wrap:wrap;gap:.8em 1.2em;justify-content:center;align-items:center;margin:1em 0}
+.tbox-row .tbox{margin:0;flex:0 1 340px;min-width:0}
+.tbox-row .tbox p.empty{display:none}
+.tbox-row .tbox table{font-size:.85em;width:auto !important;max-width:340px}
+.tbox-row .tblwrap{margin:0 !important;width:auto !important}
+.tbox-arrow{font-size:2em;color:#7F6FB0}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:var(--sf,11px)/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+@font-face{font-family:"STIX Two Math";src:url(../fonts/STIXTwoMath-Regular.woff2) format("woff2");font-display:swap}
+math{font-family:"STIX Two Math",math;font-size:1.08em;text-indent:0;math-style:normal}
+p:has(> math.eq){margin-block:.5em}
+math.eq{display:block math;margin:.3em 0;max-width:100%;overflow-x:auto;overflow-y:hidden}
+math.eq-left,math.eq-ind{display:inline math;math-style:normal}
+math.eq-ind{margin-left:calc(3.6*var(--u))}
+math.eq-right{text-align:right}
+.eqa mtd{padding:.3em 0}
+.eqa mtd:first-child{text-align:right}
+.eqa mtd:last-child{text-align:left}
+math .mbox{border:1px solid currentColor;padding:.1em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.icon-abs.check-mark{left:0;top:-.7em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.sol-lab{display:inline-block;width:calc(5.4*var(--u));text-indent:0}
+.sol-pl{display:inline-block;width:2.2em;text-indent:0}
+.kvl.stepl{width:4.4em}
+.tab2{display:grid;align-items:baseline;grid-template-columns:auto 1fr;column-gap:3.6em;row-gap:.15em;margin:0}.tab2>div{min-width:0}.tab2>.sp{height:.6em}
+@media (max-width:640px){.tab2{grid-template-columns:1fr;column-gap:0}}
+p.tkp{text-align:center;padding:0;text-indent:0;margin:.4em 0}p.tkp img{max-width:100%;height:auto}
+.datarow span{display:inline-block;min-width:3.1em;text-indent:0}
+.datarow.dense span{min-width:1.7em}
+.sol-eq{text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+.tbl-pair{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:1em 2em;margin:.6em 0}
+.tbl-pair .tblwrap{margin:0}
+.tbl-pair table.wt{margin:0}
+.callout-row math{font-size:1.2em}
+img.tkwide{max-width:min(1060px,calc(100vw - 32px));display:block;position:relative;left:50%;transform:translateX(-50%);text-indent:0}
+@media (max-width:640px){img.tkwide{left:auto;transform:none;max-width:100%}.mw{display:inline-block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden;vertical-align:middle}}
+.eqs{display:block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden}
+.check-inline{width:1.35em;height:auto;vertical-align:-.3em;margin-left:.3em}
+@media (min-width:601px){th.nowrap{white-space:nowrap}}
+.photo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1em 3em;margin:.8em 0}
+.photo-cred{margin:0;text-align:center}.photo-cred img{display:block;margin:0 auto .3em}.photo-cred figcaption{font-size:1em;line-height:1.3}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+@media (max-width:640px){math.eq-ind{margin-left:0}.tbox-arrow{transform:rotate(90deg)}}
+/* Chapter 3 number lines: drawing with its note beside it (below it on phones) */
+figure.numline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6em 1em;margin:1em 0;max-width:none !important;overflow-x:auto}
+figure.numline svg{flex:0 1 auto;max-width:100%;height:auto}
+.nl-note{display:block;max-width:15em;background:#E6D5FF;border:1px solid #7F7F7F;padding:.35em .7em;text-align:center;font-size:.92em;line-height:1.35}
+.nl-arrow{font-size:2em;color:#7F6FB0}
+@media (max-width:640px){figure.numline{flex-direction:column}.nl-arrow{transform:rotate(90deg);line-height:1}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.callout-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1em 4em;margin:.6em 0}.callout-row>aside.callout{float:none;margin:0;max-width:none}.wl{margin:.6em 0}.wl-pics{max-width:100%;margin:0 auto}.wl.wide .wl-pics{max-width:min(1060px,calc(100vw - 32px));margin-left:50%;transform:translateX(-50%)}.wl-pic{display:block;max-width:100%;height:auto}.wl-flow{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}@media (max-width:600px){.wl-pics{display:none}.wl-flow{position:static!important;width:auto;height:auto;overflow:visible;clip:auto;clip-path:none;white-space:normal}}.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+<style>@media (max-width:480px){p.ex-part{padding-left:calc(2.25*var(--u))!important}}</style></head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-2/index.html" title="Unit 2: Probability and Probability Distributions">Unit 2</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 7: Continuous Random Variables</a></nav><span class="where">Section 7.2</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span class="b" style="font-size:1.4em">Section </span><span class="b" style="font-size:1.4em">7.2</span><span class="b" style="font-size:1.4em">: </span><span class="b" style="font-size:1.4em">The Normal Distribution</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Find and interpret probability for the standard normal random variable.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Find and interpret probability for the non-standard normal random variables.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Find percentiles of normal random variables.</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">The normal distribution can be described using the same three characteristics that we have seen.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Center- Since it is bell-shaped, we use the mean to describe the center.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Variation- Since it is bell-shaped, we use standard deviation to describe the dispersion. </p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Shape of the distribution- It is normal, so we know it is bell-shaped.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Thus, the normal distribution is completely determined by the mean and standard deviation (we get that it is bell-shaped since we know it is normal).  We use technology to find probability as the area under the normal probability density function.   When we do, we will need to specify 1) the mean, 2) the standard deviation, and 3) that the probability density function follows a normal distribution.</p>
+<p class="empty"></p>
+<h2 class="subhead">The Standard Normal Distribution</h2>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">First, it is important to know the history behind the standard normal, or <span class="i">Z</span>-distribution.</p>
+<p style="padding-left:calc(3.6*var(--u))">The <span class="b">Standard Normal Distribution</span> is the bell-shaped distribution that was once used to compute probabilities for any normal curve.  The process required users to convert X-values to standardized scores (remember z-scores?) using the mean and standard deviation, then use tables of values to look up probabilities.  Carl Friedrich Gauss was the first person to discover and use the normal distribution, hence it is sometimes called the Gaussian distribution.  At the time of its discovery, there was no technology to use, so scientists spent hours, days, and weeks creating tables of values for areas under the standard normal curve.  Although it is possible to compute tables for every combination of mean and standard deviation, it made better sense to adopt a standard, then have all others convert to the standard when computing probability.  Because it was the simplest to compute, the standard normal distribution has mean <math><mrow style="color:#00641E"><mi>μ</mi><mo>=</mo><mn>0</mn></mrow></math><span style="color:#00641E"> </span>and standard deviation <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>1</mn></mrow><mo>.</mo></math>  This is what tables use as the “standard” and is the default if you are using a probability calculator (like Desmos, an app, or STATBELT).  When we refer to the standard normal variable, we use <span class="i">Z</span>.  When we refer to any other normal distribution, we use <span class="i">X</span>.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image5.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="b" style="color:#FFFFFF">Important Point!</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">The <span class="b">Standard Normal Distribution</span> is the normal distribution that has mean <math><mrow style="color:#00641E"><mi>μ</mi><mo>=</mo><mn>0</mn></mrow></math> and standard deviation <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>1</mn></mrow></math>.   We use <span class="i">Z</span> to represent the standard normal variable.  </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">STATBELT Utility- Probability for the Standard Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#EAF1DD">To use STATBELT Utility to find probability for a <span class="b">normal distribution</span>.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Select Calculators → Normal Calculator.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>The mean is already set to 0 and the standard deviation is already set to 1.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Under “Find a probability,” choose the inequality you need and type the value of z.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Choose “P(Z &lt; z)” or “P(Z &gt; z)” for one value.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Choose “P(z₁ &lt; Z &lt; z₂)” to calculate a probability between two values.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>The probability and a graph of the normal curve appear as soon as you type.  There is no button to click.</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p>
+<p class="note" style="padding-left:calc(1.6*var(--u) + 1.90em)">NOTE:  When the mean is 0 and the standard deviation is 1, the calculator writes Z for the variable; for any other mean and standard deviation it writes X.  The calculator gives the probability and shows the normal curve with the probability shaded as area.</p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Probability and the Standard Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Assume that Z is a standard normal variable (mean 0 and standard deviation 1).  Find each probability using STATBELT.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>Z</mi><mo>&lt;</mo><mn>2.45</mn><mo stretchy="false">)</mo></math></span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>Z</mi><mo>&gt;</mo><mn>0.81</mn><mo stretchy="false">)</mo></math></span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mo form="prefix">−</mo><mn>1.23</mn><mo>&lt;</mo><mi>Z</mi><mo>&lt;</mo><mn>0.98</mn><mo stretchy="false">)</mo></math></span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_z1a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1. The area for P(Z &lt; 2.45) is shaded purple. P(Z &lt; 2.45) = 0.9929. This is the standard normal curve." style="width:666px" class="tkcol"></p></figure><p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>Open STATBELT Utility and select Calculators → Normal Calculator.  The mean is already 0 and the standard deviation is already 1.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>To compute <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&lt;</mo><mn>2.45</mn></mrow><mo>)</mo></mrow><mo>,</mo></math></span> choose “P(Z &lt; z)” and type 2.45 for the z value.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&lt;</mo><mn>2.45</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.9929</mn><mo>.</mo></math></span></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The calculator also gives you a picture of the distribution.  The shaded area between the curve and the axis represents the probability of getting a value of the random variable in that interval.  Notice that the solution to <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&lt;</mo><mn>2.45</mn></mrow><mo>)</mo></mrow><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>Z</mi><mo>≤</mo><mn>2.45</mn><mo stretchy="false">)</mo></math></span>  This is always true of continuous random variables.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_z1b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1. The area for P(Z &gt; 0.81) is shaded purple. P(Z &gt; 0.81) = 0.2090. This is the standard normal curve." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To compute <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&gt;</mo><mn>0.81</mn></mrow><mo>)</mo></mrow><mo>,</mo></math></span> choose “P(Z &gt; z)”</p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">and type 0.81 for the z value.  The result is  <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&gt;</mo><mn>0.81</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.2090</mn><mo>,</mo></math></span> rounded to 4 decimal places.  Again, there is no difference using “<math><mo>≥</mo></math>” instead of “&gt;” because we are working with a continuous random variable.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_z1c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1. The area for P(-1.23 &lt; Z &lt; 0.98) is shaded purple. P(-1.23 &lt; Z &lt; 0.98) = 0.7271. This is the standard normal curve." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>To calculate <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mo form="prefix">−</mo><mn>1.23</mn><mo>&lt;</mo><mi>Z</mi><mo>&lt;</mo><mn>0.98</mn><mo stretchy="false">)</mo></math></span>, choose “P(z₁ &lt; Z &lt; z₂)” under “Find a probability.”  Type -1.23 for the lower value and 0.98 for the upper value.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mo form="prefix">−</mo><mn>1.23</mn><mo>&lt;</mo><mi>Z</mi><mo>&lt;</mo><mn>0.98</mn></mrow><mo>)</mo></mrow><mo>≈</mo></math></span> 0.7271, rounded to 4 decimal places.  You might notice that the calculator writes “less than” (&lt;) rather than “less than or equal to” (≤).  When the variable is continuous, the probability of being “equal” to any number is zero, so these two options give the same area, and therefore the same probability.</p>
+<p class="empty"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">2</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Area and the Standard Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Assume that Z is a standard normal variable (mean 0 and standard deviation 1).  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Find the area to the left of -0.87 on the standard normal curve and interpret it as probability.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">Find the area between 0.25 and 0.75 under the standard normal curve and interpret it as probability.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">Find the area to the right of -1.52 on the standard normal curve and interpret the probability.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_z2a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1. The area for P(Z &lt; -0.87) is shaded purple. P(Z &lt; -0.87) = 0.1922. This is the standard normal curve." style="width:666px" class="tkcol"></p></figure><p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>Open STATBELT Utility and select Calculators → Normal Calculator.  The mean is already 0 and the standard deviation is already 1.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>The area to the left of -0.87 is equal to the probability <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&lt;</mo><mo>−</mo><mn>0.87</mn></mrow><mo>)</mo></mrow><mo>.</mo></math></span>  Choose “P(Z &lt; z)” and type</p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">-0.87 for the z value.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&lt;</mo><mo>−</mo><mn>0.87</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.1922</mn></math></span>.  There is about a 19.2% chance that a standard normal variable is less than</p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">-0.87.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_z2b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1. The area for P(0.25 &lt; Z &lt; 0.75) is shaded purple. P(0.25 &lt; Z &lt; 0.75) = 0.1747. This is the standard normal curve." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>The area between 0.25 and 0.75 is the same as the probability <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>0.25</mn><mo>&lt;</mo><mi>Z</mi><mo>&lt;</mo><mn>0.75</mn></mrow><mo>)</mo></mrow></math></span>.  Choose “P(z₁ &lt; Z &lt; z₂)” and type 0.25 for the lower value and 0.75 for the upper value.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>0.25</mn><mo>&lt;</mo><mi>Z</mi><mo>&lt;</mo><mn>0.75</mn></mrow><mo>)</mo></mrow><mo>≈</mo></math></span> 0.1747.  Approximately 17.5% of standard normal values are between 0.25 and 0.75.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_z2c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1. The area for P(Z &gt; -1.52) is shaded purple. P(Z &gt; -1.52) = 0.9357. This is the standard normal curve." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>The area to the right of -1.52 is the same as the probability <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&gt;</mo><mo>−</mo><mn>1.52</mn></mrow><mo>)</mo></mrow></math></span>.  Choose “P(Z &gt; z)” and type</p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">-1.52 for the z value.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&gt;</mo><mo>−</mo><mn>1.52</mn></mrow><mo>)</mo></mrow><mo>≈</mo></math></span> 0.9357.  A standard normal variable will be larger than -1.52 approximately 93.6% of the time.</p>
+<p class="empty"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">The Non-Standard Normal Distribution</h2>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Historically, when probability was computed for non-standard normal variables <span class="i">X</span>, they had to first be converted to the standard normal using z-scores.  You may recall using z-scores in chapter 3.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">1</span><span style="color:#FFFFFF">  </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">Let the random variable <span class="i">X</span> be normal with a mean <math><mi>μ</mi></math> and standard deviation <math><mi>σ</mi><mo>.</mo></math>  The  <span class="b">Z</span><span class="b">-score</span> (or standardized score) measures how many standard deviations an observation <span class="i">X</span> is above or below the mean.  </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi>Z</mi></mtd><mtd><mo>=</mo><mfrac><mrow><mi>X</mi><mo>−</mo><mi>μ</mi></mrow><mi>σ</mi></mfrac></mtd></mtr></mtable></math></span> Additionally, if we are given a <span class="i">Z</span>-score, we can compute the equivalent raw score for <span class="i">X</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi>X</mi></mtd><mtd><mo>=</mo><mi>μ</mi><mo>+</mo><mi>Z</mi><mo>⋅</mo><mi>σ</mi></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">(This is just the <span class="i">Z</span>-score formula solved for <span class="i">X</span>.)</p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">If we apply the z-score formula to a normal distribution with mean <math><mi>μ</mi></math> and standard deviation, <math><mi>σ</mi><mo>,</mo></math> we <span class="i">convert</span> the non-standard normal into the standard normal.  That is, the mean is converted to 0 and the standard deviation is converted to 1.  Once this was necessary to compute probability.  After converting to the standard normal, statisticians would use tables to make very complicated estimates for the probability.  The next example is presented to show how the areas of the non-standard normal and the standard normal are equivalent in this process.  Fortunately, we have technology that we will use to compute these probabilities.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">3</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Non-Standard Normal Conversion to Standard Normal</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Assume that X has a normal distribution with mean </span><math><mi>μ</mi><mo>=</mo><mn>72</mn></math><span style="background:#DBE5F1"> and standard deviation 8.  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Find the Z-score for </span><span class="i" style="background:#DBE5F1">X </span><span style="background:#DBE5F1">= 66.  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">Find the raw score for a Z-score = 1.6.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">F</span><span style="background:#DBE5F1">ind the probability that </span><span class="i" style="background:#DBE5F1">X</span><span style="background:#DBE5F1"> is less than 66 by converting to the standard normal and using </span><span style="background:#DBE5F1"> STATBELT.</span></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>Substituting values <span class="i" style="color:#0070C0">X</span><span style="color:#0070C0"> = 66</span>, <math><mrow style="color:#00641E"><mi>μ</mi><mo>=</mo><mn>72</mn></mrow></math>  and <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>8</mn></mrow><mo>,</mo></math> into the Z-score formula, we get</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi>Z</mi></mtd><mtd><mo>=</mo><mfrac><mrow><mn style="color:#0070C0">66</mn><mo>−</mo><mn style="color:#00641E">72</mn></mrow><mn style="color:#C00000">8</mn></mfrac><mo>=</mo><mo form="prefix">−</mo><mfrac><mn>6</mn><mn style="color:#C00000">8</mn></mfrac><mo>=</mo><mo form="prefix">−</mo><mn>0.75</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The interpretation of the Z-score from chapter 3 is that the value <span class="i">X </span>= 66 is 0.75 standard deviations <span class="i">below</span> the mean.  (Recall it is below because of the negative sign.)</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>If <span style="color:#7030A0">Z</span> = <span style="color:#7030A0">1.6</span>, then we can compute the raw score for <math><mi>X</mi></math> as</p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><br><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi>X</mi></mtd><mtd><mo>=</mo><mi style="color:#005121">μ</mi><mo>+</mo><mi style="color:#7030A0">Z</mi><mo>⋅</mo><mi style="color:#C00000">σ</mi></mtd></mtr></mtable></math></span></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>=</mo><mn style="color:#005121">72</mn><mo>+</mo><mn style="color:#7030A0">1.6</mn><mo>×</mo><mn style="color:#C00000">8</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn style="color:#005121">72</mn><mo>+</mo><mn>12.8</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn>84.8</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(22.1*var(--u));text-indent:calc(-1*calc(4.95*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">So, the raw score <span class="i">X</span> = 84.8 is <span style="color:#7030A0">1.6 </span>standard deviations above the mean.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>To see how we transform a non-standard normal distribution to a standard normal, we start with <math><mi>X</mi><mo>&lt;</mo><mn style="color:#0070C0">66</mn><mo>.</mo></math>  Using algebra, we can subtract the mean from both sides, and divide by both sides by the standard deviation.</p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mi>X</mi><mo>&lt;</mo><mn style="color:#0070C0">66</mn></mtd></mtr></mtable></math></span></p>
+<aside class="float right callout" style="border-color:transparent;background:transparent"><p style="padding-left:calc(0.45*var(--u))"><span style="color:#005121">subtract 72 from both sides</span></p></aside><p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mi>X</mi><mo>−</mo><mn style="color:#005121">72</mn><mo>&lt;</mo><mn style="color:#0070C0">66</mn><mo>−</mo><mn style="color:#005121">72</mn></mtd></mtr></mtable></math></span></p>
+<aside class="float right callout" style="border-color:transparent;background:transparent"><p style="padding-left:calc(0.45*var(--u))"><span style="color:#C00000">divide both sides by 8</span></p></aside><p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(18*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mfrac><mrow><mi>X</mi><mo>−</mo><mn style="color:#005121">72</mn></mrow><mn style="color:#C00000">8</mn></mfrac><mo>&lt;</mo><mfrac><mrow><mn style="color:#0070C0">66</mn><mo>−</mo><mn style="color:#005121">72</mn></mrow><mn style="color:#C00000">8</mn></mfrac></mtd></mtr></mtable></math></span></p>
+<div class="callout-row"><aside class="float right callout" style="background:#E6D5FF;border-color:#000000"><p style="padding-left:calc(0.45*var(--u))">The left side is <span class="mw"><math><mi>Z</mi><mo>=</mo><mfrac><mrow><mi>X</mi><mo>−</mo><mi>μ</mi></mrow><mi>σ</mi></mfrac><mo>=</mo><mfrac><mrow><mi>X</mi><mo>−</mo><mn style="color:#005121">72</mn></mrow><mn style="color:#C00000">8</mn></mfrac></math></span></p></aside></div><p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(19.4*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mi>Z</mi><mo>&lt;</mo><mfrac><mrow><mo form="prefix">−</mo><mn>6</mn></mrow><mn style="color:#C00000">8</mn></mfrac></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(19.4*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mi>Z</mi><mo>&lt;</mo><mo>−</mo><mn>0.75</mn></mtd></mtr></mtable></math></span></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">So, the inequalities “<math><mi>X</mi><mo>&lt;</mo><mn>66</mn></math>” and “<math><mi>Z</mi><mo>&lt;</mo><mo>−</mo><mn>0.75</mn></math>” are equivalent via the Z-score transformation.  It turns out that the areas under the transformed graphs are also equal, and hence the probabilities are equal.</p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_z3c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1. The area for P(Z &lt; -0.75) is shaded purple. P(Z &lt; -0.75) = 0.2266. This is the standard normal curve." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">To find the probability <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>Z</mi><mo>&lt;</mo><mo>−</mo><mn>0.75</mn><mo stretchy="false">)</mo></math></span>, open STATBELT Utility and select Calculators → Normal Calculator.  With mean set to 0 and standard deviation set to 1, choose “P(Z &lt; z)” and type -0.75 for the z value.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>66</mn></mrow><mo>)</mo></mrow><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>Z</mi><mo>&lt;</mo><mo>−</mo><mn>0.75</mn><mo stretchy="false">)</mo></math></span>.  Using STATBELT, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>Z</mi><mo>&lt;</mo><mo>−</mo><mn>0.75</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.2266</mn></math></span>.  So, the probability that a randomly selected <span class="i">X</span> is less than 66 is approximately 0.2266.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_x3c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 72 and standard deviation 8. The area for P(X &lt; 66) is shaded purple. P(X &lt; 66) = 0.2266, the same as P(Z &lt; -0.75)." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Note that if we had changed the mean and standard deviation in the normal calculator to 72 and 8, respectively, and found <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>66</mn></mrow><mo>)</mo></mrow></math></span>, we get <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>66</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.2266</mn></math></span>, the same probability!</p>
+<p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The main point of this last example is to show that we don’t need to convert to the standard normal to find probability for a normal distribution!  But we do need to use the standard normal in future chapters, so it is important to know what it is.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">STATBELT Utility- Probability for the Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#EAF1DD">To use STATBELT Utility to find probability for a <span class="b">normal distribution</span>.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Select Calculators → Normal Calculator.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Type in the mean and standard deviation.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Under “Find a probability,” choose the inequality you need and type the value of a.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Choose “P(X &lt; a)” or “P(X &gt; a)” for one value.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span>Choose “P(a &lt; X &lt; b)” to calculate a probability between two values.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>The probability and a graph of the normal curve appear as soon as you type.  There is no button to click.</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#EAF1DD">NOTE:  You can set “x-axis labels” to “Mean ± standard deviations” to have the normal graph mark the mean and use the standard deviation to mark off one, two, three, and four standard deviations above and below.</p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">4</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Finding Probability for a Non-Standard Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Consumers in the U.S. replace their cell phones every 2.8 years, on average, according to statista.com.  Let </span><span class="i" style="background:#DBE5F1">X</span><span style="background:#DBE5F1"> = the replacement time, or lifespan, of a cell phone.  The mean of </span><span class="i" style="background:#DBE5F1">X</span><span style="background:#DBE5F1"> is 2.8 years.  Assume that the standard deviation for replacements is 1.1 years and that replacement times are normally distributed.  </span></p>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Find each probability using technology.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What is the probability a cell phone is replaced before it is a year </span></p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))"></span><span style="background:#DBE5F1">old?  Is this unusual?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability a cell phone is lasts at least 3 years before </span></p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))"></span><span style="background:#DBE5F1">replacement?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">Find the probability that a cell phone lifespan is between 2 and </span></p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))"></span><span style="background:#DBE5F1">3 years.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d)</span><span style="background:#DBE5F1">Find the probability that a cell phone lifespan is more than 5 years.  </span></p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))"></span><span style="background:#DBE5F1">Is this unusual?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"></p></div>
+<figure class="float right photo" style="width:268px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="color:#0000FF;font-size:0.8em"><img src="images/image43.jpg" alt="Image of a cell phone.  Photo by Rahul Chakraborty on Unsplash." style="width:170px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@hckmstrrahul?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Rahul Chakraborty</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/photos/6wdRuK7bVTE?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p4a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1. The area for P(X &lt; 1) is shaded purple. P(X &lt; 1) = 0.0509. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(0.45*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>Open STATBELT Utility and select Calculators → Normal Calculator.  Type in 2.8 for the mean and 1.1 for the standard deviation.  To find the probability that a phone is replaced before it is a year old, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&lt;</mo><mn>1</mn><mo stretchy="false">)</mo></math></span>.  We don’t need to convert to <span class="i">Z</span>-scores.  Just choose “P(X &lt; a)” and type 1 for the value a.  If you set “x-axis labels” to “Mean ± standard deviations,” the normal distribution that is presented will match what we created in section 7.1 example 5.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>1</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0509</mn></math></span>.  There is just over a 5% chance that a cell phone will be replaced before it is one year old.  Since this is not less than 0.05, it is not unusual.  It is, however, close to unusual!</p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p4b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1. The area for P(X &gt; 3) is shaded purple. P(X &gt; 3) = 0.4279. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the probability that a phone lasts at least 3 years, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>3</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(X &gt; a)” and type 3 for the value a.  We get <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>3</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.4279</mn></math></span>.  There is a 42.8% chance that a cell phone will last at least 3 years.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p4c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1. The area for P(2 &lt; X &lt; 3) is shaded purple. P(2 &lt; X &lt; 3) = 0.3386. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>To find the probability that a phone lasts between 2 and 3 years, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mn>2</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>3</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(a &lt; X &lt; b)” and type 2 for the lower value a and 3 for the upper value b.  We get <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>2</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>3</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.3386</mn></math></span>.  Approximately 33.9%, or just over one-third of cell phones are replaced between 2 and 3 years.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p4d.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1. The area for P(X &gt; 5) is shaded purple. P(X &gt; 5) = 0.0228. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(0.45*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">d)</span>To find the probability that a phone lasts longer than 5 years, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>5</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(X &gt; a)” and type 5 for the value a.  We get <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>5</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0228</mn></math></span>.  Approximately 2.3% of cell phones last longer than 5 years.  Since this is less than a 5% chance, it would be unusual to have a cell phone used longer than 5 years.</p>
+<p class="empty"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="tip-badge"><img src="images/image49.svg" alt=""><span class="tip-word">Tip!</span></div></div><p class="empty"></p>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9">Many calculators do not have the “between” feature that STATBELT offers.  If you are  using one of them, you can calculate <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>a</mi><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mi>b</mi></mrow><mo>)</mo></mrow><mo>=</mo><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mi>b</mi></mrow><mo>)</mo></mrow><mo>−</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&lt;</mo><mi>a</mi><mo stretchy="false">)</mo></math></span>.   Geometrically, this method takes all the area to the left of <span class="i">b</span>, then subtracts the area to the left of <span class="i">a</span>, leaving only the area that is between <span class="i">a</span> and <span class="i">b</span>.  Of course, the area is the probability!  See <span class="b">figure 7.1</span><span class="b">8</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))"><img src="images/image51.png" alt="Figure 7.18:  Picture of how to compute a between probability using two left-tail probabilities." style="width:830px" class=""></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.1</span><span class="b">8</span>:  How to compute a between probability using two left-tail probabilities.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">5</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Finding Probability for a Non-Standard Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Lengths</span><span style="background:#DBE5F1"> of pregnancies </span><span style="background:#DBE5F1">are</span><span style="background:#DBE5F1"> normally distributed with mean length gestation 268 days and standard deviation 16 days.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What is the probability a pregnancy lasts less than 250 days?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability a pregnancy lasts longer than 280 days?  Is this unusual?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">A baby is preterm if born at least 3 weeks (21 days) early.  What is the probability a baby is </span><span style="background:#DBE5F1"> preterm?  Is this unusual?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d)</span><span style="background:#DBE5F1">How likely is it that a baby is born 4 or more weeks (28 days or more) early?  Is this unusual?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">e)</span><span style="background:#DBE5F1">What percent of pregnancies last for</span><span style="background:#DBE5F1"> 10 months (300 days)?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(0.45*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>Open STATBELT Utility and select Calculators → Normal Calculator.  Type in 268 for the mean and 16 for the standard deviation.  Set “x-axis labels” to “Mean ± standard deviations” to show the mean and increments of the standard deviation.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>To find the probability that a pregnancy lasts less than 250 days, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&lt;</mo><mn>250</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(X &lt; a)” and type 250 for the value a.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<figure class="float right photo" style="width:234px"><p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em"><img src="images/image52.jpg" alt="A silhouette of a pregnant woman.  Photo by Mustafa Omar on Unsplash." style="width:202px" class=""></span></p>
+<p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@mustafa_omar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Mustafa Omar</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/pregnancy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_g5a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 268 and standard deviation 16. The area for P(X &lt; 250) is shaded purple. P(X &lt; 250) = 0.1303. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>250</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.1303</mn></math></span>.  About 13% of pregnancies last less than 250 days.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_g5b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 268 and standard deviation 16. The area for P(X &gt; 280) is shaded purple. P(X &gt; 280) = 0.2266. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the probability that a pregnancy lasts longer than 280 days, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>280</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(X &gt; a)” and type 280 for the value a.  We get <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>280</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.2266</mn></math></span>.  There is a 22.7% chance that a pregnancy will last at least 280 days.  This is not unusual.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_g5c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 268 and standard deviation 16. The area for P(X &lt; 247) is shaded purple. P(X &lt; 247) = 0.0947. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>Three weeks early means 21 days before the mean, so the pregnancy would last fewer than 268 – 21 = 247 days.   So, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&lt;</mo><mn>247</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(X &lt; a)” and type 247 for the value a.  We get <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>247</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0947</mn></math></span>.  Approximately 9.5% of pregnancies end with a preterm birth.   This is not unusual.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_g5d.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 268 and standard deviation 16. The area for P(X &lt; 240) is shaded purple. P(X &lt; 240) = 0.0401. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">d)</span>To find the probability a baby is born 4 or more weeks early, we subtract 28 days from the mean 268 – 28 = 240.  We find <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>240</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0401</mn></math></span>.  Approximately 4% of pregnancies end 4 or more weeks early.  Since this is less than 5% chance, it would be unusual to have pregnancy end 4 or more weeks early.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_g5e.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 268 and standard deviation 16. The area for P(X &gt; 300) is shaded purple. P(X &gt; 300) = 0.0228. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">e)</span>The probability that a pregnancy lasts 300 days or longer is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>300</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0228</mn></math></span>.  So, roughly 2.3% of pregnancies last at least this long.  It is unusually long, but rare things happen!</p>
+<p class="empty"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="tip-badge"><img src="images/image49.svg" alt=""><span class="tip-word">Tip!</span></div></div><p class="empty"></p>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9">If you are using a calculator to find normal probability, it is written as a function  such as normalpdf(-,-,-) on Texas Instruments calculators, Normaldist in Desmos, or  something similar in other calculators or apps.  Of course, you can use STATBELT!</p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">6</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Finding Probability for a Non-Standard Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Dark chocolate bars are advertised by the manufacturer to weigh 8 ounces.  The mean weight of the bars is 8.2 ounces with a standard deviation of 0.12 ounces.  Assume the weights are normally distributed.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What percent of dark chocolate bars weigh less than 8 ounces?  Would </span><span style="background:#DBE5F1">it </span><span style="background:#DBE5F1">be unusual</span><span style="background:#DBE5F1"> for a randomly </span><span style="background:#DBE5F1"> selected bar to weigh less than 8 ounces</span><span style="background:#DBE5F1">?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a chocolate bar weighs at least 8.3 ounces?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">The machinery in the factory is set to reject any dark chocolate bar that weighs less than 8 ounces </span><span style="background:#DBE5F1"> (for being under the advertised weight) or more than 8.5 ounces (for being too large for the </span><span style="background:#DBE5F1"> packaging).  What percent of dark chocolate bars are rejected?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(0.45*var(--u)))"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_c6a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 8.2 and standard deviation 0.12. The area for P(X &lt; 8) is shaded purple. P(X &lt; 8) = 0.0478. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>Open STATBELT Utility and select Calculators → Normal Calculator.  Type in 8.2 for the mean and 0.12 for the standard deviation.  Set “x-axis labels” to “Mean ± standard deviations” to show the mean and increments of the standard deviation.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>To find the probability that a chocolate bar weighs less than indicated on the package, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&lt;</mo><mn>8</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(X &lt; a)” and type 8 for the value a.  The probability that a chocolate bar weighs less than 8 ounces is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0478</mn></math></span>.  Since this is less than 0.05 probability, a bar weighing less than 8 ounces is unusual.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_c6b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 8.2 and standard deviation 0.12. The area for P(X &gt; 8.3) is shaded purple. P(X &gt; 8.3) = 0.2023. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the probability that a chocolate bar weighs more than 8.3 ounces, we find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>8.3</mn><mo stretchy="false">)</mo></math></span>.  Choose “P(X &gt; a)” and type 8.3 for the value a.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>8.3</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.2023</mn></math></span>.  About 20.2% of the chocolate bars weigh 8.3 or more ounces.</p>
+<p class="empty"></p>
+<figure class="float right photo" style="width:250px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em"><img src="images/image61.jpg" alt="Photo of some chocolate.  Photo by Tetiana Bykovets on Unsplash." style="width:198px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@tetiana_bykovets?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Tetiana Bykovets</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/chocolate-bars?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>We want the machine to reject any bar that does not meet the minimum weight of 8 ounces.  We also need it to filter out those that are too heavy, with weights above 8.5 ounces.  So, a bar will be rejected either if it weighs less than 8 ounces OR more than 8.5 ounces.  With these settings we can find the probability that a bar is rejected, and then convert that to a percent to answer the question.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">We want to find   <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn><mtext> OR </mtext><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></math></span>.  Remember that OR means we need to use the addition rule.  Fortunately, the events <math><mi>X</mi><mo>&lt;</mo><mn>8</mn></math> and <math><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></math> are disjoint (no chocolate bar weighs less than 8 ounces <span class="i">and </span>weighs more than 8.5 ounces!)  So, we can add the two probabilities together!</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn><mtext> OR </mtext><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></mtd><mtd><mo>=</mo><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn></mrow><mo>)</mo></mrow><mo>+</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>8.5</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">We compute each of these probabilities separately, then add.  We already found <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0478</mn></math></span> in part (a).  So, we need to find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>&gt;</mo><mn>8.5</mn><mo stretchy="false">)</mo></math></span>.  In STATBELT, choose “P(X &gt; a)” and type 8.5 for the value a.  We get <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0062</mn></math></span>.</p>
+<p class="empty"></p>
+<p class="tkp"><img src="images/tk_c6c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 8.2 and standard deviation 0.12. The area for P(X &gt; 8.5) is shaded purple. P(X &gt; 8.5) = 0.0062. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">So finally,</p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn><mtext> OR </mtext><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></mtd><mtd><mo>=</mo><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn></mrow><mo>)</mo></mrow><mo>+</mo><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd></mtd><mtd><mo>≈</mo><mn>0.0478</mn><mo>+</mo><mn>0.0062</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn>0.054</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Based on this result, it appears that about 5.4% of chocolate bars are rejected due to being too small or too large.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_c6n.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 8.2 and standard deviation 0.12. The area for P(8 &lt; X &lt; 8.5) is shaded purple. P(8 &lt; X &lt; 8.5) = 0.9460. The x-axis marks the mean and 1 to 4 standard deviations above and below it." style="width:666px" class="tkcol"></p></figure><p style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(3.6*var(--u))"><span class="b">Note:</span></span><span class="hang" style="min-width:calc(1.8*var(--u))"></span>Another way to compute <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn><mtext> OR </mtext><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></math></span> is to recognize that it is the complement of <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></math></span>.  If a chocolate bar is not lighter than 8 ounces, and not heavier than 8.5 ounces, then it must weigh somewhere between 8 and 8.5 ounces.  If you recognize that, then <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn><mtext> OR </mtext><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mrow><mo>(</mo><mrow><mn>8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></math></span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Choose “P(a &lt; X &lt; b)” and type 8 for the lower value a and 8.5 for the upper value b.  The result is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mn>8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.9460</mn></math></span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-ind"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>8</mn><mtext> OR </mtext><mi>X</mi><mo>&gt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></mtd><mtd><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mrow><mo>(</mo><mrow><mn>8</mn><mo>&lt;</mo><mi>X</mi><mo>&lt;</mo><mn>8.5</mn></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd></mtd><mtd><mo>≈</mo><mn>1</mn><mo>−</mo><mn>0.946</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn>0.054</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p style="padding-left:calc(7.2*var(--u))">In the picture at right, the unshaded area of the left and right tails, rather than the purple area in the middle, is the area representing the probability that we have found.  STATBELT can also find this area directly: choose “P(X &lt; a or X &gt; b)” and type 8 and 8.5.  The result is 0.0540.  </p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">Percentiles of the Normal Distribution</h2>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))">As you may recall, percentiles are used to describe position in a distribution.  </p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">2</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">If <span class="i">X</span> has a continuous probability density function, then the <span class="b">percentile rank</span> of an individual observation <span class="i">X</span> = <span class="i">a</span> is the percent of observations that are at or below the value <span class="i">X</span> = <span class="i">a</span>.  In other words, the k<sup>th</sup> percentile <math><msub><mi>P</mi><mi>k</mi></msub><mo>=</mo><mi>a</mi></math> means that <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>≤</mo><mi>a</mi></mrow><mo>)</mo></mrow><mo>=</mo><mi>k</mi><mo>%</mo></math></span>.  Percentiles are rounded to whole number percentages.  (Note that the percentile is an <span class="i">X</span>-value from the data distribution, not a probability!)</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p></div>
+<p class="empty"></p>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><div class="ianchor"><div class="tip-badge"><img src="images/image49.svg" alt=""><span class="tip-word">Tip!</span></div></div><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9">Percentiles always refer to the percent, probability, proportion, or area on the left! In  probability language, that means we use <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>≤</mo><mi>a</mi><mo stretchy="false">)</mo></math></span> when working with percentiles.  See  <span class="b">figure 7.1</span><span class="b">9</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(7.2*var(--u))"><img src="images/image65.png" alt="Illustration of the kth percentile.  Figure 7.19:  Percentiles always reference area on the left!" style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.1</span><span class="b">9</span>:  Percentiles always reference area on the left!</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">7</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">2020 SAT Math Scores</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The mean SAT Math score for students who took the SAT in 2020 was 528 and the standard deviation was 120 (from the College Board’s 2021 total group report).  Assume that SAT Math scores follow a normal distribution.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Samuel scored 435.  What is his percentile rank?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">Hercules scored 647.  What is his percentile rank?  What percent of students scored better than </span><span style="background:#DBE5F1"> Hercules?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"></p></div>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_s7a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 528 and standard deviation 120. The area for P(X &lt; 435) is shaded purple. P(X &lt; 435) = 0.2192." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>To find the percentile rank of 435, we need to know the percent of scores that are <span class="i">less than or equal to</span> 435.  We use the normal calculator with mean 528 and standard deviation 120.  The proportion of area that is less than or equal to 435 is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>≤</mo><mn>435</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.2192</mn></math></span>.  We multiply this by 100 to make it a percent, <span class="mw"><math><mn>0.2192</mn><mo>×</mo><mn>100</mn><mo>%</mo><mo>=</mo><mn>21.92</mn><mo>%</mo><mo>.</mo></math></span> We would say that Samuel scored at the 21<sup>st</sup> percentile, because 21.9% of students scored less than or equal to his score.  You might be tempted to round it up to 22%, but he did not score better than 22% of other students.  He was almost at the 22<sup>nd</sup> percentile, but not quite!</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_s7b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 528 and standard deviation 120. The area for P(X &lt; 647) is shaded purple. P(X &lt; 647) = 0.8393." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the percentile rank of 647, we need to know the percent of scores that are <span class="i">less than or equal to</span> 647.  Using STATBELT with the same mean and standard deviation gives us <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>≤</mo><mn>647</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.8393</mn></math></span>.  We multiply this by 100 to make it a percent, <span class="mw"><math><mn>0.8393</mn><mo>×</mo><mn>100</mn><mo>%</mo><mo>=</mo><mn>83.9</mn><mo>%</mo><mo>.</mo></math></span> We would say that Hercules scored at the 83<sup>rd</sup> percentile, because 83% of students scored less than or equal to his score.  The complement is that approximately 17% of students scored better than Hercules.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">8</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">2020 SAT Math Scores</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The mean SAT Math score for students who took the SAT in 2020 was 528 and the standard deviation was 120 (from the College Board’s 2021 total group report).  Assume that SAT Math scores follow a normal distribution.  What is the 90</span><span style="background:#DBE5F1"><sup>th</sup></span><span style="background:#DBE5F1"> percentile for SAT Math scores?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<figure class="float right photo" style="width:303px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em"><img src="images/image68.jpg" alt="Student taking the SAT picture, close up of pencil.  Photo by Nguyen Dang Hoang Nhu on Unsplash." style="width:258px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@nguyendhn?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Nguyen Dang Hoang Nhu</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/sat-exam?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>The 90<sup>th</sup> percentile must have area = 0.9 on the left of the value for <math><mi>X</mi><mo>=</mo><msub><mi>P</mi><mn>90</mn></msub></math>.  One way to find this is to use the Z-score that has area to the left equal to 0.9 to compute the raw score.  Recall that the raw score is <math><mi>X</mi><mo>=</mo><mi>μ</mi><mo>+</mo><mi>Z</mi><mo>⋅</mo><mi>σ</mi></math>.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">If we use the standard normal calculator, we can set the area to the left at 0.9.  Under “Find a value from an area,” choose “P(Z &lt; _) = a,” and type 0.9 for the area.  See <span class="b">figure 7.</span><span class="b">20</span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_fig7_20.png" alt="Figure 7.20:  Using STATBELT to find a Z-score for a percentile.  STATBELT Utility Normal Calculator with mean 0 and standard deviation 1. “P(Z &lt; _) = a” is chosen under Find a value from an area, with a note: Choose “P(Z &lt; _) = a” under “Find a value from an area”. The area 0.9 is boxed, with a note: Type 0.9 for 90% of the area on the left side. The results table shows Z value 1.28155, with a note: The z-score with 90% of the area on the left side is z ≈ 1.28155." style="width:830px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.</span><span class="b">20</span>:  Using STATBELT to find a Z-score for a percentile.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">The raw score that has <math><mrow style="color:#7030A0"><mi>Z</mi><mo>≈</mo><mn>1.28155</mn></mrow></math> is <span class="mw"><math><mi>X</mi><mo>=</mo><mi style="color:#005121">μ</mi><mo>+</mo><mi style="color:#7030A0">Z</mi><mo>⋅</mo><mi style="color:#C00000">σ</mi></math></span></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>=</mo><mn style="color:#005121">528</mn><mo>+</mo><mn style="color:#7030A0">1.28155</mn><mo>×</mo><mn style="color:#C00000">120</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn style="color:#005121">528</mn><mo>+</mo><mn>153.786</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn>681.786</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>≈</mo><mn>682</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">So, a score of 682 represents the 90<sup>th</sup> percentile of SAT Math scores on the 2020 exam.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(5.4*var(--u))">Not all calculators have the following option, but STATBELT allows you to skip the previous work by inputting the mean and standard deviation directly, setting the area, and getting the raw score that represents the percentile.  See <span class="b">figure 7.2</span><span class="b">1</span> and the steps below.</p>
+<p class="empty"></p>
+<p class="tkp"><img src="images/tk_fig7_21.png" alt="Figure 7.21:  Using STATBELT to find a percentile.  STATBELT Utility Normal Calculator with the mean 528 and standard deviation 120 boxed, with a note: Set the mean to 528 and the standard deviation to 120. “P(X &lt; _) = a” is chosen, with a note. The area 0.9 is boxed, with a note: Type 0.9 for 90% of the area on the left side. The results table shows X value 681.78619, with a note: The raw score with 90% of the area on the left side is x ≈ 681.786." style="width:830px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.</span><span class="b">2</span><span class="b">1</span>:  Using STATBELT to find a percentile.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">STATBELT Utility- Finding Percentiles for the Normal Distribution</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#EAF1DD">To use STATBELT Utility to find the k<sup>th</sup> percentile for a <span class="b">normal distribution</span>.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Select Calculators → Normal Calculator.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Type in the mean and standard deviation.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Under “Find a value from an area,” choose “P(X &lt; _) = a.”</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Express the percentile you want in decimal form, and type it for the area.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>The x value appears as soon as you type.  That value will be the kth percentile.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">9</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Cell Phone Replacement Percentiles</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">As we saw in example 4, replacement times for cell phones in the U.S. are normally distributed with a mean of 2.8 years and standard deviation of 1.1 years.  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What is the 25</span><span style="background:#DBE5F1"><sup>th</sup></span><span style="background:#DBE5F1"> percentile for cell phone replacements?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the 90</span><span style="background:#DBE5F1"><sup>th</sup></span><span style="background:#DBE5F1"> percentile?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">What cell phone lifespan is the cut off for the top 5% of lifespans?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d)</span><span style="background:#DBE5F1">If your phone is in the top 1% of replacement times, how long have you been using it?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"></p></div>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p9a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1, finding the value with area 0.25 to the left. The area is shaded purple and the value x = 2.0581 is marked in red." style="width:666px" class="tkcol"></p></figure><p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>To find the 25<sup>th</sup> percentile, select Calculators → Normal Calculator, and type in 2.8 for the mean and 1.1 for the standard deviation.  Under “Find a value from an area,” choose “P(X &lt; _) = a” and type 0.25 (the decimal equivalent of 25%) for the area.  The 25<sup>th</sup> percentile is <math><msub><mi>P</mi><mn>25</mn></msub><mo>≈</mo><mn>2.06</mn></math> years, or approximately 24.7 months. About 25% of cell phones will be replaced prior to reaching 2.06 years of use.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p9b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1, finding the value with area 0.9 to the left. The area is shaded purple and the value x = 4.2097 is marked in red." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the 90<sup>th</sup> percentile, repeat the steps in part (a) and type 0.9 (the decimal equivalent of 90%) for the area.  The 90<sup>th</sup> percentile is <math><msub><mi>P</mi><mn>90</mn></msub><mo>≈</mo><mn>4.2</mn></math> years, or approximately 50.4 months. About 90% of cell phones will be replaced prior to reaching 4.2 years of use.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p9c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1, finding the value with area 0.95 to the left. The area is shaded purple and the value x = 4.6093 is marked in red." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>To find the cutoff for the top 5% of lifespans, we must first realize that this is the same as the 95<sup>th</sup> percentile.  Remember that <math><msub><mi>P</mi><mn>95</mn></msub></math> is the value such that approximately 95% is lower and approximately 5% is higher.  So, type 0.95 for the area.  The 95<sup>th</sup> percentile is <math><msub><mi>P</mi><mn>95</mn></msub><mo>≈</mo><mn>4.6</mn></math> years.  So, about 5% of cell phones will last longer than 4.6 years.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p9d.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1, finding the value with area 0.99 to the left. The area is shaded purple and the value x = 5.3590 is marked in red." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">d)</span>To identify the lifespan that determines the top 1% of cell phones, we must recognize that this is the same as the 99<sup>th</sup> percentile.   Approximately 99% of phones are replaced before <math><msub><mi>P</mi><mn>99</mn></msub><mspace width="0.25em"></mspace></math> while about 1% last longer than <math><msub><mi>P</mi><mn>99</mn></msub><mo>.</mo></math>  Type in 0.99 for the area.  The 99<sup>th</sup> percentile is <math><msub><mi>P</mi><mn>99</mn></msub><mo>≈</mo><mn>5.36</mn></math> years.  About 1% of cell phones will last longer than 5.36 years before being replaced, while 99% will be replaced before reaching 5.36 years old.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_p9e.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1, finding the value with area 0.05 to the right. The area is shaded purple and the value x = 4.6093 is marked in red." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p style="padding-left:calc(4.5*var(--u))">If you are wondering, there is another way to complete parts (c) and (d) in example 9.  For part (c), we want to identify the top 5%.  We can choose “P(X &gt; _) = a” and set the area to 0.05.  The graph looks different, with the shaded region in the right side tail rather than on the left.  The right side is the “top” in this sense, and the left side is the “bottom.”  But you will notice that the <span class="i">X</span> value is the same, both equal to 4.609 years.  Not all calculators can do this, so it is good to know both approaches.</p>
+<p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Similarly, if you want to find the top 1%, you can choose “P(X &gt; _) = a” and set the area to 0.01.  STATBELT shades the right tail as the top 1%, with the cut off at 5.36.  These are examples of right tail probabilities.  We will use tail probabilities in the next few chapters when we study inference. </p>
+<p class="empty" style="padding-left:calc(4.5*var(--u));text-indent:calc(-1*calc(2.7*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_p9f.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 2.8 and standard deviation 1.1, finding the value with area 0.01 to the right. The area is shaded purple and the value x = 5.3590 is marked in red." style="width:666px" class="tkcol"></p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="tip-badge"><img src="images/image49.svg" alt=""><span class="tip-word">Tip!</span></div></div><p class="empty"></p>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9">The terms “top,” “highest,” “largest,” or “greatest” all indicate the area is in the right tail.   For example, to identify the raw score for the “highest 15%” use <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>≥</mo></mrow><mo>)</mo></mrow><mo>=</mo><mn>0.15</mn></math></span>.</p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9">The terms “bottom,” “lowest,” “smallest,” or “least” all indicate the area is in the left tail.  These are identical to percentiles.  For example, to identify the raw score for the “lowest 33%” use <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>≤</mo></mrow><mo>)</mo></mrow><mo>=</mo><mn>0.33</mn></math></span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">3</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">Let <span class="i">Z</span> be the standard normal variable (mean = 0 and standard deviation = 1).  For probability <math><mi>α</mi></math>, <math><msub><mi>z</mi><mi>α</mi></msub></math>  is the value that has area <math><mi>α</mi></math> in the right tail.  See <span class="b">figure 7.2</span><span class="b">2</span>.  In future chapters, we will use <math><mi>α</mi></math> to represent the chance of making an error in inference.  We will often use <math><mi>α</mi><mo>=</mo><mn>0.05</mn></math>, the probability that an event is unusual, so that it will be unusual to make this kind of error.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(7.2*var(--u))"><img src="images/image77.png" alt="Figure 7.22:  Illustration of the definition of z_α.  Illustration of a normal curve with z-alpha separating the area alpha in the right tail." style="width:830px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 7.</span><span class="b">2</span><span class="b">2</span>:  Illustration of the definition of <math><msub><mi>z</mi><mi>α</mi></msub></math>.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">10</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Finding Z-alpha</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">For each value </span><math><mi>α</mi></math><span style="background:#DBE5F1">, find the value of </span><math><msub><mi>z</mi><mi>α</mi></msub></math> .</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><math><mi>α</mi><mo>=</mo><mn>0.05</mn></math></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><math><mi>α</mi><mo>=</mo><mn>0.02</mn></math></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><math><mi>α</mi><mo>=</mo><mn>0.005</mn></math></p></div>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_za.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1, finding the value with area 0.05 to the right. The area is shaded purple and the value x = 1.6449 is marked in red." style="width:666px" class="tkcol"></p></figure><p style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"></span><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span>To find <math><msub><mi>z</mi><mi>α</mi></msub><mo>=</mo><msub><mi>z</mi><mn>0.05</mn></msub></math>, open the normal calculator (Calculators → Normal Calculator), choose “P(Z &gt; _) = a” under “Find a value from an area,” and type 0.05 for the area.  The result is  <math><msub><mi>z</mi><mn>0.05</mn></msub><mo>≈</mo><mn>1.645</mn></math>.  The interpretation is that about a 5% of the values from a standardized normal variable would be above 1.645. So, an observation from a normal distribution with a z-score above 1.645 would be considered unusual.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float left photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_zb.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1, finding the value with area 0.02 to the right. The area is shaded purple and the value x = 2.0537 is marked in red." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"></span><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span>To find <math><msub><mi>z</mi><mi>α</mi></msub><mo>=</mo><msub><mi>z</mi><mn>0.02</mn></msub></math>, leave “P(Z &gt; _) = a” chosen and type 0.02 for the area.  The result is  <math><msub><mi>z</mi><mn>0.02</mn></msub><mo>≈</mo><mn>2.054</mn></math>.  Approximately 2% of standard normal values are higher than 2.054.  If <span class="i">X</span> is a normal random variable, about 2% of <span class="i">X</span> values will have z-scores that are higher than 2.054.  An observation with a z-score above 2.054 would be unusual.</p>
+<p class="empty" style="clear:both"></p>
+<figure class="float right photo" style="width:520px;max-width:62%;clear:both"><p class="tkp"><img src="images/tk_zc.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0 and standard deviation 1, finding the value with area 0.005 to the right. The area is shaded purple and the value x = 2.5758 is marked in red." style="width:666px" class="tkcol"></p></figure><p class="empty"></p>
+<p style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"></span><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span>To find <span class="mw"><math><msub><mi>z</mi><mi>α</mi></msub><mo>=</mo><msub><mi>z</mi><mn>0.005</mn></msub></math></span>, type 0.005 for the area.  The result is  <math><msub><mi>z</mi><mn>0.005</mn></msub><mo>≈</mo><mn>2.576</mn></math>.  Only 0.5% (one-half of one percent) of standard normal values are higher than 2.576.  Any observation that has a z-score that is higher than 2.576 is very unusual!            </p>
+<p class="empty"></p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="section-7-1.html"><small>Previous</small>7.1 Continuous Probability Distributions</a><a class="next" href="section-7-3.html"><small>Next</small>7.3 The Central Limit Theorem</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+</body></html>

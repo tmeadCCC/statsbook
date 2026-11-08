@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>7.5 Summary of Applications of the Normal Distribution</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;family=Source+Sans+3:wght@400;500;700&amp;display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.tbox{margin:1em 0}
+.tbox-row{display:flex;flex-wrap:wrap;gap:.8em 1.2em;justify-content:center;align-items:center;margin:1em 0}
+.tbox-row .tbox{margin:0;flex:0 1 340px;min-width:0}
+.tbox-row .tbox p.empty{display:none}
+.tbox-row .tbox table{font-size:.85em;width:auto !important;max-width:340px}
+.tbox-row .tblwrap{margin:0 !important;width:auto !important}
+.tbox-arrow{font-size:2em;color:#7F6FB0}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:var(--sf,11px)/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+@font-face{font-family:"STIX Two Math";src:url(../fonts/STIXTwoMath-Regular.woff2) format("woff2");font-display:swap}
+math{font-family:"STIX Two Math",math;font-size:1.08em;text-indent:0;math-style:normal}
+p:has(> math.eq){margin-block:.5em}
+math.eq{display:block math;margin:.3em 0;max-width:100%;overflow-x:auto;overflow-y:hidden}
+math.eq-left,math.eq-ind{display:inline math;math-style:normal}
+math.eq-ind{margin-left:calc(3.6*var(--u))}
+math.eq-right{text-align:right}
+.eqa mtd{padding:.3em 0}
+.eqa mtd:first-child{text-align:right}
+.eqa mtd:last-child{text-align:left}
+math .mbox{border:1px solid currentColor;padding:.1em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.icon-abs.check-mark{left:0;top:-.7em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.sol-lab{display:inline-block;width:calc(5.4*var(--u));text-indent:0}
+.sol-pl{display:inline-block;width:2.2em;text-indent:0}
+.kvl.stepl{width:4.4em}
+.tab2{display:grid;align-items:baseline;grid-template-columns:auto 1fr;column-gap:3.6em;row-gap:.15em;margin:0}.tab2>div{min-width:0}.tab2>.sp{height:.6em}
+@media (max-width:640px){.tab2{grid-template-columns:1fr;column-gap:0}}
+p.tkp{text-align:center;padding:0;text-indent:0;margin:.4em 0}p.tkp img{max-width:100%;height:auto}
+.datarow span{display:inline-block;min-width:3.1em;text-indent:0}
+.datarow.dense span{min-width:1.7em}
+.sol-eq{text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+.tbl-pair{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:1em 2em;margin:.6em 0}
+.tbl-pair .tblwrap{margin:0}
+.tbl-pair table.wt{margin:0}
+.callout-row math{font-size:1.2em}
+img.tkwide{max-width:min(1060px,calc(100vw - 32px));display:block;position:relative;left:50%;transform:translateX(-50%);text-indent:0}
+@media (max-width:640px){img.tkwide{left:auto;transform:none;max-width:100%}.mw{display:inline-block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden;vertical-align:middle}}
+.eqs{display:block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden}
+.check-inline{width:1.35em;height:auto;vertical-align:-.3em;margin-left:.3em}
+@media (min-width:601px){th.nowrap{white-space:nowrap}}
+.photo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1em 3em;margin:.8em 0}
+.photo-cred{margin:0;text-align:center}.photo-cred img{display:block;margin:0 auto .3em}.photo-cred figcaption{font-size:1em;line-height:1.3}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+@media (max-width:640px){math.eq-ind{margin-left:0}.tbox-arrow{transform:rotate(90deg)}}
+/* Chapter 3 number lines: drawing with its note beside it (below it on phones) */
+figure.numline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6em 1em;margin:1em 0;max-width:none !important;overflow-x:auto}
+figure.numline svg{flex:0 1 auto;max-width:100%;height:auto}
+.nl-note{display:block;max-width:15em;background:#E6D5FF;border:1px solid #7F7F7F;padding:.35em .7em;text-align:center;font-size:.92em;line-height:1.35}
+.nl-arrow{font-size:2em;color:#7F6FB0}
+@media (max-width:640px){figure.numline{flex-direction:column}.nl-arrow{transform:rotate(90deg);line-height:1}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.callout-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1em 4em;margin:.6em 0}.callout-row>aside.callout{float:none;margin:0;max-width:none}.wl{margin:.6em 0}.wl-pics{max-width:100%;margin:0 auto}.wl.wide .wl-pics{max-width:min(1060px,calc(100vw - 32px));margin-left:50%;transform:translateX(-50%)}.wl-pic{display:block;max-width:100%;height:auto}.wl-flow{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}@media (max-width:600px){.wl-pics{display:none}.wl-flow{position:static!important;width:auto;height:auto;overflow:visible;clip:auto;clip-path:none;white-space:normal}}.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+<style>@media (max-width:480px){p.ex-part{padding-left:calc(2.25*var(--u))!important}}</style><style>img.comic{width:min(950px,calc(100vw - 32px))!important;max-width:none;display:block;position:relative;left:50%;transform:translateX(-50%)}p.comic-p{padding-left:0!important;text-indent:0!important}</style></head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-2/index.html" title="Unit 2: Probability and Probability Distributions">Unit 2</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 7: Continuous Random Variables</a></nav><span class="where">Section 7.5</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span class="b" style="font-size:1.4em">Section </span><span class="b" style="font-size:1.4em">7.5</span><span class="b" style="font-size:1.4em">: </span><span class="b" style="font-size:1.4em">Summary of Applications of the Normal Distribution</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Le</span><span style="color:#FFFFFF">a</span><span style="color:#FFFFFF">rning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Determine when the normal distribution and sampling distributions apply.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Use the normal and sampling distributions to compute probability.</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">This section is a summary of the applications of the normal distribution.  As you read through this chapter, it is easy to become confused.  Understanding which distribution is appropriate to the situation is essential to solving problems correctly.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">In this chapter we have studied the following applications of the normal distribution:</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Finding probability using a normal distribution.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Finding percentiles using a normal distribution.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The distribution of sample means.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The distribution of sample proportions.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">This section is designed to assist you in determining which distribution and method is appropriate.  See <span class="b">figure 7.3</span><span class="b">3</span> for a flowchart summarizing the ways we have used the normal distribution in this chapter.  The binomial and uniform distributions also appeared in this chapter but are not summarized here.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="tkp"><img src="images/tk_flow7_33.png" style="width:100%;max-width:741px" alt="Figure 7.33:  Flowchart of uses of the normal distribution in chapter 7.  Start: Are you asked to find a probability or percentile? Then: Are there samples of size n? No (Section 7.2): Is X normally distributed with mean μ and standard deviation σ? If X is normal, use STATBELT and the Normal Calculator or another probability app with the mean and standard deviation given to find a probability or percentile. Yes: Is the question about sample means or about sample proportions? Sample means (Section 7.3): given samples of size n and a parent distribution with mean μ and StDev σ, the variable is X̄, its mean is μ, its StDev is σ/√n, and it is normal if either X is normal or n ≥ 30; if X̄ is normal, use STATBELT and the Normal Calculator with that mean and standard deviation to find a probability. Sample proportions (Section 7.4): given binomial X with n and p, the variable is p̂ = X/n, its mean is p, its StDev is √(p(1 − p)/n), and it is normal if n·p·(1 − p) ≥ 10; if p̂ is normal, use STATBELT and the Normal Calculator with that mean and standard deviation to find a probability." style="width:385px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(3.6*var(--u))"><span class="b">Figure 7.3</span><span class="b">3</span>:  Flowchart of uses of the normal distribution in chapter 7.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">2021 Impulse Purchases</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">According to a </span><a href="https://money.slickdeals.net/credit-cards/slickdeals-impulse-spending-survey-2021/" target="_blank" rel="noopener"><span style="background:#DBE5F1">Slickdeals.net survey</span><span class="vh"> (opens in a new tab)</span></a><span style="background:#DBE5F1">, Americans spent an average of $23 per impulse purchase in 2021.  Assume that the standard deviation of an impulse purchase is $9, and that the amount spent is normally distributed.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What is the probability that a consumer will spend less than $10 on an impulse purchase?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a consumer will at least $50 on an impulse purchase?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">What is the 90</span><span style="background:#DBE5F1"><sup>th</sup></span><span style="background:#DBE5F1"> percentile for the amount spent on an impulse purchase?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>This problem gives us information about American spending on impulse purchases.  There are no samples being taken, so we are not dealing with sampling distributions.  What is given is a normal distribution with mean<span style="color:#004913"> </span><math><mrow style="color:#004913"><mi>μ</mi><mo>=</mo><mn>23</mn></mrow></math><span style="color:#004913"> </span>and standard deviation <math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>9</mn></mrow></math>.  So, this is the left branch of the flowchart and is a section 7.2 problem.  We will solve it using the normal calculator.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">What is the probability that a consumer will spend less than $10 on an impulse purchase?</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Using the Normal Calculator in STATBELT with <span style="color:#004913">mean 23 </span>and <span style="color:#C00000">standard deviation 9</span>, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>&lt;</mo><mn>10</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0743</mn></math></span>.  The interpretation is that about 7.4% of individual impulse purchases were for items that cost $10 or less.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<figure class="float right photo" style="width:252px"><p style="padding-left:calc(0.45*var(--u))"><span style="color:#0000FF;font-size:0.8em"><img src="images/image114.jpg" alt="A picture of candy bars for sale.  Photo by Joshua Fernandez on Unsplash" style="width:225px" class=""></span></p>
+<p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@joshuafernandez?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Joshua Fernandez</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/candy-aisle?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="tkp"><img src="images/tk_i1a.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 23 and standard deviation 9. The area for P(X &lt; 10) is shaded purple. P(X &lt; 10) = 0.0743." style="width:666px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a consumer will </span><span style="background:#DBE5F1">spend </span><span style="background:#DBE5F1">at least $50 on an impulse purchase?</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Using the Normal Calculator in STATBELT, <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>≥</mo><mn>50</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0013</mn></math></span>.  The interpretation is that about 0.1% of individual impulse purchases were for items that cost $50 or more.  This suggests that it is rare to spend larger sums on impulse.  When most consumers spend greater amounts, they tend to think more carefully about those purchases.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="tkp"><img src="images/tk_i1b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 23 and standard deviation 9. The area for P(X &gt; 50) is shaded purple. P(X &gt; 50) = 0.0013." style="width:666px" class="tkcol"></p>
+<p class="empty" style="text-align:center;padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">What is the 90</span><span style="background:#DBE5F1"><sup>th</sup></span><span style="background:#DBE5F1"> percentile for the amount spent on an impulse purchase?</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Once again, we use the normal calculator, this time for a percentile.  Since we want to find <math><msub><mi>P</mi><mn>90</mn></msub></math>, we want the area on the left, or the probability on the left, to be 0.90.  In the calculator, choose “P(X &lt; _) = a” under “Find a value from an area” and set the area to 0.90.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mi>P</mi><mrow><mo>(</mo><mrow><mi>X</mi><mo>≤</mo></mrow><mo>)</mo></mrow><mo>=</mo><mn>0.90</mn><mn>.</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">STATBELT computes the 90<sup>th</sup> percentile to be $34.53.  The interpretation is that 90% of impulse purchases are for items that cost less than $34.53, and any impulse purchase for more than $34.53 is in the top 10% of impulse purchase costs.</p>
+<figure class="float left photo" style="width:231px"><p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em"><img src="images/image117.jpg" alt="Picture of a coffee house worker.  Photo by Brooke Cagle on Unsplash" style="width:199px" class=""></span></p>
+<p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@brookecagle?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Brooke Cagle</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/coffee-shop?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="tkp"><img src="images/tk_i1c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 23 and standard deviation 9, finding the value with area 0.9 to the left. The area is shaded purple and the value x = 34.534 is marked in red." style="width:666px" class="tkcol"></p>
+<p class="empty"></p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">2</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">2021 Monthly Online Impulse Purchases</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">According to a </span><a href="https://money.slickdeals.net/credit-cards/slickdeals-impulse-spending-survey-2021/" target="_blank" rel="noopener"><span style="background:#DBE5F1">Slickdeals.net survey</span><span class="vh"> (opens in a new tab)</span></a><span style="background:#DBE5F1">, Americans spent an average of $276 per month for impulse purchases in 2021.  Assume that the standard deviation of monthly spending on impulse purchases is $108.  Samples of 60 consumers are randomly selected and their spending on impulse purchases is recorded.  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Describe the distribution of sample mean impulse spending for samples of 60 consumers.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a sample of 60 consumers will average at least $300 per month on impulse purchases?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">In 2020, the average amount spent on impulse purchases was $183 per month.  In 2021, would it be unusual to have a sample of 60 consumers with mean impulse spending $183 per month or less?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>In this problem, a description of consumer spending is given with a mean and standard deviation, but no description of the shape of the distribution.  The question states that samples of size <span class="i">n</span> = 60 are randomly selected, meaning this is a sampling distribution question.  Following the flowchart, we must determine whether this question is about the distribution of sample means (section 7.3) or the distribution of sample proportions (section 7.4).  But part (a) clearly asks us to describe the <span class="i">distribution of sample means of 60 consumers</span>, so this is a 7.3 question, and we will follow the second branch of the flowchart.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Describe the distribution of sample mean impulse spending for samples of 60 consumers.</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">The parent distribution for <span class="i">X</span> = amount spent by consumers on impulse purchases has <span style="color:#004913">mean  </span><math><mrow style="color:#004913"><mi>μ</mi><mo>=</mo><mn>276</mn></mrow></math><span style="color:#004913"> </span>dollars and <span style="color:#C00000">standard deviation </span><math><mrow style="color:#C00000"><mi>σ</mi><mo>=</mo><mn>108</mn></mrow></math><span style="color:#C00000"> </span>dollars.  The shape of the distribution is not stated.</p>
+<p class="empty"></p>
+<div class="callout-row"><aside class="float right callout" style="background:#FAEFC9"><p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Questions about sample means, or group averages:</span></p>
+<p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Given samples of size </span><span class="i" style="font-size:0.9em">n</span><span style="font-size:0.9em"> and parent distribution with </span><span style="color:#007526;font-size:0.9em">mean </span><math><mi style="color:#007526">μ</mi></math><span style="color:#007526;font-size:0.9em"> </span><span style="font-size:0.9em">and </span><span style="color:#C00000;font-size:0.9em">StDev </span><math><mi style="color:#C00000">σ</mi></math></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="font-size:0.9em">Variable- </span><math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></math></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="color:#007526;font-size:0.9em">Mean- </span><span class="mw"><math><msub><mi style="color:#007526">μ</mi><mover accent="true" style="color:#007526"><mi style="color:#007526">X</mi><mo stretchy="false">‾</mo></mover></msub><mrow style="color:#007526"><mo>=</mo><mi>μ</mi></mrow></math></span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="color:#C00000;font-size:0.9em">StDev-</span><span style="color:#C00000;font-size:0.9em"> </span><span class="mw"><math><msub><mi style="color:#C00000">σ</mi><mover accent="true" style="color:#C00000"><mi style="color:#C00000">X</mi><mo stretchy="false">‾</mo></mover></msub></math></span><span style="color:#C00000;font-size:0.9em"> </span><span class="mw"><math><mo style="color:#C00000">=</mo><mfrac style="color:#C00000"><mi style="color:#C00000">σ</mi><msqrt style="color:#C00000"><mi style="color:#C00000">n</mi></msqrt></mfrac></math></span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="color:#365F91;font-size:0.9em">Normal if either </span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span><span class="i" style="color:#365F91;font-size:0.9em">X is</span><span class="i" style="color:#365F91;font-size:0.9em"> normal, or</span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 3.80em);text-indent:-1.9em"><span class="mk">•</span><math><mrow style="color:#365F91"><mi>n</mi><mo>≥</mo><mn>30</mn></mrow></math></p></aside></div><p class="sol-text" style="padding-left:calc(5.4*var(--u))">The distribution of sample means, <math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></math>, of samples of size <span class="i">n</span> = <span style="color:#7030A0">60</span> has the same mean, <span class="mw"><math><msub><mi>μ</mi><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></msub><mo>=</mo><mi>μ</mi><mo>=</mo><mn style="color:#005121">276</mn><mo>.</mo></math></span>  The standard deviation is</p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="i"><br></span><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><msub><mi>σ</mi><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></msub></mtd><mtd><mo>=</mo><mfrac><mi style="color:#C00000">σ</mi><msqrt><mi style="color:#7030A0">n</mi></msqrt></mfrac><mo>=</mo><mfrac><mtext style="color:#C00000">original standard deviation</mtext><msqrt><mtext style="color:#7030A0">sample size</mtext></msqrt></mfrac></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>=</mo><mfrac><mn style="color:#C00000">108</mn><msqrt><mn style="color:#7030A0">60</mn></msqrt></mfrac></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(9.45*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>≈</mo><mfrac><mn style="color:#C00000">108</mn><mn>7.7459667</mn></mfrac></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(9.45*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>≈</mo><mn style="color:#C00000">13.94</mn><mo>.</mo></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">We don’t know whether the original distribution is normally distributed, but <math><mi>n</mi><mo>=</mo><mn style="color:#7030A0">60</mn><mo>≥</mo><mn>30</mn></math>, so <math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></math> is automatically <span style="color:#0070C0">normally distributed</span>.  The distribution for <math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></math> = the mean amount spent on impulse purchases in samples of 60 consumers:</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="mw"><math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover><mspace width="0.25em"></mspace></math></span> has <span style="color:#004913">mean </span><span class="mw"><math><msub><mi style="color:#004913">μ</mi><mover accent="true" style="color:#004913"><mi style="color:#004913">X</mi><mo stretchy="false">‾</mo></mover></msub><mrow style="color:#004913"><mo>=</mo><mn>276</mn></mrow></math></span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="mw"><math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover><mspace width="0.25em"></mspace></math></span> has <span style="color:#C00000">standard deviation </span><span class="mw"><math><msub><mi style="color:#C00000">σ</mi><mover accent="true" style="color:#C00000"><mi style="color:#C00000">X</mi><mo stretchy="false">‾</mo></mover></msub><mrow style="color:#C00000"><mo>≈</mo><mn>13.94</mn></mrow></math></span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></math> is <span style="color:#0070C0">normally distributed</span></p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a sample of 60 consumers will average at least $300 per month on impulse purchases?</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Now, since <math><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover></math> is normally distributed, we use the normal calculator with mean <span class="mw"><math><msub><mi style="color:#004913">μ</mi><mover accent="true" style="color:#004913"><mi style="color:#004913">X</mi><mo stretchy="false">‾</mo></mover></msub><mrow style="color:#004913"><mo>=</mo><mn>276</mn></mrow></math></span><span style="color:#004913"> </span>and <span style="color:#C00000">standard deviation </span><span class="mw"><math><msub><mi style="color:#C00000">σ</mi><mover accent="true" style="color:#C00000"><mi style="color:#C00000">X</mi><mo stretchy="false">‾</mo></mover></msub><mrow style="color:#C00000"><mo>≈</mo><mn>13.94</mn></mrow></math></span>.  The probability that a sample would have mean spending of at least $300 is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover><mo>≥</mo><mn>300</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0426</mn></math></span>.  This is less than 5%, so it would be unusual to have a sample of 60 consumers who spent more than $300 per month on impulse purchases.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_i2b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 276 and standard deviation 13.94. The area for P(X̄ &gt; 300) is shaded purple. P(X &gt; 300) = 0.0426. These are means of samples of 60 consumers." style="width:666px" class="tkcol"></p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">In 2020, the average amount spent on impulse purchases was $183 per month.  In 2021, would it be unusual to have a sample of 60 consumers with mean impulse spending less than or equal to $183 per month?</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">The probability that a sample would have mean spending of less than $183 is <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mover accent="true"><mi>X</mi><mo stretchy="false">‾</mo></mover><mo>≤</mo><mn>183</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>1.27</mn><mo>×</mo><msup><mn>10</mn><mrow><mo form="prefix">−</mo><mn>11</mn></mrow></msup><mo>≈</mo><mn>0.00000000001</mn></math></span>.</p>
+<p class="empty"></p>
+<figure class="float right photo" style="width:276px"><p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em"><img src="images/image120.jpg" alt="Photo of a woman shopping.  Photo by Boxed Water Is Better on Unsplash." style="width:246px" class=""></span></p>
+<p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@boxedwater?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Boxed Water Is Better</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/grocery-shopping?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="tkp"><img src="images/tk_i2c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 276 and standard deviation 13.94. The area for P(X̄ &lt; 183) is shaded purple. P(X &lt; 183) = 1.266e-11, which is so small that no shading can be seen. These are means of samples of 60 consumers." style="width:666px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">There is about a one in 100 billion chance this sample would occur randomly in 2021.  It is far more likely that the spending habits of consumers have changed since 2020.  In fact, for much of 2020, consumers were stuck at home without access to impulse purchases, except online.  In 2021, consumers had more access to traditional in-person shopping as well as online, which can explain some of the additional impulse spending.  There is also the phenomenon called COVID fatigue that may have fueled “retail therapy” spending.  In any case, we are using data from the two years to infer that there is a difference in spending patterns.  More inference is coming up in Unit 3!</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">3</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">High School Graduates and College</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">According to the National Center for Educational Statistics, 66% of high school graduates immediately enrolled in college in 2019. Random samples of 300 high school graduates from 2019 are selected from the population.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Describe the distribution of sample proportions of high school graduates who immediately enrolled in college.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a sample of 300 will have 70% or more attend college?</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">In 2020, during the pandemic, a sample of 300 high school graduates had only 61% who began college immediately.  Would this be considered unusual, based on the distribution for 2019 graduates?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>In this problem, we are given a percentage of a population, which is a proportion, but no mean, no standard deviation, and no description of the shape of a distribution.  The question does state that samples of size <span class="i">n</span> = 300 are randomly selected, meaning this is a sampling distribution question.  The percentage that is given suggests it could be a proportions problem.  In fact, part (a) asks us to describe the <span class="i">distribution of </span><span class="i">sample proportions</span>, so this is a 7.4 question, and we will follow the right branch of the flowchart.  Further, there is no parent distribution described so it is not a question about sample means.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Describe the distribution of sample proportions of high school graduates who immediately enrolled in college.</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">The distribution of sample proportions has <span class="i">n</span> = 300 and <span class="i">p</span> = 0.66, which is 66% written in decimal form.  The variable is  <math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover></math>, which in can be interpreted as a proportion or percent.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The <span style="color:#004913">mean is </span><span class="mw"><math><msub><mi style="color:#004913">μ</mi><mover accent="true" style="color:#004913"><mi style="color:#004913">p</mi><mo stretchy="false">^</mo></mover></msub><mrow style="color:#004913"><mo>=</mo><mi>p</mi><mo>=</mo><mn>0.66</mn></mrow></math></span>.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>The <span style="color:#C00000">standard deviation </span>needs to be calculated:</p>
+<div class="callout-row"><aside class="float right callout" style="background:#FAEFC9"><p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Questions about sample proportions:  Given binomial </span><span class="i" style="font-size:0.9em">X</span><span style="font-size:0.9em"> with </span><span class="i" style="font-size:0.9em">n</span><span style="font-size:0.9em"> and </span><span class="i" style="font-size:0.9em">p</span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="font-size:0.9em">Variable- </span><span class="mw"><math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mo>=</mo><mfrac><mi>X</mi><mi>n</mi></mfrac></math></span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="color:#007526;font-size:0.9em">Mean- </span><span class="mw"><math><msub><mi style="color:#007526">μ</mi><mover accent="true" style="color:#007526"><mi style="color:#007526">p</mi><mo stretchy="false">^</mo></mover></msub><mrow style="color:#007526"><mo>=</mo><mi>p</mi></mrow></math></span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="color:#C00000;font-size:0.9em">StDev- </span><span class="mw"><math><msub><mi style="color:#C00000">σ</mi><mover accent="true" style="color:#C00000"><mi style="color:#C00000">p</mi><mo stretchy="false">^</mo></mover></msub></math></span><span style="color:#C00000;font-size:0.9em"> </span><span class="mw"><math><mo style="color:#C00000">=</mo><msqrt style="color:#C00000"><mrow><mo>(</mo><mrow><mfrac style="color:#C00000"><mrow style="color:#C00000"><mi>p</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mi style="color:#C00000">n</mi></mfrac></mrow><mo>)</mo></mrow></msqrt></math></span></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span style="color:#365F91;font-size:0.9em">Normal if</span> <span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mspace width="0.25em"></mspace><mrow style="color:#365F91"><mi>n</mi><mo>⋅</mo><mi>p</mi><mo>⋅</mo></mrow><mrow><mo>(</mo><mrow><mrow style="color:#365F91"><mn>1</mn><mo>−</mo><mi>p</mi></mrow></mrow><mo>)</mo></mrow></mtd><mtd><mrow style="color:#365F91"><mo>≥</mo><mn>10</mn></mrow></mtd></mtr></mtable></math></span></p></aside></div><p class="sol-eq" style="padding-left:calc(5.4*var(--u))"> <span class="mw"><math><msub><mi style="color:#C00000">σ</mi><mover accent="true" style="color:#C00000"><mi style="color:#C00000">p</mi><mo stretchy="false">^</mo></mover></msub></math></span><span style="color:#C00000"> </span><span class="mw"><math><mo>=</mo><msqrt><mrow><mo>(</mo><mrow><mfrac><mrow><mi style="color:#004913">p</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi style="color:#004913">p</mi><mo stretchy="false">)</mo></mrow><mi style="color:#7030A0">n</mi></mfrac></mrow><mo>)</mo></mrow></msqrt><mo>=</mo><msqrt><mrow><mo>(</mo><mrow><mfrac><mrow><mn style="color:#004913">0.66</mn><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn style="color:#004913">0.66</mn><mo stretchy="false">)</mo></mrow><mn style="color:#7030A0">300</mn></mfrac></mrow><mo>)</mo></mrow></msqrt></math></span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>=</mo><msqrt><mrow><mo>(</mo><mrow><mfrac><mrow><mrow><mo>(</mo><mrow><mn style="color:#004F0D">0.66</mn></mrow><mo>)</mo></mrow><mrow><mo>(</mo><mrow><mn>0.34</mn></mrow><mo>)</mo></mrow></mrow><mn style="color:#7030A0">300</mn></mfrac></mrow><mo>)</mo></mrow></msqrt></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(15.8*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>=</mo><msqrt><mn>0.000748</mn></msqrt></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(15.8*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd></mtd><mtd><mo>≈</mo><mn style="color:#C00000">0.027350</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>To determine the shape, we check if <span class="mw"><math><mi>n</mi><mo>⋅</mo><mi>p</mi><mo>⋅</mo><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow><mo>)</mo></mrow><mo>≥</mo><mn>10</mn></math></span>.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u))"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi style="color:#7030A0">n</mi><mo>⋅</mo><mi style="color:#004F0D">p</mi><mo>⋅</mo><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow><mo>)</mo></mrow></mtd><mtd><mo>=</mo><mn style="color:#7030A0">300</mn><mo>×</mo><mrow><mo>(</mo><mrow><mn style="color:#004F0D">0.66</mn></mrow><mo>)</mo></mrow><mo>×</mo><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mn style="color:#004F0D">0.66</mn></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn style="color:#7030A0">300</mn><mo>×</mo><mrow><mo>(</mo><mrow><mn style="color:#004F0D">0.66</mn></mrow><mo>)</mo></mrow><mo>×</mo><mrow><mo>(</mo><mrow><mn>0.34</mn></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mn>67.32</mn><mo>≥</mo><mn>10</mn><mn>.</mn></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(17.1*var(--u))"></p>
+<p class="note" style="padding-left:calc(5.4*var(--u) + 1.90em)">Since <span class="mw"><math><mi>n</mi><mo>⋅</mo><mi>p</mi><mo>⋅</mo><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow><mo>)</mo></mrow><mo>≥</mo><mn>10</mn></math></span>, the distribution of sampling proportions will have an <span style="color:#0070C0">approximately normal distribution</span>.</p>
+<p class="empty"></p>
+<p class="note" style="padding-left:calc(5.4*var(--u) + 1.90em)">So, the distribution of sample proportions is described as follows:</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="mw"><math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mspace width="0.25em"></mspace></math></span> has <span style="color:#005705">mean</span><span style="color:#005705"> </span><span class="mw"><math><msub><mi style="color:#005705">μ</mi><mover accent="true" style="color:#005705"><mi style="color:#005705">p</mi><mo stretchy="false">^</mo></mover></msub><mrow style="color:#005705"><mo>=</mo><mn>0.66</mn></mrow></math></span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="mw"><math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mspace width="0.25em"></mspace></math></span> has <span style="color:#C00000">standard deviation </span> <span class="mw"><math><msub><mi style="color:#C00000">σ</mi><mover accent="true" style="color:#C00000"><mi style="color:#C00000">p</mi><mo stretchy="false">^</mo></mover></msub><mrow style="color:#C00000"><mo>≈</mo><mn>0.027350</mn></mrow></math></span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="mw"><math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mspace width="0.25em"></mspace></math></span> is <span style="color:#0070C0">normally distributed</span></p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the probability that a sample of 300 will have 70% or more attend college?</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">First, 70% = 0.70 = 0.7 as a decimal.  So, we wish to find the probability that a sample of 300 students would have 70% or more attend college.  Symbolically, that means we want <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mo>≥</mo><mn>0.70</mn><mo stretchy="false">)</mo></math></span>.  Since <span class="mw"><math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mspace width="0.25em"></mspace></math></span> is <span style="color:#0070C0">normally</span><span style="color:#0070C0"> distributed</span>, we use the Normal Calculator in STATBELT, using the <span style="color:#004913">mean 0.66 </span>and <span style="color:#C00000">standard deviation 0.027350</span>.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_h3b.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0.66 and standard deviation 0.02735. The area for P(p̂ &gt; 0.70) is shaded purple. P(X &gt; 0.7) = 0.0718. Here X stands for the sample proportion p̂." style="width:666px" class="tkcol"></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Choosing “P(X &gt; a)” and typing 0.7 for 70%, we get the probability <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mo>≥</mo><mn>0.70</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0718</mn></math></span>.  There is about a 7.2% chance of obtaining a sample of 300 students who attended college immediately.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">In 2020, during the pandemic, a sample of 300 high school graduates had only 61% who began college immediately.  Would this be considered unusual, based on the distribution for 2019 graduates?</span></p></div>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">In this case, we will use the normal calculator to calculate the probability that a sample of 300 students would have 61% or less attend college immediately.  Here, 61% is written in decimal form as 0.61.  Symbolically, we want to find <span class="mw"><math><mi>P</mi><mo stretchy="false">(</mo><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mo>≤</mo><mn>0.61</mn><mo stretchy="false">)</mo></math></span>.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="tkp"><img src="images/tk_h3c.png" alt="STATBELT Utility Normal Calculator graph: normal curve with mean 0.66 and standard deviation 0.02735. The area for P(p̂ &lt; 0.61) is shaded purple. P(X &lt; 0.61) = 0.0338. Here X stands for the sample proportion p̂." style="width:666px" class="tkcol"></p>
+<p class="empty" style="text-align:center;padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(3.6*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Choosing “P(X &lt; a)” and typing 0.61, we get the probability <span class="mw"><math><mi>P</mi><mrow><mo>(</mo><mrow><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mo>≤</mo><mn>0.61</mn></mrow><mo>)</mo></mrow><mo>≈</mo><mn>0.0338</mn></math></span>.  There is about a 3.4% chance that such a sample would have occurred by random chance in 2019.  Since 3.4% is less than 5%, this would be considered unusual when compared to 2019 data.  It appears that the number of graduates who enrolled in college immediately in 2020 was unusually low compared to pre-pandemic rates.  Again, we are using inference to reach the conclusion that fewer high school graduates attended college immediately in 2020 than in the prior year.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span style="font-size:0.8em"><img src="images/image124.jpg" alt="A group of graduates throwing their caps in the air.  Photo by Pang Yuhao on Unsplash." style="width:412px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@yuhao?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Pang Yuhao</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/college?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="comic-p"><img src="images/tk_comic7.jpg" alt="The Adventures of Stat-Man and Data! Episode 7: Stat-Man and Data versus… High School and Normality! (A text version follows the comic.)" style="width:844px" class="comic">
+<details class="transcript"><summary>Text version of the comic</summary><p class="tr-title">The Adventures of Stat-Man and Data! Episode 7: Stat-Man and Data versus… High School and Normality!</p><p><b>Caption:</b> Recently, at Statville High School…</p><p>Stat-Man and Data stand at the whiteboard in front of a classroom of students. One student is asleep, another throws a paper airplane.</p><p><b>Stat-Man:</b> …so it turns out it’s still trespassing even if the door is open.</p><p><b>Stat-Man:</b> And that concludes my presentation on why I’m here for community service. Any questions?</p><p><b>Student:</b> Can you give an example of the normal distribution in nature?</p><p>Stat-Man rubs his chin.</p><p><b>Stat-Man:</b> Uh… sure. Speed bumps occur naturally in parking lots everywhere.</p><p><b>Student:</b> Those are made by people!</p><p><b>Stat-Man:</b> Hmmm.</p><p>Stat-Man raises one finger.</p><p><b>Stat-Man:</b> Well, there’s the bell-shaped blowfish. It uh… puffs up to a bell shape to frighten predators!</p><p><b>Student:</b> That doesn’t sound right.</p><p><b>Student:</b> It’s not on Google.</p><p><b>Stat-Man:</b> And there’s the bell-shaped beaver! It has a bell shaped tail and makes impressive bell-shaped dams!</p><p><b>Student:</b> Wouldn’t the water just go around the sides?!</p><p><b>Stat-Man:</b> Uh… maybe?</p><p><b>Data:</b> I got you Stat-Man.</p><p><b>Data:</b> Normal distributions occur when nature selects against extreme highs and lows.</p><p>Data points to a bell curve drawn on the whiteboard, labeled “Normal”, with “Mean” in the middle, “Small coyote” in the left tail and “Fat coyote” in the right tail.</p><p><b>Data:</b> Take coyotes, for example.</p><p><b>Data:</b> Very small coyotes might be too small to overpower their prey. They might become prey themselves due to being undersized.</p><p><b>Data:</b> So, fewer small coyotes would survive.</p><p><b>Data:</b> On the other hand, very large coyotes might be too slow and heavy to catch prey. Larger coyotes would also need more prey to sustain themselves.</p><p><b>Data:</b> So, fewer large coyotes would survive.</p><p><b>Data:</b> The optimal size and weight for survival is right in the middle. More coyotes of optimal weight will survive, creating the classic bell-shaped curve.</p><p><b>Data:</b> Does that make sense?</p><p>Stat-Man waves his arms.</p><p><b>Stat-Man:</b> Oh, and don’t forget the bell-shaped beluga whale!</p><p><b>Stat-Man:</b> They have bell-shaped… uh… blow holes…</p><p><b>Stat-Man:</b> …or something.</p><p><b>Students:</b> Yay Data! Yay!</p><p><b>Student:</b> Thanks Data! You rock!</p><p><b>Stat-Man:</b> No need to thank me, just doing my job.</p><p><b>Student (in a Rush T-shirt):</b> Are you even listening?</p><p><b>Stat-Man:</b> Indeed, I am heroic.</p><p><b>Student:</b> You are NOT normal.</p><p><b>Data (arms crossed):</b> Nope.</p><p>END (Signed Terrill Mead, 2023)</p></details></p>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="section-7-4.html"><small>Previous</small>7.4 The Distribution of the Sample Proportion</a><a class="next" href="index.html"><small>Back to</small>Chapter 7 home</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+</body></html>

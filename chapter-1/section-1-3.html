@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>1.3 Observational Studies and Designed Experiments</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;700&display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:11px/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+.math{font-style:italic;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;line-height:1.15;margin:0 .1em}
+.frac .num{border-bottom:1px solid currentColor;padding:0 .2em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+<style>@media (max-width:480px){p.ex-part{padding-left:calc(2.25*var(--u))!important}}</style></head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-1/index.html" title="Unit 1: Data and Descriptive Statistics">Unit 1</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 1: Basics of Statistics</a></nav><span class="where">Section 1.3</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span class="b" style="font-size:1.4em">Section 1.3: Observational Studies and </span><span class="b" style="font-size:1.4em">Designed</span><span class="b" style="font-size:1.4em"> </span><span class="b" style="font-size:1.4em">Experiments</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Identify and differentiate between observational studies and designed experiments.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Identify and differentiate between types of observational studies- case-control, cross-sectional, and    cohort studies.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Identify randomized control trials in designed experiments.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Identify control and treatment groups.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>Identify placebo, blinding, and double blinding in designed experiments.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">6.</span>Recognize the power of observational studies and of designed experiments to establish associations and cause and effect relationships.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">In this section we continue the discussion of data collection.  Here we will introduce data collection from <span class="b">observational studies</span> and from <span class="b">designed experiments</span>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u))"><span class="ringwrap"><img src="images/image1.png" alt="The process of statistics flowchart." style="width:747px" class=""><span class="ring" aria-hidden="true"></span></span></p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 1</span><span class="b">.11</span>:  The process of statistics emphasizing step 2, data collection.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 1</span><span style="color:#FFFFFF">: </span><span style="color:#FFFFFF">Observational Study </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Observational Study –</span> An observational study is one where individuals are observed, and characteristics are recorded.  There is no attempt to influence or manipulate the variables or individuals.  </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Observational studies allow you to learn characteristics of a population or determine if there is a relationship between two variables.  But they don’t allow you to determine cause and effect.  All the survey techniques discussed in section 1.2 are observational studies.  In general, any poll or survey is an observational study.  Other observational studies use existing data.  For example, using data from the Center for Disease Control to analyze COVID-19 would be an observational study.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(21.6*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Is this an</span><span class="b" style="color:#FFFFFF"> </span><span class="b" style="color:#FFFFFF">o</span><span class="b" style="color:#FFFFFF">bservational </span><span class="b" style="color:#FFFFFF">s</span><span class="b" style="color:#FFFFFF">tudy</span><span class="b" style="color:#FFFFFF">?</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">An ecologist is studying the bird population on a particular beach during the spring and summer months.  Each Saturday during those months she counts the number of nests she locates.  Is this an observational study? </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="float right photo" style="width:245px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image16.jpg" alt="A bird walking on the beach." style="width:203px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@ffz_20?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Faraaz Zuberi</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/bird-on-beach?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>Yes!  Since the number of nests found on the beach is observed and recorded, this is an observational study.</p>
+<p class="empty"></p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(21.6*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 2</span><span class="b" style="color:#FFFFFF">:  Is this an observational study?</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">A college administrator wants to study the transfer rate at her college for different degree programs.  She uses college data that is made available to her from the Instructional Resources Department.  Is this an observational study? </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>Yes!  Since the administrator observes the passing rates and does not try to manipulate the individuals or other factors, this is an observational study.  </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">What if the ecologist in example 1 wanted to increase the population of birds on the beach?  She might try to plant more nesting materials, add food sources, or remove predators from the beach.  After making these changes she would count the nests again to see if the number increased.  This is <span class="i">not</span> an observational study.  In this case, she has tried to manipulate the variables to determine if she can increase the population.  If she did this, and wanted to see if her intervention worked, she would use a designed experiment.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 2</span><span style="color:#FFFFFF">: </span><span style="color:#FFFFFF">Designed Experiment </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Designed Experiment –</span> A designed experiment is a study conducted to determine how varying one or more factors (or variables) will affect another variable.  The variables that are manipulated are called <span class="b">explanatory variables</span>, and the variable that is measured for the result is called the <span class="b">response variable</span>. </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">In common language, a designed experiment is one where we measure the result if some factors are changed.  More specifically, we are trying to isolate the effect of what we call a <span class="b">treatment</span> on the response variable.  In the example preceding, the explanatory variables were the increased nesting materials, available food, and predator numbers.  The response variable is the number of nests on the beach.  It may be that making those changes to the explanatory variables (the treatment) will result in the number of nests and the bird population increasing.  It may also turn out that those changes do not have the desired effect.  The only way to know is to run the experiment!</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="hang" style="min-width:calc(21.6*var(--u))"><span class="b" style="color:#FFFFFF;background:#365F91">Example 3</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Create a designed experiment</span></span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">A math professor decides to study the effect of using a free online textbook versus using a published textbook that students must purchase.  How can they create a designed experiment to see if there is a difference in student success?  What is the treatment?  What is the response variable?</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>Here, the professor is attempting to isolate the effect of the free book on student success.  The treatment is the free online book.  The response variable is the student’s grade in the class.  Does using the free online book (treatment) cause the average grade (response) to increase?  To find out, the instructor could use the past average grade using the published book as a baseline.  They could use the free online textbook for a semester, then compare the results.  If the grades were higher using the free online book, they would have evidence suggesting that using the free book leads to higher grades.</p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">There is more to designing a statistically sound experiment than is discussed in example 3.  We will take a deeper look at observational studies and designed experiments after we emphasize their differences.  For now, remember that observational studies do not interfere with or manipulate the variables, but designed experiments do.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">4</span><span class="b" style="color:#FFFFFF">:  Observational Study or Designed Experiment?</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">Determine if the data will come from an observational study or a designed experiment.</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a.</span>Pew Research Center conducts a poll asking Asian Americans if they feel that violence against Asians is increasing due to COVID-19.</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b.</span>A professor assigns some students to group tutoring to measure if student grades improve.  </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Solution</span>: </p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">a.</span>This is a poll, so it is an observational study.  The people who take the poll will answer the  questions without interference from the researchers.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">b.</span>This is a designed experiment.  The treatment is the group tutoring.  If the grades of individuals assigned to group tutoring are better, we could conclude that the tutoring was responsible. </p>
+<p class="has-qed qed-only note" style="padding-left:calc(5.4*var(--u) + 1.90em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image10.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(4.05*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(10.8*var(--u))"><span style="color:#FFFFFF">Important Point!</span></span><span style="color:#FFFFFF">Cause and Effect </span></h3>
+<p style="padding-left:calc(4.05*var(--u));background:#E3D8EF">Observational Studies cannot determine cause and effect.  You can describe populations and notice patterns among the variables, or associations, using observational studies.  If you wish to establish <span class="b">cause and effect</span>, you must use a <span class="b">designed experiment</span>.  </p></div>
+<p class="empty"></p>
+<h2 class="subhead">Types of Observational Studies</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Observational studies can be broken into three types, based on when the observation is made.  Using data from the past is called a case-control, or retrospective study.  Using data collected in the present is called a cross-sectional study.  Collecting data from some point and moving into the future is called a cohort, prospective, or longitudinal study.  See <span class="b">figure 1.12</span>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition 3</span></span><span style="color:#FFFFFF">Types of Observational Studies </span></h3>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span><span class="b"></span><span class="b">Case-control studies</span>- These are also known as “Retrospective”.  Here, we look back in time using records or memories of individuals.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span><span class="b"></span><span class="b">Cross-sectional studies</span>- In these studies, data is collected at one point in time or over a short time interval.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span><span class="b">Cohort studies</span>- These are also known as “Prospective” or “longitudinal”.  Here, we identify a group and track it over time.  This is the most powerful of the observational studies, but it takes more time to complete.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image17.png" alt="Timeline for the collection of data.  Helps to determine the type of observational study." style="width:735px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="padding-left:calc(9*var(--u));text-indent:calc(3.6*var(--u))"><span class="b">Figure </span><span class="b">1.12</span>:  Data collection timeline.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">5</span><span class="b" style="color:#FFFFFF">:  What type of observational study is this?</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">Pew Research Center conducted a poll between June 4 and June 11, 2020.  They asked Asian Americans and African Americans about perceived increases in discrimination during the COVID-19 pandemic and the protests following George Floyd’s murder. What type of study is this?</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="has-qed" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>This survey is cross-sectional because Pew is intentionally measuring attitude at one point in time.  The results will only inform us about the feelings of those polled during that one week in June 2020.  If Pew wanted to know the feelings at a later date, they would have to repeat the survey.  Often polls like this are done at regular intervals and the changes in the results are tracked.  A good example is the approval rating of the U. S. President.  Approval ratings are collected by many sources and tabulated weekly. <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">6</span><span class="b" style="color:#FFFFFF">:  What type </span><span class="b" style="color:#FFFFFF">of </span><span class="b" style="color:#FFFFFF">observational study is this?</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">College administrators look at graduation rates from the last 5 years. They look at demographic data to evaluate how effectively they are serving BIPOC students.  What type of study is this?</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<figure class="float right photo" style="width:377px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image18.jpg" alt="Image of graduates throwing their hats in the air." style="width:286px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@napr0tiv?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Vasily Koloda</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/college-graduate?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>This is case-control or retrospective because historical records are being used.     </p>
+<p class="empty"></p>
+<p class="has-qed qed-only" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">7</span><span class="b" style="color:#FFFFFF">:  What type </span><span class="b" style="color:#FFFFFF">of </span><span class="b" style="color:#FFFFFF">observational study is this?</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">College administrators wish to track students who enter college and enroll in Extended Opportunity Programs and Services (EOPS).  They track each entering EOPS student for 6 years after they enroll.  Do the students who enroll in EOPS graduate?  Do they transfer?  Do they get jobs?  The data that is collected is used to evaluate the effectiveness of the program.  What type of study is this?</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>This is a cohort study.  It will take six years to collect the data to measure the effectiveness of the EOPS program. </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<h2 class="subhead">Designed Experiments</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Going back to example 3, the instructor was attempting to measure average grades in their class if they switched from a published (expensive!) textbook to a free online book.  However, that example would not be considered statistically sound.  There is the possibility that the students who used the published book in a prior semester were not like the students who used the online book.  Perhaps one class was an evening class with older students while the other was a morning class with younger students.  Or perhaps one section was a fall semester course over 16 weeks, while the other was a summer course over 8 weeks.  There could be other factors influencing the resulting average class grade, such as fluctuations in the economy or (recently) a pandemic.  For these reasons, designed experiments must be carefully thought out.  Statisticians and scientists must carefully design methods to “control” for these factors, meaning they need to block or anticipate their influence.  Designing experiments is very complicated, and there are entire courses that cover that topic.  We will discuss only how to create the simplest designed experiments so that they will be statistically sound.  </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The simplest designed experiment is called a Randomized Control Trial (or RCT).  In the RCT trial, a random sample is taken from the population, and each individual is randomly assigned to one of two groups.  One group gets a treatment, while the other group does not.  The group that receives the treatment is called the <span class="b">treatment group</span>.  The group that does not receive the treatment is called the <span class="b">control group</span> and is there to provide a baseline for comparison.  See <span class="b">figure </span><span class="b">1.13</span> below.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="diagram" style="max-width:726px"><svg viewBox="-4 -4 580 232" role="img" aria-label="Diagram of a designed experiment or randomized control trial." xmlns="http://www.w3.org/2000/svg"><title>Diagram of a designed experiment or randomized control trial.</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f528f"/></marker><filter id="sh" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="1.5" dy="2" stdDeviation="1.2" flood-color="#000" flood-opacity=".25"/></filter></defs><foreignObject x="126.6" y="45.5" width="103.5" height="37.3" transform="rotate(335.1 178.3 64.2)" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:flex-start"><p><span style="font-size:0.9em">Random Assignment</span></p></div></foreignObject><line x1="139.5" y1="82.5" x2="198.8" y2="55.8" stroke="#2f528f" stroke-width="1.3" marker-end="url(#arrow)"/><foreignObject x="126.2" y="148.0" width="98.0" height="37.3" transform="rotate(21.9 175.2 166.7)" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:flex-start"><p><span style="font-size:0.9em">Random Assignment</span></p></div></foreignObject><line x1="140.3" y1="154.1" x2="200.0" y2="176.8" stroke="#2f528f" stroke-width="1.3" marker-end="url(#arrow)"/><foreignObject x="351.7" y="168.9" width="68.3" height="23.4" transform="rotate(332.8 385.9 180.6)" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:flex-start"><p><span style="font-size:0.9em">Follow up</span></p></div></foreignObject><line x1="354.1" y1="185.4" x2="420.3" y2="153.3" stroke="#2f528f" stroke-width="1.3" marker-end="url(#arrow)"/><foreignObject x="352.9" y="36.9" width="68.3" height="23.4" transform="rotate(26.9 387.1 48.6)" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:flex-start"><p><span style="font-size:0.9em">Follow up</span></p></div></foreignObject><line x1="354.1" y1="44.6" x2="420.3" y2="79.1" stroke="#2f528f" stroke-width="1.3" marker-end="url(#arrow)"/><rect x="0.0" y="73.2" width="136.2" height="80.1" rx="13.4" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="0.0" y="73.2" width="136.2" height="80.1" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Random sample</span> of individuals from the Population </p></div></foreignObject><rect x="425.1" y="73.2" width="144.9" height="80.1" rx="13.4" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="425.1" y="73.2" width="144.9" height="80.1" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Compare results</span>.  If there is a difference, it is attributed to the treatment.</p></div></foreignObject><rect x="203.6" y="0.0" width="145.1" height="73.2" rx="12.2" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="203.6" y="0.0" width="145.1" height="73.2" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Control Group- </span><span style="font-size:0.9em">Receives no treatment.  provides a baseline.</span></p></div></foreignObject><rect x="203.5" y="148.8" width="144.9" height="73.2" rx="12.2" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="203.5" y="148.8" width="144.9" height="73.2" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p><span class="b">Treatment Group- </span><span style="font-size:0.9em">Receives the treatment</span><span style="font-size:1.1em">.</span></p></div></foreignObject></svg></figure>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">1.13</span><span class="b">:</span>  Diagram of a designed experiment.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">After the treatment is applied, the two groups are checked, and results are compared.  If there is a difference between the groups, it is attributed to the treatment.  If there is no measurable difference, the treatment had no effect.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Sometimes, the control group receives a <span class="b">placebo</span>, or fake treatment.  This is called a <span class="b">Blind study.  </span>In a blind study, the individual does not know if they are getting the treatment or a placebo.  Doing this helps to account for the placebo effect, which is where a person’s mind makes their body respond to a treatment because they think they are being treated when in truth they are not.  It is a “mind over matter” phenomenon.  If you <span class="i">believe</span> you are being treated, you might <span class="i">improve</span> without the real treatment.  For this reason, placebos and blinded trials are often used to test the efficacy of medical treatments.  If the treatment group who gets the real “treatment” improves more noticeably than the control group with the placebo, we can conclude that the “treatment” was effective.  (Note that not every experiment needs a placebo. If the response variable is a measurement, for example weight of an Alaskan Malamute, or growth rate of flowers on a plant when given a special fertilizer, there is no need to trick the dog or plant with a placebo.  In other situations, there is no way to use a placebo.  For example, if you are testing how exercise affects blood pressure, you can’t create a placebo for exercise.  Individuals will know if they exercise or not, there is no way to hide it!)</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">A<span class="b"> Double-blind study</span> is where neither the individual nor the researcher knows who is getting the treatment or who is getting the placebo.  In these types of studies, a high-level administrator will know which individual receives treatment, and which receives placebo, but the researchers working with the subjects don’t know.  This is important so that the researchers working with the subjects treat them all the same.  Since they don’t know which individuals received treatment, they can’t favor them in any way, influence their responses, or even falsify the data.  That helps to keep their reporting of individuals fair and accurate, and the results reliable.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="hang" style="min-width:calc(7.2*var(--u))"><span style="color:#FFFFFF">Definition 4</span></span><span style="color:#FFFFFF">Vocabulary for Designed Experiments </span></h3>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span><span class="b"></span><span class="b">Blind Study</span>- This is a study where the individuals do not know if they receive the treatment or not.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span><span class="b"></span><span class="b">Placebo</span>- Used in a blind study so that participants do not know if they receive treatment.  Often a placebo is a sugar pill or saline solution.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span><span class="b">Double-Blind Study</span>- A study in which neither the individuals nor the researchers working with them know who receives treatment.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">8</span><span class="b" style="color:#FFFFFF">:  Remdesivir for the Treatment of C</span><span class="b" style="color:#FFFFFF">OVID</span><span class="b" style="color:#FFFFFF">-19</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">In May 2020, a study was published by the </span><span class="i" style="background:#DBE5F1">New England Journal of Medicine</span><span style="background:#DBE5F1"> about using Remdesivir to treat C</span><span style="background:#DBE5F1">OVID</span><span style="background:#DBE5F1">-19.  The investigators used a double-blind, randomized, placebo-controlled trial of intravenous Remdesivir in adults hospitalized with Covid-19. </span><span style="background:#DBE5F1">How did they design the experiment, and what were the results?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>Patients were randomly assigned to receive either Remdesivir (200 mg loading dose on day 1, followed by 100 mg daily for up to 9 additional days) or placebo for up to 10 days. The primary outcome was the time to recovery, defined by either discharge from the hospital or hospitalization for infection-control purposes only.  The response variable was the time to recovery.</p>
+<figure class="float right photo" style="width:351px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image19.jpg" alt="Coronavirus image from the CDC." style="width:264px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">    </span><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@cdc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">CDC</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/covid?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The control group had 521 patients, and the treatment group had 538 patients, randomly assigned.  The result was that patients in the treatment group recovered more quickly and spent fewer days in the hospital (11-day median for treatment, 15-day median for control).  This means that the patients receiving the treatment of Remdesivir were considered recovered approximately 4 days sooner than those receiving the placebo.  The study did not conclude whether or not Remdesivir lowered mortality (death rate).</p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">The other kind of designed experiment we will consider in this course is a <span class="b">Non-random Control Trial</span>, or more specifically, a <span class="b">Matched Pairs Design</span>.  We would use a matched pairs design when we want to check the same or similar individuals under two different treatments.  For example, we might have a random sample of people apply for the same car insurance coverage from two different companies.  Then we could calculate if one company charges more for the same coverage.  Each subject has two measurements, one from the first company and one from the second.  The pairs are matched in this way.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Another example using matched pairs would be to use a pre-test and post-test on a sample of individuals taking a statistics test.  The pre-test could be given before a review module.  The post-test is then given after the review module.  If the results of the post-test are better than the results on the pre-test, we have evidence that the review module was effective.  We will look more at these types of experiments in chapter 10.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))"><span class="b">Figure </span><span class="b">1.14</span> is a flowchart that shows the different kinds of studies we have discussed in this section.</p>
+<p class="empty"></p>
+<figure class="diagram" style="max-width:650px"><svg viewBox="-4 -4 520 348" role="img" aria-label="Summary of the types of observational studies and experiments in this section." xmlns="http://www.w3.org/2000/svg"><title>Summary of the types of observational studies and experiments in this section.</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f528f"/></marker><filter id="sh" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="1.5" dy="2" stdDeviation="1.2" flood-color="#000" flood-opacity=".25"/></filter></defs><rect x="329.8" y="283.1" width="180.1" height="54.9" rx="9.1" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="329.8" y="283.1" width="180.1" height="54.9" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Cohort study (Prospective or longitudinal)</span></p></div></foreignObject><rect x="329.8" y="218.0" width="180.2" height="54.9" rx="9.1" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="329.8" y="218.0" width="180.2" height="54.9" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Cross-sectional study</span></p></div></foreignObject><rect x="329.8" y="154.3" width="180.2" height="54.9" rx="9.1" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="329.8" y="154.3" width="180.2" height="54.9" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Case-control study (Retrospective)</span></p></div></foreignObject><rect x="329.8" y="64.7" width="180.2" height="54.9" rx="9.1" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="329.8" y="64.7" width="180.2" height="54.9" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Non-randomized Control Trials (Matched Pairs)</span></p></div></foreignObject><rect x="123.9" y="202.8" width="163.5" height="84.0" rx="14.0" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="123.9" y="202.8" width="163.5" height="84.0" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Observational Studies </span>(Subjects are observed with no action taken by the researcher)</p></div></foreignObject><rect x="329.8" y="0.0" width="180.2" height="54.9" rx="9.1" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="329.8" y="0.0" width="180.2" height="54.9" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Randomized Control Trials (RCT)</span></p></div></foreignObject><rect x="123.9" y="19.3" width="163.5" height="83.1" rx="13.9" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="123.9" y="19.3" width="163.5" height="83.1" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Designed Experiment </span>(Intervention by researchers and measure of the result)</p></div></foreignObject><rect x="0.0" y="124.2" width="102.5" height="54.0" rx="9.0" fill="#FBEFC9" stroke="#B4975A" stroke-width="1.3" filter="url(#sh)"/><foreignObject x="0.0" y="124.2" width="102.5" height="54.0" style="overflow:visible"><div xmlns="http://www.w3.org/1999/xhtml" class="shape-text" style="justify-content:center"><p style="text-align:center"><span class="b">Study Design</span></p></div></foreignObject><line x1="74.5" y1="124.2" x2="123.9" y2="82.3" stroke="#2f528f" stroke-width="1.3"/><line x1="74.5" y1="178.3" x2="123.9" y2="230.9" stroke="#2f528f" stroke-width="1.3"/><line x1="287.5" y1="53.1" x2="329.8" y2="27.4" stroke="#2f528f" stroke-width="1.3"/><line x1="287.5" y1="225.5" x2="329.8" y2="183.6" stroke="#2f528f" stroke-width="1.3"/><line x1="287.5" y1="74.2" x2="329.8" y2="92.1" stroke="#2f528f" stroke-width="1.3"/><line x1="287.5" y1="244.8" x2="329.8" y2="245.4" stroke="#2f528f" stroke-width="1.3"/><line x1="287.5" y1="272.8" x2="329.8" y2="310.6" stroke="#2f528f" stroke-width="1.3"/></svg></figure>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">1.14</span><span class="b">:</span>  Summary of types of studies we have discussed in section 1.3.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="section-1-2.html"><small>Previous</small>1.2 Sampling Methods</a><a class="next" href="section-1-4.html"><small>Next</small>1.4 Types of Error in Statistics</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+</body></html>

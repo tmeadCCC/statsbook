@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>1.1 Populations, Samples, and Terminology</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;700&display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:11px/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+.math{font-style:italic;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;line-height:1.15;margin:0 .1em}
+.frac .num{border-bottom:1px solid currentColor;padding:0 .2em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+<style>@media (max-width:480px){p.ex-part{padding-left:calc(2.25*var(--u))!important}}</style><style>.li-row .li.ex-col{padding-left:calc(1.8*var(--u))!important}@media (max-width:480px){.li-row .li.ex-col{padding-left:calc(1.8*var(--u))!important}}</style></head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-1/index.html" title="Unit 1: Data and Descriptive Statistics">Unit 1</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 1: Basics of Statistics</a></nav><span class="where">Section 1.1</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span id="s11"></span><span class="b" style="font-size:1.4em">Section</span><span class="b" style="font-size:1.4em"> </span><span class="b" style="font-size:1.4em">1.1: </span><span class="b" style="font-size:1.4em">Populations, Samples, and</span><span class="b" style="font-size:1.4em"> Terminology</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Identify and differentiate between populations and samples</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Identify and differentiate between parameters and statistics</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Identify and classify variables as qualitative or quantitative </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>Identify and classify qualitative variables as nominal or ordinal</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">5.</span>Identify and classify quantitative variables as discrete or continuous</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">Statistics are found everywhere.  We use statistics to understand the world around us and to help us to make decisions that are based on evidence.  In sports, statistics are used to measure speed of a baseball thrown in a game, or free-throw percentage in basketball.  In education, statistics are used to analyze passing rates and assist in placement.  In Medicine, statistics are used to measure the percent of the population who are vaccinated against the flu, or to assess the effectiveness for a treatment of a disease.  In science, you would use statistics to study climate change.  In business statistics are used to make decisions on marketing.  Sociologists might use statistics to study whether white and non-white students have substantially different access to educational resources.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u));text-indent:calc(1.8*var(--u))">To begin any statistical study, we need to collect information.  The information we collect is called <span class="b">data</span>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 1</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Statistics </span>is the science of collecting, organizing, analyzing, and interpreting data.</p>
+<p style="margin-bottom:calc(1*var(--u));padding-left:calc(0.45*var(--u));background:#E3D8EF"><span class="b">Data </span>is the information we collect, usually recorded to be analyzed.</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">There are two branches of statistics.  One is called <span class="b">descriptive statistics</span>.  Descriptive statistics is the branch of statistics where information (data) is collected, analyzed, and summarized.  Descriptive statistics you have commonly seen are averages, percentages, pie charts, and bar graphs.  These numbers and pictures are reported to give you a deeper understanding of a subject.  Descriptive statistics simply gives you the “big picture” of what the group or situation looks like.  We will spend the bulk of chapters 2, 3, and 4 working on descriptive statistics.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The second branch is called <span class="b">inferential statistics</span>.  Inferential statistics is where we make highly educated guesses as to the meaning of the data.  The descriptive statistics are used to confirm a suspicion or make a prediction about the group in question.  This is where we prove that a vaccine is effective, or that poverty rates are higher for marginalized groups, or that prevailing political opinions in California are different from the prevailing opinions in Texas.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Regardless of the application, the process of statistics is the same for all statistical studies.  It is important to keep the framework in mind as we work through the definitions.  The process of statistics is shown in <span class="b">figure 1.3</span>.</p>
+<p class="empty"></p>
+<p style="padding-left:calc(1.8*var(--u))"><img src="images/image1.png" alt="The process of statistics flowchart." style="width:747px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(9*var(--u));text-indent:calc(3.6*var(--u))"><span class="b">Figure 1</span><span class="b">.3</span><span class="b">:</span>  The process of statistics restated.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">The Process of Statistics</span></h3>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Identify the information you need.  What is the relevant population?  What information do you need  to obtain?</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Collect the data. </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Organize and summarize the data.  We can use numerical summaries along with graphs and charts.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">4.</span>If appropriate, make an inference.  This is where we reach a conclusion.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#EAF1DD"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Identifying the information, you need can also be thought of as identifying your research objective.  What do you want to know once you have the data?  Who do you need to collect the data from?  The whole group you need to collect information from is called a <span class="b">population</span>, the specific objects, or people you collect if from are called <span class="b">individuals</span>, and the thing you wish to measure or observe from each individual is called the <span class="b">variable</span>.  The measurements or observations are the <span class="b">data</span>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 2</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">An<span class="b"> </span><span class="b">Individual </span>is a person or object that you collect information from.</p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">The <span class="b">Population</span><span class="b"> </span>is the set of all individuals that are of interest.</p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Variable</span><span class="b"> </span>is a quantity or quality that is measured or observed from the individuals.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Sometimes a population is small enough that it is feasible to collect data from each individual.  For example, the members of your class might be the population of interest.  Giving a quiz to everyone in the class is a collection of data from each individual.  It is called a <span class="b">census</span>.  A census is a list of each individual (the student in this example) in the population along with certain characteristics of the individual (their quiz score).</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF;background:#365F91">: Identification of Population, Individuals, and Variable</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">We are interested in determining the average age of a United States President at inauguration (when they officially become the president).  There have been 46 presidents in the history of the United States.  Determine the population, individuals, and variable.</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:  </span>In this case, the population is the group of all 46 United States presidents.  We conduct a census by obtaining the ages of each of the U.S. presidents at inauguration.  The individuals are all the presidents serving from George Washington to Joe Biden.  The variable is the description of the data we collect.  Here the variable is “The age of a U.S. President at inauguration”, and the data are the actual numerical ages.  Using an online resource, we find that George Washington was 57 at inauguration, John Adams was 61, Thomas Jefferson was 57, and so on, ending with Barack Obama at 47, Donald Trump at 70, and Joe Biden at 78.  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="kv" style="padding-left:calc(5.4*var(--u) + 6.5em);text-indent:-6.5em"><span class="kvl"><span class="b u">Population</span>:  </span>All 46 United States Presidents.</p>
+<p class="kv" style="padding-left:calc(5.4*var(--u) + 6.5em);text-indent:-6.5em"><span class="kvl"><span class="b u">Individuals</span>:  </span>George Washington, John Adams, Thomas Jefferson, …, Barack Obama, Donald Trump, Joe Biden.</p>
+<p class="kv" style="padding-left:calc(5.4*var(--u) + 6.5em);text-indent:-6.5em"><span class="kvl"><span class="b u">Variable</span>:  </span>The age of each president at inauguration.</p>
+<p class="has-qed kv" style="padding-left:calc(5.4*var(--u) + 6.5em);text-indent:-6.5em"><span class="kvl"><span class="b u">Data</span>:  </span>57, 61, 57, …, 47, 70, 78. <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">In many cases the population is far too large to collect information from, or the information required would be too costly or destructive to obtain.  For instance, if we wanted to know the average age of a returning community college student, we would have to obtain the ages of every returning student in the country.  That would be an incredibly difficult task.  Similarly, it would be impossible to measure the weight of every squirrel living in Yosemite National Park.  In creating crash-test ratings for cars, you cannot crash <span class="i">every</span> car to see how it performs.  In these situations, we use a smaller subset of the population to represent the whole.  While we know there is a chance for error, we take precautions to make sure that our small group, called a sample, will have the same characteristics as the larger whole.  We often refer to it as a “representative sample”.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 3</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A subset of the population that you collect data from is called a <span class="b">Sample</span>.  Usually, a sample is much smaller than the total population, and therefore collecting data from it is much easier than conducting a census.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 2</span><span class="b" style="color:#FFFFFF;background:#365F91">:  Identification of Population, Sample, and Individuals</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">Pew Research Center was interested in determining the percentage of LGBTQ+ high school students who reported poor mental health during the COVID-19 pandemic.  Since obtaining information from all LGBTQ+ high school students in the United States is laborious and difficult, they instead used a sample of 1734 LGBTQ+ students who completed a survey.  In this instance, what is the population?  What is the sample?  Who are the individuals?  (Note:  The original Pew study used the acronym LGBQ.  We are using the more widely used and inclusive acronym LGBTQ+.)</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:  </span>In this case, the population consists of all LGBTQ+ high school students in the United States. The sample consists of the 1734 students who completed the survey.  The 1734 LGBTQ+ students are the individuals.</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">In section 1.2 we will discuss methods of using samples to represent whole populations.  The important thing to understand at this point is that using samples allows us to efficiently describe populations without having to collect data from every individual.  This saves time, effort, and money.  But no sample will be perfect.  We accept this as a trade-off for not having to complete a census.  The downside is that every sample has the potential to be slightly or significantly different.  If two people collect two different samples, the data will be different, even when taken from the same population.  We hope the samples will yield similar results, but it is highly unlikely they will be exactly the same.  It is also possible to get a “bad” sample that doesn’t accurately reflect the population.  For instance, you could accidentally include too many young people whose opinions differ from the rest of the population about the legal drinking age.  Or you could overcount democratic voters and undercount republican voters during election polling and incorrectly assume the democratic candidate would win. (This happened in the 2016 national election.  We will discuss samples that turn out to be incorrect and misleading in section 1.4.)  The point is that the results we get from a sample will likely differ from the results we would get from a census.  Because of that we must pay careful attention to when we use sample data and when we use population data.  </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">In step 1 of the process of statistics, we determine the relevant population.  Next, we decide if we will conduct a census or use a representative sample.  If the population is small enough, conduct a census.  If the population is too large or difficult to obtain information from, we use a sample to represent the population.  Either way, we collect the data in step 2.  Next it is time to summarize the data (step 3).  Most often we use the data to make calculations that describe the whole (like finding an average).  Calculations made from population data are called <span class="b">parameters</span>, while calculations made from sample data are called <span class="b">statistics</span>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 4</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A number that is calculated from population data is called a <span class="b">Parameter</span>.  This is the true value for the population and does not vary.</p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A number calculated from sample data is called a <span class="b">Statistic</span>.  This is more easily obtainable than a population parameter but varies with each sample.  It is used to <span class="i">estimate</span> the true value of the population parameter.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><div class="ianchor"><div class="tip-badge"><img src="images/image2.png" alt=""><span class="tip-word">Tip!</span></div></div><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9"><span class="b" style="background:#FDE9D9">P</span><span style="background:#FDE9D9">opulation and </span><span class="b" style="background:#FDE9D9">P</span><span style="background:#FDE9D9">arameter both start with the letter </span><span class="b" style="background:#FDE9D9">P</span><span style="background:#FDE9D9">, and a parameter measures a</span><span style="background:#FDE9D9"> </span> <span style="background:#FDE9D9">population.  </span><span class="b" style="background:#FDE9D9">S</span><span style="background:#FDE9D9">ample and </span><span class="b" style="background:#FDE9D9">S</span><span style="background:#FDE9D9">tatistic both start with the letter </span><span class="b" style="background:#FDE9D9">S</span><span style="background:#FDE9D9">, and a statistic measures </span>a  sample.</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 3 (example 1 revisited)</span><span class="b" style="color:#FFFFFF;background:#365F91"> </span><span class="b" style="color:#FFFFFF">Parameter or Statistic?</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">We are interested in determining the average age of a United States President at inauguration.  There have been 46 presidents in the history of the United States.  We look up each president and record their age at inauguration.  Then we calculate the average age to be 55.5 years.  Is 55.5 a <span class="b">parameter</span> or a <span class="b">statistic</span>?</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:  </span>In this example, we had data from the entire population of United States Presidents.  We used population data to compute the average age of 55.5 years.  This is a <span class="b">parameter</span> because it is based on population census data. </p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 4</span><span style="color:#FFFFFF"> </span><span style="color:#FFFFFF">(example 2 revisited</span><span class="b" style="color:#FFFFFF">)</span><span class="b" style="color:#FFFFFF"> Parameter or Statistic?</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">Pew Research Center was interested in determining the percentage of LGBTQ high school students who reported poor mental health during the COVID-19 pandemic.  They conducted a survey of 1734 LGBTQ students.  The result was that 1096, or 63.2% of LGBTQ students reported that their mental health was “not good for most of the time or always” during the pandemic.  Is 63.2% a <span class="b">parameter</span> or a <span class="b">statistic</span>?</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="float right photo" style="width:294px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image3.jpg" alt="Image of rainbow flags." style="width:261px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/es/@dwell_in?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">daniel james</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/rainbow-flag?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:  </span>The percent of LGBTQ students who reported poor mental health during the pandemic is calculated as  <span class="math">1096/1734=0.632=63.2%</span>.  Because this number is based on a sample, it is a <span class="b">statistic</span>.  If they were to conduct another sample, it would likely have a different number of LGBTQ students, and a different percentage.  But since the sample is large, relatively speaking, we assume that the number 63.2% is reasonably close to the true percentage from the population.  In this case, we don’t know the parameter, so we use the statistic 63.2% to approximate it. </p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 5</span><span class="b" style="color:#FFFFFF;background:#365F91">: Identification of Population, Variable, Sample, Parameter, and Statistic</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">In 2021, Pew Research Center obtained data from 7705 high school students to estimate the proportion of United States high school students who struggled with their mental health during the COVID-19 pandemic.  It was found that 37% of respondents rated their mental health as “not good most of the time or always” during the pandemic.  Identify the population, variable, sample, individuals, parameter, and statistic.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>In this case, we are working from a sample.  As such, we observe the following.</p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">The <span class="b">Population</span> is the set of all United States high school students.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">The <span class="b">Variable</span> is the response to the rating of their mental health.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The<span class="b"> </span><span class="b">Sample</span> is the group of 7705 high school students who participated in the survey.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">The <span class="b">Individua</span><span class="b">ls</span> are the students who participated in the survey.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The<span class="b"> </span><span class="b">Parameter</span> is the proportion of <span class="i">all </span>United States high school students who rated their mental health as “not good most of the time or always” during the pandemic.  This number is unknown.</p>
+<p style="padding-left:calc(5.4*var(--u))">The <span class="b">Statistic</span> is the proportion of the 7705 sampled high school students who rated their mental health as “not good most of the time or always” during the pandemic.  In this case, the statistic was 37%.  We hope that the statistic 37% is a good approximation for the true but unknown parameter. </p>
+<p class="has-qed qed-only" style="padding-left:calc(5.4*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 6</span><span class="b" style="color:#FFFFFF;background:#365F91">:  Identification of Population, Variable, Sample, Parameter, and Statistic</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">A consumer advocate wants to check whether the fat content in a cereal is as low as claimed by the manufacturer.  They claim the cereal contains 3 grams of fat per one-cup serving.  The consumer advocate randomly purchases 12 boxes of the cereal and tests one cup from each for fat content.  She finds that each cup of cereal contains 3.6 grams of fat on average.  Identify the population, variable, sample, individuals, parameter, and statistic.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="float right photo" style="width:311px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="color:#30272E;font-size:1.05em"><img src="images/image5.jpg" alt="Image of a cereal bowl." style="width:299px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@nyanastoica?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Nyana Stoica</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/cereal?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>: </span>In this case, we are again working from a sample.  As such, we observe the following:</p>
+<p style="padding-left:calc(5.4*var(--u))">The <span class="b">Population</span> is the set of one cup servings of the cereal.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The <span class="b">Variable</span> is the measure of the amount of fat in each cup.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The<span class="b"> Sample</span> is the set of 12 cups of cereal that were tested.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The <span class="b">Individuals</span> are the 12 cups of cereal that were tested.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The<span class="b"> Parameter</span> is the actual amount of fat in one cup of the cereal.  This number is unknown.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p style="padding-left:calc(5.4*var(--u))">The <span class="b">Statistic</span> is the amount of fat per cup measured from the sample data.  In this case, the statistic was 3.6 grams of fat per one cup serving.  We use the statistic 3.6 to approximate the true but unknown parameter. </p>
+<p class="has-qed qed-only" style="padding-left:calc(37.8*var(--u));text-indent:calc(3.6*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Throughout our study of statistics, we will use two different types of variables – qualitative and quantitative.  In short, qualitative variables are categories or descriptions and are typically not numerical.  Quantitative variables are always numerical and come from measuring or counting.  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 5</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A<span class="b"> </span><span class="b">Qualitative variable </span>is a variable that represents a non-numerical quality of the individual (or a number that doesn’t count or measure anything, like a zip code).  Qualitative is also known as <span class="i">c</span><span class="i">ategorical</span>.</p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A<span class="b"> </span><span class="b">Quantitative variable </span>is a variable that represents a number, either a count or measurement taken from individuals.  Quantitative variables are <span class="i">numerical</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 7</span><span class="b" style="color:#FFFFFF;background:#365F91">:  Classification as Qualitative or Quantitative</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">Classify each variable as qualitative or quantitative.</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a.</span>City of Birth</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b.</span>Age</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c.</span>Weight of a mouse</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d.</span>Color of hair</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">e.</span>Ethnicity</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">f.</span>Number of pets in a residence </p></div>
+<p style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Solution:</span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">a.</span>City of Birth- This is <span class="b">Qualitative</span> because it is a name that describes a location.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">b.</span>Age- This is <span class="b">Quantitative </span>because it is a numerical measure of time since birth.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">c.</span>Weight of a mouse- This is <span class="b">Quantitative </span>because it is a numerical measure of weight.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">d.</span>Color of hair- This is <span class="b">Qualitative</span> because it is non-numerical and is a description of a quality of hair.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">e.</span>Ethnicity- This is <span class="b">Qualitative</span> because it is non-numerical and describes a quality of a person.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">f.</span>Number of pets in a residence- This is <span class="b">Quantitative </span>because it is a numerical count of the number of pets in the residence.</p>
+<p class="has-qed qed-only note" style="padding-left:calc(5.4*var(--u) + 1.90em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Qualitative variables can be further divided into two types:  <span class="b">Nominal</span> and <span class="b">Ordinal</span>.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 6</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Nominal Variable </span>is a qualitative variable that is a name or category with no implied order.</p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">An <span class="b">Ordinal Variable </span>is a qualitative variable that represents a name or category, but there is a sense of order to the categories, like “small, medium, and large”.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 8</span><span class="b" style="color:#FFFFFF">: Nominal and Ordinal </span><span class="b" style="color:#FFFFFF">Qualitative </span><span class="b" style="color:#FFFFFF">Variables in a Pizza Survey</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">A survey of patrons at a pizza restaurant asks respondents for the following information:</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a.</span>Name</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b.</span>City of Residence</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c.</span>Rating of service as “Poor, Acceptable, Good, or Fantastic”</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d.</span>Size of pizza ordered (Mini, Small, Medium, Large, or Extra Large)</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">e.</span>Type of pizza ordered (Pepperoni, Hawaiian, Veggie, Cheese, etc.)</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">Classify each qualitative response variable as <span class="b">nominal</span> or <span class="b">ordinal</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<figure class="float right photo" style="width:309px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><img src="images/image6.jpg" alt="A pizza with pepperoni" style="width:278px" class=""></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Photo by </span><a href="https://unsplash.com/@alanaktion?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Alan Hardman</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.9em"> on </span><a href="https://unsplash.com/s/photos/pineapple-pizza?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.9em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p></figure><p style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Solution:</span><span class="b">  </span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">a.</span><span class="b">Name</span> is nominal since it is a name and has no implied order.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">b.</span><span class="b">City of Residence</span> is nominal as it is also a name.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">c.</span><span class="b">Rating </span><span class="b">of </span><span class="b">service</span> is ordinal.  The possible responses “Poor, Acceptable, Good, or Fantastic” are all categories, but there is a natural order to them.  We understand that “Good” service is better than “Poor” service, but not as good as “Fantastic” service.  “Acceptable” is better than “Poor”, but not as good as “Good”.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">d.</span><span class="b">Size of pizza</span> is also ordinal, since the sizes are categories that have an order.  Again, large will be larger than medium, but not as large as extra-large.  Small is smaller than Medium, but larger than Mini.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">e.</span><span class="b">Type of pizza</span> ordered is nominal.  The type of pizza (pepperoni, Hawaiian, veggie, or whatever you prefer) is a category, but there is no natural order to put them in.  </p>
+<p class="has-qed qed-only note" style="padding-left:calc(5.4*var(--u) + 1.90em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Quantitative variables can also be divided into two types:  Discrete and Continuous.  </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))"><span class="b">Discrete</span> variables are numerical and are typically things we <span class="b i">count</span>, like the number of customers in a store, or the number of texts you get each day.  Data collected for a discrete variable usually are whole numbers 0, 1, 2, 3, 4, 5, … because these numbers represent “how many” times we count the item.  You would never get 12.89 texts in day.  You can only get 12, or 13, or some other whole number.  Decimals and fractions don’t make sense when you are counting.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))"><span class="b">Continuous </span>variables are also numerical values, but they are typically found by <span class="b i">measurement</span><span class="b">,</span> like the weight of a dog, height of a plant, or distance between rest stops on a freeway.  Continuous data can be any decimal or fraction in an interval.  A weight could be 174.3 pounds, or a height could be 37.895 cm, or a distance could be 15.75 miles.  For these variables and data, decimals and fractions are appropriate.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition 7</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Discrete Variable </span>is a quantitative variable that usually arises from counting.  Typically, a discrete variable can be any <span class="i">whole number</span> 0, 1, 2, …</p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">A <span class="b">Continuous Variable </span>is a quantitative variable that usually arises from measuring.  A continuous variable can take on <span class="i">any</span> <span class="i">fraction or decimal</span> value in an interval.  </p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 9</span><span class="b" style="color:#FFFFFF">: Discrete or Continuous </span><span class="b" style="color:#FFFFFF">Quantitative </span><span class="b" style="color:#FFFFFF">Variables in a Medical Survey</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">An intake survey of patient at a medical facility asks for the following information.  Classify each quantitative response variable as <span class="b">discrete</span> or <span class="b">continuous</span>.</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a.</span>Height</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b.</span>Weight</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c.</span>Age</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d.</span>Number of persons living in your home</p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">e.</span>Number of alcoholic beverages consumed per week</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Solution:</span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">a.</span>Height- This is something you measure, so it is continuous.  You can also think that as we grow our height changes <span class="i">continuously</span> with no gaps.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">b.</span>Weight- This is something you measure, so it is continuous.  It is reasonable to weigh 156.3 pounds.  The decimal implies that weight is a continuous variable.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">c.</span>Age- This one is a bit tricky.  Technically, your age is continuous since you are aging every moment of every day.  Even though you might enter “23” as your age, you are really 23 plus some odd number of months, days, hours, minutes, seconds, etc.  And now you are even a bit older.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">d.</span>Number of persons living in your home- The number of people in your home is a count, so it is a discrete variable.  </p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">e.</span>Number of alcoholic drinks consumed per week- This is also something you count, rather than measure, so it is discrete.</p>
+<p class="has-qed qed-only note" style="padding-left:calc(5.4*var(--u) + 1.90em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))"><span class="b">Figure </span><span class="b">1.4</span> is a flowchart that will help you determine the type of variable and data that you have.  First ask, is the variable a category or is it a number?  If it is a category, it is qualitative.  Now, is it a name only, or is it a category with an order to it?  Name only is nominal, while an ordering makes it ordinal.  If it is a number, is it a count of something or is it a measurement?  If it is a count, it is discrete while if it is a measure, the variable is continuous.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">For example, a survey might ask you for your ethnicity, your gender identification, your age, number of people living in your household, and a rating of customer service as “poor, good, or great”.  Ethnicity and gender identification are categories with no order, so they are qualitative and nominal.  Your age is a number, and it is continuous since it is a measure of time since your birth.  So, your age is quantitative and continuous.  The number of people living in your home is a number, and it is a count, so it is quantitative and discrete.  Customer ratings are not numbers, so they are qualitative.  Since there is an order for the categories, they are ordinal.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<figure class="tree" role="img" aria-label="Flowchart: Variables and Data split into Qualitative Data (categories) and Quantitative Data (numbers that count or measure). Qualitative splits into Nominal (names only) and Ordinal (categories with an implied order). Quantitative splits into Discrete (things you count) and Continuous (things you measure).">
+<div class="t-root"><span class="node"><b>Variables and Data</b></span></div>
+<div class="t-row2">
+ <div class="t-branch"><span class="node"><b>Qualitative Data<br>(categories)</b></span>
+  <div class="t-leaves"><span class="node"><b>Nominal</b><br>Names only!</span><span class="node"><b>Ordinal</b><br>Categories with an implied order</span></div></div>
+ <div class="t-branch"><span class="node"><b>Quantitative Data<br>(numbers that count or measure)</b></span>
+  <div class="t-leaves"><span class="node"><b>Discrete</b><br>Things you count</span><span class="node"><b>Continuous</b><br>Things you measure</span></div></div>
+</div></figure>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure </span><span class="b">1.4</span>:  Classification of data and variables flowchart.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF;background:#365F91">0</span><span class="b" style="color:#FFFFFF">: Summary of </span><span class="b" style="color:#FFFFFF">T</span><span class="b" style="color:#FFFFFF">ypes of </span><span class="b" style="color:#FFFFFF">V</span><span class="b" style="color:#FFFFFF">ariables and </span><span class="b" style="color:#FFFFFF">D</span><span class="b" style="color:#FFFFFF">ata</span> <span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1">Determine whether each variable is Qualitative or Quantitative.  If Qualitative, is it Nominal or Ordinal?  If Quantitative, is it Discrete or Continuous?</p>
+<div class="li-row" style="padding-left:calc(2.25*var(--u))"><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">a.</span>Amount of Rainfall</p><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">b.</span>Number of books on a shelf</p></div>
+<div class="li-row" style="padding-left:calc(2.25*var(--u))"><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">c.</span>Amazon Rating (1 through 5 stars)</p><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">d.</span>Applicant name</p></div>
+<div class="li-row" style="padding-left:calc(2.25*var(--u))"><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">e.</span>Shirt size (S, M, L, XL, XXL)</p><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">f.</span>Number of customers at a coffee shop</p></div>
+<div class="li-row" style="padding-left:calc(2.25*var(--u))"><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">g.</span>Height of a tree</p><p class="li ex-col" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">h.</span>City where you were born</p></div>
+<div class="li-row" style="padding-left:calc(2.25*var(--u))"><p class="li" style="padding-left:calc(0*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">i.</span>Length of a movie</p><p class="li" style="padding-left:calc(0*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">j.</span>Weight of a cookie</p></div>
+<div class="li-row" style="padding-left:calc(2.25*var(--u))"><p class="li" style="padding-left:calc(0*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">k.</span>Number of cookies in a box</p><p class="li" style="padding-left:calc(0*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">l.</span>Number of goals in a soccer match</p></div>
+<div class="li-row" style="padding-left:calc(2.25*var(--u))"><p class="li" style="padding-left:calc(0*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">m.</span>Distance to work</p><p class="li" style="padding-left:calc(0*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">n.</span>Student Identification number</p></div>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Solution:</span></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">a.</span>Amount of rainfall- This is quantitative, and it is measured, so it is continuous.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">b.</span>Number of books on a shelf- This is quantitative, and it is counted, so it is discrete.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">c.</span>Amazon Rating- Since the number of stars are not a count, but a description, they are technically categories.  This makes ratings for Amazon ordinal data.  We know that 4 stars is better than 3 stars, but the difference between 4 and 3 stars is subjective, not a count or a measure.  </p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">d.</span>Applicant Name- This is qualitative, with no implied order, so it is nominal.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">e.</span>Size (S, M, L, XL, XXL)- This is qualitative and ordinal.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">f.</span>Number of customers at a coffee shop- This is quantitative, and it is counted, so it is discrete.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">g.</span>Height of a tree- This is quantitative, and it is measured, so it is continuous.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">h.</span>City of birth- This is qualitative, with no implied order, so it is nominal.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">i.</span>Length of a movie- This is quantitative, and it is measured, so it is continuous.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">j.</span>Weight of a cookie- This is quantitative, and it is measured, so it is continuous.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">k.</span>Number of cookies in a box- This is quantitative, and it is counted, so it is discrete.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">l.</span>Number of goals in soccer- This is quantitative, and it is counted, so it is discrete.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">m.</span>Distance to work- This is quantitative, and it is measured, so it is continuous.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(3.6*var(--u))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">n.</span>Student ID number - This is qualitative, with no implied order, so it is nominal.  It’s a little tricky because it looks like a number.  But it is just a numerical version of your name.  Account numbers, zip codes, social security numbers, telephone numbers, and student ID numbers are all numbers, but they are just numerical names for you, your phone, or your location.  Doing math with these “numbers” doesn’t make sense because they don’t count or measure anything.  Thus, they are all qualitative and nominal.  But tricky!</p>
+<p class="has-qed qed-only note" style="padding-left:calc(5.4*var(--u) + 1.90em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="index.html"><small>Previous</small>Chapter 1 home</a><a class="next" href="section-1-2.html"><small>Next</small>1.2 Sampling Methods</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+</body></html>

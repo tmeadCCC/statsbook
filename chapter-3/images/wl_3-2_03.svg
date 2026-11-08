@@ -1,0 +1,616 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="355.65" height="202.85004" viewBox="0 0 355.65 202.85004">
+<defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M85.35 244.34998H441V447.2H85.35Z"/>
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M0 0H612V792H0Z"/>
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M175.099 358.899H436.899V443.899H175.099Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_5">
+<g transform="matrix(.43869347,0,0,.4386598,89.70001,3.2000199)">
+<image id="image_6" width="597" height="194" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAlUAAADCCAAAAABFkWi8AAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAACAUlEQVR4nO3SQQkAMAzAwPo3vZoIDMqdgjwyD2rzO4CDXEXPVfRc
+Rc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V
+9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxF
+z1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0
+XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXP
+VfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRc
+Rc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V
+9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxF
+z1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0
+XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXP
+VfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0FptDv/X2
+LQd5AAAAAElFTkSuQmCC"/>
+</g>
+</mask>
+<clipPath id="clip_8">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M174 247.299H438V344.999H174Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_9">
+<g transform="matrix(.44221107,0,0,.4423077,88.65001,102.100009)">
+<image id="image_10" width="597" height="221" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAlUAAADdCAAAAAC3EdjyAAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAACRUlEQVR4nO3SQQkAMAzAwPo3vZoIDMqdgjwyD2rzO4CDXEXPVfRc
+Rc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V
+9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxF
+z1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0
+XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXP
+VfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRc
+Rc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V
+9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxF
+z1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0
+XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXP
+VfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRc
+Rc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V9FxFz1X0XEXPVfRcRc9V
+9FxFz1X0XEXPVfRcRW8BqWN7r+ztqG0AAAAASUVORK5CYII="/>
+</g>
+</mask>
+<clipPath id="clip_12">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_13">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-746.65" x="396.6 403.26 408.26 412.69 417.69 420.46 424.88999 428.21998 430.71998 435.71998 438.48997 440.98997 448.20997 452.63996 456.52998 460.95997 464.27995 467.04994 472.04994 474.81993 477.5899 482.5899 487.0199 489.5199 495.0799 497.84989 502.27989 505.04988 507.81986 511.70988 514.47988 517.2499 521.6799">Chapter 3: Descriptive Statistics</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-706.85" x="176.5 182.06 184.83 189.83 194.26001 198.69 201.19 203.96 208.96 213.39002 216.72002 221.15003 223.65003 228.08002 231.40003 235.83002 238.33002 243.33002 245.83002 250.83002 255.83002 259.72004 264.15003 267.47 272.47 276.9 279.66999 282.43998 287.43998 292.43998 296.33 298.83 301.33 308.55 313.55 316.31999 320.74998 325.74998 328.24998 331.01997 334.90998 337.40998 342.40998 347.40998 352.40998 354.90998 357.40998 360.17997 365.17997 369.60997 372.10997 379.87995 384.30995 389.30995 392.07994 396.50993 401.50993 404.00993 406.7799 410.66993 413.16993 415.9399 420.9399 425.3699 427.8699">Since there are 9 observations, which is odd, the median is the 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="5.8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-710.75" x="433.1 434.7066">th</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-706.85" x="437.6 440.1 445.1 450.1 453.99003 458.42 461.74 466.74 471.16999 473.93998 476.70997 481.70997 486.70997 489.20997 491.97996 496.97996 499.47996 502.24995 507.24995 511.67994"> observation in the </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-695.3" x="176.5 179.27 182.04001 185.93001 188.70001 191.20001 193.70001 200.92002 205.92002 208.69002 213.12003 218.12003 220.62003 223.39003 227.28003 229.78003 234.78003">list, which is 5.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-672.2" x="176.5 182.6 187.6 192.03 194.53 197.85 202.28 207.28 212.28 216.70999 219.20999 221.98 225.87 228.37 231.14 236.14 240.57 243.07 248.07 250.84001 254.17002 257.49 261.91999 265.24998 269.67997 274.67997 279.10997 283.53996 286.03996 291.03996 295.46995 298.23994 305.45994 309.88993 314.31993 319.31993 321.81993 324.5899 329.5899 334.0199 336.5199 341.5199 344.2899 349.2899 354.2899 358.71989 362.6099 365.37989 367.87989 371.7699 376.1999 381.1999 384.52989 388.95988 391.45988 395.88987 400.88987 405.88987 408.38987 411.15986 416.15986 420.58985 423.08985 425.85984 430.85984 438.07984 442.50984 446.39985 449.16984 451.66984 455.55986 459.98985 464.98985 468.31983 472.74983 475.24983 477.74983 481.63984">The range is the difference between the highest score and the lowest score, so</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-672.2" x="486.95"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-660.65" x="176.5 182.6 187.6 192.6 197.6">Range</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-660.65" x="202.05 204.55 210.18001 212.68001 217.68001 222.68001 225.18001 230.18001 232.68001 237.68001 240.18001 245.81002 248.31002 253.31002 258.31"> = 10 &#x2013; 0 = 10.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-636.05" x="176.5 182.06 187.62 195.94 204.27 209.27 213.70001 218.70001 221.20001 224.52002 229.52002 233.95001 236.45001 244.22002 248.65003 253.65003 259.21003 264.77003 267.27003 272.27003">Summary for Group #1</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-636.05" x="277.35 280.12 282.62">:  </tspan></text>
+<text fill="#00883e" xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-636.05" x="285.15 294.04 298.47 302.9 307.9 310.4 316.03 318.53">Mean = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-636.05" x="323.55 326.05">, </tspan></text>
+<text fill="#c00000" xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-636.05" x="328.55 337.44 341.87 346.87 349.63999 354.06999 359.06999 361.56999 367.19999 369.69999">Median = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-636.05" x="374.75 377.25 379.75 384.18 389.18 394.18">, and </tspan></text>
+<text fill="#365f91" xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-636.05" x="396.7 403.36003 407.79 412.79 417.79 422.22 424.72 430.35 432.85 437.85">Range = 10</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-636.05" x="442.9">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-611.45" x="122.5 130.27 134.70001 139.70001 145.26001 150.82 153.32 158.32">Group #2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-611.45" x="163.35 165.85 168.35 170.85 176.95001 181.95001 186.38 188.88 196.65001 201.08002 205.51001 210.51001 213.01001 215.78002">.  The mean is</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-611.45" x="219.7"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-566.9" x="176.5 182.6 187.6 192.03 195.35 199.78 202.28 206.70999 210.04 214.47 216.97 221.97 224.47 228.36 232.79001 237.79001 241.12001 245.55002 249.44002 251.94002 254.44002 258.33003 263.33003 265.83003 268.6 273.6 278.03 280.53 288.3 292.72999 297.72999 300.49998 304.92997 309.92997 312.42997 315.19996 319.08998 321.58998 324.35997 329.35997 333.78996 336.28996">There are 9 scores, so the median is the 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="5.8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-570.8" x="341.45 343.0566">th</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-566.9" x="345.95 348.45 352.34004 356.77003 361.77003 365.09 369.52 372.02 374.52 381.74 386.74 389.50999 393.93998 398.93998 401.43998 404.20997 408.09999 410.59999 415.02998 417.79997 421.68998 426.68998 429.18998 434.18998"> score, which is also 5.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-555.35" x="176.5 182.6 187.6 192.03 194.53 197.85 202.28 207.28 212.28 216.70999 219.20999 221.98 225.87">The range is </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-555.35" x="228.4 234.5 239.5 244.5 249.5">Range</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-555.35" x="253.95 256.45 262.08003 264.58003 269.58003 274.58003 277.08003 282.08003 284.58003 289.58003 292.08003 297.71003 300.21003 305.21003 310.21003"> = 10 &#x2013; 0 = 10.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-530.75" x="176.5 182.06 187.62 195.94 204.27 209.27 213.70001 218.70001 221.20001 224.52002 229.52002 233.95001 236.45001 244.22002 248.65003 253.65003 259.21003 264.77003 267.27003 272.27003">Summary for Group #2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-530.75" x="277.35 280.12 282.62">:  </tspan></text>
+<text fill="#00883e" xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-530.75" x="285.15 294.04 298.47 302.9 307.9 310.4 316.03 318.53">Mean = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-530.75" x="323.55 326.05">, </tspan></text>
+<text fill="#c00000" xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-530.75" x="328.55 337.44 341.87 346.87 349.63999 354.06999 359.06999 361.56999 367.19999 369.69999">Median = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-530.75" x="374.75 377.25 379.75 384.18 389.18 394.18">, and </tspan></text>
+<text fill="#365f91" xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-530.75" x="396.7 403.36003 407.79 412.79 417.79 422.22 424.72 430.35 432.85 437.85">Range = 10</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-530.75" x="442.9">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-494.6" x="122.5 128.06 133.06 135.56 138.89 143.32 146.64002 149.14002 151.64002 154.41002 159.41002 163.84003 166.34003 171.34003 175.77002 179.66002 184.09003 187.42003 190.19004 195.19004 197.96004 200.73004 205.73004 210.16004 212.66004 216.55004 219.32004 223.75003 226.52004 229.29004 233.18004 235.95005 238.72005 243.15006 247.04006 249.54006 256.76005 261.19004 263.69004 268.69004 273.12004 278.12004 282.55003 285.05003 288.37 293.37 298.37 303.37 308.37 310.87 318.09 323.09 328.09 330.86 335.86 338.36 343.36 347.78999 351.68 356.11 359.43998 362.20997 367.20997 371.63996 374.13996 376.90995 381.90995 386.33995 388.83995 391.60993 398.82994 403.82994 406.32994 411.32994 414.6599 419.6599 424.6599 429.6599 433.54994 436.04994 440.47993 444.36994 446.86994 449.63993 454.63993 459.06993 464.06993 466.8399 469.6099 474.0399 478.46989 481.23988 483.73988 486.23988 488.73988 494.83988 499.83988 504.26988 509.26988">So far, the descriptive statistics we have found would describe the two groups as identical.  They </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-483.05" x="122.5 127.5 131.93 136.93 141.35999 143.85999 146.62999 151.62999 156.06 158.56 162.45 166.88 174.65001 179.08002 181.58002 189.35002 193.78003 198.21002 203.21002 205.71002 208.21002 212.10002 216.53003 224.30004 228.73004 231.23004 239.00005 243.43006 248.43006 251.20006 255.63007 260.63008 263.13008 265.63008 270.06007 275.06007 280.06007 282.56007 286.45008 290.88008 298.65007 303.08006 305.58006 308.91004 313.34004 318.34004 323.34004 327.77003 330.27003 332.77003 335.27003 341.94004 346.94004 349.71003 352.21003 356.64 359.96 364.38999 366.88999 369.65998 374.65998 379.08998 381.58998 386.58998 391.01997 393.78996 398.21995 400.71995 404.60997 409.60997 412.92994 417.35993 421.78993 426.78993 429.28993 434.28993 439.28993 442.0599 444.5599 447.3299 452.3299 456.7599 459.2599 463.1499 467.5799 475.34989 479.77989 484.20988 486.70988 489.20988 494.76988 499.19987 503.62986">have the same mean, same median, and same range.  But are the data spread out the same?  See </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-471.5" x="122.5 125.83 128.6 133.6 139.16 143.59 148.01999 150.51999 155.51999 158.01999 163.01999">figure 3.15</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-471.5" x="168.05">.</tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<g mask="url(#mask_5)">
+<g transform="matrix(.43869347,0,0,.4386598,89.70001,3.2000199)">
+<image id="image_7" width="597" height="194" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAlUAAADCCAIAAADvmKA3AAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAArkElEQVR4nO2dB3wUxR7HjwCJIBCKAVR6lYD0CASwgEqT3iSA8AAp
+CYQAAg+VYqE8BORRVFqkKdKLiDxpClIVRKqCBQm9hh4IYd5vM7A5ksulcHczm/y+
+n/vkszs72f3d7N785r87O2MThBBCSPrDploAIYQQogD6HyGEkPQI/Y8QQkh6hP5H
+CCEkPUL/I4QQkh6h/xFCCEmP0P8IIYSkR+h/xBqcPn3671hOnjyZWJ6IiAiZ5+zZ
+s+5TcuXKlSlTpvTv3999h4jHoUOH+vbtu2rVKo8dMfns2LGjW7duu3btUi2EkBRD
+/yPWIDw8vGrVqjabzcfHB16YMMORI0e8vLyQITAwcPny5W6SgUPXr18fR6lcubKb
+DhGPRYsWlS5dGkecOHGiZ46YfCZNmlSwYEFo09ObCXEO/Y9YBoQatlgGDx6ccGuP
+Hj3k1qNHj6Zu/wcOHBg3blxycubPnz85/telS5d79+6lTow9a9eufUT/c5WShHz2
+2Wf0P2JR6H/EMvzzzz8ZM2bMlCmTr6/vlStX7DedPXs2W7Zs2IS6+Pr166nYOezh
+tddeGzZsWHIyFy9ePEn/2759O9S6xHW2bNnyKP7nQiUJmTdvHv2PWBT6H7EM8L9i
+xYq1b98eFe7YsWPtN8G3Xn/99ZIlS8bzv+PHj4eHh3/66ad79+61z3/p0qVp06ZN
+nz7966+/3rdv382bN2X42KFDhw0bNji8v3rjxg3U8jju4cOHS5QoYe9/x44dQxg0
+Y8YMRJAyZevWrYgRscP169dv27YtsWwJuXr16pIlSz766KM9e/aYiT/++KP0v+jo
+6A2xbN68WWaWq7/++quZGYeDyJUrV3755ZeJKblw4cIXX3wxatQofCPTFyEPx71z
+5w4ELFy40ElOEftIcurUqTjEzJkz6X/EotD/iGWQ/gcnQ4X71FNP3b59W6bDmfLk
+ybN79+54/jdp0qTChQt/8sknffr0Qfpbb70VExODdLhF0aJFP//883feeSdLlixz
+5syBwcD5kCcgIKBv3747d+6Md+gTJ05UrFjxxRdfnDVrVoUKFeyf/4WFhRUqVAjp
+DRo08PLykk6APUsxoaGh7733XmLZ4vHLL7/AWWHk//nPfxCxNWrUSKbb+9/8+fMR
+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"/>
+</g>
+</g>
+</g>
+<g clip-path="url(#clip_8)">
+<g mask="url(#mask_9)">
+<g transform="matrix(.44221107,0,0,.4423077,88.65001,102.100009)">
+<image id="image_11" width="597" height="221" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAlUAAADdCAIAAAAdGBB5AAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAAnxklEQVR4nO3dB3gU5doG4CWU0ANywKgYmoJA1CBEYgiKYKEjXUIk
+QT2giQJBgYNKEaUcmvwCSkuoigGpKicKyBEkFBWQLoggAQNIDVWK+z/ZF+Ys2d0h
+QHa+b5PnvnLlmp2d7L6Z3Zln3pnZHZudiIgo97GpLoCIiEgB5h8REeVGzD8iIsqN
+mH9ERJQbMf/Ix6Slpe11OHjwoKdpUlNTZZrDhw97r5JTp06NGzeuZ8+e3nuKTLZv
+3969e/fFixdb9oxZZ/3cILpNzD/yMYmJibVq1bLZbP7+/shC1wl27drl5+eHCcLD
+wxcsWOClMvDUDRs2xLM88sgjXnqKTObMmVOlShU845gxY6x5xqyzfm4Q3T7mH/me
+tWvX2hz69Onjem/Xrl3l3t27d9/a42/dunXkyJFZmTIwMDAra/wXX3zx77//vrVi
+nCUnJ99m/mVXJW5lcW4QaYL5R77n999/z5s3b758+QICAk6dOuV81+HDh4sWLYq7
+kBNnzpy5hQdHPDRt2rR///5ZmbhSpUo3XOOvWbMG1WZL6qxatep28i8bK3ErK3OD
+SB/MP/I9yL+KFSt27NgRYTB8+HDnu5Bbzz///P33358p/y5evLhixYpRo0YtXLjw
+5MmTxvjjx49PnDhx0qRJX3zxxebNm8+dOyftY1RU1PLly93uXz179uzixYvxvDt2
+7Ljvvvuc1/j79u2bMGHC5MmT0UHKmNWrV6MrwgMuW7YsJSXF02Su0tPTP//88xEj
+RmzYsMEY+f3330v+Xbp0abnDypUrZWK5+fPPPxsT4+lQ5KJFiz799FNPlRw9evST
+Tz4ZMmQI/iMjF1EenhdzDAUkJSWZTGk+N4g0x/wj3yP5t2nTJqzN77777r/++kvG
+Y11cqlSpn376KVP+/fnnn5UrV/7nP/+J1MFd5cuXl5zA7woVKkydOvXtt98uVKjQ
+9OnTETBIPvxtaGho9+7d161bl+mpDxw4EBISUq9evYSEhIcfftj5iFePHj2CgoIw
+vlGjRn5+fnKWCh5ZiunWrdu7777rabJMNm7ciCxBkP/73/9Gx9akSRMZ75x/s2bN
+QvtbvHhxuyPF+/Xrh7ueeeYZmTIyMjImJmbatGkRERH4H91WgnawSpUqb7zxxquv
+vorxqAfB1rZtWzl66rwb2e2U5nODSH/MP/I9kn8YwOoe69wpU6bI+HHjxtWvXx8D
+mfLvsccee/rpp2X4t99+y5cvH9IF/c0rr7zSokULGT9o0CDkHwZ27tyJv/W0/xPP
+WKNGDVn7o4w8efLIGv/IkSN42N69e2MYfSQeoUuXLvIniDHclD8xmcyAOK9atepz
+zz0nN5s2bYrJEOp2p/yTu5588knJP7tjt23hwoUl//744w88C0LU7mgNUbBrJfj3
+EWnGQ7Vq1Qp3zZkzB8PPPvsshuPj41Hh2LFjTab0NDeIfALzj3yPkX/Lli3DuviB
+Bx7AKvjy5csYmZycbL8+/7Zv347hwYMHG3+OFgdjvvzyy9jYWAy8/PLLaBDT0tIw
+pd00/9avX4+7RowYYYxBKylrfBQwYMCAbdu2Ib0+/fRTTNa6dWuZxjl1TCYzyEku
+aN3k5qFDh+bOnYuGz+6Sf4gfI/+gRIkSkn/4E/RwZcuWxf+Im8uXL3etZOXKlRgO
+Cwtr6IAeEZH5zjvv4C7ZsWxsPXia0mRuEPkE5h/5HiP/ACtcrIUXLFiAkHjooYdk
+pHP+ffzxxxgeNWqU8efvv/++jEHg3X333RguUqQIVuhIULtp/slDzZo1yxjjfMQL
+kYaUrVatGhIOk6FPkvHOqWMymeGDDz7A+CVLlrgWkMX8g+7du8veS+TWrl27XCtJ
+TEzE8P79+12fRfYAo+2Tm56mNJ8bRPpj/pHvcc6/2bNny1r+0UcfnTFjhox0zr8P
+P/wQw+j5jD+fMGECxsybNw/DJ0+e7N27d8GCBTHmtddes5vm39ChQzNFKdb4snfx
+9OnT9evXr1279pEjR3ATHZLb/DOZzDB+/HjZ/WiMOX/+/ObNm+03k3/w7bffysZB
+sWLF5LsCnCtBf4lhbDQY01+5cgX/u90l/zxNaTI3iHwC8498z759+4z8Q9NWvnx5
+ORHGWGVjRYwxCBu74zRIudf480GDBmHM4cOHY2Ji5Ati0CHd4WC/ln99+/Z1fd75
+8+fjrjp16hhj8ETSdM6cORN3yZmWdkewGQfwJHXkJB2TyQzILUxTqVKls2fPyph/
+/etfa9eutbvkX8uWLfPmzSufAEEmIQvl8CfCEn9id+xu7datG/7ko48+ylTJunXr
+MFy1atXjx4/Lo+Fh5QhopvzzNKXJ3CDyCcw/8j2rVq0qWbKksUdROjyjEcH4QoUK
+YQzaRBnToEEDY08dGr7q1au/+eabGG7RokWPHj1kmmbNmkVERNgdJ4vKan3x4sVT
+p051fl70YRUqVMC9b731FlJn0qRJeCJ0XWvWrEF7hPFNmjTZsGHDK6+8guGQkJA+
+ffqcO3cuLi4ON9Gb9uzZc8GCBZ4mM54F9desWRN3oaPFP9W8eXPknNz11VdfYbyc
+vWm/tpNz2LBhCLzGjRtjOCgoCEm5cePGwoUL//HHH5jmp59+wnhkFYadK7lw4QL+
+X9zEf9SvX78XXnihWrVqcpSxdevWGI+NDKMkt1OazA3jjFwinTH/yMeMHDnynnvu
+kYiSg2RnzpxBO5ienm53nDwi4SEtC1bKdsdXUyJyChQo8NRTT917771du3ZFt2R3
+5B86sEceeSQyMhJhs2nTJnkKOa0UK32jAzNgGjyXPD5iFS1jmTJlEACIVQkJNGEJ
+CQmhoaF4uvHjx9sd/Zy/vz/GI4ARDJ4mc7Znzx7kojwLwkYO4K1evVo+YxAYGDh2
+7FiZDAXIHk4kHLKnbNmy6G6Rf/i/ihYtik4O/9frr78u2wrOldgd35IaHh4uz4L/
+4rvvvsPI+Ph4TIMxNWrUwHaG1ON2SpO54TrfiDTE/KPc4tixYz/++KOxW8/u+Ngc
++pidDpkmRhfo6XEuX76MfgvZg2G0cc69DnJCHh+90YkTJ4zxSGjnDs/TZJn88ssv
+W7ZskbNyPEEbh38Kj4NhDMjE+KdOnz599OjRdevWZYqiTJXYHTuTM/0Xnrid0mRu
+EGmO+UdERLkR84+IiHIj5h8REeVGzD8iIsqNmH9ERJQbMf+IiCg3Yv4REVFuxPwj
+IqLciPlH5BWnTp0aN25cz549bzjlnj17+vTpI9+9SUSWYf4RZb+0tLSGDRvasnA9
+9OTkZPmqM0SgNbURkWD+EXlLYGCgp/zbunXryJEjZXjTpk3MPyLrMf+IvKVSpUpu
+8+/vv/9u2rSpcYnB3bt3M/+IrMf8oxzor7/+Wrp06dChQxctWiTXhbA7vhV6/vz5
+33777b59+8aMGWNcHWn//v2JiYkff/yxXP8Bky13WLlyJW7iz+Xmzz//LNP/9ttv
+I0aMQIZt27Zt9OjReEDnpz579uzixYuHDx++Y8cOt9dDP3fuXNeuXRF4UVFReNi0
+tLRff/1V8u/06dMzZ86cOHHi0aNHjekx/MknnwwZMgQPa1zyydnly5fxb37zzTcX
+L17ElGPHjk1NTZU/nDZt2oQJE+Rau4bVq1ePGjXqo48+2rt37w3n2Lx581asWIF/
+as6cOZhFmR6KyKcx/yinQfAUL1781VdfxVoeA7Vr175y5cqSJUvkYnXt27cPCAjA
+QMeOHe2OaweWK1cOYfD6669j5JtvvomV/qxZszCNXFr9+PHj/fr1w11yafU2bdr4
++fnh5siRIzFN/vz5Mbxw4UJ56gMHDoSEhNSrVy8hIUGuVeSaf99//71cYDY0NLR7
+9+7r1q2T/OvUqVPNmjVRDIbDw8Ml6tasWVOlSpU33ngD/w7GN2rUKFMEIn3lYr+R
+kZH486CgIAyXLl0aD4vxd955J25ivFxuAn/74osv4sERz5UrVy5SpMiyZctM5phc
+WBh/EhwcLBdaQs1yjUCiHID5RznNSy+9hDW1XPenVatWGJYrwSJLMFygQIFdu3ZN
+mTJlw4YNX331FcIM/ZD8IVb0mECuefvkk09K/tkdsVG4cGHJP6hfvz4m69WrF5JA
+Dt0hFOUuTFOjRg2JKPSXefLkcbv/Uy4xb+z/lPwLDAzcvHkzbsbExOAmykNoIfyM
+q73L/4I+LNOj/fjjj3KBe/lzFIabSF/0qWgNkYvyaLhrxowZSES5RBEmlosLmswx
+dMBSGHpfPJRcF3fr1q23/RIRaYH5RzlNSkqKnFqCXJEr2W7ZssV+7TCbXPldtGvX
+rmDBgnItXNi2bRsmqFWrlt2RZEb+QYkSJYz8e/755zGZcVm+kiVLhoWFYWD9+vUY
+P2LECOOv0D9lPf+M438TJkzAza+//lriBw/e0AH9a758+d55551Mj5aamorJ4uPj
+5ebSpUtxc/To0XJz4sSJuPnFF1/YHcmNf0oeTeYMtgYuXLjgaY5JncYzIolxMzk5
+OcsvBZHWmH+UA/3www9Yj2Mt36RJE6yypTGSmHnrrbeMydAMBQQEGHsUEYTIg2LF
+itlN8086KiP/KlasKJH58ccfY7xcWl24Pf5nv1H+oQHFzS+//DIxMRED+/fvN/9n
+Dx486Jx/a9eudc6/Tz75BDcXLFiA4aCgoM6dO2d9jqFRds4/tI9SmHk9RL6C+Uc5
+zfz58wsVKiQfJ3///fdN8k+OaaHtM8YEBgY++OCD9lvKv6FDh2L8qFGjjL9C/tWo
+UcO1QvP8mzZtmsSMDMydO9f4QyS066Xqs55/6EeDg4OdjyD+8ssv+Ec8zTHmH+Vs
+zD/KaSpVqlS5cmUZlrW5nNgpMdO3b19jStnXN2nSJLmJJED/Fxsbi+GWLVvmzZv3
+1KlTdkfqIAvr168vk3nKP6QIxtepU8d4fOTfQw895Fqh5J9Riaf8W7duHQaqVq16
+/PhxuWvMmDGuXxOT9fxr1KgRhidMmCB3paen45/CP+JpjjH/KGdj/lFO8/DDD/v5
++S1atAgrfTkBcvDgwVjpb9myBcMxMTHGlN999x2mDAkJOXPmDG5Onjy5dOnSv/32
+G4a7d++OiYcNG4ZOqHHjxhgOCgpCtKB5kvNfTpw4IQ9y9913I+cwcP78eTnFFC0m
+ghOxiqYKjeOaNWvklBPDn3/+KUm5ePHiqVOnbtiwATfj4uLkXjn+J/tRIyIiMIyH
+7dev3wsvvFCtWjXX0y+3b98uZ2nKzRUrVuDmoEGD5GZCQgJuIlMxvGzZMptDhw4d
+8IDodBMTE03mmByAxKyQh5JDic47eIl8GvOPchp0PEgdrKmffvppRBoGatSokZKS
+8sgjj8gZH926dTMmRtMWEBCAgAkLC6tevTomk/F79uyRvaPFihXDNHjAsmXLIlTQ
+pfn7+8vHIf773/+2bdsWw3ny5ImOjkabiLYJ7aBkTIMGDfAIZcqUQRzKqZXOpPVE
+vP3444+hoaEYLlmy5HvvvYf2Tj51gLbvm2++SU1NDQ8PlwfEQyGwMz0OQh05invx
+XwwYMADNWXBwMG7eddddaBbRsckHKu6//37p2z766KOCBQvKA0ZFRUmaup1jGzdu
+RPOK4VKlSg0ZMgQPJYU98MADX331lRdfPyKrMP8oB0LeHDp0SIbT0tLMJ0ZuIUXk
+M+POLly4gHBCV2d3fMbA2OFpDpOhZUR8YhiNXabOzxm6wKw8IOzbt8/8oW7KuXPn
+fvjhh4MHDzqPvKk5RpQzMP+IiCg3Yv4REVFuxPwjIqLciPlHRES5EfOPiIhyI+Yf
+ERHlRsw/IkVstowfIlKEix+RCitWXM0/DBCRCsw/IhWYf0SqMf+IVIiOvpp/GCAi
+FZh/RCqUK3c1/zBARCow/4gsN3Xq1eR74gnuAiVShflHZDmJPaSgEYREZDnmH5G1
+5MgfIhD27r2ahTwKSGQ55h+RhVxP+0QEyhj0gkRkIeYfkVWM8MsUdcZeUEYgkYWY
+f0SWMMJP9nxmMmAAI5DIYsw/Iu8zPu3nNvyERCCPBRJZhflH5E1o+4yP+iHhzMmO
+UDaCRJZg/hF5BwLMSD60fXv3ZumvjDNCmYJEXsb8I8o+SC8klrEnUzLshm2f2wdx
+/oKY6OiMPpIfkyfKVsw/0gbW+1jFy6fCkRm+8oNwQsdmNG3GD8bcTvcmKZjpYeUr
+Y/CM+FH+j2f9B/+I5HcWm2AiSzD/SCm3a3nf/ZFeDWv8bFzR59RZxHaWVGP+kSLO
+u/iMNSObG3O+3iK7vuJMQVKH+UeWM85ydO4GKJdwbWdv4RApUXZg/pGFsLFvrPhu
+8/AY+bpMQYgB9oJkLeYfWcX5w21c05HB+IgkG0GyFvOPLGFs5vPLTcgVesEB1z40
+wggkqzD/yPuM8GPbRyaMr0hlBJIlmH/kZcZ2PcOPbogRSBZi/pE3uV7ujsicvGd4
+kJi8j/lH3sSLm3u2fsuBYVNSmsclhUcmRHRMjB+ajDGqi9LDgGtXgyLyJuYfeQ3X
+Yp6NnrY2uOm40Kj5dV5aXrfrKvyERS95svOnGK+6NA0YXwLOT8iQNzH/yGu4CvMA
+IRfWYWa9uPWZfpCCj8fMZQRmkE/LcOOJvIn5R96BTXg58kfXW7/lADo/1/AzIhBd
+IHeE/u/9w6OA5DVcPZF3yBXPeRafi/ihyWHRSzzlH35wL6ZRXaYGpAXkwWPyGuYf
+eYfkH3d+uqgblYgmzyT/cG9Ex0TVZWqA+Udexvwj75BvtOL13lyY7Pw08i88MkF1
+mRqQXaA8BEhew/wj72D+edAsNqnOS8tN8g/3No9LUl2mBph/5GXMPyJLxQ9NDo2a
+b5J/uHfYlBTVZRLlfMw/IksdPJT+aNsEk0OAwU3H8fxPIgsw/4isJp//cxuBGM/P
+/xFZg/lHZDW0gAg5dIHy/S9yzktY9BJ0fgw/Issw/4jUQArGD01uHpeE2Kvabky5
+Hv2425PISsw/IsVsyQ3lR3UhRLkL849IMeYfkRLMPyLFmH9ESjD/iBRj/hEpwfwj
+Uoz5R6QE849IMeYfkRLMPyLFmH9ESjD/iBRj/hEpwfwjUoz5R6QE849IMeYfkRLM
+PyLFmH9ESjD/iBRj/hEpwfwjUoz5R6QE849IjfVbDgybnNIiLqla27HV2v4fr/9A
+ZDHmH5ECo6etDW42Tq7/V7frKrn+35Mxn/L6f0SWYf4RWc1x/fcZ9WLXZ/rJCMKY
+uYxAImsw/4gstX7LAXR+ruFnRCC6QO4IJbIA84/IUvFDk8Oil3jKP/zgXkyjukyi
+nI/5R2SpxztORZNnkn8Ze0Ejp6oukyjnY/4RWcpk56eRf+EdElWXSZTzMf+ILNUs
+NqnOS8tN8g/3tohLUl0mUc7H/COyVPzQ5NCo+Sb5h3uHTU5RXSZRzsf8I7LUwUPp
+j7ZNMDkEGNxsHM//JLIA84/IavL5P7cRiPH8/B+RNZh/RFZDC4iQQxco3/8i57yE
+RS9B58fwI7IM849IDaRg/NDkFnFJiD1+/yeR9Zh/RIrx+g9ESjD/iBRj/hEpwfwj
+Uoz5R6QE849IMeYfkRLMPyLFmH9ESjD/iBRj/hEpwfwjUoz5R6QE849IMeYfkRLM
+PyLFmH9ESjD/iBRj/hEpwfwjUoz5R6QE849IMeYfkRLMPyLFmH9ESvhS/q3fcmDY
+5JQWcUnhHRLrRk6NH5rM78unm4X3TNsenwc3G1cnMjH23f+ofQtlvKWnpFSJGVWt
+3YdV243R6i3NxY1un1aLmyufyb/R09ZiJsr10up2XSXXS3sy5lNeL01z85fuaNNt
+jiwAXd9dMnaWyterQ8954ZGznC+5h5s9hnyjpJiMt3RTl7d0Zy3e0houblh1DpmY
+0iw2KTwyoW5UYo8hX+u2MqVMtFrc3PKN/JPrZbteLDtjyYyZq8P6gtxq230uXjjn
+BQA3MfLgoXTri0EHU6vddDdvoc4LcZfFxTje0jPrxa3P9IN6Hlf9ltZwcct47dpM
+yZTHGGP9C0dZpNXi5okP5B+28rAp6ro0GjMUm6XcEtQQcq5Wh89cX7KwqIW4y+Ji
+8A4JbTvF01sId1n5Fsp4Szcd5xp+RgSiC1T1ltZwcUMbUavdDLczKqLzQjSCVhZD
+WaHV4mbCB/IPGwvY1vO0QGasT6OX6LNBQWL+0h1ue4irL1mHGRbvCO0x5BuTdxHu
+snK3zNW3tIf8w4/Ct7RuixtWlOGRs0y2FXCvJitTMmi1uJnwgfx7vONUvMtNFsiM
+njpyquoy6Tpd311ivgBgAivrMX8XZex17DjVsmLqRiVmFOM5/zI6m46JltXjTLfF
+LXbQjbcVMI1l9VBWaLW4mfCB/DPZG2PMzfAOalYW5EmdyETzBQATWFmP+bvI4reQ
+yc5Pp7YmwbJ6rqtNs8WtTmTCDbcV6iiaV+SJVoubCR/Iv2axSXIChacf3NsiLkl1
+mXQd8/zDD5YQK+sxfxfhLkxgdTGe1+m4t7mit7Rui9sN8w8/2J6wrB7KCq0WNxM+
+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
+Srf8++mnn+TIhOpCrnPs2LG77roLhak9BIgtp9DQUH9/f2y5M//MxcbGYv6MHz9e
+dSHXOXnyZLFixfLly6f28Meff/750EMPYf6ULVv24Ycflq7r7NmzCkuCbdu2oZIy
+ZcoY275XrlypUaMGRmKzz/p63K4bGzRogJFoaYwx2IaQsi0uz2fyT59Z5kq3/JOt
+43bt2qkuJMOyZcswfwYOHBgUFISqlO/fmzx5Msp46623MMz8M1e9enXMnxteRM1i
+ckBLh7f3rl27ihcvLvta8ufPr8lplrJXv1q1au+88058fLxxrPSHH36wvhi368bg
+4GCMzHQeAOYkFgeLzxL3mfzTZ5a50ir/tm7dmt9h8+bNqmvJEBISYrsmICBg1qxZ
+Cos5ceJE6dKlscEuW8c65B/YihewlfK3BZccNmyYJifQ2x2NckZtNltcXFzFihUL
+FCiA9v35558/cOCAwqouXbokG1KrV69WWAZ8++23eD9jtmBbClucWOI0+XITvEDN
+mzfPOK5ss6FLDg0NlXOXrNz/aXC7bpT9QJm2q/7xj39gpMXvf5/JP31mmSt98u/Y
+sWNymiXW7Kpruer333/fsGFDcnLym2++KZ+UGj58uKpiXnvtNRSQlJQkN5Xn33PP
+PdekSRNbxJ22aiVsfnlQzGOPPabJZ5Zl/4qcV9y4ceNOnTpVqlQJN5GFFy9eVFXV
+7NmzUUOtWrVUFSDS09OxIYV0WblypYxZs2YNIidPnjzO+6gUwuYLugV5L1WoUAHx
+rOSTwW7XjbKOyrQhVapUKcxP9n/u6TPLXGmSf+fPn5eLfmFVpbYST2Tfo6pd1keP
+HkVDgxUBNtjfdqhbty7qwcodm+0Kj9xc3f+ZUBdzxvmUerVOnTolH3gwzivGG6xa
+tWoYuXjxYlVVoZvR4RRiNH9y8ovzSDkFZsqUKaqqckvOCK1Tp46SZ3e7bgwLC8NI
+4xMadsdHuv38/NDkWFyez+SfPrPMlQ75h03yjE7CZmvYsKHCzXNzu3fvliMlV65c
+sf7Z9+3bZ/MM91pfkjCO//Xu3ds4Nqnc5cuXbY5vLXAeiSZe4Rm8q1atwrMHBgYq
+/24HdHuyPx9dsozBVnjlypUx8j//+Y/a2pwdO3bs0UcfRVWqjju4XTe2bdsWI7E1
+bIyR+VmvXj2Ly/OZ/NNnlrlSnn+Ik/bt29scl3tWvjfYcOnSpc8//9x5b97o0aNR
+ZHBwsKqS0Mr84aRXr142x0doFH6K1O6Uf5IuQ4YMUViMMznS5rzTpVu3bhgzffp0
+JfW0bNkSz/7uu+8qeXZnFy5cqFixos3xETe8av3795eYue+++4xEVKV27dovv/zy
+yJEj4+Li5BXEfFO1k8ztulF2Yj/22GPGlrqsvqxvnX0m//SZZYbt27fHOSCDUUlI
+SAiGX3vttVOnTllcyaRJk6SJady4cXsnqtZTIi0tDSXde++9sbGx7733Xps2bfLk
+yTjE9dlnnymsypna43/IFflGsav5N6dB2bJlUc/SpUuV1ONKFjG8dnLz5MmT6L3w
+Im7bts36Yn799Vc/Pz9/f3+1GyuGX375pUmTJvKWBtTWtGlTjFRd19VT5UWpUqXw
+Jrf+i+vM141nzpwpX7687JV9++235Vuiqlatmp6ebnGdPpN/+swyw7x581x3o2F5
+sP5jSWPGjDGWQ2d4w1lciTNscvbt21e+/FNg61iTg1tCvtxkxowZSp69c+fOpUuX
+xqa6LaayrWV5W4kCKKZFixZKinFr1apVfg5dunQZMGCA7N+LiopSUszAgQPx7Jhd
+Sp7dE0TL7t279+zZo9VBh6NHj27dulXhhsIN142pqakRERFy0mzhwoUbNWp05MgR
+6+v0mfyzazPL6Gah0cHSaH1bfENIaIXbTwsWLJAzKq8qmr9///66fWXP9OnTEdJS
+YIkSJXr37q3q2NuVK1fwYik/2Y2yEbYedu7cqfCEZ1/KP6F8lhFlI2zD2SZG2GbX
+1/Dz7wLBs89BdSFE2cz38o8oh9H2+1+IcjbmH5FizD8iJZh/RIox/4iUYP4RKYbk
+K5LYkflHZDHmH5FiSL7gZuMKzGl140mJKPsw/4gUu6vXv5B/+K26EKLchflHpBjC
+z5bYqWLH4QcPKfswIlEuxPwjUqnn6GTb4B4Z578M7oFh1eUQ5SLMPyKVMpq/ua0z
+8m9u6xrR49kCElmG+UekDBo+/6G9jM8/YJgtIJFlmH9Eyvyv+ZMftoBEFmL+EamR
+qfljC0hkMeYfkRqZmz+2gETWYv4RKeC2+WMLSGQl5h+RAu6bP7aARBZi/hFZzaT5
+YwtIZBnmH5HVzJo/toBEVmH+EVnqhs0fW0AiazD/iCx14+aPLSCRJZh/RNbJYvPH
+FpDIAsw/IutktfljC0jkfcw/IovcVPPHFpDI25h/RBa5ueaPLSCRlzH/iKxwC80f
+W0Air2L+EVnhVpo/toBE3sT8I/K6W27+2AISeQ/zj8jrbr35YwtI5DXMPyLvus3m
+jy0gkZcw/4i863abP7aARN7B/CPyomxp/tgCEnkD84/Ii7Kn+WMLSOQFzD8ib8nG
+5o8tIFG2Y/4ReUt2Nn9sAYmyG/OPyCuyvfljC0iUvZh/RF6R/c0fW0CibMX8I8p+
+Xmr+2AISZSPmH1H2Q/Pn7R+2gES3iflHRES5EfOPiIhyI+YfERHlRsw/It+Wlpa2
+devWjbcEf4g/V/0fEKnx/6DKl7H992nIAAAAAElFTkSuQmCC"/>
+</g>
+</g>
+</g>
+<g clip-path="url(#clip_12)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-224.15" x="227.65 233.75 236.52 241.52 247.08 251.51001 255.94 258.44 263.44 265.94 270.94">Figure 3.15</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-224.15" x="276 278.77 281.27 283.77 290.99 295.99 298.75999 301.25999 306.25999 309.02998 314.02998 316.79997 320.68998 323.18998 326.51997 331.51997 334.83995 337.33995 340.10993 347.32994 352.32994 354.82994 359.82994 363.1599 368.1599 373.1599 378.1599 382.04994">:  Dot plots for two groups.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-185" x="122.5 128.6 133.6 138.03 140.53 143.3 150.52 155.52 158.02 163.02 166.34001 171.34001 176.34001 181.34001 185.23001 187.73001 192.16 197.16 202.16 206.59 211.01999 214.34999 216.84999 221.84999 226.28 229.61 234.61 237.11 242.11 244.88 248.21 251.54001 255.97 259.3 263.72999 268.72999 271.49998 273.99998 276.76997 281.76997 284.26997 289.26997 294.26997 301.48997 303.98997 306.75996 311.75996 316.18995 321.18995 323.68995 328.11994 331.44993 335.8799 338.3799 343.3799 346.1499 350.03993 355.03993 359.4699 362.7899 366.6799 371.1099 376.1099 378.6099 381.1099 383.6099 390.8299 394.15989 399.15989 404.15989 409.15989 411.65989 416.65989 421.65989 424.15989 428.58988 433.58988 438.58988 443.01988 447.44987 450.77986 454.66987 457.16987 459.93986 464.93986 467.43986 472.43986 476.86985 479.36985 484.36985 488.79985 492.12983 497.12983">The two groups appear very different in how they are dispersed.  Group #1 appears to be very </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-173.45" x="122.5 126.39 131.39 134.72 139.15 143.57999 148.57999 151.07999 156.07999 161.07999 163.84999 166.34999 168.84999 176.06999 178.84 181.61 186.61 189.11 193.54001 196.31002 199.08002 201.58002 206.58002 211.01001 213.78002 218.21002 220.71002 224.03003 228.46002 231.79003 234.29003 237.61003 240.94004 245.94004 253.71004 256.21003 258.98 263.98 268.41 270.91 278.68 283.11 287.53999 292.53999 295.03999 300.66999 303.16999 308.16999 310.66999 313.16999 315.66999 322.33 327.33 330.09999 332.59999 335.36997 340.36997 344.79997 347.29997 352.29997 356.72996 359.49995 363.92994 366.42994 369.19993 374.19993 376.69993 383.91993 387.2499 392.2499 397.2499 402.2499 404.7499 409.7499 414.7499 417.2499 421.6799 426.6799 431.6799 436.1099 440.5399 443.86988 447.7599 450.2599 458.02989 463.02989 466.9199 469.68989 472.45988 477.45988 479.95988 484.38987 487.15986 492.15986 496.04988 498.81986 503.24986 506.57984 511.00984 516.0098">spread out, with all data far from the mean = 5.  But the data in Group #2 appears mostly clustered </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-161.9" x="122.5 126.93 130.25 135.25 140.25 145.25 150.25 152.75 155.52 160.52 164.95001 167.45001 175.22002 179.65003 184.08002 189.08002 191.58002 197.21002 199.71002 204.71002 207.21002 209.71002 214.14002 219.14002 223.57 228 233 235.77 238.27 241.59001 246.59001 249.92002 252.42002 255.19002 260.19 264.62 267.12 271.01 278.78 283.21 285.97999 288.74998 293.17997 297.06999 299.83998 302.33998 306.76997 311.76997 316.76997 319.26997 322.03996 326.46995 329.79994 334.79994 339.22993 343.11994 345.88993 348.38993 353.38993 357.81993 360.5899 365.5899 370.0199 373.9099 376.4099 378.9099 381.4099 388.6299 393.6299 398.0599 401.3899 405.8199 408.58988 411.35987 413.85987 416.35987 423.57987 426.89985 431.89985 436.89985 441.89985 444.39985 449.39985 454.39985 456.89985 459.66984 463.55986 466.05986 473.27986 476.04985 481.04985 485.47984 488.24983 493.24983">around the mean = 5, except for the smallest and largest values.  Overall, Group #1 is widely </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-150.35" x="122.5 127.5 130.27 134.16 139.16 143.59 146.92 150.81 155.23999 160.23999 162.73999 165.23999 172.45999 177.45999 180.23 183 187.43 189.93 197.15 200.47 205.47 210.47 215.47 217.97 222.97 227.97 230.47 233.24 237.13 239.63 244.06 246.83 251.83 255.72 260.15 262.91999 267.91999 270.41999 275.41999 278.73997 283.73997 288.73997 293.73997 298.16996 303.16996 305.66996 308.16996 310.66996 316.76997 321.76997 326.19996 328.69996 332.58998 335.35997 339.78996 342.55995 345.32994 349.21995 351.98994 354.75993 359.1899 363.07994 365.57994 368.9099 373.9099 377.2299 379.7299 387.49989 391.92988 396.35987 401.35987 403.85987 406.35987 414.12986 418.55986 423.55986 426.32984 430.75984 435.75984 438.25984 440.75984 445.18983 450.18983 455.18983 457.68983 461.0198 465.4498 470.4498 475.4498 479.8798 482.3798 487.3798 492.3798 494.8798 499.8798 504.8798 507.64979">dispersed, while Group #2 is closely grouped.  The statistics for mean, median, and range do not </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-138.8" x="122.5 125.83 130.26001 133.59001 136.36002 140.79001 145.22 147.99 150.49 153.26001 158.26001 162.69 165.19 170.19 172.96 176.29001 179.62001 184.05002 187.38002 191.81003 196.81003 201.24002 205.67002 208.17002 210.94002 215.94002 218.44002 221.21002 226.21002 230.64002 233.14002 238.14002 240.91002 244.80002 249.80002 254.23001 257.56 261.45 264.22 269.22 274.22 276.72 281.72 286.15 288.91999 291.68998 296.11997 299.44996 304.44996 308.33998 310.83998 313.33998 317.76997 322.76997 327.76997 330.26997 333.03996 338.03996 343.03996 346.92997 349.42997 354.42997 359.42997 361.92997 366.92997 371.92997 374.69996 377.19996 382.19996 386.62995 390.51997 394.94996 398.27995 401.04994 406.04994 410.47993 412.97993 415.7499 420.7499 425.1799 427.6799 432.6799 437.1099 439.87989 444.30989 446.80989 454.02989 458.45988 461.22987 463.99986 466.49986 470.92985 475.92985 480.92985 485.92985 490.92985 495.92985 498.42985 500.92985">reflect the difference in the dispersion patterns, and thus do not describe the data well enough.  </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-127.25" x="122.5 129.16 133.59 138.59 143.59 148.01999 150.51999 153.29 157.18 159.68 164.68 169.68 172.45 174.95 178.84 183.84 187.17 190.5 193.27 197.70001 200.47002 204.90003 209.90003 212.67003 215.17003 217.94004 222.94004 225.44004 230.44004 234.87003 238.76003 243.19004 246.51004 249.28005 254.28005 258.71006 261.21006 263.98005 268.98005 273.41004 275.91004 280.91004 285.34004 288.67 291.44 295.87 298.63999 301.40998 306.40998 311.40998 313.90998 318.90998 323.33998 327.76997 332.19996 337.19996 341.08998 345.51997 348.01997 350.78996 353.55995 356.05995 360.48994 365.48994 370.48994 374.37995 377.14994 382.14994 386.57994 389.9099 393.79994 396.29994 401.29994 406.29994 409.06993 414.06993 416.56993 419.3399 424.3399 428.7699 431.2699 436.2699 439.0399 444.0399 449.0399 453.46989 457.3599 460.12989 462.62989 467.05989 472.05989 477.05989 479.55989 482.32987 487.32987 494.54988 498.97987 502.86988 505.63987">Range is not sufficient to describe the variation because it considers only the highest and lowest </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-115.7" x="122.5 127.5 131.93 134.7 139.7 144.13 148.02 150.52 153.02 155.52 164.95001 169.38 171.88 176.88 181.31 185.73999 190.73999 193.23999 197.66999 200.16999 204.05998 206.82999 211.25998 214.02999 216.79999 220.68999 223.45999 226.23 230.66 233.16 235.93001 240.93001 245.36002 248.13002 250.63002 258.40003 262.83003 267.26 271.15003 276.15003 279.48 283.91 287.80003 290.30003 293.07 298.07 302.5">values.  We need a statistic that measures the </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-115.7" x="305.2 310.2 314.63 319.06 322.95 327.95 332.95">average</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-115.7" x="337.4 339.9 344.9 347.66999 351.56 354.33 358.75999 363.75999 368.18998 372.61997 375.11997 378.43995 381.76994 386.76994 394.53993 397.03993 399.8099 404.8099 409.2399 411.7399 419.5099 423.93989 428.36988 433.36988 435.86988 438.36988 442.79988 447.79988 452.79988 456.68989 459.45988 464.45988 468.88987 472.20985 474.97984 479.97984 484.97984 487.47984 491.90983 494.6798 497.4498 499.9498 502.7198 507.7198 512.1498"> distance from the mean, considering all the </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-104.15" x="122.5 127.5 131.93 134.7 139.13 141.63 146.63 151.06 153.83 158.83 163.26001 167.15001 169.65001 172.15001 177.15001 182.15001 184.92002 187.42002 190.19002 195.19002 199.08002 201.85002 204.35002 207.12003 212.12003 216.55002 219.05002 224.05002 226.82003 231.82003 236.82003 241.25003 245.14003 247.91004 250.41004 254.84003 259.84004 264.84004 267.34004 270.11003 275.11003 282.33003 286.76 290.65003 293.42">data values, not just the highest and lowest.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-90.75" x="482.5"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-90.75" x="485"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-63.15" x="86.5 95.164 101.164 106.48 109.804 115.804 122.476 127.792 133.108 136.108 142.108 148.78 155.452 158.452 165.124 169.12 175.12 181.79199 188.46399 194.46399 199.77999 206.45198 209.45198 218.11598 223.43198 229.43198 232.75598 238.75598 242.75199 246.07599 252.07599">Variance and Standard Deviation</tspan></text>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M171.9 646.65H455.35"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.1 646.9V632.35"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.35 632.6H171.9"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M172.15 632.35V646.9"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M171.9 541.35H455.35"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.1 541.6V527.05"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.35 527.3H171.9"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M172.15 527.05V541.6"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M171.9 646.65H455.35"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.1 646.9V632.35"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.35 632.6H171.9"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M172.15 632.35V646.9"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M171.9 541.35H455.35"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.1 541.6V527.05"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M455.35 527.3H171.9"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M172.15 527.05V541.6"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M119.35 389.4H88.35V444.2H150.35V389.4H119.35Z" fill="#e6d5ff" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M119.35 389.4H88.35V444.2H150.35V389.4H119.35Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-432.2" x="95.65 102.148 105.145008 109.645008 114.145008 118.645008 120.895008 125.395008">Group #1</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-421.85" x="95.65 103.651 107.638 111.625 116.125 118.375 123.442 125.692">Mean = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-411.5" x="95.65 103.651 107.638 112.138 114.631 118.618 123.118 125.368 130.435 132.685">Median = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-401.15" x="95.65 101.644008 105.631008 110.131008 114.631008 118.618007 120.868007 125.935009 128.185 132.685">Range = 10</tspan></text>
+<g clip-path="url(#clip_13)">
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" d="M119.9 278.8H88.9V333.6H150.9V278.8H119.9Z" fill="#e6d5ff" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-85.34999,447.2)" stroke-width=".5" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M119.9 278.8H88.9V333.6H150.9V278.8H119.9Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-321.6" x="96.2 102.698 105.695 110.195 114.695 119.195 121.445 125.945">Group #2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-311.25" x="96.2 104.201 108.187999 112.174999 116.674999 118.924999 123.992 126.242">Mean = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-300.9" x="96.2 104.201 108.187999 112.687999 115.181 119.168 123.668 125.918 130.985 133.235">Median = 5</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-290.55" x="96.2 102.194 106.181 110.681 115.181 119.168 121.418 126.485 128.735 133.235">Range = 10</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -85.34999 447.2)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-38.15" x="86.5 91.5 96.5">111</tspan></text>
+</g>
+</g>
+</svg>

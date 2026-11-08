@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>2.3 Misleading Graphical Representations of Data</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;700&display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:11px/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+.math{font-style:italic;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;line-height:1.15;margin:0 .1em}
+.frac .num{border-bottom:1px solid currentColor;padding:0 .2em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/</style>
+<style>img.comic{width:min(950px,calc(100vw - 32px))!important;max-width:none;display:block;position:relative;left:50%;transform:translateX(-50%)}p.comic-p{padding-left:0!important;text-indent:0!important}</style></head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-1/index.html" title="Unit 1: Data and Descriptive Statistics">Unit 1</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 2: Visual Representation of Data</a></nav><span class="where">Section 2.3</span><a class="toollink" href="https://claude.ai/artifact/WfhvAi4DrvAfng2nuLtwmv" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span id="s23"></span><span class="b" style="font-size:1.4em">Section 2.3: Misleading Graphical </span><span class="b" style="font-size:1.4em">Representations</span><span class="b" style="font-size:1.4em"> of Data</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Identify and describe misleading and deceptive graphs and graphics.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#EAF1DD"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Just as with any statistic, graphs can sometimes be misleading.  The following section will provide a few examples of the common misleading graphs and give you the means to judge them.  Hopefully you will gain insight into how graphs can deceive, intentionally or unintentionally, and you will avoid being misled by graphical misrepresentations of data.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Most often, graphs are made to be misleading by mismanaging the scales of the axes or leaving large amounts of the scale unseen.  </p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 1</span><span class="b" style="color:#FFFFFF">:  The Vertical Axis</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The data in </span><span class="b" style="background:#DBE5F1">Table 12</span><span style="background:#DBE5F1"> shows the number of associate degrees awarded by community colleges in the United States in the last year before the COVID pandemic and the first year during the pandemic when most institutions adopted online learning.  The bar graph in </span><span class="b" style="background:#DBE5F1">figure 2.2</span><span class="b" style="background:#DBE5F1">8</span><span style="background:#DBE5F1"> displays the information from the table in a misleading way.  What is misleading about this graph?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<div class="tblwrap center"><table class="wt"><tr><th scope="colgroup" colspan="2" style="background:#E7E6E6;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000000"><p><span class="b" style="color:#C00000">Table 12</span>: Associate Degrees Awarded (in thousands)</p></th></tr><tr><th scope="col" style="border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">School Year</p></th><th scope="col" style="border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">Degrees Awarded</p></th></tr><tr><td style="border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:0;border-right:1.0px solid #000"><p style="text-align:center">2018 - 2019</p></td><td style="border-top:1.0px solid #000;border-left:0;border-bottom:0;border-right:1.0px solid #000"><p style="text-align:center">1,037</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">2019 - 2020</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000"><p style="text-align:center">981</p></td></tr></table></div>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="wchart" style="max-width:363px"><svg viewBox="0 0 360 330" role="img" aria-label="Misleading bar graph for the number of degrees awarded prior to and during Covid." xmlns="http://www.w3.org/2000/svg" font-family="&quot;Times New Roman&quot;,Tinos,serif"><title>Misleading bar graph for the number of degrees awarded prior to and during Covid.</title><rect x="0" y="0" width="360" height="330" fill="#fff" stroke="#d9d9d9"/><text x="180.0" y="24" text-anchor="middle" font-size="15" fill="#595959">Number of Associate Degrees Awarded,</text><text x="180.0" y="42" text-anchor="middle" font-size="15" fill="#595959">in Thousands</text><line x1="70" x2="345" y1="270.0" y2="270.0" stroke="#d9d9d9"/><text x="64" y="274.0" text-anchor="end" font-size="11" fill="#595959">950.00</text><line x1="70" x2="345" y1="249.0" y2="249.0" stroke="#d9d9d9"/><text x="64" y="253.0" text-anchor="end" font-size="11" fill="#595959">960.00</text><line x1="70" x2="345" y1="228.0" y2="228.0" stroke="#d9d9d9"/><text x="64" y="232.0" text-anchor="end" font-size="11" fill="#595959">970.00</text><line x1="70" x2="345" y1="207.0" y2="207.0" stroke="#d9d9d9"/><text x="64" y="211.0" text-anchor="end" font-size="11" fill="#595959">980.00</text><line x1="70" x2="345" y1="186.0" y2="186.0" stroke="#d9d9d9"/><text x="64" y="190.0" text-anchor="end" font-size="11" fill="#595959">990.00</text><line x1="70" x2="345" y1="165.0" y2="165.0" stroke="#d9d9d9"/><text x="64" y="169.0" text-anchor="end" font-size="11" fill="#595959">1,000.00</text><line x1="70" x2="345" y1="144.0" y2="144.0" stroke="#d9d9d9"/><text x="64" y="148.0" text-anchor="end" font-size="11" fill="#595959">1,010.00</text><line x1="70" x2="345" y1="123.0" y2="123.0" stroke="#d9d9d9"/><text x="64" y="127.0" text-anchor="end" font-size="11" fill="#595959">1,020.00</text><line x1="70" x2="345" y1="102.0" y2="102.0" stroke="#d9d9d9"/><text x="64" y="106.0" text-anchor="end" font-size="11" fill="#595959">1,030.00</text><line x1="70" x2="345" y1="81.0" y2="81.0" stroke="#d9d9d9"/><text x="64" y="85.0" text-anchor="end" font-size="11" fill="#595959">1,040.00</text><line x1="70" x2="345" y1="60.0" y2="60.0" stroke="#d9d9d9"/><text x="64" y="64.0" text-anchor="end" font-size="11" fill="#595959">1,050.00</text><rect x="115.4" y="88.0" width="46.8" height="182.0" fill="#4472C4"/><text x="138.8" y="286" text-anchor="middle" font-size="11" fill="#595959">2018 - 2019</text><rect x="252.9" y="204.9" width="46.8" height="65.1" fill="#4472C4"/><text x="276.2" y="286" text-anchor="middle" font-size="11" fill="#595959">2019 - 2020</text><text x="207.5" y="316" text-anchor="middle" font-size="12" fill="#595959">School Year</text></svg></span></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.2</span><span class="b">8</span>: Associate Degrees Awarded 2019 and 2020</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span></span>It is true that more degrees were awarded during the 2018 – 2019 school year.  It appears from the bar graph that there were more than twice as many degrees awarded that year as during the 2019 – 2020 school year.  But is that correct?  The numbers of degrees dropped from 1037 (which really means 1,037,000 degrees) down to 981 (or 981,000 degrees).  That is a drop of 56,000 degrees.  As a percent, that is a drop of only 5.4%.  So why does the small drop look so large in the graph?  The problem is that the bars are not in proportion because the vertical axis does not start at zero.  The vertical axis begins at 950, so everything lower has been ignored.  The result is we see only the top of the bars, and small differences are magnified.  A bar graph of the data made using STATBELT Utility is shown in figure 2.29.  On that graph you can see that the bars are not as dramatically different as suggested by figure 2.28.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<div class="fig-pair"><figure class="fig-cell"><p><span class="b">Figure 2.2</span><span class="b">8</span>: Associate Degrees Awarded 2019 and 2020.</p>
+
+
+<p><span class="wchart" style="max-width:333px"><svg viewBox="0 0 360 330" role="img" aria-label="Misleading bar graph for the number of degrees awarded prior to and during Covid. Callouts: the vertical axis starts at 950, not zero, so the bars are not proportional." xmlns="http://www.w3.org/2000/svg" font-family="&quot;Times New Roman&quot;,Tinos,serif"><title>Misleading bar graph for the number of degrees awarded prior to and during Covid. Callouts: the vertical axis starts at 950, not zero, so the bars are not proportional.</title><rect x="0" y="0" width="360" height="330" fill="#fff" stroke="#d9d9d9"/><text x="180.0" y="24" text-anchor="middle" font-size="15" fill="#595959">Number of Associate Degrees Awarded,</text><text x="180.0" y="42" text-anchor="middle" font-size="15" fill="#595959">in Thousands</text><line x1="70" x2="345" y1="270.0" y2="270.0" stroke="#d9d9d9"/><text x="64" y="274.0" text-anchor="end" font-size="11" fill="#595959">950.00</text><line x1="70" x2="345" y1="249.0" y2="249.0" stroke="#d9d9d9"/><text x="64" y="253.0" text-anchor="end" font-size="11" fill="#595959">960.00</text><line x1="70" x2="345" y1="228.0" y2="228.0" stroke="#d9d9d9"/><text x="64" y="232.0" text-anchor="end" font-size="11" fill="#595959">970.00</text><line x1="70" x2="345" y1="207.0" y2="207.0" stroke="#d9d9d9"/><text x="64" y="211.0" text-anchor="end" font-size="11" fill="#595959">980.00</text><line x1="70" x2="345" y1="186.0" y2="186.0" stroke="#d9d9d9"/><text x="64" y="190.0" text-anchor="end" font-size="11" fill="#595959">990.00</text><line x1="70" x2="345" y1="165.0" y2="165.0" stroke="#d9d9d9"/><text x="64" y="169.0" text-anchor="end" font-size="11" fill="#595959">1,000.00</text><line x1="70" x2="345" y1="144.0" y2="144.0" stroke="#d9d9d9"/><text x="64" y="148.0" text-anchor="end" font-size="11" fill="#595959">1,010.00</text><line x1="70" x2="345" y1="123.0" y2="123.0" stroke="#d9d9d9"/><text x="64" y="127.0" text-anchor="end" font-size="11" fill="#595959">1,020.00</text><line x1="70" x2="345" y1="102.0" y2="102.0" stroke="#d9d9d9"/><text x="64" y="106.0" text-anchor="end" font-size="11" fill="#595959">1,030.00</text><line x1="70" x2="345" y1="81.0" y2="81.0" stroke="#d9d9d9"/><text x="64" y="85.0" text-anchor="end" font-size="11" fill="#595959">1,040.00</text><line x1="70" x2="345" y1="60.0" y2="60.0" stroke="#d9d9d9"/><text x="64" y="64.0" text-anchor="end" font-size="11" fill="#595959">1,050.00</text><rect x="115.4" y="88.0" width="46.8" height="182.0" fill="#4472C4"/><text x="138.8" y="286" text-anchor="middle" font-size="11" fill="#595959">2018 - 2019</text><rect x="252.9" y="204.9" width="46.8" height="65.1" fill="#4472C4"/><text x="276.2" y="286" text-anchor="middle" font-size="11" fill="#595959">2019 - 2020</text><text x="207.5" y="316" text-anchor="middle" font-size="12" fill="#595959">School Year</text><defs><marker id="ah228" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#C00000"/></marker></defs><ellipse cx="42" cy="270" rx="31" ry="11" fill="none" stroke="#C00000" stroke-width="2.5"/><line x1="24" y1="304" x2="32" y2="285" stroke="#C00000" stroke-width="1.8" marker-end="url(#ah228)"/><text x="4" y="322" font-size="19" font-weight="700" fill="#C00000" stroke="#fff" stroke-width="4" paint-order="stroke">Not zero!</text><text x="226" y="100" font-size="19" font-weight="700" fill="#C00000" stroke="#fff" stroke-width="4" paint-order="stroke">Bars are not</text><text x="226" y="121" font-size="19" font-weight="700" fill="#C00000" stroke="#fff" stroke-width="4" paint-order="stroke">proportional!</text><line x1="222" y1="94" x2="168" y2="90" stroke="#C00000" stroke-width="1.8" marker-end="url(#ah228)"/><line x1="276" y1="130" x2="276" y2="196" stroke="#C00000" stroke-width="1.8" marker-end="url(#ah228)"/></svg></span></p>
+</figure><figure class="fig-cell"><p><span class="b">Figure 2.2</span><span class="b">9</span>:  A reasonable bar graph for the data in <span class="b">Table 12</span>.</p>
+
+
+<p><img src="images/tk_fig2_29_degrees_ann.png" alt="Bar graph of associate degrees awarded made with STATBELT Utility; the vertical axis starts at zero and the bars are proportional." style="width:343px" class=""></p>
+</figure></div>
+<div class="after-figure" aria-hidden="true"></div><p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">Because the vertical axis now has a scale staring with zero, the two bars are proportionally accurate.  There are still more degrees awarded in the year prior to the pandemic, but the difference is far less than the original graph suggested.</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image32.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(4.05*var(--u));background:#7030A0"><span style="color:#FFFFFF">Important Point!  Bar graphs, Histograms, and the Vertical Axis</span></h3>
+<p style="padding-left:calc(4.05*var(--u));background:#E3D8EF">It is important to use <span class="b">zero </span>on the<span class="b"> vertical scale</span> of any bar graph or histogram to keep the bars proportional.  This allows you to fairly represent and interpret the differences in frequency (or relative frequency) between the categories.  </p>
+<p class="empty" style="padding-left:calc(4.05*var(--u));background:#E3D8EF"></p>
+<p style="padding-left:calc(4.05*var(--u));background:#E3D8EF">Also, the vertical axis must use <span class="b">correct scaling</span>.  That means the increments marked on the vertical axis must be marked with equally spaced tick-marks.  Failure to use correct spacing allows bars to appear out of proportion to the data.</p>
+<p class="empty" style="padding-left:calc(4.05*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 2</span><span class="b" style="color:#FFFFFF">:  The Vertical Axis </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">What is misleading about the graph shown in </span><span class="b" style="background:#DBE5F1">figure 2.</span><span class="b" style="background:#DBE5F1">30</span><span style="background:#DBE5F1">, the crime rate per 100 thousand people from 1990 to 2018?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image63.png" alt="Time series plot for crime rate without a proper vertical axis." style="width:445px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">30</span>: Crime rate per 100 thousand people.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(2.25*var(--u)))"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:  </span>This time-series plot suffers from the same problem as the previous bar graph.  The vertical axis on this graph does not include zero.  This causes the changes in height to appear more drastic.  It appears that there was nearly no crime in 2014, at least compared to 1991.  But although the rate was lower, it was not as dramatically low as it appears in this graph.  <span class="b">Figure 2.</span><span class="b">3</span><span class="b">1</span> is a corrected version of the same time-series plot.  Comparing, you can see that <span class="b">figure 2.</span><span class="b">3</span><span class="b">1</span> is flatter and does not exaggerate the crime rate differences.  The crime rate in 2014 correctly appears to be around half the rate of 1991, instead of 10% of it, as it appeared in the first plot.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(2.25*var(--u))"><img src="images/image64.png" alt="Time series plot for crime rate with a proper vertical axis." style="width:424px" class=""></p>
+<p style="text-align:center;padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(2.25*var(--u)))"><span class="b">Figure 2.3</span><span class="b">1</span>: Crime rate per 100 thousand people with corrected vertical axis scale.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 3</span><span class="b" style="color:#FFFFFF">:  An Unlabeled Bar Graph </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">What is misleading about the bar graph in </span><span class="b" style="background:#DBE5F1">figure 2.</span><span class="b" style="background:#DBE5F1">3</span><span class="b" style="background:#DBE5F1">2</span><span style="background:#DBE5F1">?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image65.png" alt="An unlabeled bar graph." style="width:550px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.3</span><span class="b">2</span>: A problematic bar graph.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:</span>Can you guess what this bar graph represents?  The bars are not labeled, so we can tell that the tallest bar is taller than the others, but what does each bar stand for?  The vertical axis is labeled, but we don’t even know what the vertical axis represents.  Is it percentages?  Frequency?  There is no way to know.  This graph is useless!</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 4</span><span class="b" style="color:#FFFFFF">:  The Vertical Axis </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">What is wrong with the bar graph in </span><span class="b" style="background:#DBE5F1">figure 2.3</span><span class="b" style="background:#DBE5F1">3</span><span style="background:#DBE5F1">?  The bars represent top issues of concern among Americans evaluating the performance of the President.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image66.png" alt="A bar graph with a badly proportioned vertical scale." style="width:472px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.3</span><span class="b">3</span>: Issues Americans identify as most important in evaluating the President.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:</span>Look at the vertical scale.  Is it marked properly?  It appears that the increment between 7 and 10 is the same as the increment between 10 and 28.  And the largest increment is between 6 and 7.  In short, the scale has been incorrectly marked.  Why would someone do that?  Most statistical software will automatically create graphs that have correct scales and are proportional.  Making misleading graphs takes effort, so you should assume that the creator is attempting to deceive you.  In this case, the creator wanted to minimize the impact of the economy and deemphasize the category for “Inequality”.  A properly scaled version is shown in <span class="b">figure 2.3</span><span class="b">4</span>.  The corrected bar graph (it’s a Pareto chart) contains two additional categories not present in the original graph.  </p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image67.png" alt="A bar graph with a corrected vertical scale." style="width:599px" class=""></p>
+<p style="padding-left:calc(9*var(--u))"><span class="b">Figure 2.3</span><span class="b">4</span>: Issues Americans identify as most important in evaluating the President, with proper vertical scale.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 5</span><span class="b" style="color:#FFFFFF">:  No Vertical Axis </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">What is misleading about the bar graph in </span><span class="b" style="background:#DBE5F1">figure 2.3</span><span class="b" style="background:#DBE5F1">5</span><span style="background:#DBE5F1">?  The data are from the Real College Survey conducted by the Hope Center. The data reports the percent of each racial or ethnic group that suffers from marginal or high levels of food insecurity.  </span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image68.png" alt="A bar graph with no vertical axis." style="width:561px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.3</span><span class="b">5</span>: Percent of ethnic groups that suffer from marginal or high levels of food insecurity.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:  </span>Here, there is no vertical axis.  We can see that the tallest bars are for Black or African American and American Indian or Alaskan Native, but how much taller are they than the others?  Did the vertical axis start at zero?  What was the scale factor?  Was it 1% between the horizontal lines, or 20%?  There is no way to correctly interpret this graph.  Using the data from the Hope Center, a corrected graph is shown in <span class="b">figure 2.3</span><span class="b">6</span>.  Notice that the original vertical scale did not include zero, so differences between categories were magnified in the first graph.</p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image69.png" alt="A corrected bar graph with a vertical axis." style="width:631px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.3</span><span class="b">6</span>: Percent of ethnic groups that suffer from food insecurity.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 6</span><span class="b" style="color:#FFFFFF">:  Horizontal Axis </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">What is misleading about the graph in </span><span class="b" style="background:#DBE5F1">figure 2.3</span><span class="b" style="background:#DBE5F1">7</span><span style="background:#DBE5F1">? The data represent the median cost of a single-family home in the United States.</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image70.png" alt="Bar graph with a badly proportioned horizontal axis." style="width:489px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.3</span><span class="b">7</span>: Median price of a single-family home in the US.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:</span>Look at the horizontal scale.  It appears to be a time-series plot using bars, but the times are not equally spaced.  The horizontal categories increase from October 2002 to January 2003 (three months) but then jump to June 2011, a jump of 8.5 years.  Then there are several measurements from 2012 through 2014, and then a 7-year gap to 2021.  The data were “cherry-picked” to make it appear that housing prices had been stable for many years, until they suddenly spiked in 2021 and 2022.  Had data been included between 2014 and 2021, the jump would not have looked so sudden.  <span class="b">Figure 2.3</span><span class="b">8</span> is a correctly scaled time series plot for the median home price since 2012.  You can see that the prices have increased, but the spike was not as severe or sudden as it was dramatically shown in the first misleading graph.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image71.png" alt="A corrected graph with proportional horizontal axis." style="width:480px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.3</span><span class="b">8</span>: Median price of a single-family home in the US.  Source: DQYDJ</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image32.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(4.05*var(--u));background:#7030A0"><span style="color:#FFFFFF">Important Point!  Histograms and Time-Series Plots and the Horizontal Axis</span></h3>
+<p style="padding-left:calc(4.05*var(--u));background:#E3D8EF"><span class="b">Histograms</span> and <span class="b">time-series plots</span> must have correctly spaced <span class="b">horizontal axes</span>.  That means the increments marked on the horizontal axis must be marked with equally spaced tick-marks.  Failure to use correct spacing will distort the distribution or trend in the data.</p></div>
+<p style="padding-left:calc(3.6*var(--u))">Another common problem with graphs involves pie charts.  Occasionally, a pie chart will have percentages that are either not proportional, or do not add up to 100%.  Consider the following examples.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 7</span><span class="b" style="color:#FFFFFF">:  Bad Pie Chart Proportions</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The pie chart in </span><span class="b" style="background:#DBE5F1">figure 2.3</span><span class="b" style="background:#DBE5F1">9</span><span style="background:#DBE5F1"> displays subjects “favorite super-hero movie franchise”.  What is misleading about the pie chart?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image72.png" alt="A misleading pie chart with slices that are not in proportion." style="width:265px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.3</span><span class="b">9</span>:   Favorite Super-Hero Movie Franchise.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution:</span>  </span>At first glance, the observer would think that Spiderman was the most popular franchise because the dark blue sector of the pie is the largest.  But 22% should be less than one-fourth of the pie, so that sector is drawn much too large.  In fact, Batman had a popularity of 32%, which should have been the largest sector.  Instead, it is not only smaller than Spiderman, but appears to be less then 25% of the pie as drawn.  Ironman and Superman had very close percentages at 17% and 18%, but the slice of pie for Iron Man far more than 1% larger.  The slices total 100%, but the sectors are out of proportion.  Thankfully, STATBELT Utility will create the correct sizes of pie slices without you needing to do anything.  Figure 2.40 is a graph with the same data created using STATBELT Utility.  The colors are different, but the proportions are correct.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(5.4*var(--u))"><img src="images/tk_fig2_40_superhero_pie.png" alt="Pie chart of favorite superhero movie franchise made with STATBELT Utility, with correctly proportioned slices." style="width:539px" class=""></p>
+<p class="kv" style="padding-left:calc(5.4*var(--u) + 6.5em);text-indent:-6.5em"><span class="kvl"><span class="b">Figure 2.40:</span> </span>Favorite Super-Hero Movie Franchise by STATBELT Utility.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">Another common mistake some make is to treat a bar graph as a pie chart.  This is a remake of a famous example from FOX News.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 8</span><span class="b" style="color:#FFFFFF">:  FOX News famous Pie Chart </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">This graph in </span><span class="b" style="background:#DBE5F1">figure 2.</span><span class="b" style="background:#DBE5F1">4</span><span class="b" style="background:#DBE5F1">1</span><span style="background:#DBE5F1"> was made </span><span style="background:#DBE5F1">to replicate</span><span style="background:#DBE5F1"> a famous FOX News pie chart.  The original chart displayed the three leading candidates for the Republican nomination for President in 2012.  The question asked republican voters to check the names of candidates they would support if they were to win the nomination.  What is misleading (or frankly just plain wrong) with this graph?  (This graph is not the original, produced by FOX News and Opinions Dynamic.  Search the internet for “misleading graphs” and this will usually show up as a top hit).</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image74.png" alt="A pie chart that has slices that add to more than 100%." style="width:539px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.</span><span class="b">4</span><span class="b">1</span>: Remake of a famous FOX News graphic.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:</span>This graph attempted to force data that was appropriate for a bar graph into a pie chart.  The problem was that the responders were able to select more than one option.  A pie chart can only be used if the sectors of the pie do not overlap.  In this case, there were many responders who would have supported all three candidates.  So, a bar graph would have been a better choice to display the data.  Instead, they created a pie chart that, instead of adding to 100% (as any reasonable pie chart should), instead totals 193%.</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image32.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(4.05*var(--u));background:#7030A0"><span style="color:#FFFFFF">Important Point!  Pie Charts</span></h3>
+<p style="padding-left:calc(4.05*var(--u));background:#E3D8EF"><span class="b">Pie Charts</span> can only be used to show <span class="b">qualitative data</span> with no overlapping categories.  The area of the sectors, or slices, must be proportional to the size of the categories.  The total of all percentages should be 100%.</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Finally, you should always be wary of <span class="b">Pictographs</span>.  A pictograph is a picture, intended to be partly entertainment, but that includes numerical information.  The intent of a pictograph is not to convey meaningful relationships between categories, but instead to make cute eye-grabbing pictures that will get your attention.  Occasionally, they may be created to hide or magnify the importance of a category, idea, or factor.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 9</span><span class="b" style="color:#FFFFFF">:  A Pictograph </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The illustration in </span><span class="b" style="background:#DBE5F1">figure 2.</span><span class="b" style="background:#DBE5F1">4</span><span class="b" style="background:#DBE5F1">2</span><span style="background:#DBE5F1"> displays data obtained from The American Association of Orthopedic Surgeons.  They did not produce this graphic.  What is misleading about this pictograph?  </span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image75.png" alt="Pictogram using crutches as bars for orthopedic injuries." style="width:445px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Figure 2.</span><span class="b">4</span><span class="b">2</span>: Pictograph of top orthopedic injuries in children requiring hospitalization.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:</span>It’s a cute picture, right?  Using crutches for the bars gives the sense that it is like a bar graph.  But does the bar include the handle, or just the shaft?  It’s difficult to tell.  Regardless, the lengths of the crutches are drawn, one would suppose, to make the picture more attractive to the eye.  There is no scale provided, so we can’t use the length of the crutches to compare the injury categories.  For instance, the crutch for spinal injuries at 5.2% looks like it is too long.  Two of them placed end-to-end should result in a crutch that is 10.4% long.  But that would appear to be longer than the crutch for thighbone which is 21.7%.  How can 10.4% be more than 21.7%?  It can look that way if you don’t use a scale!</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<figure class="brace-fig" style="max-width:451px"><img src="images/image76.png" alt="Illustration of how the crutches are out of proportion."><svg class="hbrace" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M2,2 Q2,20 60,20 L470,20 Q500,20 500,38 Q500,20 530,20 L940,20 Q998,20 998,2" fill="none" stroke="#4472C4" stroke-width="3" vector-effect="non-scaling-stroke"/></svg><div class="brace-note"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Two of the spinal crutches should measure 10.4%, but that appears longer than 21.7% for thighbone injuries.</span></p>
+</div></figure><p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u))">Also, note that the percentages add up to 80.1%, leaving 19.9% of childhood injuries requiring hospitalization unstated.  In other words, all other injuries add up to more than all but two of the categories in the graph.  This not so much misleading as incomplete.</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(3.6*var(--u))">If a devious person wanted to suppress scales to increase the importance of a small quantity or idea, or to decrease the importance of a large quantity or idea, the use of a pictograph is a perfect solution.  Scales are not required or expected, so the creator can make small things as large as they wish or make large things as small as they wish.  As a result, you should never trust the graphic nature of a pictograph.  The numbers may be accurate, but the graph is usually meaningless, if not misleading.</p>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image32.svg" alt="" style="width:72px" class=""></p></div></div><p class="empty"></p>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(4.05*var(--u));background:#7030A0"><span style="color:#FFFFFF">Important Point!  Pictographs</span></h3>
+<p style="padding-left:calc(4.05*var(--u));background:#E3D8EF"><span class="b">Pictographs</span> are types of charts that use images to convey data.  The images are generally not displayed using correct proportions.  They are created to grab the attention of the reader by creating an eye-grabbing and pleasing but potentially misleading picture.</p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Additionally, it is important to watch out for pictographs that use enlarged two or three-dimensional pictures to represent a linear relationship.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example 10</span><span class="b" style="color:#FFFFFF">:  A Pictograph using Wolf Pictures </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">The illustration in </span><span class="b" style="background:#DBE5F1">figure 2.4</span><span class="b" style="background:#DBE5F1">3</span><span style="background:#DBE5F1"> displays data tracking the </span><span style="background:#DBE5F1">gray </span><span style="background:#DBE5F1">wolf population in the Greater Yellowstone National Park region.  What is misleading about this pictograph?  (The data source is the </span><a href="https://www.nps.gov/yell/learn/nature/wolves.htm" target="_blank" rel="noopener"><span style="background:#DBE5F1">National Park Service wolf page</span><span class="vh"> (opens in a new tab)</span></a><span style="background:#DBE5F1">.</span><span style="background:#DBE5F1">  </span><span style="background:#DBE5F1">They did not produce this graphic.</span><span style="background:#DBE5F1">)</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image77.png" alt="Pictograph using pictures of a wolf that is out of proportion." style="width:423px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 2.4</span><span class="b">3</span>: Pictograph of the Gray Wolf population in Greater Yellowstone National Park.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"><span class="hang" style="min-width:calc(5.4*var(--u))"><span class="b">Solution</span>:</span>The graphic provides a vertical scale, showing the population in 2002 at approximately 264.  In 2015, the population is approximately 528, or exactly double.  The graphic has doubled the height, but the picture is 3-dimensional.  The wolf from 2015 is twice as tall as the wolf from 2002 but would be about 8 times the volume because it is also twice as wide and twice as deep.  If the smaller wolf weighed 10 pounds, the larger would weigh 80 pounds.  Even though we don’t think that when we view the image, we tend to <span class="i">feel </span>it.  That is how these types of graphs can mislead.  The use of the wolf picture instead of a simple bar graph is attractive but makes the increase in population appear to be <span class="i">more</span> than doubled.  A time-series graph or even a bar graph, shown in <span class="b">figure</span><span class="b">s</span><span class="b"> 2.4</span><span class="b">4</span><span class="b"> and 2.4</span><span class="b">5</span> would fix the problem.  But they aren’t as cute!</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image78.png" alt="Time series plot for the gray wolf population." style="width:454px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Figure 2.4</span><span class="b">4</span>: Time-series plot of the Gray Wolf population in Greater Yellowstone National Park.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image79.png" alt="Bar graph for the gray wolf population." style="width:447px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="b">Figure 2.4</span><span class="b">5</span>: Bar graph of the Gray Wolf population in Greater Yellowstone National Park.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p class="comic-p"><img src="images/image80.jpg" alt="The Adventures of Stat-Man and Data! Episode 2: Stat-Man and Data versus… Bar Graphs, Proportions, and Popularity! (A text version follows the comic.)" style="width:863px" class="comic">
+<details class="transcript"><summary>Text version of the comic</summary><p class="tr-title">The Adventures of Stat-Man and Data! Episode 2: Stat-Man and Data versus… Bar Graphs, Proportions, and Popularity!</p><p><b>Caption:</b> Recently, at the Fortress of Statitude, our stalwart hero made a startling announcement!</p><p><b>Stat-Man:</b> I’ve just compiled the results of the most recent popularity survey, and guess what?</p><p><b>Data:</b> What?</p><p><b>Stat-Man:</b> I’m just as popular as Batman!!!</p><p><b>Data:</b> That doesn’t sound right.</p><p><b>Stat-Man:</b> Well, nearly as popular anyway.</p><p><b>Data:</b> Yeah, don’t think so.</p><p><b>Stat-Man:</b> As popular as Robin?</p><p><b>Data:</b> Sorry, no.</p><p>Stat-Man points to a bar graph on an easel. Its vertical axis starts at 10 and jumps straight to 137,000. The bars for “Statman” (14) and “Batman” (137,248) look the same height.</p><p><b>Stat-Man:</b> Well I’ll prove it! See this amazing chart I made? It definitely suggests that I’m just as popular as the Dark Knight! See? Look at the bars!!!</p><p><b>Data:</b> Hold on… there’s something wrong with your vertical axis.</p><p><b>Stat-Man:</b> But… but… look at the bars! See? My bar is just as tall! See?</p><p><b>Data:</b> Here, I’ll fix it for you.</p><p><b>Stat-Man:</b> No, that’s okay…</p><p>Data scribbles on the chart (SCRIBBLE SCRIBBLE). Data: Add some proper scaling…</p><p><b>Stat-Man:</b> Uh… hey… no, I like it how it is!</p><p>The redrawn graph has a proper scale from 10 to 137K. Batman’s bar (137,248) is tall; Statman’s bar (14) is a tiny sliver at the bottom.</p><p><b>Stat-Man:</b> Hey, you made me look unpopular!</p><p><b>Data:</b> Can’t blame me for that! Besides, it’s actually worse than you think. I had to enlarge your bar so it could be seen!</p><p><b>Stat-Man:</b> Sunuva– well that’s just great.</p><p>END (Signed Terrill Mead, 2022)</p></details></p>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="section-2-2.html"><small>Previous</small>2.2 Tables and Graphs for Quantitative Data</a><a class="next" href="index.html"><small>Back to</small>Chapter 2 home</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+</body></html>
