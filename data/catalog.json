@@ -1,0 +1,176 @@
+[
+ {
+  "id": "pizza",
+  "title": "Favorite pizza",
+  "sections": [
+   "2.1"
+  ],
+  "sheet": "1-504-cGkAVH5kOvwMsFBW-jnBvwpK5-9D5YWqB-2VXQ",
+  "file": "data/pizza.csv",
+  "short": "d/pizza/"
+ },
+ {
+  "id": "vaccination",
+  "title": "Vaccination status and ethnicity",
+  "sections": [
+   "2.1"
+  ],
+  "sheet": "1JgrywANKE8-_FHrbg70DOp-Ur2iAopb8nekOa50x7Tc",
+  "file": "data/vaccination.csv",
+  "short": "d/vaccination/"
+ },
+ {
+  "id": "presidents",
+  "title": "Presidents’ ages at inauguration",
+  "sections": [
+   "2.2",
+   "3.1",
+   "3.2",
+   "3.4"
+  ],
+  "sheet": "1dTiIczlhI6M8Sc3e3V0QmU488l_6T9al-bbcWBWhA8U",
+  "file": "data/presidents.csv",
+  "short": "d/presidents/"
+ },
+ {
+  "id": "poverty",
+  "title": "Average poverty rates by state, 2016–2018",
+  "sections": [
+   "2.2",
+   "3.1",
+   "3.2",
+   "3.3",
+   "3.4"
+  ],
+  "sheet": "1IiFnXx99OVkmADUxCjBbY59ebXpIicFXlqgApNjPgeg",
+  "file": "data/poverty.csv",
+  "short": "d/poverty/"
+ },
+ {
+  "id": "juneteenth",
+  "title": "States observing Juneteenth",
+  "sections": [
+   "2.2"
+  ],
+  "sheet": "1ZTtdCdYnKNLGqY_VHO5YD5tqtM96Mf1K8jDeU0yKhIY",
+  "file": "data/juneteenth.csv",
+  "short": "d/juneteenth/"
+ },
+ {
+  "id": "exam-scores",
+  "title": "Fall and Spring 2019 exam scores",
+  "sections": [
+   "3.2"
+  ],
+  "sheet": "1B_w-F2O5EnlZKHl3wOvIFsKNU_E-S_rmz3GZdFEJ6iQ",
+  "file": "data/exam-scores.csv",
+  "short": "d/exam-scores/"
+ },
+ {
+  "id": "unemployment",
+  "title": "Unemployment rates, Black and White Americans",
+  "sections": [
+   "3.3",
+   "3.4"
+  ],
+  "sheet": "1-get-L9iksETYiMa2Xg5N97ZSdFg5t3DQBEHXibhoo8",
+  "file": "data/unemployment.csv",
+  "short": "d/unemployment/"
+ },
+ {
+  "id": "rotten-tomatoes",
+  "title": "Superhero films: box office and Rotten Tomatoes",
+  "sections": [
+   "3.4"
+  ],
+  "sheet": "1v72aHmyCx4rATb0bsWkFm0xpLRhLLZJDrDtW6YPl98E",
+  "file": "data/rotten-tomatoes.csv",
+  "short": "d/rotten-tomatoes/"
+ },
+ {
+  "id": "protein-fat",
+  "title": "Protein vs fat",
+  "sections": [
+   "4.1",
+   "4.2",
+   "4.3"
+  ],
+  "sheet": "1neuiaoKRQhYtQNFZga_5h2x3x-UAQMtBuKcws_Q3a0Y",
+  "file": "data/protein-fat.csv",
+  "short": "d/protein-fat/"
+ },
+ {
+  "id": "mpg-weight",
+  "title": "Miles per gallon vs weight",
+  "sections": [
+   "4.1",
+   "4.2",
+   "4.3"
+  ],
+  "sheet": "1T4_UBVE7NwMeR_pLHYEBeQEyVeVHLdBX7ti_7E7qkzI",
+  "file": "data/mpg-weight.csv",
+  "short": "d/mpg-weight/"
+ },
+ {
+  "id": "hdl-heart-rate",
+  "title": "HDL level vs heart rate",
+  "sections": [
+   "4.1",
+   "4.2",
+   "4.3"
+  ],
+  "sheet": "14q-mqWVjefazVG_inE1-kMroVqME3pAX2NQLytwyXek",
+  "file": "data/hdl-heart-rate.csv",
+  "short": "d/hdl-heart-rate/"
+ },
+ {
+  "id": "gpa",
+  "title": "High school and college GPA",
+  "sections": [
+   "4.4"
+  ],
+  "sheet": "1skW5Rpst8ZhmCpq79Kv2PUMxAjcn9UbGYKB1bx1yAL0",
+  "file": "data/gpa.csv",
+  "short": "d/gpa/"
+ },
+ {
+  "id": "three-pointers",
+  "title": "Steph Curry 3-pointers",
+  "sections": [
+   "6.1"
+  ],
+  "sheet": "1GgLjistGCmkEXlv2JLmOKsgUkdR8x2Fvtei0QtPI6Oc",
+  "file": "data/three-pointers.csv",
+  "short": "d/three-pointers/"
+ },
+ {
+  "id": "dice",
+  "title": "Dice data: 100 samples of 10 rolls",
+  "sections": [
+   "7.3"
+  ],
+  "sheet": "11FJEdEhi0Xctq_N3ALyUcvBTIwizXSIMfy21AFG8T8g",
+  "file": "data/dice.csv",
+  "short": "d/dice/"
+ },
+ {
+  "id": "positive-impact",
+  "title": "Simulated survey proportions",
+  "sections": [
+   "7.4"
+  ],
+  "sheet": "16j4wucsJo1ZSkN_Rl6yBduOpBjBv_07LlH_eBZMqmZM",
+  "file": "data/positive-impact.csv",
+  "short": "d/positive-impact/"
+ },
+ {
+  "id": "twos",
+  "title": "Proportion of twos in 10 rolls",
+  "sections": [
+   "7.4"
+  ],
+  "sheet": "1AwdK6Nmw0NG6y5XTzx9C0YK1j4ETPEfjC0iObCdKHMk",
+  "file": "data/twos.csv",
+  "short": "d/twos/"
+ }
+]
