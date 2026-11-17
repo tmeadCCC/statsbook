@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>To Reject or Not Reject – The Hypothesis Test Conclusion Game – Introduction to Statistics with Technology</title>
+<title>“To Reject or Not Reject” – The Hypothesis Test Conclusion Game – Introduction to Statistics with Technology</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="../sim.css">
 <style>
@@ -9,20 +9,23 @@
 <style>
 /* page-specific styles for this game */
 .scen{font-size:1.05rem;line-height:1.5;margin:0 0 .5rem}
+html.embed .scen{scroll-margin-top:120px}   /* clear the chapter page's sticky header */
 .hyp{font:600 1.08rem/1.4 var(--sans);margin:.1rem 0 .5rem;font-variant-numeric:tabular-nums}
 .hyp i{font-family:var(--serif)}
-.q{font:700 1rem/1.35 var(--sans);color:var(--navy);margin:.6rem 0 .4rem}
+.q{font:700 1rem/1.35 var(--sans);color:var(--navy);margin:.5rem 0 .35rem}
 .tails{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 .5rem}
 .tails .btn.right{background:#1E7B3A;border-color:#1E7B3A;color:#fff}
 .tails .btn.wrong{background:#8a2a24;border-color:#8a2a24;color:#fff}
 .tails .btn:disabled{opacity:1}
 .tails .btn.dim{opacity:.45}
-.yes{margin:.2rem 0 .4rem;font-weight:600}
+.res{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem;margin:.1rem 0 .4rem}
+.res:empty,.res:not(.show){display:none}
+.yes{margin:0;font-weight:600;font-size:.95rem;flex:1 1 16rem}
 .yes.ok{color:#1E7B3A}.yes.no{color:#8a2a24}
-.decision{display:none;margin:.5rem 0 .6rem;padding:.7rem 1rem;border-radius:10px;text-align:center;border:2.5px solid;animation:drop .5s cubic-bezier(.2,1.5,.4,1)}
+.decision{display:none;flex:0 1 auto;margin:0;padding:.3rem .8rem;border-radius:10px;text-align:center;border:2.5px solid;animation:drop .5s cubic-bezier(.2,1.5,.4,1)}
 .decision.show{display:block}
-.decision .big{font:800 1.6rem/1.2 var(--sans);letter-spacing:.01em}
-.decision .why{font-size:.92rem;color:var(--muted);margin-top:.15rem}
+.decision .big{font:800 1.15rem/1.25 var(--sans);letter-spacing:.01em}
+.decision .why{font-size:.82rem;color:var(--muted);margin-top:.05rem}
 .decision.rej{border-color:#b3141b;background:#FDECEC}.decision.rej .big{color:#b3141b}
 .decision.ftr{border-color:#365F91;background:#E8EEF7}.decision.ftr .big{color:#2C4D94}
 .decision .big i{font-family:var(--serif)}
@@ -69,16 +72,16 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
 .final{display:inline-block;background:#E6D5FF;border:1.5px solid #7030A0;color:#4b1f73;border-radius:999px;padding:.05rem .6rem;font-size:.85rem;font-weight:700;margin-right:.4rem}
 </style>
 </head><body>
-<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>To Reject or Not Reject – The Hypothesis Test Conclusion Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>“To Reject or Not Reject” – The Hypothesis Test Conclusion Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
 <div class="wrap"><main>
 <header class="sim-head">
   <p class="sim-kind">Game</p>
-  <h1>To Reject or Not Reject – The Hypothesis Test Conclusion Game</h1>
-  <p class="sim-goes">Goes with <a href="../../chapter-8/section-8-4.html">Section 8.4 Hypothesis Testing Summary</a></p>
+  <h1>“To Reject or Not Reject” – The Hypothesis Test Conclusion Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-8/section-8-1.html">Section 8.1 The Logic of Hypothesis Testing</a></p>
 </header>
 <p class="sim-intro">Read the claim, decide whether the test is left-tailed, right-tailed or two-tailed, then choose the conclusion that best interprets the decision. Get both parts right to win the round, and 5 rounds in a row to win the game.</p>
 
-<section class="sim" aria-label="To Reject or Not Reject – The Hypothesis Test Conclusion Game">
+<section class="sim" aria-label="“To Reject or Not Reject” – The Hypothesis Test Conclusion Game">
   <p class="scen" id="scen"></p>
   <p class="hyp" id="h0"></p>
   <p class="q">Is this a left-tailed, right-tailed or two-tailed test?</p>
@@ -87,8 +90,10 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
     <button class="btn alt" data-t=">">Right-tailed</button>
     <button class="btn alt" data-t="≠">Two-tailed</button>
   </div>
-  <p class="yes" id="yes" aria-live="polite"></p>
-  <div class="decision" id="decision" aria-live="polite"></div>
+  <div class="res" id="res">
+    <p class="yes" id="yes" aria-live="polite"></p>
+    <div class="decision" id="decision" aria-live="polite"></div>
+  </div>
   <div class="concl" id="concl">
     <p class="q">How is this best interpreted?</p>
     <div class="copts" id="copts" role="radiogroup" aria-label="Conclusion"></div>
@@ -180,7 +185,7 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
     step = 1; tailOk = null;
     $('scen').textContent = sc.claim; $('h0').innerHTML = `The null hypothesis is ${h0(sc)}.`;
     document.querySelectorAll('[data-t]').forEach(b => { b.disabled = false; b.className = 'btn alt'; });
-    $('yes').className = 'yes'; $('yes').innerHTML = '';
+    $('res').className = 'res'; $('yes').className = 'yes'; $('yes').innerHTML = '';
     $('decision').className = 'decision'; $('decision').innerHTML = '';
     $('concl').className = 'concl'; $('copts').innerHTML = '';
     $('fb').className = 'fb'; $('fb').innerHTML = ''; $('next').hidden = true;
@@ -193,19 +198,22 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
     if (step !== 1) return; step = 2; tailOk = t === sc.alt;
     document.querySelectorAll('[data-t]').forEach(b => { b.disabled = true;
       b.className = 'btn ' + (b.dataset.t === sc.alt ? 'right' : b.dataset.t === t ? 'wrong' : 'alt dim'); });
-    $('yes').className = 'yes ' + (tailOk ? 'ok' : 'no');
+    $('res').className = 'res show'; $('yes').className = 'yes ' + (tailOk ? 'ok' : 'no');
     $('yes').innerHTML = tailOk ? `Yes! ${ha(sc)}, so this is a ${TAIL[sc.alt]} test.`
       : `Not quite. The claim says ${REL[sc.alt]} ${sc.words}, so ${ha(sc)} and this is a ${TAIL[sc.alt]} test.`;
     const p = pv();
     $('decision').className = 'decision show ' + (reject ? 'rej' : 'ftr');
     $('decision').innerHTML = `<div class="big">${reject ? `Reject ${h0(sc)}!` : `Fail to reject ${h0(sc)}`}</div><div class="why">P-value = ${p} ${reject ? '&lt;' : '&gt;'} α = 0.05</div>`;
     const st0 = `${sc.what} is ${sc.words}`, stA = `${sc.what} is ${REL[sc.alt]} ${sc.words}`;
-    const opts = shuffle([
+    const all = [
       {k: 'h0yes', t: `There is enough evidence to conclude that ${st0}.`},
       {k: 'h0no', t: `There is not enough evidence to conclude that ${st0}.`},
       {k: 'hayes', t: `There is enough evidence to conclude that ${stA}.`},
-      {k: 'hano', t: `There is not enough evidence to conclude that ${stA}.`}]);
-    $('copts').innerHTML = opts.map((o, i) => `<label><input type="radio" name="c" value="${o.k}"><b>${'abcd'[i]})</b><span>${o.t}</span></label>`).join('');
+      {k: 'hano', t: `There is not enough evidence to conclude that ${stA}.`}];
+    const truth = reject ? 'hayes' : 'hano';
+    // three choices: the right one and two of the other three, picked at random
+    const opts = shuffle([all.find(o => o.k === truth)].concat(shuffle(all.filter(o => o.k !== truth)).slice(0, 2)));
+    $('copts').innerHTML = opts.map((o, i) => `<label><input type="radio" name="c" value="${o.k}"><b>${'abc'[i]})</b><span>${o.t}</span></label>`).join('');
     $('concl').className = 'concl show';
     document.querySelectorAll('#copts input').forEach(r => r.onchange = () => conclude(r.value));
   }
@@ -252,10 +260,16 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
   }
   function startOver(){ streak = 0; best = 0; wins = 0; plays = 0; mastered = false; $('master').classList.remove('show'); status(); round(); }
   document.querySelectorAll('[data-t]').forEach(b => b.onclick = () => chooseTail(b.dataset.t));
-  $('next').onclick = round;
+  function top(){   // after Next the game gets shorter; scroll back up to the new scenario if it is out of view
+    if (SimKit.embed) setTimeout(() => $('scen').scrollIntoView({block: 'nearest'}), 150);   // inside a chapter page, after the box has shrunk
+    else { const r = $('scen').getBoundingClientRect();
+      if (r.top < 0 || r.top > innerHeight * .6) $('scen').scrollIntoView({block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); }
+    document.querySelector('[data-t]').focus({preventScroll: true});
+  }
+  $('next').onclick = () => { round(); top(); };
   $('reset').onclick = startOver;
   $('again').onclick = startOver;
-  $('keep').onclick = () => { $('master').classList.remove('show'); round(); };
+  $('keep').onclick = () => { $('master').classList.remove('show'); round(); top(); };
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
   if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({alt: sc.alt, reject});
   status(); round();
