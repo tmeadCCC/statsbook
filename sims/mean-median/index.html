@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sensitivity of the Mean and Median Game – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this game */
+.move{font-weight:600;margin:0 0 .1rem}
+.nl svg{width:100%;height:auto;display:block}
+.vals{font-size:.92rem;color:var(--muted);margin:0 0 .4rem;font-variant-numeric:tabular-nums}
+.vals b{color:var(--ink)}
+.qbox{border-top:1px solid var(--rule);padding-top:.6rem}
+.qbox h2{font-size:1.05rem;margin:0 0 .45rem}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem 1rem;margin:0 0 .6rem}
+.og{border:1.5px solid var(--rule);border-radius:6px;padding:.45rem .7rem}
+.og .pr{font-weight:700;margin:0 0 .25rem}
+.og .ch{display:grid;gap:.25rem}
+.og label{display:flex;gap:.45rem;align-items:center;padding:.15rem .3rem;border-radius:4px;cursor:pointer}
+.og label.right{background:#E6F2E8;outline:1.5px solid #1E7B3A}
+.og label.wrong{background:#FBEAE8;outline:1.5px solid #8a2a24}
+/* phones: the two questions stack, and each one's choices sit in a row */
+@media (max-width:600px){
+  .opts{grid-template-columns:1fr;gap:.4rem}
+  .og{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .6rem;padding:.4rem .5rem}
+  .og .pr{margin:0;white-space:nowrap}
+  .og .pr{font-size:.95rem;flex:0 0 7rem}
+  .og .ch{display:flex;gap:.25rem;flex:1 1 10.5rem}
+  .og label{flex:1 1 0;justify-content:center;text-align:center;border:1.5px solid var(--rule);padding:.35rem .1rem;font-size:.85rem;line-height:1.1;position:relative;min-height:2.6em}
+  .og label input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+  .og label.sel{background:#DCE5F5;border-color:var(--navy);font-weight:700}
+  .og label:focus-within{outline:2px solid var(--navy);outline-offset:1px}
+  .og label.right,.og label.wrong{outline:none}
+  .og label.right{border-color:#1E7B3A}.og label.wrong{border-color:#8a2a24}
+}
+.fb{display:none;margin:0 0 .6rem;padding:.55rem .8rem;border-radius:8px;font-size:.95rem}
+.fb.ok{display:flex;gap:.8rem;align-items:center;background:#E6F2E8;border:1.5px solid #1E7B3A}
+.fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
+.fb .badge{flex:none;width:46px;height:46px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;line-height:1;box-shadow:0 0 0 5px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.fb .big{font:700 1.35rem/1.1 var(--sans);color:#1E7B3A}
+.fb p{margin:.2rem 0}
+.fb .cheer{font-weight:700;color:#8a2a24;margin-top:.35rem}
+@keyframes pop{0%{transform:scale(.2) rotate(-40deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.fb .badge{animation:none}}
+.sim .sim-row{margin:0}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.6rem 0 0}
+.dots{display:flex;gap:5px}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
+.dots i.on{background:#E9A23B;border-color:#b87710}
+.streak .lab{color:var(--muted);font-size:.9rem}.streak b{font-size:1.1rem}
+/* the master overlay */
+.master{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(20,24,40,.55);padding:16px}
+.master.show{display:flex}
+.mcard{position:relative;background:#fff;border:3px solid var(--navy);border-radius:14px;max-width:440px;width:100%;padding:1.2rem;text-align:center;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+.mcard img{width:150px;height:150px;border-radius:12px;border:3px solid var(--navy);display:block;margin:0 auto .6rem;animation:bob 1.2s ease-in-out .5s 3}
+.bubble{position:relative;background:#FFF4C7;border:2px solid #2C4D94;border-radius:16px;padding:.7rem .9rem;font:700 1.15rem/1.35 var(--sans);color:#1d2a4d;margin:0 0 1rem}
+.bubble::before{content:"";position:absolute;left:50%;top:-12px;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid #2C4D94}
+.mcard .btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.confetti{position:fixed;top:-20px;width:10px;height:15px;border-radius:2px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+@keyframes popin{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.mcard,.mcard img{animation:none}}
+.dots i.fin{border-style:dashed}
+.dots i.fin.on{border-style:solid}
+.final{display:inline-block;background:#E6D5FF;border:1.5px solid #7030A0;color:#4b1f73;border-radius:999px;padding:.05rem .6rem;font-size:.85rem;font-weight:700;margin-right:.4rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Sensitivity of the Mean and Median Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Game</p>
+  <h1>Sensitivity of the Mean and Median Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-3/section-3-1.html">Section 3.1 Measures of Center</a></p>
+</header>
+<p class="sim-intro">Watch one data value move, then decide how the change affects the mean (green) and the median (red). Get 5 in a row correct to win.</p>
+
+<section class="sim" aria-label="Sensitivity of the Mean and Median Game">
+  <p class="move" id="move" aria-live="polite"></p>
+  <div class="nl"><svg id="nl"></svg></div>
+  <p class="vals" id="vals"></p>
+  <div class="qbox">
+    <h2 id="q">How does this change in the data values affect the mean and median?</h2>
+    <div class="opts">
+      <div class="og" role="radiogroup" aria-labelledby="pm"><p class="pr" id="pm">The mean will</p><div class="ch">
+        <label><input type="radio" name="mean" value="down"><span>decrease</span></label>
+        <label><input type="radio" name="mean" value="same"><span>stay the same</span></label>
+        <label><input type="radio" name="mean" value="up"><span>increase</span></label>
+      </div></div>
+      <div class="og" role="radiogroup" aria-labelledby="pd"><p class="pr" id="pd">The median will</p><div class="ch">
+        <label><input type="radio" name="med" value="down"><span>decrease</span></label>
+        <label><input type="radio" name="med" value="same"><span>stay the same</span></label>
+        <label><input type="radio" name="med" value="up"><span>increase</span></label>
+      </div></div>
+    </div>
+    <div class="fb" id="fb" aria-live="polite"></div>
+    <div class="sim-row">
+      <button class="btn" id="next" hidden>Next</button>
+      <button class="btn alt" id="reset">Start over</button>
+    </div>
+    <div class="streak">
+      <div><span class="lab">Streak</span> <b id="streakn">0</b> <span class="lab">of 5</span></div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <div><span class="lab">Correct</span> <b id="score">0 of 0</b></div>
+      <div><span class="lab">Best streak</span> <b id="best">0</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="master" id="master" role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="mcard">
+    <img src="data.jpg" alt="Data, Stat-Man's sidekick, smiling.">
+    <p class="bubble" id="mtext">Congratulations! You are now a master of the mean and the median!</p>
+    <div class="btns"><button class="btn" id="keep">Keep playing</button><button class="btn alt" id="again">Start over</button></div>
+  </div>
+</div>
+
+<aside class="sim-notice">
+  <p class="t">What you should notice</p>
+  <p>Every time a value moves, the <b>mean</b> changes, because every data value is included in its calculation. Moving one value far out pulls the mean toward it: the mean is <b>sensitive</b> to extreme observations. The <b>median</b> only depends on the order of the data. If the middle value stays in the middle, the median does not change, no matter how far the smallest or largest value moves: the median is <b>resistant</b> to extreme observations. The median only changes when the middle value itself moves, or when a value crosses over the middle.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const fmt = v => (Math.round(v * 10) / 10).toString();
+  let orig, idx, from, to, asked = false, right = 0, tries = 0, streak = 0, best = 0, mastered = false, finalQ = false, t0 = 0;
+  const GOAL = 5;
+  const mean = a => a.reduce((s, v) => s + v, 0) / a.length;
+  const median = a => [...a].sort((x, y) => x - y)[2];
+  const dir = (a, b) => Math.abs(a - b) < 1e-9 ? 'same' : b > a ? 'up' : 'down';
+  const word = {up: 'increase', down: 'decrease', same: 'stay the same'};
+  let after;
+
+  function spaced(vals, v, skip){ return vals.every((w, i) => i === skip || Math.abs(w - v) >= 4); }
+  function newData(){
+    let a;
+    do { a = []; while (a.length < 5){ const v = SimKit.rint(15, 85); if (spaced(a, v, -1)) a.push(v); } } while (false);
+    return a.sort((x, y) => x - y);
+  }
+  /* Until the player has 4 in a row, no value crosses the median and the middle value stays put, so the median never changes
+     (this is where the median's resistance shows). The 5th question in a row always changes the median: the middle value
+     moves, or a value crosses over the middle. After the player has mastered the game, any kind of move can come up. */
+  /* While the median must stay put, the moves rotate through six kinds (never the same kind twice in a row):
+     lowest value moves lower, highest moves higher, 2nd value drops to become the lowest, 4th value rises to become the highest,
+     lowest value moves up into 2nd place, highest value moves down into 4th place. */
+  const KEEP = ['lowOut', 'highOut', 'secondToLowest', 'fourthToHighest', 'firstToSecond', 'fifthToFourth'];
+  let lastCat = null;
+  function keepMove(a, cat){
+    switch (cat){
+      case 'lowOut': return [0, SimKit.rint(0, a[0] - 8)];
+      case 'highOut': return [4, SimKit.rint(a[4] + 8, 100)];
+      case 'secondToLowest': return [1, SimKit.rint(0, a[0] - 4)];
+      case 'fourthToHighest': return [3, SimKit.rint(a[4] + 4, 100)];
+      case 'firstToSecond': return [0, SimKit.rint(a[1] + 4, a[2] - 4)];
+      case 'fifthToFourth': return [4, SimKit.rint(a[2] + 4, a[3] - 4)];
+    }
+  }
+  function pickMove(a, kind, cat){
+    let i, v, n = 0;
+    const ok = (i, v) => Math.abs(v - a[i]) >= 8 && spaced(a, v, i);
+    do {
+      n++;
+      if (kind === 'keep'){
+        [i, v] = keepMove(a, cat);
+        if (cat === 'firstToSecond' && a[2] - a[1] < 8 || cat === 'fifthToFourth' && a[3] - a[2] < 8) return null;
+      } else if (kind === 'change'){
+        if (Math.random() < 0.5){ i = 2; v = SimKit.rint(0, 100); }        // the middle value moves
+        else { i = [0, 1, 3, 4][SimKit.rint(0, 3)];                        // a value crosses over the middle
+          v = i < 2 ? SimKit.rint(a[2] + 5, 100) : SimKit.rint(0, a[2] - 5); }
+      } else { i = SimKit.rint(0, 4); v = SimKit.rint(0, 100); }
+      if (v < 0 || v > 100 || !ok(i, v)) continue;
+      const b = a.slice(); b[i] = v;
+      const changed = median(b) !== median(a);
+      if (kind === 'keep' && changed) continue;
+      if (kind === 'change' && !changed) continue;
+      return [i, v];
+    } while (n < 300);
+    return null;
+  }
+
+  /* one number line like the book's figures: blue dots above, green (mean) and red (median) triangles below.
+     The moving value loops: pause at its original place, move, pause at its new place, move back.
+     Before the answer the triangles show the original mean and median; after it they follow the moving value live,
+     with the original triangles left faded. */
+  let W = 680; const H = 180, L = 24, R = 24, AX = 92, X = v => L + v / 100 * (W - L - R);
+  const fit = () => { W = Math.min(window.innerWidth, document.documentElement.clientWidth || 9999) < 600 ? 400 : 680; };
+  window.addEventListener('resize', fit);
+  function drawLine(svg, vals, o){
+    const FS = W < 500 ? 16 : 14;
+    let s = `<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs>`;
+    s += `<line x1="${L-14}" x2="${W-R+14}" y1="${AX}" y2="${AX}" stroke="#111" stroke-width="2.2" marker-start="url(#ah)" marker-end="url(#ah)"/>`;
+    for (let t = 0; t <= 100; t += (W < 500 ? 20 : 10)) s += `<line x1="${X(t)}" x2="${X(t)}" y1="${AX-4}" y2="${AX+4}" stroke="#111" stroke-width="1.5"/><text x="${X(t)}" y="${AX+19}" text-anchor="middle" font-size="${W < 500 ? 15 : 13}" fill="#111">${t}</text>`;
+    const tri = (v, col, lab, faded) => {
+      const x = X(v), op = faded ? ' opacity=".28"' : '';
+      return `<g${op}><line x1="${x}" x2="${x}" y1="${AX-34}" y2="${AX}" stroke="${col}" stroke-width="3"/><path d="M${x} ${AX+26}L${x+15} ${AX+54}L${x-15} ${AX+54}Z" fill="${col}" stroke="#2C4D94" stroke-width="1"/>${lab ? `<text x="${Math.min(W - FS * 3.6, Math.max(FS * 3.6, x))}" y="${AX+72}" text-anchor="middle" font-size="${FS}" font-weight="700" fill="${col === '#00B050' ? '#0d6b31' : '#b3141b'}">${lab}</text>` : ''}</g>`;
+    };
+    if (o.oldMarks){ s += tri(o.oldMarks[0], '#00B050', '', true) + tri(o.oldMarks[1], '#FF0000', '', true); }
+    const [m, d] = o.marks, close = Math.abs(X(m) - X(d)) < FS * 7.5;
+    const ml = `Mean = ${fmt(m)}`, dl = `Median = ${fmt(d)}`;
+    if (!close) s += tri(m, '#00B050', ml) + tri(d, '#FF0000', dl);
+    else { s += tri(m, '#00B050', '') + tri(d, '#FF0000', '');
+      const mid = Math.min(W - FS * 8, Math.max(FS * 8, (X(m) + X(d)) / 2));
+      const [lt, lc, rt, rc] = m <= d ? [ml, '#0d6b31', dl, '#b3141b'] : [dl, '#b3141b', ml, '#0d6b31'];
+      s += `<text x="${mid - 8}" y="${AX+72}" text-anchor="end" font-size="${FS}" font-weight="700" fill="${lc}">${lt}</text><text x="${mid + 8}" y="${AX+72}" text-anchor="start" font-size="${FS}" font-weight="700" fill="${rc}">${rt}</text>`; }
+    if (o.ghost != null) s += `<circle cx="${X(o.ghost)}" cy="${AX-12}" r="7.5" fill="none" stroke="#4472C4" stroke-width="2" stroke-dasharray="3 2"/>`;
+    // "Original Position" / "New Position" callouts above the moving value; pushed apart sideways if they would overlap
+    if (o.callouts && o.callouts.length){
+      const cfs = W < 500 ? 14 : 12.5, bh = cfs + 9, by = 6;
+      const bs = o.callouts.map(c => ({px: X(c.v), w: c.text.length * cfs * 0.56 + 14, text: c.text}));
+      bs.forEach(b => b.cx = b.px);
+      if (bs.length === 2){
+        const [a, b] = bs[0].px <= bs[1].px ? bs : [bs[1], bs[0]], need = (a.w + b.w) / 2 + 6;
+        if (b.cx - a.cx < need){ const mid = (a.cx + b.cx) / 2; a.cx = mid - need / 2; b.cx = mid + need / 2; }
+      }
+      bs.forEach(b => { b.cx = Math.min(W - 2 - b.w / 2, Math.max(2 + b.w / 2, b.cx)); });
+      if (bs.length === 2){ const [a, b] = bs[0].cx <= bs[1].cx ? bs : [bs[1], bs[0]], need = (a.w + b.w) / 2 + 6;
+        if (b.cx - a.cx < need){ if (a.cx - a.w / 2 <= 3) b.cx = a.cx + need; else a.cx = b.cx - need; } }
+      bs.forEach((b, k) => { if (o.callouts[k].hide) return;
+        const x0 = b.cx - b.w / 2, tipX = b.px, baseX = Math.min(x0 + b.w - 8, Math.max(x0 + 8, tipX));
+        s += `<g class="callout"><path d="M${baseX - 6} ${by + bh - 1}L${tipX} ${AX - 23}L${baseX + 6} ${by + bh - 1}Z" fill="#fff" stroke="#2C4D94" stroke-width="1.3" stroke-linejoin="round"/>`
+          + `<rect x="${x0}" y="${by}" width="${b.w}" height="${bh}" rx="5" fill="#fff" stroke="#2C4D94" stroke-width="1.3"/>`
+          + `<rect x="${baseX - 5.4}" y="${by + bh - 2}" width="10.8" height="3" fill="#fff"/>`
+          + `<text x="${b.cx}" y="${by + bh / 2 + cfs * 0.36}" text-anchor="middle" font-size="${cfs}" font-weight="700" fill="#2C4D94">${b.text}</text></g>`;
+      });
+    }
+    vals.forEach((v, i) => { s += `<circle cx="${X(v)}" cy="${AX-12}" r="7.5" fill="#4472C4" stroke="#2C4D94" stroke-width="1"${i === o.mover ? ' stroke-width="2"' : ''}/>`; });
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = s;
+  }
+  const P0 = 900, MV = 1500, P1 = 1100, CYCLE = P0 + MV + P1;   // one direction only: after the pause at the new place it starts again from the original place
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  function frac(ms){
+    if (reduce.matches) return 1;
+    const c = ms % CYCLE;
+    if (c < P0) return 0;
+    if (c < P0 + MV) return ease((c - P0) / MV);
+    return 1;
+  }
+  function frame(now){
+    const f = frac(now - t0), v = from + (to - from) * f, cur = orig.slice(); cur[idx] = v;
+    // both boxes are placed from the start, so "Original Position" never shifts when "New Position" appears
+    const callouts = [{v: from, text: 'Original Position'}, {v: to, text: 'New Position', hide: f < 1}];
+    drawLine($('nl'), cur, {mover: idx, ghost: Math.abs(v - from) > 1 ? from : null, callouts,
+      marks: asked ? [mean(cur), median(cur)] : [mean(orig), median(orig)],
+      oldMarks: asked ? [mean(orig), median(orig)] : null});
+    requestAnimationFrame(frame);
+  }
+  const list = a => [...a].sort((x, y) => x - y).map(v => `<b>${v}</b>`).join(', ');
+  function describe(){
+    $('nl').setAttribute('role', 'img');
+    $('nl').setAttribute('aria-label', asked
+      ? `Number line: the value ${from} moves to ${to}. Mean ${fmt(mean(orig))} to ${fmt(mean(after))}, median ${fmt(median(orig))} to ${fmt(median(after))}.`
+      : `Number line with the data ${orig.join(', ')}: mean ${fmt(mean(orig))}, median ${fmt(median(orig))}. The value ${from} moves to ${to}.`);
+    $('vals').innerHTML = asked
+      ? `Mean: <b>${fmt(mean(orig))}</b> to <b>${fmt(mean(after))}</b>  ·  Median: <b>${fmt(median(orig))}</b> to <b>${fmt(median(after))}</b>`
+      : `Data: ${list(orig)}`;
+  }
+  function round(){
+    fit();
+    finalQ = !mastered && streak === GOAL - 1;
+    const kind = mastered ? 'any' : finalQ ? 'change' : 'keep';
+    let cat = null;
+    if (kind === 'keep'){ do { cat = KEEP[SimKit.rint(0, KEEP.length - 1)]; } while (cat === lastCat); lastCat = cat; }
+    let mv; do { orig = newData(); mv = pickMove(orig, kind, cat); } while (!mv);
+    [idx, to] = mv; from = orig[idx];
+    after = orig.slice(); after[idx] = to;
+    asked = false; t0 = performance.now();
+    $('move').innerHTML = (finalQ ? '<span class="final">Question 5: get this one for the win!</span>' : '') + `The data value ${from} moves ${to > from ? 'up' : 'down'} to ${to}.`;
+    document.querySelectorAll('.opts input').forEach(r => { r.checked = false; r.disabled = false; r.parentElement.className = ''; });
+    $('fb').className = 'fb'; $('fb').innerHTML = ''; $('next').hidden = true;
+    describe();
+  }
+  function tipMean(d){
+    const ch = to - from;
+    return `<p><b>Mean:</b> the mean uses every data value. The value ${from} moved ${ch > 0 ? 'up' : 'down'} by ${Math.abs(ch)}, so the sum ${ch > 0 ? 'increased' : 'decreased'} by ${Math.abs(ch)} and the mean ${ch > 0 ? 'increased' : 'decreased'} by ${Math.abs(ch)} ÷ 5 = ${fmt(Math.abs(ch) / 5)}, from ${fmt(mean(orig))} to ${fmt(mean(after))}. Any change in a data value changes the mean.</p>`;
+  }
+  function tipMed(){
+    const d = dir(median(orig), median(after));
+    if (d === 'same') return `<p><b>Median:</b> the median is the middle value, the 3rd of the 5 values in order. The value ${median(orig)} is still in the middle after the change, so the median stays at ${fmt(median(after))}, even though ${from} moved all the way to ${to}.</p>`;
+    return `<p><b>Median:</b> the median is the middle value, the 3rd of the 5 values in order. ${from === median(orig) ? `The value that moved was the middle value itself` : `The value ${from} moved past the middle`}, so the middle value is now ${median(after)} instead of ${median(orig)}, and the median ${word[d] === 'increase' ? 'increased' : 'decreased'}.</p>`;
+  }
+  function reveal(){
+    if (asked) return; asked = true; tries++;
+    const am = document.querySelector('input[name=mean]:checked').value, ad = document.querySelector('input[name=med]:checked').value;
+    const tm = dir(mean(orig), mean(after)), td = dir(median(orig), median(after));
+    document.querySelectorAll('.opts input').forEach(r => { r.disabled = true;
+      const truth = r.name === 'mean' ? tm : td;
+      r.parentElement.className = r.value === truth ? 'right' : r.checked ? 'wrong' : ''; });
+    t0 = performance.now();   // restart the loop so the triangles are seen moving from the start
+    describe();
+    const ok = am === tm && ad === td;
+    if (ok){ right++; streak++; best = Math.max(best, streak);
+      $('fb').className = 'fb ok';
+      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><span class="big">Correct!</span><p>The mean will ${word[tm]} and the median will ${word[td]}. ${mastered ? `That makes ${streak} in a row.` : streak >= GOAL ? 'That makes 5 in a row!' : `Your streak is ${streak} in a row. ${GOAL - streak} more to go!`}</p></span>`;
+    } else {
+      streak = 0;
+      $('fb').className = 'fb no';
+      $('fb').innerHTML = `<p><b>Not quite.</b> The mean will ${word[tm]} and the median will ${word[td]}. Your streak starts again from 0.</p>` + (am !== tm ? tipMean() : '') + (ad !== td ? tipMed() : '') + `<p class="cheer">Try it again, you've got this!</p>`;
+    }
+    $('next').hidden = false; status();
+    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 900); } else $('next').focus({preventScroll: true});
+  }
+  function status(){
+    $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${right} of ${tries}`;
+    $('dots').innerHTML = Array.from({length: GOAL}, (_, i) => `<i class="${i < Math.min(streak, GOAL) ? 'on' : ''}${i === GOAL - 1 ? ' fin' : ''}"></i>`).join('');
+  }
+  function celebrate(){
+    $('master').classList.add('show'); $('keep').focus({preventScroll: true});
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols = ['#E9A23B', '#C8312B', '#365F91', '#1E7B3A', '#7030A0', '#f2d14c', '#2F6FD0'];
+    for (let i = 0; i < 90; i++){
+      const c = document.createElement('i'); c.className = 'confetti';
+      const dur = 1.8 + Math.random() * 1.6;
+      c.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};--dx:${Math.random() * 160 - 80}px;--r:${Math.random() * 1080 - 540}deg;animation-duration:${dur}s;animation-delay:${Math.random() * .6}s`;
+      document.body.appendChild(c); setTimeout(() => c.remove(), (dur + 0.8) * 1000);
+    }
+  }
+  function startOver(){ streak = 0; best = 0; right = 0; tries = 0; mastered = false; $('master').classList.remove('show'); status(); round(); }
+  document.querySelectorAll('.opts input').forEach(r => r.onchange = () => {
+    document.querySelectorAll(`.opts input[name=${r.name}]`).forEach(x => x.parentElement.classList.toggle('sel', x.checked));
+    if (document.querySelector('input[name=mean]:checked') && document.querySelector('input[name=med]:checked')) reveal(); });
+  $('next').onclick = round;
+  $('reset').onclick = startOver;
+  $('again').onclick = startOver;
+  $('keep').onclick = () => { $('master').classList.remove('show'); round(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
+  status(); round(); requestAnimationFrame(frame);
+})();
+</script>
+</body></html>

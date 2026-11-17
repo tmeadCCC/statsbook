@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dice Rolling Simulation – Introduction to Statistics with Technology</title>
+<meta name="description" content="Roll one or two dice many times and watch the empirical probabilities settle near the theoretical probabilities.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this simulation */
+.dice{display:flex;gap:.8rem;align-items:center;min-height:76px;margin-bottom:.4rem}
+.dice svg{width:68px;height:68px;flex:none}
+.dice .sum{font:700 1.15rem/1.2 var(--sans)}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Dice Rolling Simulation</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Simulation</p>
+  <h1>Dice Rolling Simulation</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-5/section-5-1.html">Section 5.1 Basic Probability</a></p>
+</header>
+<p class="sim-intro">Roll one die, or a blue die and a red die, as many times as you like. The table and graph compare how often each result came up (the empirical probability) with the theoretical probability from the sample space.</p>
+
+<section class="sim" aria-label="Dice Rolling Simulation">
+  <div class="sim-row">
+    <fieldset><legend>Dice</legend>
+      <label><input type="radio" name="nd" value="1" checked> One die</label>
+      <label><input type="radio" name="nd" value="2"> Two dice (sum)</label>
+    </fieldset>
+  </div>
+  <div class="sim-row" role="group" aria-label="Roll the dice">
+    <button class="btn" data-roll="1">Roll 1</button>
+    <button class="btn" data-roll="10">Roll 10</button>
+    <button class="btn" data-roll="100">Roll 100</button>
+    <button class="btn" data-roll="1000">Roll 1,000</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="dice" id="dice" aria-hidden="true"></div>
+  <p class="sim-status" id="status" aria-live="polite">No rolls yet. Press a Roll button.</p>
+  <div class="sim-grid">
+    <div class="tblwrap"><table id="tbl"><caption class="vh">Frequency table of the rolls</caption><thead></thead><tbody></tbody></table></div>
+    <div class="sim-chart">
+      <svg id="chart"></svg>
+      <p class="sim-legend"><span><span class="k" style="background:#365F91"></span>Empirical probability</span><span><span class="k" style="background:repeating-linear-gradient(90deg,#C65A2C 0 6px,transparent 6px 9px);height:3px;vertical-align:middle"></span>Theoretical probability</span></p>
+    </div>
+  </div>
+  <div class="sim-statbelt">
+    <button class="btn sb" id="tosb" disabled>Open in STATBELT</button>
+    <p>Sends your rolls to STATBELT Utility, one row per roll (up to the last 2,500 rolls), so you can make your own table or graph.</p>
+  </div>
+</section>
+
+<aside class="sim-notice">
+  <p class="t">What to notice</p>
+  <p>After only 10 rolls the empirical probabilities can be far from the theoretical ones. Keep rolling: after a few thousand rolls with one die they settle close to 1/6 ≈ 0.1667 for each face. This is the Law of Large Numbers. With two dice, a sum of 7 comes up most often, because 6 of the 36 outcomes add to 7.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  let nd = 1, rolls = [];          // rolls: [face] or [blue, red]
+  const PIPS = {1:[[50,50]],2:[[28,28],[72,72]],3:[[28,28],[50,50],[72,72]],4:[[28,28],[72,28],[28,72],[72,72]],
+                5:[[28,28],[72,28],[50,50],[28,72],[72,72]],6:[[28,26],[72,26],[28,50],[72,50],[28,74],[72,74]]};
+  const die = (v, col) => `<svg viewBox="0 0 100 100"><rect x="4" y="4" width="92" height="92" rx="16" fill="${col}"/>`
+      + PIPS[v].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="9" fill="#fff"/>`).join('') + '</svg>';
+  const outcomes = () => nd === 1 ? [1,2,3,4,5,6] : [2,3,4,5,6,7,8,9,10,11,12];
+  const theo = v => nd === 1 ? 1/6 : (6 - Math.abs(v - 7)) / 36;
+  const theoTxt = v => nd === 1 ? '1/6' : `${6 - Math.abs(v - 7)}/36`;
+  const val = r => nd === 1 ? r[0] : r[0] + r[1];
+
+  function roll(k){
+    for (let i = 0; i < k; i++) rolls.push(nd === 1 ? [SimKit.rint(1,6)] : [SimKit.rint(1,6), SimKit.rint(1,6)]);
+    draw(true);
+  }
+  function draw(anim){
+    const last = rolls[rolls.length - 1], N = rolls.length;
+    const d = $('dice');
+    d.innerHTML = last ? (nd === 1 ? die(last[0], 'var(--blue-die)')
+        : die(last[0], 'var(--blue-die)') + die(last[1], 'var(--red-die)') + `<span class="sum">Sum = ${last[0] + last[1]}</span>`) : '';
+    if (anim && last){ d.classList.remove('rolling'); void d.offsetWidth; d.classList.add('rolling'); }
+    const out = outcomes(), freq = Object.fromEntries(out.map(v => [v, 0]));
+    rolls.forEach(r => freq[val(r)]++);
+    const head = nd === 1 ? 'Face' : 'Sum';
+    $('tbl').tHead.innerHTML = `<tr><th scope="col">${head}</th><th scope="col">Frequency</th><th scope="col">Empirical probability</th><th scope="col">Theoretical probability</th></tr>`;
+    $('tbl').tBodies[0].innerHTML = out.map(v => `<tr><td>${v}</td><td>${SimKit.comma(freq[v])}</td><td>${N ? SimKit.fmt(freq[v]/N) : '–'}</td><td>${theoTxt(v)} ≈ ${SimKit.fmt(theo(v))}</td></tr>`).join('')
+      + `<tr><td>Total</td><td>${SimKit.comma(N)}</td><td>${N ? '1' : '–'}</td><td>1</td></tr>`;
+    SimKit.barChart($('chart'), {labels: out, values: out.map(v => N ? freq[v]/N : 0), ref: out.map(theo),
+      ymax: nd === 1 ? 0.35 : 0.25, xlabel: head, ylabel: 'Probability',
+      title: `Bar graph of empirical probabilities after ${N} rolls, with the theoretical probability marked for each ${head.toLowerCase()}.`});
+    $('status').innerHTML = N ? `Total rolls: <b>${SimKit.comma(N)}</b>. Last roll: <b>${nd === 1 ? last[0] : `${last[0]} + ${last[1]} = ${last[0] + last[1]}`}</b>.` : 'No rolls yet. Press a Roll button.';
+    $('tosb').disabled = !N;
+  }
+  document.querySelectorAll('[data-roll]').forEach(b => b.onclick = () => roll(+b.dataset.roll));
+  $('reset').onclick = () => { rolls = []; draw(); };
+  document.querySelectorAll('input[name=nd]').forEach(r => r.onchange = () => { nd = +r.value; rolls = []; draw(); });
+  $('tosb').onclick = () => SimKit.openInStatbelt(nd === 1
+      ? {t: 'Dice rolls, one die', n: ['Roll'], c: [rolls.map(r => r[0])]}
+      : {t: 'Dice rolls, two dice', n: ['Blue die', 'Red die', 'Sum'], c: [rolls.map(r => r[0]), rolls.map(r => r[1]), rolls.map(r => r[0] + r[1])]});
+  draw();
+})();
+</script>
+</body></html>

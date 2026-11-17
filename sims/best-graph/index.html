@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Choose the Best Graph Game – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this simulation */
+</style>
+<style>
+/* page-specific styles for this game */
+.how{color:var(--muted);font-size:.93rem;margin:0 0 .6rem}
+.match{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:.8rem 1.4rem;margin:0 0 .7rem}
+@media (max-width:600px){.match{grid-template-columns:1fr}}
+.col h2{font:700 .8rem/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 .45rem}
+.col ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.card{width:100%;display:flex;align-items:center;gap:.6rem;text-align:left;font:inherit;color:var(--ink);background:#fff;border:2px solid var(--rule);border-radius:8px;padding:.5rem .65rem;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.card:hover:not(:disabled){border-color:#8aa0c8}
+.card:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.card:disabled{cursor:default}
+.card.on{box-shadow:0 0 0 3px #c9d7f0;border-color:var(--navy)}
+.sc .num{flex:none;width:1.7rem;height:1.7rem;border-radius:50%;color:#fff;font:700 .95rem/1.7rem var(--sans);text-align:center}
+.sc .txt{flex:1;min-width:0;font-size:.97rem;line-height:1.35}
+.sc .pick{display:block;font:600 .85rem/1.3 var(--sans);margin-top:.2rem;color:var(--muted)}
+.sc .pick b{color:var(--ink)}
+.gr svg{flex:none;width:58px;height:40px}
+.gr .nm{flex:1;font:600 .98rem/1.25 var(--sans)}
+.gr .tags{display:flex;gap:.25rem}
+.gr .tags i{font-style:normal;width:1.45rem;height:1.45rem;border-radius:50%;color:#fff;font:700 .82rem/1.45rem var(--sans);text-align:center}
+.card .mark{flex:none;font-size:1.35rem;font-weight:700;line-height:1}
+.card.right{border-color:#1E7B3A;background:#F1F8F2}.card.right .mark{color:#1E7B3A}
+.card.wrong{border-color:#8a2a24;background:#FDF2F1}.card.wrong .mark{color:#8a2a24}
+.ctl{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:0 0 .3rem}
+.fb ul{margin:.3rem 0 0;padding-left:1.1rem}.fb li{margin:.2rem 0}
+.fb{display:none;margin:0 0 .6rem;padding:.55rem .8rem;border-radius:8px;font-size:.95rem}
+.fb.ok{display:flex;gap:.8rem;align-items:center;background:#E6F2E8;border:1.5px solid #1E7B3A}
+.fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
+.fb .badge{flex:none;width:46px;height:46px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;line-height:1;box-shadow:0 0 0 5px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.fb .big{font:700 1.35rem/1.1 var(--sans);color:#1E7B3A}
+.fb p{margin:.2rem 0}
+.fb .cheer{font-weight:700;color:#8a2a24;margin-top:.35rem}
+@keyframes pop{0%{transform:scale(.2) rotate(-40deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.fb .badge{animation:none}}
+.sim .sim-row{margin:0}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.6rem 0 0}
+.dots{display:flex;gap:5px}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
+.dots i.on{background:#E9A23B;border-color:#b87710}
+.streak .lab{color:var(--muted);font-size:.9rem}.streak b{font-size:1.1rem}
+/* the master overlay */
+.master{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(20,24,40,.55);padding:16px}
+.master.show{display:flex}
+.mcard{position:relative;background:#fff;border:3px solid var(--navy);border-radius:14px;max-width:440px;width:100%;padding:1.2rem;text-align:center;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+.mcard img{width:150px;height:150px;border-radius:12px;border:3px solid var(--navy);display:block;margin:0 auto .6rem;animation:bob 1.2s ease-in-out .5s 3}
+.bubble{position:relative;background:#FFF4C7;border:2px solid #2C4D94;border-radius:16px;padding:.7rem .9rem;font:700 1.15rem/1.35 var(--sans);color:#1d2a4d;margin:0 0 1rem}
+.bubble::before{content:"";position:absolute;left:50%;top:-12px;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid #2C4D94}
+.mcard .btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.confetti{position:fixed;top:-20px;width:10px;height:15px;border-radius:2px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+@keyframes popin{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.mcard,.mcard img{animation:none}}
+.dots i.fin{border-style:dashed}
+.dots i.fin.on{border-style:solid}
+.final{display:inline-block;background:#E6D5FF;border:1.5px solid #7030A0;color:#4b1f73;border-radius:999px;padding:.05rem .6rem;font-size:.85rem;font-weight:700;margin-right:.4rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Choose the Best Graph Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Game</p>
+  <h1>Choose the Best Graph Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-2/section-2-2.html">Section 2.2 Tables and Graphs for Quantitative Data</a></p>
+</header>
+<p class="sim-intro">Match each scenario with the graph that best displays its data. One graph is left over. Match all three correctly to win the round, and win 3 rounds in a row to win the game.</p>
+
+<section class="sim" aria-label="Choose the Best Graph Game">
+  <p class="how" id="how">Tap a scenario, then tap the graph that fits it. Tap again to change a match.</p>
+  <div class="match">
+    <div class="col"><h2 id="sh">Scenarios</h2><ul id="scs" aria-labelledby="sh"></ul></div>
+    <div class="col"><h2 id="gh">Graphs</h2><ul id="grs" aria-labelledby="gh"></ul></div>
+  </div>
+  <div class="fb" id="fb" aria-live="polite"></div>
+  <div class="ctl">
+    <button class="btn" id="check" disabled>Check</button>
+    <button class="btn" id="next" hidden>Next</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="streak">
+    <div><span class="lab">Streak</span> <b id="streakn">0</b> <span class="lab">of 3 rounds</span></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div><span class="lab">Rounds won</span> <b id="score">0 of 0</b></div>
+    <div><span class="lab">Best streak</span> <b id="best">0</b></div>
+  </div>
+</section>
+
+<div class="master" id="master" role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="mcard">
+    <img src="data.jpg" alt="Data, Stat-Man's sidekick, smiling.">
+    <p class="bubble" id="mtext">Congratulations! You are now a master at choosing the best graph for your data!</p>
+    <div class="btns"><button class="btn" id="keep">Keep playing</button><button class="btn alt" id="again">Start over</button></div>
+  </div>
+</div>
+
+<aside class="sim-notice">
+  <p class="t">What you should notice</p>
+  <p>Start by asking what kind of data you have. <b>Qualitative (categorical)</b> data go in a <b>bar graph</b>, <b>pie chart</b> or <b>Pareto chart</b>; when the categories have an order (<b>ordinal</b> data), use a bar graph with the bars in that order. Qualitative data <b>split into groups</b> are best compared with a <b>split (side-by-side) bar graph</b>. <b>Quantitative</b> data go in a <b>histogram</b>, <b>dot plot</b>, <b>stem-and-leaf plot</b> or <b>boxplot</b>, which show the shape, center and spread. Data measured <b>over time</b> go in a <b>time-series plot</b>.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const GOAL = 3, COLORS = ['#365F91', '#C0601A', '#1E7B3A'];
+
+  /* ---------- the graphs, with small pictures */
+  const G = {
+    bar: {n: 'Bar graph', i: '<rect x="6" y="18" width="10" height="18"/><rect x="20" y="8" width="10" height="28"/><rect x="34" y="22" width="10" height="14"/><rect x="48" y="14" width="6" height="22"/>'},
+    pie: {n: 'Pie chart', i: '<circle cx="29" cy="20" r="16" fill="#cfc2ec"/><path d="M29 20V4A16 16 0 0 1 44.2 25Z"/><path d="M29 20L44.2 25A16 16 0 0 1 20 33.3Z" fill="#7a5fc0"/>'},
+    pareto: {n: 'Pareto chart', i: '<rect x="5" y="6" width="11" height="30"/><rect x="18" y="16" width="11" height="20"/><rect x="31" y="24" width="11" height="12"/><rect x="44" y="30" width="11" height="6"/><polyline points="10,24 23,14 36,9 49,6" fill="none" stroke="#C0601A" stroke-width="2"/>'},
+    split: {n: 'Split bar graph (side-by-side)', i: '<rect x="5" y="14" width="6" height="22"/><rect x="11" y="20" width="6" height="16" fill="#E9A23B"/><rect x="22" y="6" width="6" height="30"/><rect x="28" y="12" width="6" height="24" fill="#E9A23B"/><rect x="39" y="20" width="6" height="16"/><rect x="45" y="10" width="6" height="26" fill="#E9A23B"/>'},
+    hist: {n: 'Histogram', i: '<path d="M4 36V28H12V16H20V6H28V12H36V22H44V30H52V36Z" stroke="#fff" stroke-width=".8"/><path d="M12 36V28M20 36V16M28 36V6M36 36V12M44 36V22" stroke="#fff" stroke-width="1.2"/>'},
+    stem: {n: 'Stem-and-leaf plot', i: '<g font-family="monospace" font-size="9" fill="#333"><text x="6" y="12">2 | 4 7</text><text x="6" y="23">3 | 0 2 5 8</text><text x="6" y="34">4 | 1 3</text></g>'},
+    dot: {n: 'Dot plot', i: '<g fill="#4472C4"><circle cx="10" cy="31" r="3"/><circle cx="18" cy="31" r="3"/><circle cx="18" cy="24" r="3"/><circle cx="26" cy="31" r="3"/><circle cx="26" cy="24" r="3"/><circle cx="26" cy="17" r="3"/><circle cx="34" cy="31" r="3"/><circle cx="34" cy="24" r="3"/><circle cx="42" cy="31" r="3"/><circle cx="50" cy="31" r="3"/></g><line x1="4" x2="56" y1="36" y2="36" stroke="#333"/>'},
+    box: {n: 'Boxplot', i: '<g fill="none" stroke="#333" stroke-width="1.6"><line x1="5" x2="17" y1="20" y2="20"/><rect x="17" y="11" width="22" height="18" fill="#cfc2ec"/><line x1="27" x2="27" y1="11" y2="29"/><line x1="39" x2="53" y1="20" y2="20"/><line x1="5" x2="5" y1="15" y2="25"/><line x1="53" x2="53" y1="15" y2="25"/></g>'},
+    time: {n: 'Time-series plot', i: '<polyline points="4,30 12,24 20,27 28,16 36,19 44,10 54,13" fill="none" stroke="#365F91" stroke-width="2.2"/><g fill="#365F91"><circle cx="4" cy="30" r="2"/><circle cx="12" cy="24" r="2"/><circle cx="20" cy="27" r="2"/><circle cx="28" cy="16" r="2"/><circle cx="36" cy="19" r="2"/><circle cx="44" cy="10" r="2"/><circle cx="54" cy="13" r="2"/></g><line x1="2" x2="56" y1="36" y2="36" stroke="#333"/>'}
+  };
+  const icon = k => `<svg viewBox="0 0 58 40" aria-hidden="true"><g fill="#9B82D6">${G[k].i}</g></svg>`;
+
+  /* ---------- scenarios. c: nom (nominal), ord (ordinal), quant, time, split */
+  const S = [
+    ['nom', 'A student conducts a survey asking respondents, “What is your favorite color?”'],
+    ['nom', 'A survey asks voters which political party they are registered with.'],
+    ['nom', 'Students in a class list the type of pet they own (dog, cat, fish, bird or other).'],
+    ['nom', 'The college records the declared major of each new student.'],
+    ['nom', 'A store tracks the brand of each phone it sold last month.'],
+    ['nom', 'Blood types (A, B, AB or O) are recorded for donors at a blood drive.'],
+    ['nom', 'Students are asked how they usually get to campus: car, bus, bike, walk or other.'],
+    ['nom', 'A survey asks teens which social media app they use most.'],
+    ['nom', 'Customers at a food court are asked which type of food they bought.'],
+    ['nom', 'A help desk records the reason for each call it receives.'],
+    ['ord', 'The final letter grades (A, B, C, D, F) for a statistics class are collected.'],
+    ['ord', 'Hotel guests rate their stay as very poor, poor, fair, good or excellent.'],
+    ['ord', 'A club records each member’s class standing: freshman, sophomore, junior or senior.'],
+    ['ord', 'A shop counts how many T-shirts it sold in each size: S, M, L and XL.'],
+    ['ord', 'Patients rate their pain as none, mild, moderate or severe.'],
+    ['ord', 'A survey asks adults for the highest level of education they have completed.'],
+    ['ord', 'Students say how much they agree that homework helps: strongly disagree to strongly agree.'],
+    ['quant', 'Exam scores from an algebra test are collected.'],
+    ['quant', 'A student survey collects information about the cost of utility bills.'],
+    ['quant', 'The heights of 40 students are measured in inches.'],
+    ['quant', 'Commuters report how many minutes it takes them to get to work.'],
+    ['quant', 'Students record how many hours they slept last night.'],
+    ['quant', 'A hospital records the birth weights of newborn babies.'],
+    ['quant', 'The prices of 60 used cars for sale online are collected.'],
+    ['quant', 'Renters report how much they pay in rent each month.'],
+    ['quant', 'A researcher records the reaction times of volunteers in a driving simulator.'],
+    ['quant', 'A company tests how many hours each of its batteries lasts.'],
+    ['quant', 'The ages of customers at a coffee shop are recorded one morning.'],
+    ['time', 'The U.S. unemployment rate is recorded every month from 2010 to 2025.'],
+    ['time', 'A stock’s closing price is recorded each trading day for a year.'],
+    ['time', 'The average temperature in a city is recorded every year from 1950 to 2025.'],
+    ['time', 'A college records its fall enrollment each year for the last 20 years.'],
+    ['time', 'A bakery records its total sales each week for two years.'],
+    ['time', 'The cost of tuition is recorded each year from 2000 to 2025.'],
+    ['split', 'Students’ favorite pizza toppings are compared for freshmen and seniors.'],
+    ['split', 'Registered political party is recorded for voters in three age groups.'],
+    ['split', 'How students get to campus is compared for full-time and part-time students.'],
+    ['split', 'Customer satisfaction ratings (poor, fair, good) are compared for two store locations.'],
+    ['split', 'Morning and evening students are asked whether they prefer coffee, tea or neither.'],
+    ['split', 'Vaccination status is recorded for people in four age groups.'],
+    // scenarios featuring people of color and LGBTQ+ people (author, 16 Nov 2026); every round includes at least one (r: true)
+    ['nom', 'Visitors to a Juneteenth festival are asked which event they enjoyed most: music, food, art or history talks.', 1],
+    ['nom', 'Members of a Filipino American student club list the language other than English they speak at home.', 1],
+    ['nom', 'A campus Pride center asks visitors which service they used most: counseling, career help, social events or study space.', 1],
+    ['nom', 'Students at a tribal college list their declared majors.', 1],
+    ['nom', 'A Black-owned bookstore records the genre of each book it sold one weekend.', 1],
+    ['ord', 'Students in an LGBTQ+ mentoring program rate how supported they feel: somewhat, very or extremely supported.', 1],
+    ['ord', 'Guests rate a Lunar New Year celebration as good, very good or excellent.', 1],
+    ['ord', 'Students in a Latinx leadership program report their class standing: freshman, sophomore, junior or senior.', 1],
+    ['quant', 'Members of a Black women’s running club record their finishing times in a 10K race.', 1],
+    ['quant', 'A Latinx student association records how many hours each member spent tutoring younger students this semester.', 1],
+    ['quant', 'An LGBTQ+ student center records the GPAs of students in its peer mentoring program.', 1],
+    ['quant', 'The ages of the artists showing their work at an Indigenous art festival are recorded.', 1],
+    ['quant', 'A Hmong community garden records how many pounds of vegetables each family harvested.', 1],
+    ['quant', 'An HBCU alumni association records the amount of each scholarship it awarded this year.', 1],
+    ['quant', 'Runners at a Pride 5K fundraiser report how much money each of them raised.', 1],
+    ['time', 'A student wishes to study the percentage of engineers who are BIPOC and tracks the growing percentage from 2010 to 2026.', 1],
+    ['time', 'The number of Black-owned businesses in a city is recorded each year from 2015 to 2026.', 1],
+    ['time', 'A college tracks the number of first-generation Latinx graduates each spring from 2010 to 2026.', 1],
+    ['time', 'The number of openly LGBTQ+ people elected to public office in the U.S. is recorded for each election from 2000 to 2024.', 1],
+    ['time', 'A library records attendance at its Pride Month author events each June from 2012 to 2026.', 1],
+    ['time', 'The number of Native American students earning nursing degrees is recorded each year from 2008 to 2026.', 1],
+    ['time', 'A museum records the number of visitors each month to its new exhibit on Asian American history.', 1],
+    ['split', 'Favorite activities at a Día de los Muertos celebration are compared for children and adults.', 1],
+    ['split', 'Members of a Black engineers’ society report their field of engineering, compared for students and working professionals.', 1],
+    ['split', 'Members of a STEM club’s LGBTQ+ chapter and its main chapter are asked which career they plan to pursue.', 1],
+    ['split', 'Volunteers at an Asian American community center report which program they help with, compared by age group.', 1],
+    ['split', 'First-time and returning visitors to a powwow rate the event as good, very good or excellent.', 1],
+    ['split', 'Majors chosen by first-generation college students are compared for Latinx and Black students.', 1],
+    // first-generation college students (author, 16 Nov 2026), also counted in the every-round list
+    ['nom', 'First-generation college students in a summer bridge program list their intended majors.', 1],
+    ['nom', 'A first-generation student success office records the type of scholarship each student received: merit, need-based, community or department.', 1],
+    ['ord', 'First-generation students rate how confident they feel about finishing their degree: somewhat, very or extremely confident.', 1],
+    ['quant', 'A foundation records the dollar amount of each scholarship it awarded to first-generation college students this year.', 1],
+    ['quant', 'First-generation students in a mentoring program report how many units they completed this year.', 1],
+    ['time', 'A college records how many first-generation students earned scholarships each year from 2012 to 2026.', 1],
+    ['time', 'A university records the graduation rate of its first-generation students each year from 2010 to 2026.', 1],
+    ['split', 'Declared majors are compared for first-generation and continuing-generation students.', 1],
+    ['split', 'The types of scholarships awarded to first-generation students are compared for first-year and second-year students.', 1]
+  ].map(([c, t, r]) => ({c, t, r: !!r}));
+
+  const WHY = {
+    nom: g => `This is <b>nominal</b> (qualitative) data: categories with no order. A ${G[g].n.toLowerCase()} shows how often each category occurs.`,
+    ord: g => `This is <b>ordinal</b> (qualitative) data: categories with a natural order, so a bar graph with the bars in that order works best.`,
+    quant: g => `This is <b>quantitative</b> data: numbers that are measured or counted. A ${G[g].n.toLowerCase()} shows the shape, center and spread of the distribution.`,
+    time: g => `These data are measured <b>over time</b>, so a time-series plot shows how the values change from one time to the next.`,
+    split: g => `This is qualitative data <b>split into groups</b>, so a split (side-by-side) bar graph lets you compare the groups category by category.`
+  };
+  const KIND = c => c === 'nom' || c === 'ord' ? 'qual' : c;   // the four kinds of graph job
+
+  /* ---------- building a round: three scenarios of three different kinds, each with exactly one graph that fits,
+     plus one leftover graph that fits none of them */
+  const pick = a => a[SimKit.rint(0, a.length - 1)];
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--){ const j = SimKit.rint(0, i); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const bags = {};
+  function draw1(kind, r, nomOnly){   // scenarios come out of shuffled bags, so they don't repeat until all have been used
+    const key = kind + (r ? '+r' : '') + (nomOnly ? '+nom' : '');
+    if (!bags[key] || !bags[key].length) bags[key] = shuffle(S.filter(s => KIND(s.c) === kind && (!r || s.r) && (!nomOnly || s.c === 'nom')));
+    return Object.assign({}, bags[key].pop());
+  }
+  let round, sel = null, matches, checked, streak = 0, best = 0, wins = 0, plays = 0, mastered = false, lastKinds = '';
+  function newRound(){
+    let kinds; do { kinds = shuffle(['qual', 'quant', 'time', 'split']).slice(0, 3); } while (kinds.slice().sort().join() === lastKinds);
+    lastKinds = kinds.slice().sort().join();
+    const left = ['qual', 'quant', 'time', 'split'].find(k => !kinds.includes(k));
+    const hasSplit = kinds.includes('split');
+    // one scenario in every round features people of color or LGBTQ+ people; with a split bar graph on the board,
+    // the qualitative scenario is nominal (an ordinal one would make the plain bar graph a near-miss)
+    const ri = SimKit.rint(0, 2);
+    const sc = kinds.map((k, i) => draw1(k, i === ri || Math.random() < .25, k === 'qual' && hasSplit));
+    sc.forEach(s => {
+      if (s.c === 'ord') s.g = 'bar';
+      // with a split bar graph on the board, a plain bar graph would be a near-miss for the split scenario, so use a pie or Pareto chart
+      else if (s.c === 'nom') s.g = hasSplit ? pick(['pie', 'pareto']) : pick(['bar', 'pie', 'pareto']);
+      else if (s.c === 'quant') s.g = pick(['hist', 'box', 'dot', 'stem']);
+      else s.g = s.c;
+    });
+    const extra = left === 'qual' ? pick(['pie', 'pareto']) : left === 'quant' ? pick(['hist', 'box', 'dot', 'stem']) : left;
+    return {sc, graphs: shuffle(sc.map(s => s.g).concat(extra))};
+  }
+
+  /* ---------- drawing */
+  function render(){
+    const r = round;
+    $('scs').innerHTML = r.sc.map((s, i) => {
+      const m = matches[i], cls = checked ? (m === s.g ? 'right' : 'wrong') : (sel && sel.t === 's' && sel.i === i ? 'on' : '');
+      return `<li><button class="card sc ${cls}" data-s="${i}" ${checked ? 'disabled' : ''} style="${m != null && !checked ? `border-color:${COLORS[i]}` : ''}"><span class="num" style="background:${COLORS[i]}">${i + 1}</span><span class="txt">${s.t}<span class="pick">${m != null ? `Matched with <b>${G[m].n}</b>` : 'Not matched yet'}</span></span>${checked ? `<span class="mark" aria-label="${m === s.g ? 'correct' : 'incorrect'}">${m === s.g ? '✓' : '✗'}</span>` : ''}</button></li>`;
+    }).join('');
+    $('grs').innerHTML = r.graphs.map((g, j) => {
+      const who = matches.map((m, i) => m === g ? i : -1).filter(i => i >= 0);
+      const cls = sel && sel.t === 'g' && sel.g === g ? 'on' : '';
+      return `<li><button class="card gr ${cls}" data-g="${g}" ${checked ? 'disabled' : ''} style="${who.length && !checked ? `border-color:${COLORS[who[0]]}` : ''}">${icon(g)}<span class="nm">${G[g].n}</span><span class="tags">${who.map(i => `<i style="background:${COLORS[i]}">${i + 1}</i>`).join('')}</span></button></li>`;
+    }).join('');
+    $('check').disabled = checked || matches.some(m => m == null);
+    document.querySelectorAll('[data-s]').forEach(b => b.onclick = () => tap({t: 's', i: +b.dataset.s}));
+    document.querySelectorAll('[data-g]').forEach(b => b.onclick = () => tap({t: 'g', g: b.dataset.g}));
+  }
+  function tap(x){
+    if (checked) return;
+    if (!sel || sel.t === x.t){ sel = (sel && sel.t === x.t && (x.t === 's' ? sel.i === x.i : sel.g === x.g)) ? null : x; }
+    else {
+      const i = x.t === 's' ? x.i : sel.i, g = x.t === 'g' ? x.g : sel.g;
+      matches = matches.map(m => m === g ? null : m);   // each graph matches one scenario at most
+      matches[i] = g; sel = null;
+    }
+    const focus = x.t === 's' ? `[data-s="${x.i}"]` : `[data-g="${x.g}"]`;
+    render(); const f = document.querySelector(focus); if (f) f.focus({preventScroll: true});
+  }
+  function start(){
+    round = newRound(); sel = null; matches = [null, null, null]; checked = false;
+    $('fb').className = 'fb'; $('fb').innerHTML = ''; $('check').hidden = false; $('next').hidden = true;
+    render();
+  }
+  function check(){
+    if (checked) return; checked = true; plays++;
+    const ok = round.sc.every((s, i) => matches[i] === s.g);
+    const lines = round.sc.map((s, i) => `<li><b>${i + 1}.</b> ${matches[i] === s.g ? '' : `Best: <b>${G[s.g].n}</b>. `}${WHY[s.c](s.g)}</li>`).join('');
+    const left = round.graphs.find(g => !round.sc.some(s => s.g === g));
+    if (ok){ wins++; streak++; best = Math.max(best, streak);
+      $('fb').className = 'fb ok';
+      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><span class="big">Correct!</span><p>All three match, and the ${G[left].n.toLowerCase()} was the one left over. ${mastered ? `That makes ${streak} rounds in a row.` : streak >= GOAL ? 'That makes 3 rounds in a row!' : `Your streak is ${streak} ${streak === 1 ? 'round' : 'rounds'} in a row. ${GOAL - streak} more to go!`}</p></span>`;
+    } else {
+      streak = 0;
+      $('fb').className = 'fb no';
+      $('fb').innerHTML = `<p><b>Not quite.</b> Your streak starts again from 0.</p><ul>${lines}</ul><p>The ${G[left].n.toLowerCase()} was the one left over.</p><p class="cheer">Try it again, you've got this!</p>`;
+    }
+    $('check').hidden = true; $('next').hidden = false;
+    render(); status();
+    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 700); } else $('next').focus({preventScroll: true});
+  }
+  function status(){
+    $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${wins} of ${plays}`;
+    $('dots').innerHTML = Array.from({length: GOAL}, (_, i) => `<i class="${i < Math.min(streak, GOAL) ? 'on' : ''}"></i>`).join('');
+  }
+  function celebrate(){
+    $('master').classList.add('show'); $('keep').focus({preventScroll: true});
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols = ['#E9A23B', '#C8312B', '#365F91', '#1E7B3A', '#7030A0', '#f2d14c', '#2F6FD0'];
+    for (let i = 0; i < 90; i++){
+      const c = document.createElement('i'); c.className = 'confetti';
+      const dur = 1.8 + Math.random() * 1.6;
+      c.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};--dx:${Math.random() * 160 - 80}px;--r:${Math.random() * 1080 - 540}deg;animation-duration:${dur}s;animation-delay:${Math.random() * .6}s`;
+      document.body.appendChild(c); setTimeout(() => c.remove(), (dur + 0.8) * 1000);
+    }
+  }
+  function startOver(){ streak = 0; best = 0; wins = 0; plays = 0; mastered = false; $('master').classList.remove('show'); status(); start(); }
+  $('check').onclick = check;
+  $('next').onclick = start;
+  $('reset').onclick = startOver;
+  $('again').onclick = startOver;
+  $('keep').onclick = () => { $('master').classList.remove('show'); start(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
+  if (/[?&]selftest\b/.test(location.search)) window.__round = () => round;   // used only by automated checks
+  status(); start();
+})();
+</script>
+</body></html>

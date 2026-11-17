@@ -1,0 +1,75 @@
+/* Shared look for every simulation and game page (statswithtech.org/sims/<id>/).
+   Colours and fonts match the book pages. Light theme only, like the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --lav:#E6D5FF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --orange:#C65A2C; --blue-die:#2F6FD0; --red-die:#C8312B;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+/* top bar, same as the chapter pages */
+.runhead{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:.55rem 16px;font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}.runhead a:hover{text-decoration:underline}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}.crumbs a{min-width:0;overflow-wrap:anywhere}
+.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}
+.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}
+.tl-beta,.beta-tag{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}
+@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}
+.wrap{max-width:52rem;margin:0 auto;padding:0 16px 3rem}
+/* page title */
+.sim-head{padding:1.4rem 0 .4rem}
+.sim-kind{font:600 .78rem/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--olive);margin:0}
+.sim-head h1{font:700 1.9em/1.15 var(--serif);margin:.2em 0 .25em;text-wrap:balance}
+.sim-goes{font:400 .92rem/1.4 var(--sans);color:var(--muted);margin:0}
+.sim-intro{margin:.8rem 0 1rem;max-width:40em}
+/* the simulation panel */
+.sim{border:1.5px solid var(--navy);background:#fff;padding:1rem;margin:0 0 1.2rem;font-family:var(--sans);font-size:.98rem}
+.sim h2{font:700 1.05rem/1.3 var(--sans);color:var(--navy);margin:0 0 .5rem}
+.sim-row{display:flex;flex-wrap:wrap;gap:.5rem .9rem;align-items:center;margin:0 0 .8rem}
+.sim fieldset{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.3rem .9rem;align-items:center}
+.sim legend{float:left;font-weight:600;margin-right:.6rem}
+.sim label{display:inline-flex;align-items:center;gap:.3rem;cursor:pointer}
+.btn{font:600 .95rem/1 var(--sans);padding:.6rem .9rem;min-height:44px;border-radius:6px;border:1.5px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer}
+.btn:hover{background:#2a4b74}
+.btn.alt{background:#fff;color:var(--navy)}.btn.alt:hover{background:var(--navy-tint)}
+.btn.sb{background:var(--purple);border-color:var(--purple)}.btn.sb:hover{background:#5a2483}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
+@media (max-width:640px){.sim-grid{grid-template-columns:1fr}.sim{padding:.75rem}.sim table{font-size:.86rem}.sim th,.sim td{padding:.2em .3em}}
+.sim-status{margin:.2rem 0 .6rem;color:var(--muted)}
+.sim-status b{color:var(--ink)}
+/* tables */
+.sim table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+.sim th,.sim td{border:1px solid #9aa3b2;padding:.25em .5em;text-align:right}
+.sim th{background:var(--navy-tint);font-weight:600;text-align:center}
+.sim td:first-child{text-align:center;font-weight:600}
+.sim .tblwrap{overflow-x:auto}
+/* charts */
+.sim-chart svg{width:100%;height:auto;display:block}
+.sim-legend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:.85rem;color:var(--muted);margin:.2rem 0 0}
+.sim-legend .k{display:inline-block;width:14px;height:10px;margin-right:.3rem;vertical-align:baseline}
+/* Open in STATBELT */
+.sim-statbelt{display:flex;flex-wrap:wrap;gap:.4rem .8rem;align-items:center;border-top:1px solid var(--rule);padding-top:.8rem;margin-top:.9rem}
+.sim-statbelt p{margin:0;color:var(--muted);font-size:.88rem;flex:1 1 16rem}
+/* "what to notice" box: lavender, like the book's important-point boxes */
+.sim-notice{border:1.5px solid var(--purple);background:var(--lav);padding:.6rem .9rem;margin:0 0 1.2rem;max-width:44em}
+.sim-notice p{margin:.2rem 0}
+.sim-notice .t{font-weight:700}
+.sim-back{font:400 .9rem/1.4 var(--sans)}
+/* embedded in a chapter page (?embed=1): no top bar, no title block */
+html.embed .runhead,html.embed .sim-head,html.embed .sim-back{display:none}
+html.embed .wrap{padding:0;max-width:none}
+html.embed .sim{margin:0;border:0;padding:.2rem 0 0}
+html.embed body{background:transparent}
+html.embed .sim-notice{margin:.8rem 0 0}
+@media (prefers-reduced-motion:no-preference){.rolling>*{animation:shake .25s ease-out}}
+@keyframes shake{0%{transform:rotate(-12deg) scale(.9)}60%{transform:rotate(8deg)}100%{transform:none}}

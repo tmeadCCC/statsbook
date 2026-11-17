@@ -1,0 +1,85 @@
+{
+ "note": "One entry per simulation or game. id = folder name under sims/ and the web address statswithtech.org/sims/<id>. Run kit sims/sims.py build after editing.",
+ "sims": [
+  {
+   "id": "dice",
+   "title": "Dice Rolling Simulation",
+   "kind": "Simulation",
+   "sections": [
+    "5.1"
+   ],
+   "blurb": "Roll one or two dice many times and watch the empirical probabilities settle near the theoretical ones (the Law of Large Numbers).",
+   "statbelt": true
+  },
+  {
+   "id": "coin-flips",
+   "title": "Coin Flip Simulation",
+   "kind": "Simulation",
+   "sections": [
+    "5.1"
+   ],
+   "blurb": "Flip a coin over larger and larger numbers of trials and watch the empirical probability of heads settle near 0.5 (Table 2 and Figure 5.8).",
+   "statbelt": true
+  },
+  {
+   "id": "roulette",
+   "title": "Roulette Game Simulator",
+   "kind": "Game",
+   "sections": [
+    "6.1"
+   ],
+   "blurb": "Make the straight up, Red or first dozen $10 bets from Example 12, spin the wheel, and compare your total winnings with the expected value of −$0.5263 per bet.",
+   "statbelt": true
+  },
+  {
+   "id": "shapes",
+   "title": "Distribution Shape Game",
+   "kind": "Game",
+   "sections": [
+    "2.2"
+   ],
+   "blurb": "Identify each histogram as bell-shaped (normal), uniform, skewed left or skewed right. Get 10 in a row to become a master of distribution shapes.",
+   "statbelt": true
+  },
+  {
+   "id": "mean-median",
+   "title": "Sensitivity of the Mean and Median Game",
+   "kind": "Game",
+   "sections": [
+    "3.1"
+   ],
+   "blurb": "Watch one of five data values move and predict whether the mean and the median will increase, decrease or stay the same. Get 5 in a row to win.",
+   "statbelt": false
+  },
+  {
+   "id": "percentiles",
+   "title": "Finding Percentiles and Quartiles Game",
+   "kind": "Game",
+   "sections": [
+    "3.3"
+   ],
+   "blurb": "Drag a line across a dot plot of 100 values to find percentiles and quartiles, from the 3rd percentile to the 99th. Get 5 in a row to win.",
+   "statbelt": true
+  },
+  {
+   "id": "best-measures",
+   "title": "Best Measures for the Data Game",
+   "kind": "Game",
+   "sections": [
+    "3.3"
+   ],
+   "blurb": "Look at a bell-shaped or skewed histogram and choose the best measure of center (mean or median) and of variation (standard deviation or IQR). Get 5 in a row to win.",
+   "statbelt": true
+  },
+  {
+   "id": "best-graph",
+   "title": "Choose the Best Graph Game",
+   "kind": "Game",
+   "sections": [
+    "2.2"
+   ],
+   "blurb": "Match three short scenarios with the graph that best displays each one’s data: bar graph, pie chart, Pareto chart, split bar graph, histogram, dot plot, stem-and-leaf plot, boxplot or time-series plot. Win 3 rounds in a row.",
+   "statbelt": false
+  }
+ ]
+}
