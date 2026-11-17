@@ -80,6 +80,16 @@
    ],
    "blurb": "Match three short scenarios with the graph that best displays each one’s data: bar graph, pie chart, Pareto chart, split bar graph, histogram, dot plot, stem-and-leaf plot, boxplot or time-series plot. Win 3 rounds in a row.",
    "statbelt": false
+  },
+  {
+   "id": "hypothesis-conclusions",
+   "title": "To Reject or Not Reject – The Hypothesis Test Conclusion Game",
+   "kind": "Game",
+   "sections": [
+    "8.1"
+   ],
+   "blurb": "Read a claim, decide whether the test is left-tailed, right-tailed or two-tailed, then choose the conclusion that matches the decision to reject or fail to reject H0. Get 5 in a row to win.",
+   "statbelt": false
   }
  ]
 }
