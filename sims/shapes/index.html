@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Distribution Shape Game – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this game */
+.hist svg{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin:.6rem 0}
+@media (min-width:700px){.answers{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.answers .btn{width:100%}
+.answers .btn.right{background:#1E7B3A;border-color:#1E7B3A}
+.answers .btn.wrong{background:#8a2a24;border-color:#8a2a24}
+.answers .btn:disabled{opacity:1;cursor:default}
+.answers .btn.dim{opacity:.45}
+.fb{min-height:3rem;margin:.4rem 0 .6rem;padding:.6rem .8rem;border-radius:6px;display:none}
+.fb.ok{display:block;background:#E6F2E8;border:1.5px solid #1E7B3A}
+.fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
+.fb b{display:block;font-size:1.05rem;margin-bottom:.15rem}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.2rem 0 .6rem}
+.dots{display:flex;gap:5px}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
+.dots i.on{background:#E9A23B;border-color:#b87710}
+.streak .lab{color:var(--muted);font-size:.9rem}.streak b{font-size:1.1rem}
+/* the master overlay */
+.master{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(20,24,40,.55);padding:16px}
+.master.show{display:flex}
+.mcard{position:relative;background:#fff;border:3px solid var(--navy);border-radius:14px;max-width:440px;width:100%;padding:1.2rem;text-align:center;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+.mcard img{width:150px;height:150px;border-radius:12px;border:3px solid var(--navy);display:block;margin:0 auto .6rem;animation:bob 1.2s ease-in-out .5s 3}
+.bubble{position:relative;background:#FFF4C7;border:2px solid #2C4D94;border-radius:16px;padding:.7rem .9rem;font:700 1.15rem/1.35 var(--sans);color:#1d2a4d;margin:0 0 1rem}
+.bubble::before{content:"";position:absolute;left:50%;top:-12px;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid #2C4D94}
+.mcard .btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.confetti{position:fixed;top:-20px;width:10px;height:15px;border-radius:2px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+@keyframes popin{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.mcard,.mcard img{animation:none}}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Distribution Shape Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Game</p>
+  <h1>Distribution Shape Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-2/section-2-2.html">Section 2.2 Tables and Graphs for Quantitative Data</a></p>
+</header>
+<p class="sim-intro">Look at each histogram and choose the shape that describes it: bell-shaped (normal), uniform, skewed left or skewed right. Your goal is to get 10 in a row correct. Keep playing as long as you like.</p>
+
+<section class="sim" aria-label="Distribution Shape Game">
+  <div class="streak">
+    <div><span class="lab">Streak</span> <b id="streakn">0</b> <span class="lab">of 10</span></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div><span class="lab">Correct</span> <b id="score">0 of 0</b></div>
+    <div><span class="lab">Best streak</span> <b id="best">0</b></div>
+  </div>
+  <h2 id="q">What is the shape of this distribution?</h2>
+  <div class="hist"><svg id="hist"></svg></div>
+  <div class="answers" role="group" aria-labelledby="q">
+    <button class="btn" data-a="bell">Bell-shaped (Normal)</button>
+    <button class="btn" data-a="uniform">Uniform</button>
+    <button class="btn" data-a="left">Skewed left</button>
+    <button class="btn" data-a="right">Skewed right</button>
+  </div>
+  <div class="fb" id="fb" aria-live="polite"></div>
+  <div class="sim-row">
+    <button class="btn" id="next" hidden>Next histogram</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="sim-statbelt">
+    <button class="btn sb" id="tosb">Open in STATBELT</button>
+    <p>Opens this histogram's data in STATBELT Utility, so you can make the histogram yourself and look at its shape.</p>
+  </div>
+</section>
+
+<div class="master" id="master" role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="mcard">
+    <img src="data.jpg" alt="Data, Stat-Man's sidekick, smiling.">
+    <p class="bubble" id="mtext">Congratulations! You are now a master of the shapes of data distributions!</p>
+    <div class="btns"><button class="btn" id="keep">Keep playing</button><button class="btn alt" id="again">Start over</button></div>
+  </div>
+</div>
+
+<aside class="sim-notice">
+  <p class="t">What to notice</p>
+  <p>A <b>bell-shaped</b> (normal) histogram has one peak in the middle and looks about the same on both sides. A <b>uniform</b> histogram has bars that are all about the same height. A <b>skewed</b> histogram has a long tail on one side, and the name tells you where the tail is: <b>skewed left</b> has its tail on the left, and <b>skewed right</b> has its tail on the right.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const SHAPES = ['bell', 'uniform', 'left', 'right'];
+  const NAME = {bell: 'bell-shaped (normal)', uniform: 'uniform', left: 'skewed left', right: 'skewed right'};
+  let shape, data, streak = 0, best = 0, answered = 0, correct = 0, done = false, mastered = false, lastShape = null;
+
+  const normal = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+  const gamma = k => { let s = 0; for (let i = 0; i < k; i++) s += -Math.log(1 - Math.random()); return s; };   // whole-number k
+  function sample(sh){
+    const n = 250 + SimKit.rint(0, 150), center = [20, 50, 70, 100, 250, 500][SimKit.rint(0, 5)], spread = center * (0.15 + Math.random() * 0.1);
+    const out = [];
+    if (sh === 'uniform'){                     // bars line up with the bins, so the end bars are full too
+      const w = niceStep(spread * 3.4 / 10), start = Math.round((center - 5 * w) / w) * w, m = 400 + SimKit.rint(0, 100);
+      for (let i = 0; i < m; i++) out.push(+Math.min(start + 10 * w - 0.05, start + Math.random() * 10 * w).toFixed(1));
+      return out;
+    }
+    for (let i = 0; i < n; i++){
+      let z;
+      if (sh === 'bell') z = normal();
+            else { const k = 2; z = (gamma(k) - k) / Math.sqrt(k); if (z > 4.2) { i--; continue; } if (sh === 'left') z = -z; }
+      out.push(+(center + spread * z).toFixed(1));
+    }
+    return out;
+  }
+  function niceStep(x){ const p = Math.pow(10, Math.floor(Math.log10(x))), m = x / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+  function drawHist(vals){
+    const lo = Math.min(...vals), hi = Math.max(...vals), w = niceStep((hi - lo) / 14);
+    const start = Math.floor(lo / w) * w, nb = Math.max(1, Math.ceil((hi - start) / w + 1e-9));
+    const f = new Array(nb).fill(0); vals.forEach(v => f[Math.min(nb - 1, Math.floor((v - start) / w))]++);
+    const W = 520, H = 290, L = 48, R = 14, T = 12, B = 46, pw = W - L - R, ph = H - T - B;
+    const fmax = Math.max(...f), ys = niceStep(fmax / 5), ymax = Math.ceil(fmax / ys) * ys;
+    const X = i => L + (i / nb) * pw, Y = v => T + ph - (v / ymax) * ph;
+    let s = '';
+    for (let v = 0; v <= ymax; v += ys) s += `<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e3e6ec"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" font-size="13" fill="#5a5f6b">${v}</text>`;
+    f.forEach((c, i) => s += `<rect x="${X(i)}" y="${Y(c)}" width="${pw/nb}" height="${T+ph-Y(c)}" fill="#9B82D6" stroke="#fff" stroke-width="1.2"/>`);
+    const every = nb > 12 ? 2 : 1;
+    for (let i = 0; i <= nb; i += every) s += `<text x="${X(i)}" y="${T+ph+17}" text-anchor="middle" font-size="13" fill="#111">${+(start + i * w).toFixed(2)}</text>`;
+    s += `<line x1="${L}" x2="${W-R}" y1="${T+ph}" y2="${T+ph}" stroke="#111"/>`;
+    s += `<text x="${L+pw/2}" y="${H-6}" text-anchor="middle" font-size="14" fill="#111">Value</text><text transform="translate(14 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="14" fill="#111">Frequency</text>`;
+    const svg = $('hist'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', `Histogram of ${vals.length} values. Bar heights from left to right: ${f.join(', ')}.`);
+    svg.innerHTML = s;
+  }
+  function advice(truth, ans){
+    const tail = {left: 'left', right: 'right'};
+    if (truth === 'left' && ans === 'right') return 'Remember, skewed left means the tail of the distribution is on the left! Here the bars trail off in a long tail to the left, even though the peak is on the right.';
+    if (truth === 'right' && ans === 'left') return 'Remember, skewed right means the tail of the distribution is on the right! Here the bars trail off in a long tail to the right, even though the peak is on the left.';
+    if ((truth === 'left' || truth === 'right') && ans === 'bell') return `Look for a tail. This histogram is not the same on both sides: it has a long tail on the ${tail[truth]}, so it is skewed ${tail[truth]}. A bell-shaped distribution looks about the same on both sides of its peak.`;
+    if ((truth === 'left' || truth === 'right') && ans === 'uniform') return `The bars are not all the same height: they pile up on one side and trail off in a long tail on the ${tail[truth]}. That makes it skewed ${tail[truth]}.`;
+    if (truth === 'bell' && ans === 'uniform') return 'Uniform means the bars are all about the same height. This histogram has one peak in the middle, and the bars get shorter on both sides, so it is bell-shaped (normal).';
+    if (truth === 'bell') return 'This histogram is symmetric: the left and right sides look about the same, with the peak in the middle, so it is bell-shaped (normal). A skewed distribution has a long tail on just one side.';
+    if (truth === 'uniform' && ans === 'bell') return 'There is no peak in the middle here. The bars are all about the same height from one end to the other, so it is uniform.';
+    return 'The bars are all about the same height, with no long tail on either side, so it is uniform. A skewed distribution has a long tail on one side.';
+  }
+  function newRound(){
+    do { shape = SHAPES[SimKit.rint(0, 3)]; } while (shape === lastShape && Math.random() < 0.6);
+    lastShape = shape; data = sample(shape); drawHist(data); done = false;
+    document.querySelectorAll('[data-a]').forEach(b => { b.disabled = false; b.className = 'btn'; });
+    $('fb').className = 'fb'; $('fb').innerHTML = ''; $('next').hidden = true;
+  }
+  function answer(a){
+    if (done) return; done = true; answered++;
+    document.querySelectorAll('[data-a]').forEach(b => { b.disabled = true; const v = b.dataset.a;
+      b.className = 'btn' + (v === shape ? ' right' : v === a ? ' wrong' : ' dim'); });
+    if (a === shape){
+      correct++; streak++; best = Math.max(best, streak);
+      $('fb').className = 'fb ok';
+      $('fb').innerHTML = `<b>Correct! It is ${NAME[shape]}.</b>${streak >= 10 ? 'That makes 10 in a row!' : `Your streak is ${streak} in a row. ${10 - streak} more to go!`}`;
+    } else {
+      streak = 0;
+      $('fb').className = 'fb no';
+      $('fb').innerHTML = `<b>Not quite. This one is ${NAME[shape]}, not ${NAME[a]}.</b>${advice(shape, a)} Your streak starts again from 0.`;
+    }
+    $('next').hidden = false; status();
+    if (streak === 10 && !mastered){ mastered = true; setTimeout(celebrate, 400); } else $('next').focus();
+  }
+  function status(){
+    $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${correct} of ${answered}`;
+    $('dots').innerHTML = Array.from({length: 10}, (_, i) => `<i class="${i < Math.min(streak, 10) ? 'on' : ''}"></i>`).join('');
+  }
+  function celebrate(){
+    $('master').classList.add('show'); $('keep').focus();
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols = ['#E9A23B', '#C8312B', '#365F91', '#1E7B3A', '#7030A0', '#f2d14c', '#2F6FD0'];
+    for (let i = 0; i < 90; i++){
+      const c = document.createElement('i'); c.className = 'confetti';
+      const dur = 1.8 + Math.random() * 1.6;
+      c.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};--dx:${Math.random() * 160 - 80}px;--r:${Math.random() * 1080 - 540}deg;animation-duration:${dur}s;animation-delay:${Math.random() * .6}s`;
+      document.body.appendChild(c); setTimeout(() => c.remove(), (dur + 0.8) * 1000);
+    }
+  }
+  function startOver(){ streak = 0; best = 0; answered = 0; correct = 0; mastered = false; $('master').classList.remove('show'); status(); newRound(); }
+  document.querySelectorAll('[data-a]').forEach(b => b.onclick = () => answer(b.dataset.a));
+  $('next').onclick = newRound;
+  $('reset').onclick = startOver;
+  $('again').onclick = startOver;
+  $('keep').onclick = () => { $('master').classList.remove('show'); newRound(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
+  $('tosb').onclick = () => SimKit.openInStatbelt({t: 'Distribution Shape Game histogram', n: ['Value'], c: [data]});
+  status(); newRound();
+})();
+</script>
+</body></html>

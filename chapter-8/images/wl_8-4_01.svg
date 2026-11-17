@@ -1,0 +1,1081 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="486.5" height="393.45" viewBox="0 0 486.5 393.45">
+<defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M68.3 72.849979H554.8V466.3H68.3Z"/>
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 0H612V792H0Z"/>
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M185.25 281.1H192.85V306.051H185.25Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_5">
+<g transform="matrix(.2435484,0,0,.24174758,116.95001,160.19998)">
+<image id="image_6" width="31" height="103" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAB8AAABnCAAAAADdtMZJAAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAAEPElEQVR4nLWXCVfaWhRGgcwhEyEhhEDCLDIZyqBAlUKLIi0Fa2XV
+//9Heu5NojbSptT3snApfGffG2CZbycW+5sjHou/OuBFP3zxd5jBv/2hMO8PoSgR
+T6DH84Gf+3zcS4gE8XTAEzwVjwcxvEiSlH+QJJrBA7FEDKckpDTNMN4PTJB4wucJ
+QCFgOZ6DBwsjsAgMxBMxjAOLQl4QRFEQYIiFCRjA+xMJFHO8IEqykkopsiTCCB6A
+9WNxwGmWSwqSnFI1XdfSKVkSkhxLU7BDDO1OMVxSlFNpLZM1zayhw4QocAxFAg9v
+FXBelFUtY1o2HJaZ0VRZ5Dma9HiK5gRF1bO5glOuVsvFQi6rq7LAwwIE2p5ikxLE
+ebtUazSbjVrZsWBASrI04uHsANey+WLlpNV13W7rpFrMm5oicjhPEDQvqYZVrDba
+7mA0GvTaDRgw0hLPkCgnmaSsmXYF4uF4Op2MYKBim7qSZCiUU6yg6Fap3jobTK7m
+86vJ0G3VS/lMSmApwstTRqHc6PYvrj4ulx+vxv3uacXOqiKLeZITVdOpNt3RdHFz
+e3uzeH/ea9UcM41OEPNiOlest/vj2XK92ayvZ+N+56SU0ySWIiGnOUnLlRrd4XS+
+2ux2m9ViOuw2ypYm+zwv6Vb51D2//LTe3d/vPi8vR26zktdlnsbnz8mZfKXZu5gt
+v3x7ePi2uZ5d9FrVgh7wnJIpVFvvxh9uvt7v99+3qw/jd+2anVE4KuDtaqs/ma+2
+Dz9+POxu55N+u+YYwPu5Uai1B9PFart/fIR8MR106nZGfuYLmL/dAb+/W2P+QL5+
+uf4hPirfHcnTR/LhPMzfhXLmSP6t+/+Wt8N557jP7xXfishDvHMsH85r/zNffyP/
+Kq+/ka/+x3w7nDtv5AsReYjvHMs/5fS/7R/kRBTPhPK743gyvP82gg/nUfzR+fpf
++fXd/sDn5/1/dOD6Dvzj436Lru/tWsF4fn+G83L91S/fP4H6BdaHflltv+/3919v
+oF/Q+soTr8P1B/rpeoP66csS+gn66+nz42Ud+ssdXS4/o35bf7o8d0/Lli7xAa9B
+/50NoYBwP85RP6L+xNdH+H5Qf550oF+vUb8uoV/b9SL0L+ufn5g2nVqrd/7e6+cp
+1GfVgf7mSK//RTVrV067/bHX7xd9qN+Cgfof89D/mTz4gTuczJAfDM7ADyxd8fIE
+xSQVHftFbzSZTsdDF/uFJicD/+CltJFHftJDfuIiP7EMVeIDf+FERTNhIPCbSjGf
+1RQBCRTOPT+ynLLnRyU7j/2IoTBPUgwvyNivisivHOxXCKeQPxJIoA75GUtjf0ug
+BTgB+Z1uIL/LIAMUkxxaHvsjQQV+mEZ+qAZ+iP0x7uvnIb9MEMgv0RlgP+UCP+V9
+P4W9wV/jSH8P+S32Y6zPv/XjWKRfR/p5pN//+f4g8v7iz/cnPwGUQ3o3zEb5CAAA
+AABJRU5ErkJggg=="/>
+</g>
+</mask>
+<clipPath id="clip_8">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M419.9 281.9H427.55V306.851H419.9Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_9">
+<g transform="matrix(.24516128,0,0,.24174758,351.6,159.4)">
+<image id="image_10" width="31" height="103" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAB8AAABnCAAAAADdtMZJAAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAAELElEQVR4nLWXiVLaYBRGWZKQhGyELERCwi7KIpRFIVULLYq0FKyV
+qe//Ir33D6lOtNKMNoODcO53E8eZfCex2L8c8Vj82QFf7uCT38MZ8r4bCud3Q4gS
+8QS+Hg/yeZeP+ySZSP454AOZiscDDF9SFL07KApnyECMYIQUzTCplP8DExSZgP1w
+IsA0DYDleA5eLIzAkiTJwwLEDECOFwRRFAQeRxgykIjBeoIBipKsZDKKLIkCz+FA
+IhkncZphubQgyZmspuuampElIc2xDCyIx2AHRac4QQSqmznLyhlaNiOLaS5FI8ez
+MxwvyqpmWHkHjrxlaKos8rAAOcZ5QVb13EGhWK5Wy27hIKerisAxNOFJhk1LgPNu
+udY4Pm7USo4NA1IaT0A4JyqaZRerh81Ot9tpHlaKdk7DBVQS96d4KWsCbrR6g9Fo
+0G01qsW8qUo8Q/J0Kq3ollMBPJp43ngIAxXH0uR0igKepFkhY9ilerM7nFxOpxeT
+wUmzXsrrisDSJM+Kas6pHHX644vP8/nni7N+p1EumBmfJ2lOzFpurdk7/Ti7vrm5
+nnmj7nHVzakih/spmpO0g9Jhuz++vFquVsv55bjfqhetrOjnGU7W8uWjk6E3W6w2
+m9Vi6g07jdKBJnEM4bys25Xj7uh8/nVzd7dZfjk/7R6V87rEB3m9UG32zi6vVj/u
+7398m1+e9Y4rtiFzu+tTDKfW+jD+tFj/3G7vvl9/Gn9oVguGwgV50621+pPpzeb+
+16/79WI66TerzmNeNpx6e+DNgD88bNc3M2/QqhXMp5zkl7dbyG9uSL5gPOO7/fv4
+8o35EGde51TUfOjvS6RC/DZiPnz+MH9r3uftqHkn2v5m1LwbLR/mtT38rfl6tHw9
+6v4Qr/7fvLtvf5i3ou0vRM23o+X/wpl3zt+GeOqdz79+53yIL/dwsn97u3zGzUKt
+Bff3xXr78AB5uL+36y/8/xZP97vmn+tXcD/0y/X3u+3253oB/YL7lcc89Bf00/wb
+9tPqCvoJ7h865LG/aV7Sof+6p+dflthvX+fnUKAVW5d5xr//YX82OkNv6vfjDPux
+nNeCPCtmD4r1FvTrHPv1Cvq1fYj9ydIU+gEnqpZbhQL1/H7+eNpr1lzo3yAvZMxC
+udHpn/n9Pu53jioO9HfQ/4Ki58EPTgaTC/SDYRf8wDaw/33/SMsa8YvucOx5k1GP
++IWugMD4/sJLqplHP+min/TQT2wzK/G+f4A+CYqWs4uVwG8AW5qCl0fytO9HtlPy
+/ajs5okfsT5P0LiA+JWLflUkfiULfAoUMAYqSjHsS36G+uT7IfhdGv1OM9DvTB39
+TgC/Q3/DC6ACP1TRD7OBH9JJzMfhBH/xS/RDFMidn/KBn3I7P00Gfvyy30I8EUvE
+XvPj/X6918/3+v3rzwd7ny9efz75DaUjejd4lGS6AAAAAElFTkSuQmCC"/>
+</g>
+</mask>
+<clipPath id="clip_12">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M196.45 114.9H222.05V138.201H196.45Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_13">
+<g transform="matrix(.24103773,0,0,.23969072,128.15001,328.05)">
+<image id="image_14" width="106" height="97" xlink:href="data:image/png;base64,
+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"/>
+</g>
+</mask>
+<clipPath id="clip_16">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M377.3 114.15H406.65V148.001H377.3Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_17">
+<g transform="matrix(.2401639,0,0,.2397163,309,318.25)">
+<image id="image_18" width="122" height="141" xlink:href="data:image/png;base64,
+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
+lgAAAABJRU5ErkJggg=="/>
+</g>
+</mask>
+<clipPath id="clip_20">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_21">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M420.6 345.109H463.499V360.109H420.6Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_22">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M384.3 311.5H427.15V326.599H384.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_23">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M384.3 296.382H427.15V311.382H384.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_24">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M384.3 281.199H434.84999V296.298H384.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_25">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_26">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M420.699 266H427.99803V279.3H420.699Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_27">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M331.899 243.2H364.349V256.5H331.899Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_28">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M383.706 204.299H448.306V233.69899H383.706Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_29">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M439.623 162.483H448.92399V175.683H439.623Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_30">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M483.69 162.483H490.491V175.683H483.69Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_31">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M510.199 161.575H524.599V176.575H510.199Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_32">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_33">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_34">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M186.821 345.208H230.321V360.208H186.821Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_35">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M156.099 320.8H199.649V335.899H156.099Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_36">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M156.099 305.72H199.649V320.72H156.099Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_37">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M156.099 290.5H207.349V305.599H156.099Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_38">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_39">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M178.3 264.799H185.599V278.099H178.3Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_40">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M88.5 249.799H267.05V264.699H88.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_41">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M145.599 190.1H250.099V240.49901H145.599Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_42">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M124.5 138.179H138.95V153.179H124.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_43">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_44">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_45">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M294.1 95.2H301.39903V108.5H294.1Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_46">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M312.399 81.889H319.698V95.089H312.399Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_47">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_48">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_49">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_50">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M214.45 408.35H255.05V436.201H214.45Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_51">
+<g transform="matrix(.23994082,0,0,.23965517,146.15001,30.049977)">
+<image id="image_52" width="169" height="116" xlink:href="data:image/png;base64,
+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"/>
+</g>
+</mask>
+<clipPath id="clip_54">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M351.7 407.6H393.05V436.201H351.7Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_55">
+<g transform="matrix(.24152047,0,0,.23991597,283.40003,30.049977)">
+<image id="image_56" width="171" height="119" xlink:href="data:image/png;base64,
+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
+RK5CYII="/>
+</g>
+</mask>
+<clipPath id="clip_58">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M196.45 362.4H212.3V393.901H196.45Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_59">
+<g transform="matrix(.23939395,0,0,.24007635,128.15001,72.34999)">
+<image id="image_60" width="66" height="131" xlink:href="data:image/png;base64,
+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
+eQCTZ2wAAAAASUVORK5CYII="/>
+</g>
+</mask>
+<clipPath id="clip_62">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M398.95 362.6H417.05V394.101H398.95Z" clip-rule="evenodd"/>
+</clipPath>
+<mask id="mask_63">
+<g transform="matrix(.24066666,0,0,.24007635,330.65003,72.14998)">
+<image id="image_64" width="75" height="131" xlink:href="data:image/png;base64,
+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"/>
+</g>
+</mask>
+</defs>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<g clip-path="url(#clip_3)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M84.35 699.55H527.55V684.05H84.35V699.55Z" fill="#4f6228" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M84.35 684.05H527.55V670.45H84.35V684.05Z" fill="#eaf1dd" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M84.35 670.5H527.55V654.65H84.35V670.5Z" fill="#eaf1dd" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M84.35 699.55H527.55V684.05H84.35V699.55Z" fill="#4f6228" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M84.35 684.05H527.55V670.45H84.35V684.05Z" fill="#eaf1dd" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M84.35 670.5H527.55V654.65H84.35V670.5Z" fill="#eaf1dd" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="14" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-714.1" x="86.5 94.284008 100.48601 106.68801 111.35001 115.22801 122.22801 130.01201 133.51201 140.51201 144.01201 151.01201 155.67401 159.17401 170.05202 177.05202 184.83602 191.83602 196.49802 204.28202 210.48401 215.93001 219.80802 225.25402 228.75402 238.07802 244.28002 249.72602 254.38802 258.26603 266.05003 273.05003 276.55003 284.334 292.118 303.78 315.442 322.442 328.64399">Section 8.4: Hypothesis Testing Summary</tspan></text>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-688.2" x="86.5 92.6 97.03 101.46 104.79 109.79 112.56 117.56 122.56 125.06 132.28 137.28 140.05 144.48001 148.91 151.68001 154.45001 159.45001 163.88">Learning Objectives</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-672.65" x="104.5 109.5 112 114.5 117 124.22 128.65 131.42 135.85 139.18001 146.95001 149.72002 154.72002 159.15003 161.65003 164.42003 169.42003 173.85004 176.35004 179.12004 184.12004 189.12004 193.55005 196.05005 201.05005 204.38005 206.88005 211.88005 216.88005 221.88005 226.88005 229.65006 234.65006 239.08005 242.97005 245.74005 249.63005 252.13005 254.90006 259.33006 263.22007 265.99006 268.49006 271.26005 276.26005 278.76005 283.76005 287.65007 292.08006 295.40003 297.90003 301.23 306.23 309.56 312.06 317.06 320.37998 325.37998 330.37998 335.37998 338.70997 341.47996 344.24995 349.24995 354.24995 358.13996 360.63996 365.63996 368.95994 371.45994 379.22993 383.6599 388.0899 393.0899 396.97993">1.  Determine the type of hypothesis test to use- for proportions or means.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-631.9" x="86.5 98.5 105.172 108.495998 113.812 120.48399 123.48399 131.476 136.79199 141.45999 145.456 148.456 155.12799 161.79999 167.79999 174.47199 177.79599 184.46799 187.46799 199.46799 204.78398 207.78398 216.44799 221.11598 226.43198">Which Test Should We Use?</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-608.4" x="104.5 113.93 118.36 120.86 125.86 130.29001 135.29001 139.72 142.22 146.11 148.88 153.88 158.88 161.65001 166.08002 171.08002 173.58002 176.35002 183.57003 188.57003 191.07003 193.84003 198.84003 203.84003 208.27002 212.16002 214.66002 219.66002 222.98003 225.48003 230.48003 235.48003 240.48003 245.48003 248.25003 253.25003 257.68003 261.57005 264.34004 268.23005 270.73005 273.50004 277.93003 281.82005 284.59004 288.48005 290.98005 293.48005 295.98005 305.41004 310.41004 314.84004 319.84004 322.34004 329.56004 333.99003 336.49003 343.71003 348.71003 352.04 357.04 359.54 366.76 369.53 372.3 377.3">We have studied two types of hypothesis tests.  When we work with </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-608.4" x="380 385.56 391.12 396.12 398.88999 401.65998 404.97996 409.97996 413.30995 416.07994 421.07994 425.50993 428.00993 433.56993 438.56993 441.8999">qualitative data</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-608.4" x="446.95 449.45 451.95 459.17 463.6 466.1 471.1 474.99003 479.42">, we use </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-596.85" x="104.5 109.5 112.83 117.83 122.83 127.83 131.15001 133.92002 136.69002 141.69002 146.69002 150.58002 153.08002 158.08002 161.41002 163.91002 167.80002 172.23001 180.00002 185.00002 187.77002 192.20001 196.09001 198.59001 205.81002 208.58002 211.35002 216.35002 218.85002 223.28003 225.78003 230.21002 235.21002 239.64002 242.96002 247.39002 251.82 254.59001 259.02003 262.34 265.11 269 271.77 274.53999 278.96998 281.46998 284.23997 289.23997 291.73997 296.16996 299.49995 303.92994 308.35993 311.1299 315.5599 318.0599 320.8299 325.8299 330.2599 332.7599 337.7599 340.52989 344.4199 347.18989 350.50987 353.27986 358.27986 363.27986 366.04985 368.81983 373.81983 378.81983 381.31983 386.31983 389.6398 392.1398 396.02983 400.4598 408.2298 413.2298 415.9998 420.42979 422.92979 427.92979 431.25978 436.25978 441.25978 446.25978 449.57975 452.34974 455.11973 460.11973 465.11973 469.00975 471.50975 474.00975 476.50975 485.93974 490.36973 492.86973 497.2997 501.7297 506.7297">proportions of samples with a characteristic to create the distribution of sample proportions.  We can </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-585.3" x="104.5 107.27 112.27 116.7 121.7 124.2 129.2 133.09 137.51999 140.01999 142.79 147.79 152.22 154.72 162.49 166.92002 169.69002 174.69002 179.69002 184.69002 188.58002 191.08002 196.08002 199.41002 201.91002 205.80002 210.23001 214.66 217.43001 220.20001 225.20001 230.20001 232.70001 237.70001 240.20001 245.20001 247.70001 250.47002 255.47002 257.97004 262.40003 267.40003 272.40003 277.40003 282.40003 286.83003 289.6 292.1 297.1 302.1 307.1 312.1 314.87 319.87 324.3 328.19 330.96 334.85 337.35 340.12 344.55 348.44 351.21 355.1 357.6 360.91999 365.91999 369.24998">then use the methods of section 8.2 to conduct hypothesis tests for </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-585.3" x="371.95 377.51 382.51 388.07 393.63 396.4 401.4 404.71998 407.48997 412.48997 418.04997 420.54997 426.10997 430.53996 435.53996 441.09996 446.09996 450.52995 453.85993 456.6299 461.6299 467.1899">population proportions</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-585.3" x="471.15">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-585.3" x="473.65"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-562.2" x="104.5 113.93 118.93 123.36 128.36 130.86 138.08 142.51001 145.01001 152.23001 157.23001 160.56002 165.56002 168.06002 175.28002 178.05002 180.82003 185.82003">When we work with </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-562.2" x="188.35 193.91 199.47 204.47 210.03 213.36 216.13 219.46 224.46 227.78002 230.55002 235.55002 239.98001 242.48001 248.04001 253.04001 256.36">quantitative data</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-562.2" x="261.4 263.9 266.4 273.62 278.05 280.55 285.55 289.44 293.87 296.37 299.13999 304.13999 308.56999 311.06999 314.96 319.38999 327.15998 332.15998 334.92997 339.35997 341.85997 349.62995 354.05995 358.48994 363.48994 365.98994 370.41993 375.41993 380.41993 382.91993 386.80995 391.23994 399.00993 404.00993 406.7799 411.2099 413.7099 417.5999 420.3699 424.7999 429.7999 434.7999 439.2299 442.54988 447.54988 450.04988 455.04988 459.47987 464.47987 467.24986 471.67985 474.44984 477.21983 482.21983 487.21983 489.71983 492.4898 497.4898 499.9898 507.2098 512.20986 515.52987 520.52987">, we use the sample mean and sample standard deviation to work </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-550.65" x="104.5 111.72 114.49 117.259998 122.259998 124.759998 127.52999 132.53 136.95999 139.45999 144.45999 147.23 151.12 153.89 157.22 159.99 164.99 169.99 172.76001 175.53002 180.53002 185.53002 188.03002 193.03002 196.36002 198.86002 202.75002 207.18003 214.95003 219.95003 222.72003 227.15003 229.65003 237.42003 241.85004 246.28003 251.28003 255.17003 257.67005 260.17005 262.67005 272.10005 276.53004 279.03004 283.46003 287.89 292.89 295.39 298.16 303.16 307.59 312.59 315.09 320.09 323.98 328.41 330.91 333.68 338.68 343.11 345.61 353.37998 357.80998 360.57997 365.57997 370.57997 375.57997 379.46998 381.96998 386.96998 390.28996 392.78996 396.67997 401.10997 405.53996 408.30995 411.07994 416.07994 421.07994 423.57994 428.57994 431.07994 436.07994 438.57994 441.3499 446.3499 448.8499 453.2799 458.2799 463.2799 468.2799 473.2799 477.7099 480.4799">with the distribution of sample means.  We can then use the methods of section 8.3 to conduct </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-539.1" x="104.5 109.5 114.5 119.5 124.5 127.27 132.26999 136.69998 140.58998 143.35999 147.24999 149.74999 152.51999 156.94998 160.83998 163.60999 167.49999 169.99999 173.31999 178.31999 181.65">hypothesis tests for </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-539.1" x="184.2 189.76 194.76 200.31999 205.87999 208.65 213.65 216.97 219.74 224.74 230.3 232.8 241.13 245.56 250.56 256.12">population means</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-539.1" x="260.05">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-516" x="104.5 110.06 114.49 118.92">See </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-516" x="121.45 124.78 127.549999 132.54999 138.10999 142.53998 146.96997 149.46997 154.46997 156.96997 161.96997">figure 8.17</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-516" x="167 169.5 172 174.5 183.93 188.93 193.35999 198.35999 200.85999 205.85999 210.85999 215.85999 218.35999 222.78998 226.10999 230.53998 233.03998 237.46997 241.35997 246.35997 250.78998 255.78998 258.28999 261.05998 266.05998 268.55998 272.98997 277.98997 282.98997 287.98997 292.98997 297.41996 300.18995 302.68995 307.11994 309.61994 314.61994 319.61994 324.61994 329.61994 332.38993 337.38993 341.81993 345.70994 348.47993 352.36994 354.86994 357.63993 362.06993 365.95994 368.72993 371.22993 373.72993 378.72993 383.72993 388.72993 391.22993 398.9999 403.9999 407.88993 410.6599 413.1599 416.4799 419.24989 422.56986 426.45988 429.22987 431.72987 434.49986 439.49986 443.92985 448.92985 451.69984 454.46983 457.7998 462.7998 465.2998 468.0698 473.0698 477.4998 479.9998 484.9998 489.42979 492.74977 497.17976 504.94975 509.37974 512.1497 516.5797 519.8997">.  When you are asked to conduct a hypothesis test, you must first identify the parameter </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-504.45" x="104.5 109.5 112.83 115.33 118.1 123.1 125.869998 130.29999 133.62999 138.06 141.95 144.72 147.22 149.72 152.22 155.54001 158.87001 161.37001 168.59001 173.02002 175.52002 179.95001 183.27002 187.70001 190.20001 195.20001 197.97002 201.86002 206.29001 211.29001 215.18001 219.07 221.84001 226.84001 231.84001 234.34001 239.34001 244.34001 248.77002 251.54003 254.31003 257.08003 261.51 264.28 267.05 272.05 276.47999 278.97999 283.97999 288.40998 291.72996 294.49995 298.92994 303.92994 306.69993 311.1299 315.01994 317.51994 321.94993 326.94993 331.94993 334.44993 338.33995 342.76994 350.53993 355.53993 358.3099 362.7399 365.2399 370.2399 373.5699 378.5699 383.5699 388.5699 391.88987 394.65986 397.42985 402.42985 407.42985 411.31986 413.81986 416.31986 423.53987 427.96986 430.46986 435.46986 439.35987 443.78987 446.28987 450.71986 453.21986 458.21986 463.21986 468.21986 473.21986 475.98985 480.98985 485.41984 489.30986 492.07984 495.96986 498.46986 501.23985 505.66984 509.55986 512.32986">of interest.  If we are discussing qualitative variables and sample proportions, we use a hypothesis test </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-492.9" x="104.5 107.83 112.83 116.15 118.65 123.08 125.58 130.58 135.58 140.58 145.58 148.35 152.78 155.55 158.32 163.32 168.32 170.82 175.82 179.14002 184.14002 189.14002 194.14002 197.47002 200.24002 203.01003 208.01003 213.01003 215.51003 218.01003 220.51003 223.83003 227.16004 229.66004 236.88004 241.31003 243.81003 248.24002 251.56003 255.99002 258.49003 263.49003 266.26 270.15003 274.58003 279.58003 283.47004 287.36006 290.13005 295.13005 300.13005 302.63005 307.63005 312.63005 317.06004 322.06004 324.83003 327.6 330.37 334.8 337.56999 340.33998 345.33998 349.76997 352.26997 357.26997 361.69996 365.01994 367.78993 372.2199 377.2199 379.9899 384.4199 388.3099 390.8099 395.2399 400.2399 405.2399 407.7399 411.6299 416.0599 423.8299 428.8299 431.59989 436.02989 438.52989 446.29988 450.72987 455.15986 460.15986 464.04988 466.54988 469.04988 476.26988 480.69987 483.19987 488.19987 492.08988 496.51988 499.01988 503.44987">for a population proportion.  If we are discussing quantitative variables and sample means, we use a </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-481.35" x="104.5 109.5 114.5 119.5 124.5 127.27 132.26999 136.69998 140.58998 143.35999 147.24999 149.74999 152.51999 156.94998 160.83998 163.60999 166.10999 169.43 174.43 177.76 180.26 184.69 187.19 192.19 197.19 202.19 207.19 209.96 214.39002 217.16002 219.93003 224.93003 229.93003 232.43003 240.20003 244.63004 249.06003 254.06003">hypothesis test for a population mean.</tspan></text>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.4 699H527.55"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.05 699.5V684.05"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.55 684.55H84.4"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.9 684.05V699.5"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.4 683.5H527.55"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.05 684V670.45"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.9 670.45V684"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.05 670.45V654.65"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.55 655.15H84.4"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.9 654.65V670.45"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.4 699H527.55"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.05 699.5V684.05"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.55 684.55H84.4"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.9 684.05V699.5"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.4 683.5H527.55"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.05 684V670.45"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.9 670.45V684"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.05 670.45V654.65"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M527.55 655.15H84.4"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f6228" d="M84.9 654.65V670.45"/>
+<g opacity=".39">
+<g clip-path="url(#clip_4)">
+<g mask="url(#mask_5)">
+<g transform="matrix(.2435484,0,0,.24174758,116.95001,160.19998)">
+<image id="image_7" width="31" height="103" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAB8AAABnCAIAAAB3vQ7CAAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAAAIElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAPgwJdIAAdWq
+DYoAAAAASUVORK5CYII="/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M189 286.5 189.05 303.9"/>
+<g opacity=".39">
+<g clip-path="url(#clip_8)">
+<g mask="url(#mask_9)">
+<g transform="matrix(.24516128,0,0,.24174758,351.6,159.4)">
+<image id="image_11" width="31" height="103" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAB8AAABnCAIAAAB3vQ7CAAAACXBIWXMAAA7EAAAO
+xAGVKw4bAAAAIElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAPgwJdIAAdWq
+DYoAAAAASUVORK5CYII="/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M423.7 304.7V287.3"/>
+<g opacity=".39">
+<g clip-path="url(#clip_12)">
+<g mask="url(#mask_13)">
+<g transform="matrix(.24103773,0,0,.23969072,128.15001,328.05)">
+<image id="image_15" width="106" height="97" xlink:href="data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoH
+BwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wAALCABh
+AGoBAREA/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgED
+AwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2Jy
+ggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1
+dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJ
+ytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oACAEBAAA/APyqoooooooo
+oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+ooooooooooooooooooooooooooooooooooooooooooooor//2Q=="/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M218.25 120.3 200.25 136.05"/>
+<g opacity=".39">
+<g clip-path="url(#clip_16)">
+<g mask="url(#mask_17)">
+<g transform="matrix(.2401639,0,0,.2397163,309,318.25)">
+<image id="image_19" width="122" height="141" xlink:href="data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoH
+BwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wgALCACN
+AHoBAREA/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/2gAIAQEAAAABlQAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//xAAUEAEAAAAAAAAAAAAAAAAA
+AACA/9oACAEBAAEFAhB//8QAFBABAAAAAAAAAAAAAAAAAAAAgP/aAAgBAQAGPwIQ
+f//EABQQAQAAAAAAAAAAAAAAAAAAAID/2gAIAQEAAT8hEH//2gAIAQEAAAAQ/wD/
+AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/
+AP8A/wD/AP8A/wD/AP8A/wD/AP8A/8QAFBABAAAAAAAAAAAAAAAAAAAAgP/aAAgB
+AQABPxAQf//Z"/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M381.1 119.6 402.85 145.85"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M251.6 458.55V458.55C251.6 459.4 251.8 460.2 252.25 460.9 252.65 461.65 253.25 462.25 253.95 462.65 254.7 463.05 255.5 463.3 256.35 463.3L350.5 463.25C351.35 463.25 352.15 463.05 352.85 462.6 353.6 462.2 354.2 461.6 354.6 460.9 355 460.15 355.25 459.35 355.25 458.5V439.65C355.25 438.8 355.05 438 354.6 437.3 354.2 436.55 353.6 435.95 352.9 435.55 352.15 435.15 351.35 434.9 350.5 434.9H256.3C255.45 434.9 254.65 435.1 253.95 435.55 253.2 435.95 252.6 436.55 252.2 437.25 251.8 438 251.55 438.8 251.55 439.65L251.6 458.55Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M251.6 458.55V458.55C251.6 459.4 251.8 460.2 252.25 460.9 252.65 461.65 253.25 462.25 253.95 462.65 254.7 463.05 255.5 463.3 256.35 463.3L350.5 463.25C351.35 463.25 352.15 463.05 352.85 462.6 353.6 462.2 354.2 461.6 354.6 460.9 355 460.15 355.25 459.35 355.25 458.5V439.65C355.25 438.8 355.05 438 354.6 437.3 354.2 436.55 353.6 435.95 352.9 435.55 352.15 435.15 351.35 434.9 350.5 434.9H256.3C255.45 434.9 254.65 435.1 253.95 435.55 253.2 435.95 252.6 436.55 252.2 437.25 251.8 438 251.55 438.8 251.55 439.65L251.6 458.55Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-450.8" x="262.65 268.426 271.09 274.634 276.634 280.634 284.634 288.634 290.634 294.178 297.29 301.29 304.834 308.834 310.834 313.05003 317.05003 319.05003 322.59403 326.59403 330.59403 334.59403 338.59403 342.13804">Are you asked to conduct</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-450.8" x="344.4"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-441.6" x="275.3 278.844 280.844 284.844 288.844 292.844 296.844 299.06 303.06 306.604 309.716 311.932 315.044 317.044 319.26 322.80403 325.91603 328.13203">a hypothesis test?</tspan></text>
+<g clip-path="url(#clip_20)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M331.9 352.5V352.5C331.9 355.3 332.65 358.05 334.05 360.45 335.45 362.9 337.45 364.9 339.85 366.3 342.3 367.7 345.05 368.45 347.85 368.45L493.95 368.4C496.75 368.4 499.5 367.65 501.9 366.25 504.35 364.85 506.35 362.85 507.75 360.45 509.15 358 509.9 355.25 509.9 352.45V288.8C509.9 286 509.15 283.25 507.75 280.85 506.35 278.4 504.35 276.4 501.95 275 499.5 273.6 496.75 272.85 493.95 272.85H347.8C345 272.85 342.25 273.6 339.85 275 337.4 276.4 335.4 278.4 334 280.8 332.6 283.25 331.85 286 331.85 288.8L331.9 352.5Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M331.9 352.5V352.5C331.9 355.3 332.65 358.05 334.05 360.45 335.45 362.9 337.45 364.9 339.85 366.3 342.3 367.7 345.05 368.45 347.85 368.45L493.95 368.4C496.75 368.4 499.5 367.65 501.9 366.25 504.35 364.85 506.35 362.85 507.75 360.45 509.15 358 509.9 355.25 509.9 352.45V288.8C509.9 286 509.15 283.25 507.75 280.85 506.35 278.4 504.35 276.4 501.95 275 499.5 273.6 496.75 272.85 493.95 272.85H347.8C345 272.85 342.25 273.6 339.85 275 337.4 276.4 335.4 278.4 334 280.8 332.6 283.25 331.85 286 331.85 288.8L331.9 352.5Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-349.7" x="343.9">1</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-349.7" x="347.9">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-349.7" x="352.9 357.78 361.78 365.332">The </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-349.7" x="367.35 371.798 376.246 378.462 380.678 382.678 387.126 391.126 395.574 399.574 402.238 406.686 410.23 413.342 415.558 418.67">null hypothesis </tspan></text>
+<g clip-path="url(#clip_21)">
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-350.58616" x="419.9617">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="7.2258088" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-347.79493" x="429.92878">0</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-350.58616" x="434.86244">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-350.58616" x="440.04533">&#x03bc;</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="OpenSymbol"><tspan y="-350.58616" x="446.62358">=</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="OpenSymbol"><tspan y="-350.58616" x="456.54078">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-349.7" x="463.65 465.65 468.314 471.858 475.858 479.858 482.074 485.618 487.834 491.834 494.946"> (contains </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-337.5" x="343.9 347.444 351.956 355.5">&#x201c;=&#x201d;)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-328.3" x="352.9 357.78 361.78 365.332">The </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-328.3" x="367.35 371.35 373.566 376.22203 379.77403 383.31803 387.76603 391.76603 394.42204 396.63804 400.63804 404.18205 406.18205 410.63005 414.63005 419.07804 423.07804 425.74205 430.18205 433.73405 436.84605 439.06205">alternative hypothesis</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-328.3" x="442.25 444.25 446.466 449.578"> is:</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif" font-style="italic"><tspan y="-316.15" x="366.4">&#x2022;</tspan></text>
+<g clip-path="url(#clip_22)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-315.85" x="385.05">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="7.2" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-313.05" x="395.7">A</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-315.85" x="401.75">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-315.85" x="406.95">&#x03bc;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-315.85" x="413.9">&#x003c;</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-315.85" x="421.7">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-316.15" x="427.3 429.3 431.3 433.3 435.964 438.18 441.732 443.948 446.164 448.164 450.38 454.38 456.596 458.812 462.35603 466.35603">   (left tailed)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif" font-style="italic"><tspan y="-301" x="366.4">&#x2022;</tspan></text>
+<g clip-path="url(#clip_23)">
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-301.6981" x="383.78129">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="7.2258088" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-298.90687" x="394.39625">A</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-301.6981" x="400.42628">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-301.6981" x="405.60917">&#x03bc;</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="OpenSymbol"><tspan y="-301.6981" x="412.53627">&#x003e;</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="OpenSymbol"><tspan y="-301.6981" x="420.31056">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-301" x="427.3 429.3 431.3 433.3 435.964 439.076 441.292 445.292 449.292 451.508 453.508 455.724 459.724 461.94 464.156 467.7 471.7">   (right tailed)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif" font-style="italic"><tspan y="-285.85" x="366.4">&#x2022;</tspan></text>
+<g clip-path="url(#clip_24)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-285.55" x="385.05">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="7.2" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-282.75" x="395.7">A</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-285.55" x="401.75">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-285.55" x="406.95">&#x03bc;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-285.55" x="414.45">&#x2260;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-285.55" x="420.95">&#x2217;</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-285.55" x="429.4">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-285.85" x="435 437 439 441 443.664 445.88 451.216 455.216 457.872 460.088 464.088 466.30403 468.52003 472.06404 476.06404">   (two-tailed)</tspan></text>
+<g clip-path="url(#clip_25)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4a7ebb" d="M613.85 280.7 613.8 271.45"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M613.75 265.9 610.8 271.85H616.75L613.75 265.9Z" fill="#4a7ebb" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M315.9 261.8V261.8C315.9 267.05 317.3 272.2 319.9 276.75 322.55 281.3 326.3 285.05 330.85 287.7 335.4 290.3 340.55 291.7 345.8 291.7L521.9 291.65C527.15 291.65 532.3 290.25 536.85 287.65 541.4 285 545.15 281.25 547.8 276.7 550.4 272.15 551.8 267 551.8 261.75V142.2C551.8 136.95 550.4 131.8 547.8 127.25 545.15 122.7 541.4 118.95 536.85 116.3 532.3 113.7 527.15 112.3 521.9 112.3H345.75C340.5 112.3 335.35 113.7 330.8 116.3 326.25 118.95 322.5 122.7 319.85 127.25 317.25 131.8 315.85 136.95 315.85 142.2L315.9 261.8Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M315.9 261.8V261.8C315.9 267.05 317.3 272.2 319.9 276.75 322.55 281.3 326.3 285.05 330.85 287.7 335.4 290.3 340.55 291.7 345.8 291.7L521.9 291.65C527.15 291.65 532.3 290.25 536.85 287.65 541.4 285 545.15 281.25 547.8 276.7 550.4 272.15 551.8 267 551.8 261.75V142.2C551.8 136.95 550.4 131.8 547.8 127.25 545.15 122.7 541.4 118.95 536.85 116.3 532.3 113.7 527.15 112.3 521.9 112.3H345.75C340.5 112.3 335.35 113.7 330.8 116.3 326.25 118.95 322.5 122.7 319.85 127.25 317.25 131.8 315.85 136.95 315.85 142.2L315.9 261.8Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-269.75" x="332">2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-269.75" x="336 338">. </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-269.75" x="341 343.664 347.664 351.208 355.208 357.424 359.64 362.30403 366.30403 368.30403 370.52003 374.52003 378.06404 380.06404 383.17604 385.39204 389.39204 393.39204 395.60804 398.26405 400.48005 404.02406 407.56806 411.56806 415.11207 418.66407">Identify the significance </tspan></text>
+<g clip-path="url(#clip_26)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-268.55" x="420.95">&#x03b1;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-258.45" x="332">3</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-258.45" x="336 338">. </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-258.45" x="341 343.664 346.32 348.32 350.536 354.536 358.08003 360.08003 364.08003 367.62403 370.28804 373.83204 377.83204 380.04804 382.04804 386.04804 390.04804 394.04804 398.04804 400.26405 403.80805 406.02406 408.24006 412.24006 416.24006 418.24006 420.45606 423.56806 425.56806 429.11207 433.11207 437.11207 439.77607 443.77607 447.77607 449.99208 456.20808 459.75209 461.96809 465.5121 467.7281 471.7281 473.7281 477.7281 481.7281 484.3921 490.6081 494.1521 496.3681 498.3681 502.3681">If the parent population is approximately normal or</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-258.45" x="505.2"> </tspan></text>
+<g clip-path="url(#clip_27)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-245.75" x="332.1">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-245.75" x="339.55">&#x2265;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-245.75" x="347.65 353.65">30</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-245.75" x="361.05">:</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-235.45" x="341 346.776 349.888 353.432 355.432 357.648 361.648 365.19203 367.19203 369.40803 372.06404 376.06404 378.28004 381.39204 383.60804 386.27204 388.48805 392.48805 396.48805 398.70405 400.92005 404.92005 408.92005 410.92005 416.69606 418.91206 421.12806 425.12806">Use the t-distribution with </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-235.45" x="427.2 431.2">n </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-235.45" x="433.2 437.2 439.2 443.2 445.2 449.2 452.74403 456.74403 459.40803 462.95204 466.49604 469.60804 471.60804 475.60804 478.26405 480.26405 482.92805 485.59205 489.13606 492.68006 496.68006 500.68006 506.89607">&#x2013; 1 degrees of freedom.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-216.1" x="332">4</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-216.1" x="336 338 339.856 344.184 347.728 350.84 353.056 355.056 358.168 360.384 363.928 366.144 368.36003 371.47203 373.68803 375.90403 379.44804 381.66404">. Test statistic: </tspan></text>
+<g clip-path="url(#clip_28)">
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-215.9332" x="384.00343 390.63429">TS</tspan></text>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="OpenSymbol"><tspan y="-215.9332" x="397.44279">=</tspan></text>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-215.9332" x="407.38548">t</tspan></text>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="OpenSymbol"><tspan y="-215.9332" x="411.93199">=</tspan></text>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M423.645 229.7H429.08699V230.09999H423.645Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-222.77791" x="424.12239">x</tspan></text>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="OpenSymbol"><tspan y="-222.77791" x="430.31715">&#x2212;</tspan></text>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-222.77791" x="440.80924">&#x03bc;</tspan></text>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M422.048 219.15H447.758V219.75H422.048Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-206.64038" x="423.47288">s</tspan></text>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="OpenSymbol"><tspan y="-206.64038" x="429.3684">/</tspan></text>
+<text xml:space="preserve" transform="matrix(.9028105 0 -0 1.1076522 -68.29999 466.3)" font-size="13.271314" font-family="OpenSymbol"><tspan y="-186.11437" x="480.25584">&#x221a;</tspan></text>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M439.97 217.55H446.959V217.95H439.97Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(.9992281 0 -0 1.0007725 -68.29999 466.3)" font-size="11.990737" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-206.64038" x="441.30863">n</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-196.75" x="332 336.448 339.112 342.656 347.104 350.216 352.216 356.216 358.216 362.216 366.664 371.112 373.112 377.112 379.776 381.776 386.224 390.968 396.15199 401.47999 406.80799 412.14399 416.744 421.48799 424.15199 426.15199 428.15199 432.59199 436.14399 438.36 441.904 445.448 448.112 449.968 454.568 458.112 461.224 463.88 466.992 468.992 476.992 478.992 482.104 486.544 489.208 492.752 496.16004 499.70405 504.15205 507.69606 511.24006 513.24008 515.90408 519.90408 523.3121">Steps 4 and 5- STATBELT:  Select Tests &#x2192; Inference for </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-187.55" x="332 339.544 343.088 347.088 351.536 354.648 356.648 364.648 366.648 372.864 377.312 380.85603 382.85603 385.96803 389.96803 396.63203 401.08003 403.29603 406.84004 408.84004 416.84004 418.84004 425.05604 429.05604 433.50404 437.50404 440.16804 444.61604 448.16004 451.27204 453.48805 456.60005 458.60005 461.25605 464.80006 467.91206 470.57606 472.57606 475.23207 478.34407 482.79206 489.45606 496.11207 500.11207 503.65608 505.87208 509.41609 512.9601 517.4081 519.4081 523.4081 526.8161">Means &#x2192; One sample &#x2192; Hypothesis test (summarized or </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-178.35" x="332 335.544 339.544 341.76 346.208 352.864 357.312 359.312 363.76 367.76 370.424 374.424">column data)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-166.2" x="350">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-166.2" x="368 372.328 376.328 380.328 383.872 385.872 388.088 392.088 395.63203 397.63203 400.74403 404.28804 410.50404 414.50404 416.72004 420.27204 422.27204 426.27204 429.81605 432.03205 435.57606 437.57606">Type the sample data  </tspan></text>
+<g clip-path="url(#clip_29)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M440.217 174.046H448.33103V174.44301H440.217Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(.99845549 0 -0 1.001547 -68.29999 466.3)" font-size="11.891604" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-164.75913" x="441.3437">X</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-166.2" x="449.1 451.1 453.1"> , </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-166.2" x="455.1">s</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-166.2" x="458.2 460.2">, </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-166.2" x="462.2">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-166.2" x="466.2 468.2 470.2 473.74403 477.74403 481.74403">, and </tspan></text>
+<g clip-path="url(#clip_30)">
+<text xml:space="preserve" transform="matrix(.99655696 0 -0 1.0034549 -68.29999 466.3)" font-size="11.868993" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-164.44586" x="486.00434">&#x03bc;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-166.2" x="490.7 492.7 495.364 498.02003 502.02003 508.23603"> from </tspan></text>
+<g clip-path="url(#clip_31)">
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-166.44441" x="509.26649">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="7.2258088" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-163.65424" x="519.2335">0</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-154" x="350">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-154" x="368 373.328 377.328 381.328 385.328 388.44 391.984 393.984 396.2 399.74403 402.40803 404.62403 407.28804 409.28804 411.28804 413.95204 416.16804 420.16804 424.16804 426.38404 429.04804 431.04804 433.04804 437.04804 439.70405 441.70405 443.92005 449.69606 453.69606 456.36006 458.57606 462.12007 464.33607 466.55207 470.09608 474.09608 476.09608 478.76008 482.76008 485.42408 487.42408 489.64009 493.64009 497.18409 499.18409 502.7281 504.9441 507.1601 510.7041 513.3681 517.3681 520.9121 523.1281 525.3441 529.3441 532.8961">Choose left-, right-, or two-tailed for the alternative </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-144.8" x="368 372 376 380 384 386.216 390.216 393.76 396.872 399.088 402.2">hypothesis.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-135.6" x="350">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-135.6" x="368 372.88 376.88 380.432 382.432 385.088 388.63203 391.74403 395.74403 397.96003 400.17604 403.28804 405.28804 408.83204 412.83204 416.83204 420.37605 423.92005 426.58406 428.58406 432.12806 435.24006 437.24006 441.24006 445.24006 449.24006 451.24006 453.45606 457.45606 461.45606 465.00007 467.21607 469.21607 471.43208 475.43208 478.97608 480.97608 483.19209 486.73609 489.84809 492.0641 494.0641 497.1761 499.3921 502.9361 505.1521 507.3681 510.4801 512.6961 514.9121 518.4561 520.4561 524.0001 528.0001 532.0001">The results appear as you type: the test statistic and </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-126.4" x="368 370.216 374.216 377.76 379.76 384.208 386.864 391.752 395.29603 397.51203 401.51203 405.05604">the P-Value.</tspan></text>
+<g clip-path="url(#clip_32)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M161.7 410.7V410.7C161.7 411.25 161.85 411.75 162.1 412.2 162.35 412.65 162.75 413.05 163.2 413.3 163.65 413.6 164.2 413.75 164.75 413.75L274.65 413.7C275.2 413.7 275.7 413.55 276.15 413.3 276.6 413.05 277 412.65 277.25 412.2 277.55 411.75 277.7 411.2 277.7 410.65V398.6C277.7 398.05 277.55 397.55 277.3 397.1 277.05 396.65 276.65 396.25 276.2 396 275.75 395.7 275.2 395.55 274.65 395.55H164.7C164.15 395.55 163.65 395.7 163.2 395.95 162.75 396.2 162.35 396.6 162.1 397.05 161.8 397.5 161.65 398.05 161.65 398.6L161.7 410.7Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M161.7 410.7V410.7C161.7 411.25 161.85 411.75 162.1 412.2 162.35 412.65 162.75 413.05 163.2 413.3 163.65 413.6 164.2 413.75 164.75 413.75L274.65 413.7C275.2 413.7 275.7 413.55 276.15 413.3 276.6 413.05 277 412.65 277.25 412.2 277.55 411.75 277.7 411.2 277.7 410.65V398.6C277.7 398.05 277.55 397.55 277.3 397.1 277.05 396.65 276.65 396.25 276.2 396 275.75 395.7 275.2 395.55 274.65 395.55H164.7C164.15 395.55 163.65 395.7 163.2 395.95 162.75 396.2 162.35 396.6 162.1 397.05 161.8 397.5 161.65 398.05 161.65 398.6L161.7 410.7Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-401.75" x="172 176.448 180.448 183.112 185.112 188.656 190.656 194.656 198.656 202.656 206.656 208.87201 212.42401 214.64002 216.85602 220.85602">For a population</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-401.75" x="224.9 226.9 231.34799 234.756 238.756 243.204 247.204 250.748 253.404 255.62001 259.62"> proportion</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-401.75" x="264.1">?</tspan></text>
+<g clip-path="url(#clip_33)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M611.85 350.9V350.9C611.85 351.6 612.05 352.25 612.35 352.85 612.7 353.45 613.2 353.9 613.8 354.25 614.4 354.6 615.05 354.8 615.75 354.8L759.1 354.75C759.8 354.75 760.45 354.55 761.05 354.25 761.65 353.9 762.1 353.4 762.45 352.8 762.8 352.2 763 351.55 763 350.85V335.4C763 334.7 762.8 334.05 762.5 333.45 762.15 332.85 761.65 332.4 761.05 332.05 760.45 331.7 759.8 331.5 759.1 331.5H615.7C615 331.5 614.35 331.7 613.75 332 613.15 332.35 612.7 332.85 612.35 333.45 612 334.05 611.8 334.7 611.8 335.4L611.85 350.9Z" fill="#e6e0ec" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M611.85 350.9V350.9C611.85 351.6 612.05 352.25 612.35 352.85 612.7 353.45 613.2 353.9 613.8 354.25 614.4 354.6 615.05 354.8 615.75 354.8L759.1 354.75C759.8 354.75 760.45 354.55 761.05 354.25 761.65 353.9 762.1 353.4 762.45 352.8 762.8 352.2 763 351.55 763 350.85V335.4C763 334.7 762.8 334.05 762.5 333.45 762.15 332.85 761.65 332.4 761.05 332.05 760.45 331.7 759.8 331.5 759.1 331.5H615.7C615 331.5 614.35 331.7 613.75 332 613.15 332.35 612.7 332.85 612.35 333.45 612 334.05 611.8 334.7 611.8 335.4L611.85 350.9Z"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4a7ebb" d="M611.2 406 621.35 396.1"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M625.3 392.2 618.95 394.25 623.15 398.5 625.3 392.2Z" fill="#4a7ebb" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M99.7 353.8V353.8C99.7 356.3 100.35 358.75 101.6 360.9 102.85 363.1 104.65 364.85 106.8 366.1 109 367.35 111.45 368.05 113.95 368.05L262.45 368C264.95 368 267.4 367.35 269.55 366.1 271.75 364.85 273.5 363.05 274.75 360.9 276 358.7 276.7 356.25 276.7 353.75V296.9C276.7 294.4 276.05 291.95 274.8 289.8 273.55 287.6 271.75 285.85 269.6 284.6 267.4 283.35 264.95 282.65 262.45 282.65H113.9C111.4 282.65 108.95 283.3 106.8 284.55 104.6 285.8 102.85 287.6 101.6 289.75 100.35 291.95 99.65 294.4 99.65 296.9L99.7 353.8Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M99.7 353.8V353.8C99.7 356.3 100.35 358.75 101.6 360.9 102.85 363.1 104.65 364.85 106.8 366.1 109 367.35 111.45 368.05 113.95 368.05L262.45 368C264.95 368 267.4 367.35 269.55 366.1 271.75 364.85 273.5 363.05 274.75 360.9 276 358.7 276.7 356.25 276.7 353.75V296.9C276.7 294.4 276.05 291.95 274.8 289.8 273.55 287.6 271.75 285.85 269.6 284.6 267.4 283.35 264.95 282.65 262.45 282.65H113.9C111.4 282.65 108.95 283.3 106.8 284.55 104.6 285.8 102.85 287.6 101.6 289.75 100.35 291.95 99.65 294.4 99.65 296.9L99.7 353.8Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-349.8" x="111.2">1</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-349.8" x="115.2 117.2 119.056 123.936 127.936 131.48">. The </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-349.8" x="133.5 137.948 142.396 144.612 146.828 148.828 153.276 157.276 161.724 165.724 168.388 172.836 176.38 179.492 181.70801 184.82">null hypothesis </tspan></text>
+<g clip-path="url(#clip_34)">
+<text xml:space="preserve" transform="matrix(1.0021572 0 -0 .99784746 -68.29999 466.3)" font-size="11.946715" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-350.284" x="187.16625">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0021572 0 -0 .99784746 -68.29999 466.3)" font-size="7.2175366" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-347.497" x="197.12177">0</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0021572 0 -0 .99784746 -68.29999 466.3)" font-size="11.946715" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-350.284" x="202.05013">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0021572 0 -0 .99784746 -68.29999 466.3)" font-size="11.946715" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-350.284" x="207.92346">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0021572 0 -0 .99784746 -68.29999 466.3)" font-size="11.946715" font-family="OpenSymbol"><tspan y="-350.284" x="214.4943">=</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1.0021572 0 -0 .99784746 -68.29999 466.3)" font-size="11.946715" font-family="OpenSymbol"><tspan y="-350.284" x="224.39994">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-349.8" x="230.5 232.5 235.164 238.70801 242.70801 246.70801 248.92401 252.46802 254.68402 258.68403 261.79603"> (contains </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-337.6" x="120.2 123.743999 128.256 131.8 134.45601 136.31201 141.19202 145.19202 148.73603">&#x201c;=&#x201d;) The </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-337.6" x="150.75 154.75 156.966 159.62201 163.17401 166.71802 171.16602 175.16602 177.82202 180.03803 184.03803 187.58203 189.58203 194.03003 198.03003 202.47803 206.47803 209.14203 213.58203 217.13404 220.24604 222.46204">alternative hypothesis</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-337.6" x="225.65 227.65 229.866 232.978"> is:</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif" font-style="italic"><tspan y="-325.45" x="138.2">&#x2022;</tspan></text>
+<g clip-path="url(#clip_35)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-325.15" x="156.85">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="7.2" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-322.35" x="167.5">A</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-325.15" x="173.55">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-325.15" x="179.45">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-325.15" x="186.4">&#x003c;</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-325.15" x="194.2">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-325.45" x="199.8 201.8 203.8 205.8 208.464 210.68001 214.23201 216.44802 218.66402 220.66402 222.88002 226.88002 229.09603 231.31203 234.85604 238.85604">   (left tailed)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif" font-style="italic"><tspan y="-310.3" x="138.2">&#x2022;</tspan></text>
+<g clip-path="url(#clip_36)">
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-311.06694" x="156.3332">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="7.2258088" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-308.27577" x="166.9481">A</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-311.06694" x="172.97818">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-311.06694" x="178.85874">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="OpenSymbol"><tspan y="-311.06694" x="185.78583">&#x003e;</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="OpenSymbol"><tspan y="-311.06694" x="193.56014">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-310.3" x="199.8 201.8 203.8 205.8 208.464 211.576 213.792 217.792 221.792 224.00801 226.00801 228.22402 232.22402 234.44002 236.65602 240.20003 244.20003">   (right tailed)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif" font-style="italic"><tspan y="-295.15" x="138.2">&#x2022;</tspan></text>
+<g clip-path="url(#clip_37)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-294.85" x="156.85">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="7.2" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-292.05" x="167.5">A</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-294.85" x="173.55">:</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-294.85" x="179.45">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-294.85" x="186.95">&#x2260;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-294.85" x="193.45">&#x2217;</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-294.85" x="201.9">&#x00bf;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-295.15" x="207.5 209.5 211.5 213.5 216.164 218.38 223.716 227.716 230.37201 232.58802 236.58802 238.80402 241.02002 244.56403 248.56403">   (two-tailed)</tspan></text>
+<g clip-path="url(#clip_38)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M71.35 257.7V257.7C71.35 263.65 72.9 269.55 75.9 274.7 78.9 279.85 83.2 284.15 88.35 287.15 93.5 290.1 99.4 291.7 105.35 291.7L268.6 291.65C274.55 291.65 280.45 290.1 285.6 287.1 290.75 284.1 295.05 279.8 298.05 274.65 301 269.5 302.6 263.6 302.6 257.65V121.7C302.6 115.75 301.05 109.85 298.05 104.7 295.05 99.55 290.75 95.25 285.6 92.25 280.45 89.3 274.55 87.7 268.6 87.7H105.3C99.35 87.7 93.45 89.25 88.3 92.25 83.15 95.25 78.85 99.55 75.85 104.7 72.9 109.85 71.3 115.75 71.3 121.7L71.35 257.7Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M71.35 257.7V257.7C71.35 263.65 72.9 269.55 75.9 274.7 78.9 279.85 83.2 284.15 88.35 287.15 93.5 290.1 99.4 291.7 105.35 291.7L268.6 291.65C274.55 291.65 280.45 290.1 285.6 287.1 290.75 284.1 295.05 279.8 298.05 274.65 301 269.5 302.6 263.6 302.6 257.65V121.7C302.6 115.75 301.05 109.85 298.05 104.7 295.05 99.55 290.75 95.25 285.6 92.25 280.45 89.3 274.55 87.7 268.6 87.7H105.3C99.35 87.7 93.45 89.25 88.3 92.25 83.15 95.25 78.85 99.55 75.85 104.7 72.9 109.85 71.3 115.75 71.3 121.7L71.35 257.7Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-268.55" x="88.6">2</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-268.55" x="92.6 94.6 96.6 98.6 101.264 105.264 108.808 112.808 115.024 117.240009 119.90401 123.90401 125.90401 128.12001 132.12001 135.66402 137.66402 140.77602 142.99202 146.99202 150.99202 153.20803 155.86403 158.08003 161.62404 165.16805 169.16805 172.71205 176.26406">.  Identify the significance </tspan></text>
+<g clip-path="url(#clip_39)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-267.35" x="178.55">&#x03b1;</tspan></text>
+</g>
+<g clip-path="url(#clip_40)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-253.2" x="88.55">3</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-253.2" x="95.95 98.95 101.95 104.95">.  I</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="110.9">f</tspan></text>
+<text xml:space="preserve" transform="matrix(1.1547005 0 -0 .86602547 -68.29999 466.3)" font-size="13.856406" font-family="OpenSymbol"><tspan y="-293.00526" x="102.66732">^</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="118.85">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="126.35 129.674">is</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="136.05 142.05 148.05 152.718 161.382 167.382">normal</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-253.2" x="171.95">(</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="177.4">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -.34625355 1 -68.29999 466.3)" font-size="12" font-family="DejaVu Serif"><tspan y="-253.2" x="97.12861">&#x22c5;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="192.5">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -.34625355 1 -68.29999 466.3)" font-size="12" font-family="DejaVu Serif"><tspan y="-253.2" x="112.328609">&#x22c5;</tspan></text>
+<text xml:space="preserve" transform="matrix(.6955141 0 -0 1.4377855 -68.29999 466.3)" font-size="8.554823" font-family="OpenSymbol"><tspan y="-176.27803" x="296.90269">(</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-253.2" x="209.45">1</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-253.2" x="215.75">&#x2212;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="226.95">p</tspan></text>
+<text xml:space="preserve" transform="matrix(.6955141 0 -0 1.4377855 -68.29999 466.3)" font-size="8.554823" font-family="OpenSymbol"><tspan y="-176.27803" x="336.58558">)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-253.2" x="237.55">&#x2265;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-253.2" x="245.6 251.6">10</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-253.2" x="259.6 262.936">\)</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-252.95" x="267.2 269.2 273.2 276.312 279.85603"> use </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-242.25" x="97.6 99.816 103.816 107.36 109.36 112.472 114.688 118.232 122.232 126.232 129.776 132.44 136.44 138.44 142.44 146.44 149.104 155.32 158.87201 161.08802 163.08802 167.08802 169.30402 172.41602 174.63202 177.29602 179.51203 183.51203 187.51203 189.72803 191.94403 195.94403 199.94403 201.94403 204.60803 209.48804 212.15204">the standard normal distribution (Z).</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-212.4" x="88.6">4</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-212.4" x="92.6 94.6 96.6 98.456 102.784 106.327999 109.439998 111.656 113.656 118.104 120.32 123.864 126.08 128.296 131.408 133.62401 135.84001 139.38402 141.60002 143.60002">.  Test Statistic:  </tspan></text>
+<g clip-path="url(#clip_41)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-222.9" x="145.6 152.248">TS</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-222.9" x="159.05">=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-222.9" x="169.4">Z</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-222.9" x="177.15">=</tspan></text>
+<text xml:space="preserve" transform="matrix(1.1547005 0 -0 .86602547 -68.29999 466.3)" font-size="13.856406" font-family="OpenSymbol"><tspan y="-265.92753" x="179.18067">^</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-229.75" x="207.2">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-229.75" x="213.8">&#x2212;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-229.75" x="225">p</tspan></text>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M187.6 225.95H249.6V226.55H187.6Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(.54840847 0 -0 1.8234582 -68.29999 466.3)" font-size="21.8815" font-family="OpenSymbol"><tspan y="-105.650897" x="343.63075">&#x221a;</tspan></text>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M194.85 224.35H248.8V224.75H194.85Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(.6556101 0 -0 1.5252969 -68.29999 466.3)" font-size="18.684887" font-family="OpenSymbol"><tspan y="-129.38465" x="297.8142">(</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-210.1" x="202.5">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-210.1" x="209.6">(</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-210.1" x="214.85">1</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-210.1" x="221.15">&#x2212;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-210.1" x="232.35">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="OpenSymbol"><tspan y="-210.1" x="239.75">)</tspan></text>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M200.55 205.4H244.1V206H200.55Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-194.1" x="219.35">n</tspan></text>
+<text xml:space="preserve" transform="matrix(.6556101 0 -0 1.5252969 -68.29999 466.3)" font-size="18.684887" font-family="OpenSymbol"><tspan y="-129.38465" x="374.00279">)</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-182.55" x="88.6 93.048 95.712 99.256 103.703998 106.815998 108.815998 112.815998 114.815998 118.815998 123.26399 127.71199 129.71199 133.71199 136.37599 138.37599 142.82399 147.568 152.752 158.08 163.408 168.744 173.34401 178.08802 180.75202 182.75202 184.75202 189.19202 192.74402 194.96002 198.50403 202.04804 204.71204 206.56804 211.16805 214.71205 217.82405 220.48006 223.59206 225.59206 233.59206 235.59206 238.70406 243.14406 245.80806 249.35207 252.76007 256.30409 260.75209 264.29609 267.8401 269.8401 272.5041 276.5041 279.9121">Steps 4 and 5- STATBELT:  Select Tests &#x2192; Inference for </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-173.35" x="88.6 93.479999 96.88799 100.88799 105.33599 109.33599 112.87999 115.54399 117.759998 121.759998 126.19999 129.312 131.312 139.312 141.312 147.528 151.976 155.52 157.52 160.632 164.632 171.296 175.744 177.96 181.50402 183.50402 191.50402 193.50402 199.72002 203.72002 208.16002 212.16002 214.82402 219.27202 222.81603 225.92803 228.14403 231.25603 233.25603 235.92003 239.46404 242.57604 245.24004">Proportions &#x2192; One sample &#x2192; Hypothesis test </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-164.15" x="88.6 91.264 94.376 98.824 105.488 112.152 116.152 119.696 121.912 125.456 129.008 133.448 135.448 139.448 142.856 144.856 148.40001 152.40001 154.61602 159.06401 165.72801 170.17601 172.17601 176.61602 180.61602 183.28002 187.28002">(summarized or column data)</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-151.25" x="106.6">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-151.25" x="124.6 128.928 132.928 136.928 140.472 142.472 144.688 148.688 152.23201 154.23201 157.34401 160.88802 167.10402 171.10402 173.32003 176.87203 178.87203 182.87203 186.41603 188.63204 192.17604">Type the sample data </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-151.25" x="194.25">X</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-151.25" x="199.15 201.15">, </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-151.25" x="203.15">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-151.25" x="207.15 209.15 211.15 214.694 218.694 222.694 224.694 226.91 230.91 234.45401 236.45401 240.45401 243.99802 246.21402 250.21402 253.75803">, and the value </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-151.25" x="255.8">p</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-151.25" x="259.8 261.8 264.464 267.12 271.12"> from</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-151.25" x="277.35"> </tspan></text>
+<g clip-path="url(#clip_42)">
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="11.960408" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-142.97209" x="124.83732">H</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0033058 0 -0 .99670508 -68.29999 466.3)" font-size="7.2258088" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-140.18189" x="134.80437">0</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-136.8" x="139.1">.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-130.6" x="106.6">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-130.6" x="124.6 129.928 133.928 137.928 141.928 145.04 148.584 150.584 152.8 156.34401 159.00801 161.22402 163.88802 165.88802 167.88802 170.55202 172.76802 176.76802 180.76802 182.98403 185.64803 187.64803 189.64803 193.64803 196.30403 198.30403 200.52004 206.29604 210.29604 212.96004 215.17604 218.72005 220.93605 223.15206 226.69606 230.69606 232.69606 235.36006 239.36006 242.02407 244.02407 246.24007 250.24007 253.78408">Choose left-, right-, or two-tailed for the </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-121.4" x="124.6 128.144 130.36 132.576 136.12001 138.77602 142.77602 146.32003 148.53603 150.75203 154.75203 158.29604 160.29604 164.29604 168.29604 172.29604 176.29604 178.51204 182.51204 186.05605 189.16805 191.38405 194.49605">alternative hypothesis.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-112.2" x="106.6">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-112.2" x="124.6 129.48 133.48 137.032 139.032 141.688 145.23201 148.34401 152.34401 154.56002 156.77602 159.88802 161.88802 165.43202 169.43202 173.43202 176.97603 180.52004 183.18404 185.18404 188.72805 191.84004 193.84004 197.84004 201.84004 205.84004 207.84004 210.05605 214.05605 218.05605 221.60005 223.81606 225.81606 228.03206 232.03206 235.57607 237.57607 240.68807 244.23207 250.44808 254.44808 256.66407 260.20808">The results appear as you type: the sample </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-103" x="124.6 128.6 131.264 135.264 139.264 143.264 145.92002 148.13602 150.35202 154.35202 158.35202 160.35202 162.35202 164.56803 168.56803 172.11203 174.11203 176.32804 179.87204 182.98404 185.20005 187.20005 190.31204 192.52805 196.07205 198.28806 200.50406 203.61606 205.83206 208.04807 211.59207 213.59207 215.59207 219.13608 223.13608 227.13608 229.13608 231.35208 235.35208 238.89609 240.89609 245.34409 248.00009 252.88809 256.4321 258.6481 262.6481 266.1921">proportion, the test statistic, and the P-Value.</tspan></text>
+<g clip-path="url(#clip_43)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4a7ebb" d="M613.85 67.05 613.8 57.75"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M613.75 52.2 610.8 58.15H616.75L613.75 52.2Z" fill="#4a7ebb" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M334.3 410.75V410.75C334.3 411.3 334.45 411.8 334.7 412.25 334.95 412.7 335.35 413.1 335.8 413.35 336.25 413.65 336.8 413.8 337.35 413.8L441.1 413.75C441.65 413.75 442.15 413.6 442.6 413.35 443.05 413.1 443.45 412.7 443.7 412.25 444 411.8 444.15 411.25 444.15 410.7V398.65C444.15 398.1 444 397.6 443.75 397.15 443.5 396.7 443.1 396.3 442.65 396.05 442.2 395.75 441.65 395.6 441.1 395.6H337.3C336.75 395.6 336.25 395.75 335.8 396 335.35 396.25 334.95 396.65 334.7 397.1 334.4 397.55 334.25 398.1 334.25 398.65L334.3 410.75Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M334.3 410.75V410.75C334.3 411.3 334.45 411.8 334.7 412.25 334.95 412.7 335.35 413.1 335.8 413.35 336.25 413.65 336.8 413.8 337.35 413.8L441.1 413.75C441.65 413.75 442.15 413.6 442.6 413.35 443.05 413.1 443.45 412.7 443.7 412.25 444 411.8 444.15 411.25 444.15 410.7V398.65C444.15 398.1 444 397.6 443.75 397.15 443.5 396.7 443.1 396.3 442.65 396.05 442.2 395.75 441.65 395.6 441.1 395.6H337.3C336.75 395.6 336.25 395.75 335.8 396 335.35 396.25 334.95 396.65 334.7 397.1 334.4 397.55 334.25 398.1 334.25 398.65L334.3 410.75Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-401.8" x="350.75 355.198 359.198 361.862 363.862 367.406 369.406 373.406 377.406 381.406 385.406 387.622 391.174 393.39 395.60603 399.60603 403.60603">For a population </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-401.8" x="405.65 412.314 415.858 419.858">mean</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-401.8" x="424.3">?</tspan></text>
+<g clip-path="url(#clip_44)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M169.5 115.65V115.65C169.5 117.05 169.85 118.4 170.55 119.65 171.25 120.85 172.25 121.85 173.5 122.55 174.7 123.25 176.05 123.6 177.45 123.6H444.25C445.65 123.6 447 123.25 448.25 122.55 449.45 121.85 450.45 120.85 451.15 119.6 451.85 118.4 452.2 117.05 452.2 115.65L452.25 83.85C452.25 82.45 451.9 81.1 451.2 79.85 450.5 78.65 449.5 77.65 448.25 76.95 447.05 76.25 445.7 75.9 444.3 75.9L177.45 75.85C176.05 75.85 174.7 76.2 173.45 76.9 172.25 77.6 171.25 78.6 170.55 79.85 169.85 81.05 169.5 82.4 169.5 83.8V115.65Z" fill="#fff3cc" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M169.5 115.65V115.65C169.5 117.05 169.85 118.4 170.55 119.65 171.25 120.85 172.25 121.85 173.5 122.55 174.7 123.25 176.05 123.6 177.45 123.6H444.25C445.65 123.6 447 123.25 448.25 122.55 449.45 121.85 450.45 120.85 451.15 119.6 451.85 118.4 452.2 117.05 452.2 115.65L452.25 83.85C452.25 82.45 451.9 81.1 451.2 79.85 450.5 78.65 449.5 77.65 448.25 76.95 447.05 76.25 445.7 75.9 444.3 75.9L177.45 75.85C176.05 75.85 174.7 76.2 173.45 76.9 172.25 77.6 171.25 78.6 170.55 79.85 169.85 81.05 169.5 82.4 169.5 83.8V115.65Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-110.2" x="206.1 210.548 213.212 216.75601 221.20401 223.20401">Step 6</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-98.95" x="206.1">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-98.95" x="210.6 213.264 215.92002 217.92002 220.13602 224.13602 227.68003">If the </tspan></text>
+<text fill="#7030a0" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-98.95" x="229.7 234.148 236.812 241.692 245.244 247.46 251.46">P-Value</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-98.95" x="255.05 257.05 259.266 262.378 264.378 266.594 270.138 273.25 276.362 278.362 280.578 284.578 288.122 292.122"> is less than </tspan></text>
+<g clip-path="url(#clip_45)">
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-97.75" x="294.35">&#x03b1;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-98.95" x="301.55 303.55">, </tspan></text>
+<text fill="#c00000" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-98.95" x="305.55 308.214 311.758 313.974 317.518 321.062">reject</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-98.95" x="323.3 325.3 327.516 331.516 335.06 337.06 341.06 345.06 347.276 349.492 351.492 355.492 359.492 363.492 367.492 369.708 373.708 377.252 380.364 382.58003 385.69203"> the null hypothesis.</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-85.6" x="206.1">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-85.6" x="210.6 213.264 215.92002 217.92002 220.13602 224.13602 227.68003">If the </tspan></text>
+<text fill="#7030a0" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-85.6" x="229.7 234.148 236.812 241.692 245.244 247.46 251.46">P-Value</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-85.6" x="255.05 257.05 259.266 262.378 264.378 270.154 275.93 280.674 282.674 284.89 288.43403 291.54603 294.65803 296.65803 298.87403 302.87403 306.41804 310.41804"> is NOT less than </tspan></text>
+<g clip-path="url(#clip_46)">
+<text xml:space="preserve" transform="matrix(1.0037524 0 -0 .9962617 -68.29999 466.3)" font-size="11.95469" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-84.73677" x="311.4812">&#x03b1;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-85.6" x="319.85 321.85">, </tspan></text>
+<text fill="#00541b" xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-85.6" x="323.85 329.626 335.402 337.402 343.178 348.954 353.69804 355.69804 358.36204 361.90605 364.12205 367.66606 371.21006 373.42607">DO NOT reject </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-85.6" x="375.45 377.66603 381.66603 385.21003 387.21003 391.21003 395.21003 397.42604 399.64204 401.64204 405.64204 409.64204 413.64204 417.64204 419.85804 423.85804 427.40205 430.51405 432.73005 435.84205">the null hypothesis.</tspan></text>
+<g clip-path="url(#clip_47)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4a7ebb" d="M633.3 171.35 614.7 152.65"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M610.8 148.7 612.9 155 617.1 150.8 610.8 148.7Z" fill="#4a7ebb" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M100 408.5V408.5C100 409.5 100.25 410.45 100.75 411.3 101.25 412.15 101.95 412.85 102.8 413.35 103.65 413.85 104.6 414.1 105.6 414.1L146.5 414.05C147.5 414.05 148.45 413.8 149.3 413.3 150.15 412.8 150.85 412.1 151.35 411.25 151.85 410.4 152.1 409.45 152.1 408.45V386.1C152.1 385.1 151.85 384.15 151.35 383.3 150.85 382.45 150.15 381.75 149.3 381.25 148.45 380.75 147.5 380.5 146.5 380.5H105.55C104.55 380.5 103.6 380.75 102.75 381.25 101.9 381.75 101.2 382.45 100.7 383.3 100.2 384.15 99.95 385.1 99.95 386.1L100 408.5Z" fill="#e6d5ff" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M100 408.5V408.5C100 409.5 100.25 410.45 100.75 411.3 101.25 412.15 101.95 412.85 102.8 413.35 103.65 413.85 104.6 414.1 105.6 414.1L146.5 414.05C147.5 414.05 148.45 413.8 149.3 413.3 150.15 412.8 150.85 412.1 151.35 411.25 151.85 410.4 152.1 409.45 152.1 408.45V386.1C152.1 385.1 151.85 384.15 151.35 383.3 150.85 382.45 150.15 381.75 149.3 381.25 148.45 380.75 147.5 380.5 146.5 380.5H105.55C104.55 380.5 103.6 380.75 102.75 381.25 101.9 381.75 101.2 382.45 100.7 383.3 100.2 384.15 99.95 385.1 99.95 386.1L100 408.5Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-399.5" x="111.2 116.759998 121.189998 125.619998 128.39 131.16 136.16">Section</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-399.5" x="141.2"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-387.95" x="119.95 124.95 127.45">8.2</tspan></text>
+<g clip-path="url(#clip_48)">
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" d="M454.45 407.8V407.8C454.45 408.8 454.7 409.75 455.2 410.6 455.7 411.45 456.4 412.15 457.25 412.65 458.1 413.15 459.05 413.4 460.05 413.4L500.95 413.35C501.95 413.35 502.9 413.1 503.75 412.6 504.6 412.1 505.3 411.4 505.8 410.55 506.3 409.7 506.55 408.75 506.55 407.75V385.4C506.55 384.4 506.3 383.45 505.8 382.6 505.3 381.75 504.6 381.05 503.75 380.55 502.9 380.05 501.95 379.8 500.95 379.8H460C459 379.8 458.05 380.05 457.2 380.55 456.35 381.05 455.65 381.75 455.15 382.6 454.65 383.45 454.4 384.4 454.4 385.4L454.45 407.8Z" fill="#e6d5ff" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M454.45 407.8V407.8C454.45 408.8 454.7 409.75 455.2 410.6 455.7 411.45 456.4 412.15 457.25 412.65 458.1 413.15 459.05 413.4 460.05 413.4L500.95 413.35C501.95 413.35 502.9 413.1 503.75 412.6 504.6 412.1 505.3 411.4 505.8 410.55 506.3 409.7 506.55 408.75 506.55 407.75V385.4C506.55 384.4 506.3 383.45 505.8 382.6 505.3 381.75 504.6 381.05 503.75 380.55 502.9 380.05 501.95 379.8 500.95 379.8H460C459 379.8 458.05 380.05 457.2 380.55 456.35 381.05 455.65 381.75 455.15 382.6 454.65 383.45 454.4 384.4 454.4 385.4L454.45 407.8Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-398.8" x="465.65 471.21 475.63999 480.06999 482.83998 485.60997 490.60997">Section</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-398.8" x="495.65"> </tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -68.29999 466.3)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-387.25" x="474.4 479.4 481.9">8.3</tspan></text>
+<g clip-path="url(#clip_49)">
+<g opacity=".39">
+<g clip-path="url(#clip_50)">
+<g mask="url(#mask_51)">
+<g transform="matrix(.23994082,0,0,.23965517,146.15001,30.049977)">
+<image id="image_53" width="169" height="116" xlink:href="data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoH
+BwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wgALCAB0
+AKkBAREA/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/2gAIAQEAAAABlQAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//EABQQAQAAAAAAAAAA
+AAAAAAAAAID/2gAIAQEAAQUCJX//xAAUEAEAAAAAAAAAAAAAAAAAAACA/9oACAEB
+AAY/AiV//8QAFBABAAAAAAAAAAAAAAAAAAAAgP/aAAgBAQABPyElf//aAAgBAQAA
+ABD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
+/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/xAAUEAEAAAAA
+AAAAAAAAAAAAAACA/9oACAEBAAE/ECV//9k="/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M218.25 413.75 251.25 434"/>
+<g opacity=".39">
+<g clip-path="url(#clip_54)">
+<g mask="url(#mask_55)">
+<g transform="matrix(.24152047,0,0,.23991597,283.40003,30.049977)">
+<image id="image_57" width="171" height="119" xlink:href="data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQEASABHAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoH
+BwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wgALCAB3
+AKsBAREA/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/2gAIAQEAAAABlQAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//EABQQAQAAAAAAAAAA
+AAAAAAAAAID/2gAIAQEAAQUCJX//xAAUEAEAAAAAAAAAAAAAAAAAAACA/9oACAEB
+AAY/AiV//8QAFBABAAAAAAAAAAAAAAAAAAAAgP/aAAgBAQABPyElf//aAAgBAQAA
+ABD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
+/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/xAAUEAEAAAAA
+AAAAAAAAAAAAAACA/9oACAEBAAE/ECV//9k="/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M389.25 413 355.5 434"/>
+<g opacity=".39">
+<g clip-path="url(#clip_58)">
+<g mask="url(#mask_59)">
+<g transform="matrix(.23939395,0,0,.24007635,128.15001,72.34999)">
+<image id="image_61" width="66" height="131" xlink:href="data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQEARwBIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoH
+BwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wgALCACD
+AEIBAREA/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/2gAIAQEAAAABlQAAAAAAAAAA
+AAAAAAAAAAAAAAA//8QAFBABAAAAAAAAAAAAAAAAAAAAcP/aAAgBAQABBQIZ/8QA
+FBABAAAAAAAAAAAAAAAAAAAAcP/aAAgBAQAGPwIZ/8QAFBABAAAAAAAAAAAAAAAA
+AAAAcP/aAAgBAQABPyEZ/9oACAEBAAAAEP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/
+AP8A/wD/AP8A/wD/AP8A/wD/xAAUEAEAAAAAAAAAAAAAAAAAAABw/9oACAEBAAE/
+EBn/2Q=="/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M208.5 391.7 200.25 367.8"/>
+<g opacity=".39">
+<g clip-path="url(#clip_62)">
+<g mask="url(#mask_63)">
+<g transform="matrix(.24066666,0,0,.24007635,330.65003,72.14998)">
+<image id="image_65" width="75" height="131" xlink:href="data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQEARwBIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoH
+BwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wgALCACD
+AEsBAREA/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/2gAIAQEAAAABlQAAAAAAAAAA
+AAAAAAAAAAAAAAAAAB//xAAUEAEAAAAAAAAAAAAAAAAAAABw/9oACAEBAAEFAir/
+xAAUEAEAAAAAAAAAAAAAAAAAAABw/9oACAEBAAY/Air/xAAUEAEAAAAAAAAAAAAA
+AAAAAABw/9oACAEBAAE/ISr/2gAIAQEAAAAQ/wD/AP8A/wD/AP8A/wD/AP8A/wD/
+AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/xAAUEAEAAAAAAAAAAAAAAAAAAABw/9oA
+CAEBAAE/ECr/2Q=="/>
+</g>
+</g>
+</g>
+</g>
+<path transform="matrix(1,0,0,-1,-68.29999,466.3)" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#4f81bd" d="M413.25 368 402.75 391.9"/>
+</g>
+</g>
+</g>
+</svg>

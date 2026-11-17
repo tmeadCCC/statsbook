@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Coin Flip Simulation – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this simulation */
+.coin{display:flex;align-items:center;gap:.8rem;min-height:76px;margin-bottom:.4rem}
+.coin .face{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 1.5rem/1 var(--sans);border:4px solid #8a6d1d;background:radial-gradient(circle at 35% 30%,#f7e08a,#d4a72c);color:#5b4410}
+.coin .face.t{background:radial-gradient(circle at 35% 30%,#e9e9ee,#a9adb8);border-color:#6b6f7a;color:#33363d}
+.coin .word{font:700 1.15rem/1.2 var(--sans)}
+.big{font:700 1.6rem/1.1 var(--sans);color:var(--navy)}
+.stats{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin:.2rem 0 .8rem}
+.stats div{min-width:7.5rem}.stats span{display:block;color:var(--muted);font-size:.85rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Coin Flip Simulation</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Simulation</p>
+  <h1>Coin Flip Simulation</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-5/section-5-1.html">Section 5.1 Basic Probability</a></p>
+</header>
+<p class="sim-intro">Flip a fair coin as many times as you like. After every flip, the empirical probability of heads is the number of heads divided by the number of flips. Watch what happens to it as the number of flips grows larger and larger.</p>
+
+<section class="sim" aria-label="Coin Flip Simulation">
+  <div class="sim-row" role="group" aria-label="Flip the coin">
+    <button class="btn" data-run="1">Flip 1</button>
+    <button class="btn" data-run="10">Flip 10</button>
+    <button class="btn" data-run="100">Flip 100</button>
+    <button class="btn" data-run="1000">Flip 1,000</button>
+    <button class="btn" data-run="10000">Flip 10,000</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="coin" id="coin" aria-hidden="true"></div>
+  <div class="stats" aria-live="polite" id="stats"></div>
+  <div class="sim-grid">
+    <div class="tblwrap"><table id="tbl"><caption class="vh">Coin flip results at several numbers of flips</caption>
+      <thead><tr><th scope="col">Number of coin flips</th><th scope="col">Number of Heads</th><th scope="col">Empirical Probability of getting Heads</th></tr></thead><tbody></tbody></table></div>
+    <div class="sim-chart">
+      <svg id="chart"></svg>
+      <p class="sim-legend"><span><span class="k" style="background:#365F91;height:3px;vertical-align:middle"></span>Empirical probability of heads</span><span><span class="k" style="background:repeating-linear-gradient(90deg,#C65A2C 0 7px,transparent 7px 11px);height:3px;vertical-align:middle"></span>Theoretical probability, 0.5</span></p>
+    </div>
+  </div>
+  <div class="sim-statbelt">
+    <button class="btn sb" id="tosb" disabled>Open in STATBELT</button>
+    <p>Sends your first 2,500 flips to STATBELT Utility: flip number, result, number of heads so far and the empirical probability. Make a scatterplot of Empirical Probability against Flip to draw a graph like Figure 5.8.</p>
+  </div>
+</section>
+
+<aside class="sim-notice">
+  <p class="t">What to notice</p>
+  <p>After only a few flips, the empirical probability of heads can be anywhere from 0 to 1. As the number of flips grows, it settles closer and closer to the theoretical probability of 0.5, just as in Table 2 and Figure 5.8. This is the Law of Large Numbers. Notice that the number of heads does not have to be exactly half; it is the proportion of heads that gets closer to 0.5.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const MAX = 100000;
+  let flips = [];                 // 1 = heads, 0 = tails
+  let heads = [];                 // running count of heads after each flip
+  function run(k){
+    k = Math.min(k, MAX - flips.length);
+    let h = heads.length ? heads[heads.length - 1] : 0;
+    for (let i = 0; i < k; i++){ const f = SimKit.rint(0, 1); flips.push(f); h += f; heads.push(h); }
+    draw(true);
+    if (flips.length >= MAX) $('stats').insertAdjacentHTML('beforeend', '<div><span>Limit</span>100,000 flips. Press Start over to begin again.</div>');
+  }
+  function checkpoints(N){
+    const out = [];
+    for (let p = 1; p <= N; p *= 10) [1, 2, 5].forEach(m => { if (m * p <= N) out.push(m * p); });
+    if (out[out.length - 1] !== N) out.push(N);
+    return [...new Set(out)].sort((a, b) => a - b);
+  }
+  function draw(anim){
+    const N = flips.length, H = N ? heads[N - 1] : 0;
+    const c = $('coin');
+    c.innerHTML = N ? `<div class="face${flips[N-1] ? '' : ' t'}">${flips[N-1] ? 'H' : 'T'}</div><span class="word">${flips[N-1] ? 'Heads' : 'Tails'}</span>` : '';
+    if (anim && N){ c.classList.remove('rolling'); void c.offsetWidth; c.classList.add('rolling'); }
+    $('stats').innerHTML = N
+      ? `<div><span>Number of flips</span><b class="big">${SimKit.comma(N)}</b></div><div><span>Number of heads</span><b class="big">${SimKit.comma(H)}</b></div><div><span>Empirical probability of heads</span><b class="big">${SimKit.fmt(H / N)}</b></div>`
+      : '<div>No flips yet. Press a Flip button.</div>';
+    $('tbl').tBodies[0].innerHTML = N ? checkpoints(N).map(n => `<tr><td>${SimKit.comma(n)}</td><td>${SimKit.comma(heads[n-1])}</td><td>${+(heads[n-1] / n).toFixed(4)}</td></tr>`).join('')
+      : '<tr><td colspan="3" style="text-align:center;font-weight:400">No flips yet</td></tr>';
+    const xs = new Array(N), ys = new Array(N);
+    for (let i = 0; i < N; i++){ xs[i] = i + 1; ys[i] = heads[i] / (i + 1); }
+    SimKit.lineChart($('chart'), {x: xs, y: ys, ref: 0.5, ymin: 0, ymax: 1, xlabel: 'Number of flips', ylabel: 'Empirical probability',
+      title: N ? `Line graph of the empirical probability of heads after each of ${N} flips. It ends at ${SimKit.fmt(H / N)}; the theoretical probability 0.5 is marked with a dashed line.` : 'Empty graph: no flips yet.'});
+    $('tosb').disabled = !N;
+  }
+  document.querySelectorAll('[data-run]').forEach(b => b.onclick = () => run(+b.dataset.run));
+  $('reset').onclick = () => { flips = []; heads = []; draw(); };
+  $('tosb').onclick = () => {
+    const n = Math.min(flips.length, SimKit.MAX_ROWS), idx = [...Array(n).keys()];
+    SimKit.openInStatbelt({t: 'Coin flips', n: ['Flip', 'Result', 'Number of Heads', 'Empirical Probability'],
+      c: [idx.map(i => i + 1), idx.map(i => flips[i] ? 'Heads' : 'Tails'), idx.map(i => heads[i]), idx.map(i => +(heads[i] / (i + 1)).toFixed(4))]});
+  };
+  draw();
+})();
+</script>
+</body></html>

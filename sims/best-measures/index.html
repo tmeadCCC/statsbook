@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Best Measures for the Data Game – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this simulation */
+</style>
+<style>
+/* page-specific styles for this game */
+.hist svg{width:100%;height:auto;display:block;max-width:620px}
+.qbox{border-top:1px solid var(--rule);padding-top:.6rem}
+.qbox h2{font-size:1.05rem;margin:0 0 .45rem}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem 1rem;margin:0 0 .6rem}
+.og{border:1.5px solid var(--rule);border-radius:6px;padding:.45rem .7rem}
+.og .pr{font-weight:700;margin:0 0 .25rem}
+.og .ch{display:grid;gap:.25rem}
+.og label{display:flex;gap:.45rem;align-items:center;padding:.15rem .3rem;border-radius:4px;cursor:pointer}
+.og label.right{background:#E6F2E8;outline:1.5px solid #1E7B3A}
+.og label.wrong{background:#FBEAE8;outline:1.5px solid #8a2a24}
+/* phones: the two questions stack, and each one's choices sit in a row */
+@media (max-width:600px){
+  .opts{grid-template-columns:1fr;gap:.4rem}
+  .og{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .6rem;padding:.4rem .5rem}
+  .og .pr{margin:0;white-space:nowrap}
+  .og .pr{font-size:.95rem;flex:0 0 7rem}
+  .og .ch{display:flex;gap:.25rem;flex:1 1 10.5rem}
+  .og label{flex:1 1 0;justify-content:center;text-align:center;border:1.5px solid var(--rule);padding:.35rem .1rem;font-size:.85rem;line-height:1.1;position:relative;min-height:2.6em}
+  .og label input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+  .og label.sel{background:#DCE5F5;border-color:var(--navy);font-weight:700}
+  .og label:focus-within{outline:2px solid var(--navy);outline-offset:1px}
+  .og label.right,.og label.wrong{outline:none}
+  .og label.right{border-color:#1E7B3A}.og label.wrong{border-color:#8a2a24}
+}
+.fb{display:none;margin:0 0 .6rem;padding:.55rem .8rem;border-radius:8px;font-size:.95rem}
+.fb.ok{display:flex;gap:.8rem;align-items:center;background:#E6F2E8;border:1.5px solid #1E7B3A}
+.fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
+.fb .badge{flex:none;width:46px;height:46px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;line-height:1;box-shadow:0 0 0 5px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.fb .big{font:700 1.35rem/1.1 var(--sans);color:#1E7B3A}
+.fb p{margin:.2rem 0}
+.fb .cheer{font-weight:700;color:#8a2a24;margin-top:.35rem}
+@keyframes pop{0%{transform:scale(.2) rotate(-40deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.fb .badge{animation:none}}
+.sim .sim-row{margin:0}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.6rem 0 0}
+.dots{display:flex;gap:5px}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
+.dots i.on{background:#E9A23B;border-color:#b87710}
+.streak .lab{color:var(--muted);font-size:.9rem}.streak b{font-size:1.1rem}
+/* the master overlay */
+.master{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(20,24,40,.55);padding:16px}
+.master.show{display:flex}
+.mcard{position:relative;background:#fff;border:3px solid var(--navy);border-radius:14px;max-width:440px;width:100%;padding:1.2rem;text-align:center;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+.mcard img{width:150px;height:150px;border-radius:12px;border:3px solid var(--navy);display:block;margin:0 auto .6rem;animation:bob 1.2s ease-in-out .5s 3}
+.bubble{position:relative;background:#FFF4C7;border:2px solid #2C4D94;border-radius:16px;padding:.7rem .9rem;font:700 1.15rem/1.35 var(--sans);color:#1d2a4d;margin:0 0 1rem}
+.bubble::before{content:"";position:absolute;left:50%;top:-12px;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid #2C4D94}
+.mcard .btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.confetti{position:fixed;top:-20px;width:10px;height:15px;border-radius:2px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+@keyframes popin{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.mcard,.mcard img{animation:none}}
+.dots i.fin{border-style:dashed}
+.dots i.fin.on{border-style:solid}
+.final{display:inline-block;background:#E6D5FF;border:1.5px solid #7030A0;color:#4b1f73;border-radius:999px;padding:.05rem .6rem;font-size:.85rem;font-weight:700;margin-right:.4rem}
+.sb-row{margin:.4rem 0 0;font-size:.9rem}
+@media (max-width:600px){ .og .pr{flex:1 1 100%;white-space:normal} .og .ch{flex:1 1 100%} }
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Best Measures for the Data Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Game</p>
+  <h1>Best Measures for the Data Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-3/section-3-3.html">Section 3.3 Measures of Position</a></p>
+</header>
+<p class="sim-intro">Choose the best measure of center and the best measure of variation for each histogram. Get both right to win the round, and 5 rounds in a row to win the game.</p>
+
+<section class="sim" aria-label="Best Measures for the Data Game">
+  <div class="hist"><svg id="hist"></svg></div>
+  <div class="qbox">
+    <div class="opts">
+      <div class="og" role="radiogroup" aria-labelledby="pc"><p class="pr" id="pc">The best measure of center for this data is</p><div class="ch">
+        <label><input type="radio" name="center" value="mean"><span>the mean</span></label>
+        <label><input type="radio" name="center" value="median"><span>the median</span></label>
+      </div></div>
+      <div class="og" role="radiogroup" aria-labelledby="pv"><p class="pr" id="pv">The best measure of variation for these data is</p><div class="ch">
+        <label><input type="radio" name="spread" value="sd"><span>the standard deviation</span></label>
+        <label><input type="radio" name="spread" value="iqr"><span>the IQR</span></label>
+      </div></div>
+    </div>
+    <div class="fb" id="fb" aria-live="polite"></div>
+    <div class="sim-row">
+      <button class="btn" id="next" hidden>Next</button>
+      <button class="btn alt" id="reset">Start over</button>
+    </div>
+    <div class="streak">
+      <div><span class="lab">Streak</span> <b id="streakn">0</b> <span class="lab">of 5</span></div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <div><span class="lab">Correct</span> <b id="score">0 of 0</b></div>
+      <div><span class="lab">Best streak</span> <b id="best">0</b></div>
+    </div>
+    <p class="sb-row" id="sbrow" hidden><button class="btn sb" id="tosb">Open this data in STATBELT</button></p>
+  </div>
+</section>
+
+<div class="master" id="master" role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="mcard">
+    <img src="data.jpg" alt="Data, Stat-Man's sidekick, smiling.">
+    <p class="bubble" id="mtext">Congratulations! You are now a master at choosing the best measures for data!</p>
+    <div class="btns"><button class="btn" id="keep">Keep playing</button><button class="btn alt" id="again">Start over</button></div>
+  </div>
+</div>
+
+<aside class="sim-notice">
+  <p class="t">What you should notice</p>
+  <p>When the data are <b>bell-shaped</b> (symmetric), use the <b>mean</b> to measure center and the <b>standard deviation</b> to measure variation. When the data are <b>skewed</b>, the long tail pulls the mean and inflates the standard deviation, so use the <b>median</b> and the <b>IQR</b>, which are resistant to extreme observations. After each answer, the green line shows the mean and the red line shows the median: on a skewed histogram, the mean is pulled toward the tail.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const GOAL = 5, SHAPES = ['bell', 'left', 'right'];
+  const NAME = {bell: 'bell-shaped (symmetric)', left: 'skewed left', right: 'skewed right'};
+  let shape, data, lastShape = null, repeat = 0, asked = false, streak = 0, best = 0, right = 0, tries = 0, mastered = false;
+
+  const normal = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+  const gamma = k => { let s = 0; for (let i = 0; i < k; i++) s += -Math.log(1 - Math.random()); return s; };   // whole-number k
+  function sample(sh){
+    const n = 250 + SimKit.rint(0, 150), center = [20, 50, 70, 100, 250, 500][SimKit.rint(0, 5)], spread = center * (0.15 + Math.random() * 0.1);
+    const out = [];
+    if (sh === 'uniform'){                     // bars line up with the bins, so the end bars are full too
+      const w = niceStep(spread * 3.4 / 10), start = Math.round((center - 5 * w) / w) * w, m = 400 + SimKit.rint(0, 100);
+      for (let i = 0; i < m; i++) out.push(+Math.min(start + 10 * w - 0.05, start + Math.random() * 10 * w).toFixed(1));
+      return out;
+    }
+    for (let i = 0; i < n; i++){
+      let z;
+      if (sh === 'bell') z = normal();
+            else { const k = 2; z = (gamma(k) - k) / Math.sqrt(k); if (z > 4.2) { i--; continue; } if (sh === 'left') z = -z; }
+      out.push(+(center + spread * z).toFixed(1));
+    }
+    return out;
+  }
+  function niceStep(x){ const p = Math.pow(10, Math.floor(Math.log10(x))), m = x / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+  function drawHist(vals){
+    const lo = Math.min(...vals), hi = Math.max(...vals), w = niceStep((hi - lo) / 14);
+    const start = Math.floor(lo / w) * w, nb = Math.max(1, Math.ceil((hi - start) / w + 1e-9));
+    const f = new Array(nb).fill(0); vals.forEach(v => f[Math.min(nb - 1, Math.floor((v - start) / w))]++);
+    const W = 520, H = 290, L = 48, R = 14, T = 12, B = 46, pw = W - L - R, ph = H - T - B;
+    const fmax = Math.max(...f), ys = niceStep(fmax / 5), ymax = Math.ceil(fmax / ys) * ys;
+    const X = i => L + (i / nb) * pw, Y = v => T + ph - (v / ymax) * ph;
+    let s = '';
+    for (let v = 0; v <= ymax; v += ys) s += `<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e3e6ec"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" font-size="${F}" fill="#5a5f6b">${v}</text>`;
+    f.forEach((c, i) => s += `<rect x="${X(i)}" y="${Y(c)}" width="${pw/nb}" height="${T+ph-Y(c)}" fill="#9B82D6" stroke="#fff" stroke-width="1.2"/>`);
+    const every = nb > (nar ? 7 : 12) ? 2 : 1;
+    for (let i = 0; i <= nb; i += every) s += `<text x="${X(i)}" y="${T+ph+F+4}" text-anchor="middle" font-size="${F}" fill="#111">${+(start + i * w).toFixed(2)}</text>`;
+    s += `<line x1="${L}" x2="${W-R}" y1="${T+ph}" y2="${T+ph}" stroke="#111"/>`;
+    s += `<text x="${L+pw/2}" y="${H-6}" text-anchor="middle" font-size="${F + 1}" fill="#111">Value</text><text transform="translate(14 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="${F + 1}" fill="#111">Frequency</text>`;
+    const svg = $('hist'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', `Histogram of ${vals.length} values. Bar heights from left to right: ${f.join(', ')}.`);
+    svg.innerHTML = s;
+  }
+  const mean = a => a.reduce((s, v) => s + v, 0) / a.length;
+  const median = a => { const s = [...a].sort((x, y) => x - y), n = s.length; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; };
+  const fmt = v => +v.toFixed(1);
+  function drawHist(vals, marks){
+    const lo = Math.min(...vals), hi = Math.max(...vals), w = niceStep((hi - lo) / 14);
+    const start = Math.floor(lo / w) * w, nb = Math.max(1, Math.ceil((hi - start) / w + 1e-9));
+    const f = new Array(nb).fill(0); vals.forEach(v => f[Math.min(nb - 1, Math.floor((v - start) / w))]++);
+    const nar = Math.min(window.innerWidth, document.documentElement.clientWidth || 9999) < 600, F = nar ? 17 : 13;
+    const W = nar ? 400 : 520, H = nar ? 290 : 300, L = nar ? 50 : 48, R = 14, T = 28, B = nar ? 52 : 46, pw = W - L - R, ph = H - T - B;
+    const fmax = Math.max(...f), ys = niceStep(fmax / 5), ymax = Math.ceil(fmax / ys) * ys;
+    const X = i => L + (i / nb) * pw, Y = v => T + ph - (v / ymax) * ph, XV = v => L + (v - start) / (nb * w) * pw;
+    let s = '';
+    for (let v = 0; v <= ymax; v += ys) s += `<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e3e6ec"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" font-size="${F}" fill="#5a5f6b">${v}</text>`;
+    f.forEach((c, i) => s += `<rect x="${X(i)}" y="${Y(c)}" width="${pw/nb}" height="${T+ph-Y(c)}" fill="#9B82D6" stroke="#fff" stroke-width="1.2"/>`);
+    const every = nb > (nar ? 7 : 12) ? 2 : 1;
+    for (let i = 0; i <= nb; i += every) s += `<text x="${X(i)}" y="${T+ph+F+4}" text-anchor="middle" font-size="${F}" fill="#111">${+(start + i * w).toFixed(2)}</text>`;
+    s += `<line x1="${L}" x2="${W-R}" y1="${T+ph}" y2="${T+ph}" stroke="#111"/>`;
+    s += `<text x="${L+pw/2}" y="${H-6}" text-anchor="middle" font-size="${F + 1}" fill="#111">Value</text><text transform="translate(14 ${T+ph/2}) rotate(-90)" text-anchor="middle" font-size="${F + 1}" fill="#111">Frequency</text>`;
+    if (marks){   // green mean and red median, as in the book's figures
+      const xm = XV(mean(vals)), xd = XV(median(vals)), mLeft = xm <= xd;
+      s += `<line x1="${xm}" x2="${xm}" y1="${T - 4}" y2="${T + ph}" stroke="#00B050" stroke-width="3"/><line x1="${xd}" x2="${xd}" y1="${T - 4}" y2="${T + ph}" stroke="#FF0000" stroke-width="3" stroke-dasharray="7 4"/>`;
+      s += `<text x="${xm + (mLeft ? -5 : 5)}" y="${T - 9}" text-anchor="${mLeft ? 'end' : 'start'}" font-size="${F}" font-weight="700" fill="#0d6b31">Mean = ${fmt(mean(vals))}</text>`;
+      s += `<text x="${xd + (mLeft ? 5 : -5)}" y="${T - 9}" text-anchor="${mLeft ? 'start' : 'end'}" font-size="${F}" font-weight="700" fill="#b3141b">Median = ${fmt(median(vals))}</text>`;
+    }
+    const svg = $('hist'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', `Histogram of ${vals.length} values. Bar heights from left to right: ${f.join(', ')}.` + (marks ? ` Mean ${fmt(mean(vals))}, median ${fmt(median(vals))}.` : ''));
+    svg.innerHTML = s;
+  }
+  function round(){
+    // half bell-shaped, half skewed (left or right), so always answering one way doesn't pay;
+    // never the same kind (bell or skewed) three times in a row
+    const kind = s => s === 'bell' ? 'bell' : 'skew';
+    do { shape = Math.random() < .5 ? 'bell' : (Math.random() < .5 ? 'left' : 'right'); } while (lastShape && kind(shape) === kind(lastShape) && repeat >= 1);
+    repeat = lastShape && kind(shape) === kind(lastShape) ? repeat + 1 : 0; lastShape = shape;
+    data = sample(shape); drawHist(data, false); asked = false;
+    document.querySelectorAll('.opts input').forEach(r => { r.checked = false; r.disabled = false; r.parentElement.className = ''; });
+    $('fb').className = 'fb'; $('fb').innerHTML = ''; $('next').hidden = true; $('sbrow').hidden = true;
+  }
+  function reveal(){
+    if (asked) return; asked = true; tries++;
+    const ac = document.querySelector('input[name=center]:checked').value, as = document.querySelector('input[name=spread]:checked').value;
+    const sk = shape !== 'bell', tc = sk ? 'median' : 'mean', ts = sk ? 'iqr' : 'sd';
+    document.querySelectorAll('.opts input').forEach(r => { r.disabled = true;
+      const truth = r.name === 'center' ? tc : ts;
+      r.parentElement.className = r.value === truth ? 'right' : r.checked ? 'wrong' : ''; });
+    drawHist(data, true);
+    const why = sk
+      ? `This histogram is <b>${NAME[shape]}</b>, with a long tail on the ${shape}. The tail pulls the mean toward it (the green line) and inflates the standard deviation, so the <b>median</b> and the <b>IQR</b> are best: they are resistant to extreme observations.`
+      : `This histogram is <b>${NAME[shape]}</b>: the two sides look about the same, and the mean and median are close together. For bell-shaped data, the <b>mean</b> and the <b>standard deviation</b> are best.`;
+    const ok = ac === tc && as === ts;
+    if (ok){ right++; streak++; best = Math.max(best, streak);
+      $('fb').className = 'fb ok';
+      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><span class="big">Correct!</span><p>${why} ${mastered ? `That makes ${streak} in a row.` : streak >= GOAL ? 'That makes 5 in a row!' : `Your streak is ${streak} in a row. ${GOAL - streak} more to go!`}</p></span>`;
+    } else {
+      streak = 0;
+      const tip = sk ? 'Remember: skewed data, use the median and IQR.' : 'Remember: bell-shaped data, use the mean and standard deviation.';
+      $('fb').className = 'fb no';
+      $('fb').innerHTML = `<p><b>Not quite.</b> ${why}</p><p>${tip} Your streak starts again from 0.</p><p class="cheer">Try it again, you've got this!</p>`;
+    }
+    $('next').hidden = false; $('sbrow').hidden = false; status();
+    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 700); } else $('next').focus({preventScroll: true});
+  }
+  function status(){
+    $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${right} of ${tries}`;
+    $('dots').innerHTML = Array.from({length: GOAL}, (_, i) => `<i class="${i < Math.min(streak, GOAL) ? 'on' : ''}"></i>`).join('');
+  }
+  function celebrate(){
+    $('master').classList.add('show'); $('keep').focus({preventScroll: true});
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols = ['#E9A23B', '#C8312B', '#365F91', '#1E7B3A', '#7030A0', '#f2d14c', '#2F6FD0'];
+    for (let i = 0; i < 90; i++){
+      const c = document.createElement('i'); c.className = 'confetti';
+      const dur = 1.8 + Math.random() * 1.6;
+      c.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};--dx:${Math.random() * 160 - 80}px;--r:${Math.random() * 1080 - 540}deg;animation-duration:${dur}s;animation-delay:${Math.random() * .6}s`;
+      document.body.appendChild(c); setTimeout(() => c.remove(), (dur + 0.8) * 1000);
+    }
+  }
+  function startOver(){ streak = 0; best = 0; right = 0; tries = 0; mastered = false; $('master').classList.remove('show'); status(); round(); }
+  document.querySelectorAll('.opts input').forEach(r => r.onchange = () => {
+    document.querySelectorAll(`.opts input[name=${r.name}]`).forEach(x => x.parentElement.classList.toggle('sel', x.checked));
+    if (document.querySelector('input[name=center]:checked') && document.querySelector('input[name=spread]:checked')) reveal(); });
+  $('next').onclick = round;
+  $('reset').onclick = startOver;
+  $('again').onclick = startOver;
+  $('keep').onclick = () => { $('master').classList.remove('show'); round(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
+  $('tosb').onclick = () => SimKit.openInStatbelt({t: 'Best Measures for the Data Game histogram', n: ['Value'], c: [data]});
+  let rw = 0, nar0 = innerWidth < 600; window.addEventListener('resize', () => { const n = innerWidth < 600; if (n !== nar0){ nar0 = n; clearTimeout(rw); rw = setTimeout(() => drawHist(data, asked), 100); } });
+  status(); round();
+})();
+</script>
+</body></html>

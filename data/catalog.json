@@ -13,7 +13,8 @@
   "id": "vaccination",
   "title": "Vaccination status and ethnicity",
   "sections": [
-   "2.1"
+   "2.1",
+   "8.2"
   ],
   "sheet": "1JgrywANKE8-_FHrbg70DOp-Ur2iAopb8nekOa50x7Tc",
   "file": "data/vaccination.csv",
@@ -127,7 +128,8 @@
   "id": "gpa",
   "title": "High school and college GPA",
   "sections": [
-   "4.4"
+   "4.4",
+   "8.3"
   ],
   "sheet": "1skW5Rpst8ZhmCpq79Kv2PUMxAjcn9UbGYKB1bx1yAL0",
   "file": "data/gpa.csv",
@@ -172,5 +174,25 @@
   "sheet": "1AwdK6Nmw0NG6y5XTzx9C0YK1j4ETPEfjC0iObCdKHMk",
   "file": "data/twos.csv",
   "short": "d/twos/"
+ },
+ {
+  "id": "impulse-spending",
+  "title": "Monthly impulse spending",
+  "sections": [
+   "8.4"
+  ],
+  "sheet": "1QsMLt20-qEjUAIWtHWMdst4cq6Nz8dCSbUP1fY7BMXo",
+  "file": "data/impulse-spending.csv",
+  "short": "d/impulse-spending/"
+ },
+ {
+  "id": "homework-scores",
+  "title": "Homework scores with MyOpenMath",
+  "sections": [
+   "8.4"
+  ],
+  "sheet": "14zU8zlSTypG1upKOpLArOo7gMrUSWiWlU9U_qG74LHc",
+  "file": "data/homework-scores.csv",
+  "short": "d/homework-scores/"
  }
 ]

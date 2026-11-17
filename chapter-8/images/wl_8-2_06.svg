@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="148.05002" height="4.7900087" viewBox="0 0 148.05002 4.7900087">
+<defs>
+<clipPath id="clip_1">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M373.9 669.11H521.95V673.9H373.9Z"/>
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M0 0H612V792H0Z"/>
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M297.399 656.22H336.249V669.42H297.399Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_6">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M517.399 585.105H524.849V598.305H517.399Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_7">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_8">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M489 650.6H496.35V663.89999H489Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_9">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M405.5 618.6H412.799V631.89999H405.5Z" clip-rule="evenodd"/>
+</clipPath>
+<clipPath id="clip_10">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M0 .028H611.971V791.999H0Z" clip-rule="evenodd"/>
+</clipPath>
+</defs>
+<g clip-path="url(#clip_1)">
+<g clip-path="url(#clip_2)">
+<g clip-path="url(#clip_3)">
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-706.3" x="140.5 146.6 151.6 156.03 158.53 164.09 167.42 174.64 179.07 181.84001 186.84001 191.27002 193.77002 196.54003 200.43003 202.93003 207.93003 210.43003 215.43003 220.43003 225.43003 230.43003 232.93003 235.43003 242.65003 247.65003 250.42003 254.85004 259.85005 262.35005 265.12004 269.01005 271.51005 275.94004 278.71003 283.71003 287.60005 292.03004 294.53004 297.30003 302.30003 304.80003 312.02003 317.02003 321.45 324.22 326.72 333.94 338.37 340.87 345.3 349.72999 352.49998 356.92997 361.92997 364.69996 369.12995 371.89994 376.32994 381.32994 383.82994 388.82994 392.71995 395.48994 400.48994 405.48994 407.98994 411.3099 416.3099 421.3099 426.3099 431.3099 435.7399 440.7399 443.2399 446.5699 449.33988 454.33988 459.33988 462.66987 467.09986 470.98988 473.48988 475.98988 478.48988 485.70988 490.70988 493.47987 497.90986 500.40986 503.17985 508.17985 512.60989 515.3799">The P-Value is 0.0307, which is close to what we calculated using rounded figures.  Note that </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-694.75" x="140.5 147.72 152.15 154.65 159.65 162.42 167.42 169.92 174.92 179.92 182.69 185.19 190.19 194.62 199.04999 204.04999 206.54999 209.31999 214.31999 216.81999 221.81999 226.81999 231.81999 236.81999 239.59 244.01999 246.51999 249.29 254.29 258.72 261.22 265.65 268.97999 273.40998 277.83998 280.33998 285.33998 288.66996 291.16996 295.59996 298.09996 300.86994 305.29994 308.06993 310.8399 313.3399 315.8399 318.3399 323.8999 329.9999 337.2199 343.31993 349.97993 356.07994 362.17994 368.27995 370.77995 375.77995 378.54994 383.54994 386.04994 388.81993 393.81993 398.2499 401.0199 403.5199 406.84989 411.84989 415.17988 417.67988 422.67988 426.5699 429.0699 433.49989 438.49989 443.49989 445.99989 449.32987 453.75987 458.75987 463.75987 467.08985 469.85984 474.28984 479.28984 481.78984 484.5598 489.5598 493.9898">we did not need to double the area of a tail.  STATBELT did that for us and reported the </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-683.2" x="140.5 144.93 149.93 153.25 156.58 161.01001 165.44 168.21 170.71 176.27 179.59001 186.81002 191.24002 194.01003 199.01003 203.44004">correct P-Value!</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-weight="bold"><tspan y="-659.2" x="104.5 110.06 113.39 117.82 123.38 125.88">Step 6</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-659.2" x="130.9 133.67">: </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-659.2" x="140.5 146.06 148.83 153.83 158.26001 162.69 165.19 167.96 172.96 177.39002 179.89002 185.45001 188.78002 193.78002 198.21002 200.98003 205.98003 210.41004 212.91004 218.54004 221.04004 226.04004 228.54004 233.54004 238.54004 243.54004 248.54004 251.04004 253.81005 257.70005 260.20005 262.97004 267.40003 271.29005 275.18006 277.68006 280.45005 285.45005 289.88005 294.88005">Since the P-value = 0.0307 is less than </tspan></text>
+</g>
+<g clip-path="url(#clip_4)">
+<text xml:space="preserve" transform="matrix(1.0037423 0 -0 .99625179 -373.8971 673.89578)" font-size="11.95469" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-661.2239" x="296.53727">&#x03b1;</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0037423 0 -0 .99625179 -373.8971 673.89578)" font-size="11.95469" font-family="OpenSymbol"><tspan y="-661.2239" x="303.95945">=</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0037423 0 -0 .99625179 -373.8971 673.89578)" font-size="11.95469" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-661.2239" x="313.92207 319.8994 322.88807 328.86543">0.05</tspan></text>
+</g>
+<g clip-path="url(#clip_5)">
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-659.2" x="336.4 338.9">, </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-646.75" x="140.5 147.72 152.15 154.65 157.98 162.41 165.18001 169.61002 174.04001 176.81002 179.31002 182.08002 187.08002 191.51001 194.01001 199.01001 204.01001 206.78002 209.55002 212.05002 217.05002 222.05002 227.05002 232.05002 234.82003 239.82003 244.25003 248.14003 250.91004 254.80004 257.30006 259.80006 262.30006 268.40007 273.40007 277.83006 281.16004 285.59004 288.09004 290.86003 294.75004 297.25004 301.14006 303.91004 308.34004 311.11003 313.88 317.77003 320.54 323.31 327.74 332.16999 334.93998">we reject the null hypothesis.  There is statistical </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-635.2" x="140.5 144.93 149.93 152.7 157.7 162.13 167.13 171.56 175.98999 178.48999 181.26 186.26 188.76 193.19 198.19 203.19 207.62 210.39 215.39 220.39 224.82 227.32 230.09001 235.09001 239.52002 242.29003 244.79003 247.56003 252.56003 256.99003 259.49003 264.49003 269.49003 274.49003 279.49003 282.26 286.69 289.46 292.22999 297.22999 302.22999">evidence to conclude that the population </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-623.65" x="140.5 145.5 148.83 153.83 158.83 163.83 167.15001 169.92002 172.69002 177.69002 182.69002 185.19002 187.96002 191.85002 194.35002 199.35002 204.35002 207.12003 209.62003 214.05002 219.05002 224.05002 228.48001 231.25002 233.75002 236.52002 241.52002 244.02002 249.02002 254.02002 262.34 264.84 267.34 269.84 275.94 280.94 283.71 287.6 290.1 292.87 296.76 299.26 302.03 307.03 311.46 313.96 317.85 322.28 330.05 334.47999">proportion is not equal to 72%.  This is the same </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-612.1" x="140.5 143.83 148.26001 152.15001 157.15001 159.92002 162.69002 165.19002 172.41002 176.84003 179.34003 182.67003 187.10004 191.53003 195.96002 200.96002 205.39002 210.39002 212.89002 215.66002 220.66002 223.16002 227.59003 232.59003 237.02002 244.79003 249.79003 252.56003 256.99003 259.49003 264.49003">result we reached in example 2.</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="10" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-588.1" x="482.5 485 487.5 490 492.5 495 497.5 500 502.5 505 507.5 510 512.5 515">              </tspan></text>
+</g>
+<g clip-path="url(#clip_6)">
+<text xml:space="preserve" transform="matrix(1.0037423 0 -0 .99625179 -373.8971 673.89578)" font-size="11.95469" font-family="FreeSerif" font-style="italic"><tspan y="-589.84207" x="515.4658">&#x220e;</tspan></text>
+</g>
+<g clip-path="url(#clip_7)">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M376.9 659.45V659.45C376.9 661.45 377.45 663.45 378.45 665.2 379.45 666.9 380.9 668.35 382.65 669.35 384.35 670.35 386.35 670.9 388.35 670.9H507.45C509.45 670.9 511.45 670.35 513.2 669.35 514.9 668.35 516.35 666.9 517.35 665.15 518.35 663.45 518.9 661.45 518.9 659.45L518.95 613.7C518.95 611.7 518.4 609.7 517.4 607.95 516.4 606.25 514.95 604.8 513.2 603.8 511.5 602.8 509.5 602.25 507.5 602.25L388.35 602.2C386.35 602.2 384.35 602.75 382.6 603.75 380.9 604.75 379.45 606.2 378.45 607.95 377.45 609.65 376.9 611.65 376.9 613.65V659.45Z" fill="#faefc9" fill-rule="evenodd"/>
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#3a5f8b" d="M376.9 659.45V659.45C376.9 661.45 377.45 663.45 378.45 665.2 379.45 666.9 380.9 668.35 382.65 669.35 384.35 670.35 386.35 670.9 388.35 670.9H507.45C509.45 670.9 511.45 670.35 513.2 669.35 514.9 668.35 516.35 666.9 517.35 665.15 518.35 663.45 518.9 661.45 518.9 659.45L518.95 613.7C518.95 611.7 518.4 609.7 517.4 607.95 516.4 606.25 514.95 604.8 513.2 603.8 511.5 602.8 509.5 602.25 507.5 602.25L388.35 602.2C386.35 602.2 384.35 602.75 382.6 603.75 380.9 604.75 379.45 606.2 378.45 607.95 377.45 609.65 376.9 611.65 376.9 613.65V659.45Z"/>
+</g>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-654.35" x="392.05">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-654.35" x="405.55 408.214 410.87 412.87 415.086 419.086 422.63">If the </tspan></text>
+<text fill="#7030a0" xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-654.35" x="424.65 429.098 431.762 436.642 440.194 442.41 446.41">P-Value</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-654.35" x="450 452 454.216 457.328 459.328 461.544 465.088 468.2 471.312 473.312 475.528 479.528 483.07203 487.07203"> is less than </tspan></text>
+<g clip-path="url(#clip_8)">
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-653.15" x="489.25">&#x03b1;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-654.35" x="496.5 498.5">, </tspan></text>
+<text fill="#c00000" xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-643.05" x="405.55 408.214 411.758 413.974 417.518 421.062">reject</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-643.05" x="423.3 425.3 427.516 431.516 435.06 437.06 441.06 445.06 447.276 449.492 451.492 455.492 459.492 463.492 467.492 469.708 473.708 477.252 480.364 482.58003 485.69203"> the null hypothesis.</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Sans',Arial,Arimo,Helvetica,sans-serif"><tspan y="-630.15" x="392.05">&#x2022;</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-630.15" x="405.55 408.214 410.87 412.87 415.086 419.086 422.63">If the </tspan></text>
+<text fill="#7030a0" xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-630.15" x="424.65 429.098 431.762 436.642 440.194 442.41 446.41">P-Value</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-630.15" x="450 452 454.216 457.328 459.328 465.104 470.88 475.62403 477.62403 479.84004 483.38404 486.49604 489.60804 491.60804 493.82405 497.82405 501.36805"> is NOT less than</tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-630.15" x="505.4"> </tspan></text>
+<g clip-path="url(#clip_9)">
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-621.15" x="405.75">&#x03b1;</tspan></text>
+</g>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-616.6" x="412.95 414.95">, </tspan></text>
+<text fill="#00541b" xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-616.6" x="416.95 422.726 428.502 430.502 436.278 442.05403 446.79804 448.79804 451.46205 455.00605 457.22206 460.76606 464.31007 466.52607">DO NOT reject </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-616.6" x="468.55 470.766 474.766 478.31 480.31 484.31 488.31 490.526 492.742">the null </tspan></text>
+<text xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="8" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-606.25" x="405.55 409.55 413.55 417.55 421.55 423.766 427.766 431.31 434.422 436.638 439.75">hypothesis.</tspan></text>
+<g clip-path="url(#clip_10)">
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" d="M352.9 660.95V660.95C352.9 661.55 353.05 662.1 353.35 662.65 353.65 663.15 354.05 663.55 354.6 663.85 355.1 664.15 355.65 664.3 356.25 664.3H369.6C370.2 664.3 370.75 664.15 371.3 663.85 371.8 663.55 372.2 663.15 372.5 662.6 372.8 662.1 372.95 661.55 372.95 660.95L373 647.6C373 647 372.85 646.45 372.55 645.9 372.25 645.4 371.85 645 371.3 644.7 370.8 644.4 370.25 644.25 369.65 644.25L356.25 644.2C355.65 644.2 355.1 644.35 354.55 644.65 354.05 644.95 353.65 645.35 353.35 645.9 353.05 646.4 352.9 646.95 352.9 647.55V660.95Z" fill="#665890" fill-rule="evenodd"/>
+<path transform="matrix(.99999,0,0,-.99999,-373.8971,673.89578)" stroke-width=".75" stroke-linecap="butt" stroke-linejoin="round" fill="none" stroke="#000000" d="M352.9 660.95V660.95C352.9 661.55 353.05 662.1 353.35 662.65 353.65 663.15 354.05 663.55 354.6 663.85 355.1 664.15 355.65 664.3 356.25 664.3H369.6C370.2 664.3 370.75 664.15 371.3 663.85 371.8 663.55 372.2 663.15 372.5 662.6 372.8 662.1 372.95 661.55 372.95 660.95L373 647.6C373 647 372.85 646.45 372.55 645.9 372.25 645.4 371.85 645 371.3 644.7 370.8 644.4 370.25 644.25 369.65 644.25L356.25 644.2C355.65 644.2 355.1 644.35 354.55 644.65 354.05 644.95 353.65 645.35 353.35 645.9 353.05 646.4 352.9 646.95 352.9 647.55V660.95Z"/>
+</g>
+<text fill="#ffffff" xml:space="preserve" transform="matrix(.99999 0 -0 .99999 -373.8971 673.89578)" font-size="9" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-651" x="361.2">6</tspan></text>
+</g>
+</g>
+</svg>
