@@ -10,10 +10,13 @@
 /* page-specific styles for this game */
 .scen{font-size:1.05rem;line-height:1.5;margin:0 0 .5rem}
 html.embed .scen{scroll-margin-top:120px}   /* clear the chapter page's sticky header */
+#next{scroll-margin-bottom:16px}
 .hyp{font:600 1.08rem/1.4 var(--sans);margin:.1rem 0 .5rem;font-variant-numeric:tabular-nums}
 .hyp i{font-family:var(--serif)}
-.q{font:700 1rem/1.35 var(--sans);color:var(--navy);margin:.5rem 0 .35rem}
-.tails{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 .5rem}
+.q{font:700 1rem/1.35 var(--sans);color:var(--navy);margin:.4rem 0 .3rem}
+.tailrow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .8rem;margin:.4rem 0 .5rem}
+.tailrow .q{margin:0}
+.tails{display:flex;flex-wrap:wrap;gap:.5rem;margin:0}
 .tails .btn.right{background:#1E7B3A;border-color:#1E7B3A;color:#fff}
 .tails .btn.wrong{background:#8a2a24;border-color:#8a2a24;color:#fff}
 .tails .btn:disabled{opacity:1}
@@ -22,33 +25,38 @@ html.embed .scen{scroll-margin-top:120px}   /* clear the chapter page's sticky h
 .res:empty,.res:not(.show){display:none}
 .yes{margin:0;font-weight:600;font-size:.95rem;flex:1 1 16rem}
 .yes.ok{color:#1E7B3A}.yes.no{color:#8a2a24}
+.yes{display:flex;align-items:center;gap:.5rem}
+.yes .tick{flex:none;width:30px;height:30px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 0 0 4px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.yes .tick.x{background:#8a2a24;box-shadow:0 0 0 4px #f0c9c4}
+.yes .yw{font:800 1.1rem/1.2 var(--sans);margin-right:.25rem}
 .decision{display:none;flex:0 1 auto;margin:0;padding:.3rem .8rem;border-radius:10px;text-align:center;border:2.5px solid;animation:drop .5s cubic-bezier(.2,1.5,.4,1)}
 .decision.show{display:block}
 .decision .big{font:800 1.15rem/1.25 var(--sans);letter-spacing:.01em}
 .decision .why{font-size:.82rem;color:var(--muted);margin-top:.05rem}
-.decision.rej{border-color:#b3141b;background:#FDECEC}.decision.rej .big{color:#b3141b}
+.decision.rej{border-color:#7030A0;background:#F3ECFA}.decision.rej .big{color:#5B2786}
 .decision.ftr{border-color:#365F91;background:#E8EEF7}.decision.ftr .big{color:#2C4D94}
 .decision .big i{font-family:var(--serif)}
 @keyframes drop{0%{transform:translateY(-14px) scale(.85);opacity:0}100%{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.decision{animation:none}}
 .concl{display:none}.concl.show{display:block}
-.copts{display:grid;gap:.4rem;margin:0 0 .6rem}
-.copts label{display:flex;gap:.55rem;align-items:flex-start;padding:.45rem .6rem;border:1.5px solid var(--rule);border-radius:6px;cursor:pointer;line-height:1.35}
+.copts{display:grid;gap:.3rem;margin:0 0 .5rem}
+.copts label{display:flex;gap:.55rem;align-items:flex-start;padding:.3rem .6rem;border:1.5px solid var(--rule);border-radius:6px;cursor:pointer;line-height:1.35}
 .copts label input{margin-top:.25rem;flex:none}
 .copts label b{flex:none;min-width:1.2em}
 .copts label.right{background:#E6F2E8;border-color:#1E7B3A}
 .copts label.wrong{background:#FBEAE8;border-color:#8a2a24}
-.fb{display:none;margin:0 0 .6rem;padding:.55rem .8rem;border-radius:8px;font-size:.95rem}
+.fb{display:none;margin:0 0 .5rem;padding:.4rem .7rem;border-radius:8px;font-size:.95rem}
 .fb.ok{display:flex;gap:.8rem;align-items:center;background:#E6F2E8;border:1.5px solid #1E7B3A}
 .fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
-.fb .badge{flex:none;width:46px;height:46px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;line-height:1;box-shadow:0 0 0 5px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
-.fb .big{font:700 1.35rem/1.1 var(--sans);color:#1E7B3A}
-.fb p{margin:.2rem 0}
+.fb .badge{flex:none;width:34px;height:34px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;line-height:1;box-shadow:0 0 0 4px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.fb .big{font:800 1.1rem/1.1 var(--sans);color:#1E7B3A;margin-right:.3rem}
+.fb.ok p{margin:0}
+.fb p{margin:.15rem 0}
 .fb .cheer{font-weight:700;color:#8a2a24;margin-top:.35rem}
 @keyframes pop{0%{transform:scale(.2) rotate(-40deg)}100%{transform:none}}
 @media (prefers-reduced-motion:reduce){.fb .badge{animation:none}}
 .sim .sim-row{margin:0}
-.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.6rem 0 0}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.5rem 0 0}
 .dots{display:flex;gap:5px}
 .dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
 .dots i.on{background:#E9A23B;border-color:#b87710}
@@ -84,11 +92,13 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
 <section class="sim" aria-label="“To Reject or Not Reject” – The Hypothesis Test Conclusion Game">
   <p class="scen" id="scen"></p>
   <p class="hyp" id="h0"></p>
+  <div class="tailrow">
   <p class="q">Is this a left-tailed, right-tailed or two-tailed test?</p>
   <div class="tails" id="tails">
     <button class="btn alt" data-t="<">Left-tailed</button>
     <button class="btn alt" data-t=">">Right-tailed</button>
     <button class="btn alt" data-t="≠">Two-tailed</button>
+  </div>
   </div>
   <div class="res" id="res">
     <p class="yes" id="yes" aria-live="polite"></p>
@@ -199,8 +209,8 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
     document.querySelectorAll('[data-t]').forEach(b => { b.disabled = true;
       b.className = 'btn ' + (b.dataset.t === sc.alt ? 'right' : b.dataset.t === t ? 'wrong' : 'alt dim'); });
     $('res').className = 'res show'; $('yes').className = 'yes ' + (tailOk ? 'ok' : 'no');
-    $('yes').innerHTML = tailOk ? `Yes! ${ha(sc)}, so this is a ${TAIL[sc.alt]} test.`
-      : `Not quite. The claim says ${REL[sc.alt]} ${sc.words}, so ${ha(sc)} and this is a ${TAIL[sc.alt]} test.`;
+    $('yes').innerHTML = tailOk ? `<span class="tick" aria-hidden="true">✓</span><span><span class="yw">Yes!</span> ${ha(sc)}, so this is a ${TAIL[sc.alt]} test.</span>`
+      : `<span class="tick x" aria-hidden="true">✗</span><span><span class="yw">Not quite.</span> The claim says ${REL[sc.alt]} ${sc.words}, so ${ha(sc)} and this is a ${TAIL[sc.alt]} test.</span>`;
     const p = pv();
     $('decision').className = 'decision show ' + (reject ? 'rej' : 'ftr');
     $('decision').innerHTML = `<div class="big">${reject ? `Reject ${h0(sc)}!` : `Fail to reject ${h0(sc)}`}</div><div class="why">P-value = ${p} ${reject ? '&lt;' : '&gt;'} α = 0.05</div>`;
@@ -234,14 +244,14 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
     }
     if (ok){ wins++; streak++; best = Math.max(best, streak);
       $('fb').className = 'fb ok';
-      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><span class="big">Correct!</span><p>${why} ${mastered ? `That makes ${streak} in a row.` : streak >= GOAL ? 'That makes 5 in a row!' : `Your streak is ${streak} in a row. ${GOAL - streak} more to go!`}</p></span>`;
+      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><p><span class="big">Correct!</span>${mastered ? `That makes ${streak} in a row.` : streak >= GOAL ? 'That makes 5 in a row!' : `Your streak is ${streak} in a row. ${GOAL - streak} more to go!`}</p></span>`;
     } else {
       streak = 0;
       $('fb').className = 'fb no';
       $('fb').innerHTML = `<p><b>Not quite.</b> ${!tailOk && cOk ? 'You chose the right conclusion, but the type of test was not right, so this round doesn’t count. ' : ''}${why}</p>${tip ? `<p>${tip}</p>` : ''}<p>Your streak starts again from 0.</p><p class="cheer">Try it again, you've got this!</p>`;
     }
     $('next').hidden = false; status();
-    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 700); } else $('next').focus({preventScroll: true});
+    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 700); } else { $('next').focus({preventScroll: true}); showNext(); }
   }
   function status(){
     $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${wins} of ${plays}`;
@@ -260,6 +270,9 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
   }
   function startOver(){ streak = 0; best = 0; wins = 0; plays = 0; mastered = false; $('master').classList.remove('show'); status(); round(); }
   document.querySelectorAll('[data-t]').forEach(b => b.onclick = () => chooseTail(b.dataset.t));
+  function showNext(){   // keep the feedback and the Next button on screen
+    setTimeout(() => $('next').scrollIntoView({block: 'nearest', behavior: SimKit.embed || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}), SimKit.embed ? 150 : 0);
+  }
   function top(){   // after Next the game gets shorter; scroll back up to the new scenario if it is out of view
     if (SimKit.embed) setTimeout(() => $('scen').scrollIntoView({block: 'nearest'}), 150);   // inside a chapter page, after the box has shrunk
     else { const r = $('scen').getBoundingClientRect();
