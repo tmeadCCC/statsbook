@@ -90,6 +90,16 @@
    ],
    "blurb": "Read a claim, decide whether the test is left-tailed, right-tailed or two-tailed, then choose the conclusion that matches the decision to reject or fail to reject H0. Get 5 in a row to win.",
    "statbelt": false
+  },
+  {
+   "id": "hypothesis-decisions",
+   "title": "The P-Value Decision Game",
+   "kind": "Game",
+   "sections": [
+    "8.1"
+   ],
+   "blurb": "Read a claim and its hypotheses, collect the data and get the P-value, then choose the correct decision and conclusion at the 0.05 or 0.01 significance level. Win 3 rounds in a row.",
+   "statbelt": false
   }
  ]
 }
