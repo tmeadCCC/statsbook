@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>“To Reject or Not Reject” – The Hypothesis Test Conclusion Game – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this simulation */
+</style>
+<style>
+/* page-specific styles for this game */
+.scen{font-size:1.05rem;line-height:1.5;margin:0 0 .5rem}
+html.embed .scen{scroll-margin-top:120px}   /* clear the chapter page's sticky header */
+#next{scroll-margin-bottom:16px}
+.hyp{font:600 1.08rem/1.4 var(--sans);margin:.1rem 0 .5rem;font-variant-numeric:tabular-nums}
+.hyp i{font-family:var(--serif)}
+.q{font:700 1rem/1.35 var(--sans);color:var(--navy);margin:.4rem 0 .3rem}
+.tailrow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .8rem;margin:.4rem 0 .5rem}
+.tailrow .q{margin:0}
+.tails{display:flex;flex-wrap:wrap;gap:.5rem;margin:0}
+.tails .btn.right{background:#1E7B3A;border-color:#1E7B3A;color:#fff}
+.tails .btn.wrong{background:#8a2a24;border-color:#8a2a24;color:#fff}
+.tails .btn:disabled{opacity:1}
+.tails .btn.dim{opacity:.45}
+.res{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem;margin:.1rem 0 .4rem}
+.res:empty,.res:not(.show){display:none}
+.yes{margin:0;font-weight:600;font-size:.95rem;flex:1 1 16rem}
+.yes.ok{color:#1E7B3A}.yes.no{color:#8a2a24}
+.yes{display:flex;align-items:center;gap:.5rem}
+.yes .tick{flex:none;width:30px;height:30px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 0 0 4px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.yes .tick.x{background:#8a2a24;box-shadow:0 0 0 4px #f0c9c4}
+.yes .yw{font:800 1.1rem/1.2 var(--sans);margin-right:.25rem}
+.decision{display:none;flex:0 1 auto;margin:0;padding:.3rem .8rem;border-radius:10px;text-align:center;border:2.5px solid;animation:drop .5s cubic-bezier(.2,1.5,.4,1)}
+.decision.show{display:block}
+.decision .big{font:800 1.15rem/1.25 var(--sans);letter-spacing:.01em}
+.decision .why{font-size:.82rem;color:var(--muted);margin-top:.05rem}
+.decision.rej{border-color:#7030A0;background:#F3ECFA}.decision.rej .big{color:#5B2786}
+.decision.ftr{border-color:#365F91;background:#E8EEF7}.decision.ftr .big{color:#2C4D94}
+.decision .big i{font-family:var(--serif)}
+@keyframes drop{0%{transform:translateY(-14px) scale(.85);opacity:0}100%{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.decision{animation:none}}
+.concl{display:none}.concl.show{display:block}
+.copts{display:grid;gap:.3rem;margin:0 0 .5rem}
+.copts label{display:flex;gap:.55rem;align-items:flex-start;padding:.3rem .6rem;border:1.5px solid var(--rule);border-radius:6px;cursor:pointer;line-height:1.35}
+.copts label input{margin-top:.25rem;flex:none}
+.copts label b{flex:none;min-width:1.2em}
+.copts label.right{background:#E6F2E8;border-color:#1E7B3A}
+.copts label.wrong{background:#FBEAE8;border-color:#8a2a24}
+.fb{display:none;margin:0 0 .5rem;padding:.4rem .7rem;border-radius:8px;font-size:.95rem}
+.fb.ok{display:flex;gap:.8rem;align-items:center;background:#E6F2E8;border:1.5px solid #1E7B3A}
+.fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
+.fb .badge{flex:none;width:34px;height:34px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;line-height:1;box-shadow:0 0 0 4px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.fb .big{font:800 1.1rem/1.1 var(--sans);color:#1E7B3A;margin-right:.3rem}
+.fb.ok p{margin:0}
+.fb p{margin:.15rem 0}
+.fb .cheer{font-weight:700;color:#8a2a24;margin-top:.35rem}
+@keyframes pop{0%{transform:scale(.2) rotate(-40deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.fb .badge{animation:none}}
+.sim .sim-row{margin:0}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.5rem 0 0}
+.dots{display:flex;gap:5px}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
+.dots i.on{background:#E9A23B;border-color:#b87710}
+.streak .lab{color:var(--muted);font-size:.9rem}.streak b{font-size:1.1rem}
+/* the master overlay */
+.master{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(20,24,40,.55);padding:16px}
+.master.show{display:flex}
+.mcard{position:relative;background:#fff;border:3px solid var(--navy);border-radius:14px;max-width:440px;width:100%;padding:1.2rem;text-align:center;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+.mcard img{width:150px;height:150px;border-radius:12px;border:3px solid var(--navy);display:block;margin:0 auto .6rem;animation:bob 1.2s ease-in-out .5s 3}
+.bubble{position:relative;background:#FFF4C7;border:2px solid #2C4D94;border-radius:16px;padding:.7rem .9rem;font:700 1.15rem/1.35 var(--sans);color:#1d2a4d;margin:0 0 1rem}
+.bubble::before{content:"";position:absolute;left:50%;top:-12px;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid #2C4D94}
+.mcard .btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.confetti{position:fixed;top:-20px;width:10px;height:15px;border-radius:2px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+@keyframes popin{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.mcard,.mcard img{animation:none}}
+.dots i.fin{border-style:dashed}
+.dots i.fin.on{border-style:solid}
+.final{display:inline-block;background:#E6D5FF;border:1.5px solid #7030A0;color:#4b1f73;border-radius:999px;padding:.05rem .6rem;font-size:.85rem;font-weight:700;margin-right:.4rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>“To Reject or Not Reject” – The Hypothesis Test Conclusion Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Game</p>
+  <h1>“To Reject or Not Reject” – The Hypothesis Test Conclusion Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-8/section-8-1.html">Section 8.1 The Logic of Hypothesis Testing</a></p>
+</header>
+<p class="sim-intro">Read the claim, decide whether the test is left-tailed, right-tailed or two-tailed, then choose the conclusion that best interprets the decision. Get both parts right to win the round, and 5 rounds in a row to win the game.</p>
+
+<section class="sim" aria-label="“To Reject or Not Reject” – The Hypothesis Test Conclusion Game">
+  <p class="scen" id="scen"></p>
+  <p class="hyp" id="h0"></p>
+  <div class="tailrow">
+  <p class="q">Is this a left-tailed, right-tailed or two-tailed test?</p>
+  <div class="tails" id="tails">
+    <button class="btn alt" data-t="<">Left-tailed</button>
+    <button class="btn alt" data-t=">">Right-tailed</button>
+    <button class="btn alt" data-t="≠">Two-tailed</button>
+  </div>
+  </div>
+  <div class="res" id="res">
+    <p class="yes" id="yes" aria-live="polite"></p>
+    <div class="decision" id="decision" aria-live="polite"></div>
+  </div>
+  <div class="concl" id="concl">
+    <p class="q">How is this best interpreted?</p>
+    <div class="copts" id="copts" role="radiogroup" aria-label="Conclusion"></div>
+  </div>
+  <div class="fb" id="fb" aria-live="polite"></div>
+  <div class="sim-row">
+    <button class="btn" id="next" hidden>Next</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="streak">
+    <div><span class="lab">Streak</span> <b id="streakn">0</b> <span class="lab">of 5</span></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div><span class="lab">Rounds won</span> <b id="score">0 of 0</b></div>
+    <div><span class="lab">Best streak</span> <b id="best">0</b></div>
+  </div>
+</section>
+
+<div class="master" id="master" role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="mcard">
+    <img src="data.jpg" alt="Data, Stat-Man's sidekick, smiling.">
+    <p class="bubble" id="mtext">Congratulations! You are now a master at interpreting hypothesis tests!</p>
+    <div class="btns"><button class="btn" id="keep">Keep playing</button><button class="btn alt" id="again">Start over</button></div>
+  </div>
+</div>
+
+<aside class="sim-notice">
+  <p class="t">What you should notice</p>
+  <p>The alternative hypothesis <i>H</i><sub>A</sub> carries the inequality: “&lt;” is left-tailed, “&gt;” is right-tailed and “≠” is two-tailed. The conclusion is always about <i>H</i><sub>A</sub>. If we <b>reject <i>H</i><sub>0</sub></b>, there <b>is enough evidence</b> to conclude <i>H</i><sub>A</sub>. If we <b>fail to reject <i>H</i><sub>0</sub></b>, there <b>is not enough evidence</b> to conclude <i>H</i><sub>A</sub>. We never conclude that <i>H</i><sub>0</sub> is true: failing to reject it only means the evidence was not strong enough.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const GOAL = 5;
+  /* scenarios: [parameter (m = mean, p = proportion), value in H0, H_A sign, the claim, what is measured, the value in words]
+     Most feature people of color, LGBTQ+ people, first-generation students or learning communities, in a positive light; others are everyday campus scenarios. */
+  const S = [
+    ['m', 32, '>', 'A Black-owned business thinks that the average number of customers has increased from 32 per day last year.', 'the mean number of customers per day', '32'],
+    ['p', .25, '>', 'A coding school for Latina women believes that more than 25% of its graduates land a software job within six months.', 'the percentage of graduates who land a software job within six months', '25%'],
+    ['m', 18, '≠', 'A Navajo weaving cooperative wants to know whether the mean time to finish a small rug is different from the 18 days reported in an earlier study.', 'the mean time to finish a small rug', '18 days'],
+    ['p', .40, '<', 'A community health clinic serving Asian American families believes its reminder texts have lowered the percentage of missed appointments below 40%.', 'the percentage of missed appointments', '40%'],
+    ['m', 4.5, '<', 'A Latinx-owned food truck believes its new ordering app has cut the mean wait for an order to less than 4.5 minutes.', 'the mean wait for an order', '4.5 minutes'],
+    ['m', 3.1, '>', 'An LGBTQ+ student center thinks that students in its peer mentoring program have a mean GPA higher than 3.1.', 'the mean GPA of students in the program', '3.1'],
+    ['p', .30, '>', 'An HBCU believes that more than 30% of its graduates go on to graduate school.', 'the percentage of graduates who go on to graduate school', '30%'],
+    ['m', 120, '≠', 'A tribal college wants to know whether the mean number of units its graduates complete is different from 120.', 'the mean number of units graduates complete', '120'],
+    ['p', .50, '≠', 'The organizers of a Pride 5K want to know whether the percentage of first-time runners is different from 50%.', 'the percentage of first-time runners', '50%'],
+    ['m', 5.2, '<', 'A first-generation student success program believes its advising has reduced the mean time to finish a bachelor’s degree to less than 5.2 years.', 'the mean time to finish a bachelor’s degree', '5.2 years'],
+    ['m', 850, '>', 'A Hmong farmers’ cooperative believes its new irrigation system has increased the mean harvest per family above 850 pounds.', 'the mean harvest per family', '850 pounds'],
+    ['p', .15, '<', 'A bilingual tax-help clinic in a Latinx neighborhood believes that fewer than 15% of the returns it prepares need corrections.', 'the percentage of returns that need corrections', '15%'],
+    ['m', 65, '≠', 'A Filipino American community choir wants to know whether the mean length of its concerts is different from 65 minutes.', 'the mean length of its concerts', '65 minutes'],
+    ['p', .60, '>', 'A Juneteenth festival committee believes that more than 60% of this year’s visitors are coming for the first time.', 'the percentage of first-time visitors', '60%'],
+    ['m', 12, '>', 'A Native American youth basketball league believes the mean number of volunteers at each game has grown beyond 12.', 'the mean number of volunteers at each game', '12'],
+    ['p', .35, '≠', 'A student wants to know whether the percentage of engineers in their city who are BIPOC is different from 35%.', 'the percentage of engineers in the city who are BIPOC', '35%'],
+    ['m', 28, '<', 'An Afro-Latino-owned bakery believes its new oven has cut the mean baking time for a batch of bread to less than 28 minutes.', 'the mean baking time for a batch of bread', '28 minutes'],
+    ['m', 14, '≠', 'A Korean language school run by Korean American families wants to know whether its mean class size is different from 14 students.', 'the mean class size', '14 students'],
+    ['p', .70, '>', 'A first-generation scholarship fund believes that more than 70% of its scholarship winners graduate within four years.', 'the percentage of scholarship winners who graduate within four years', '70%'],
+    ['m', 24, '≠', 'A Vietnamese American restaurant wants to know whether the mean amount each customer spends is different from $24.', 'the mean amount each customer spends', '$24'],
+    ['m', 50, '>', 'A transgender-led nonprofit thinks that its members volunteered a mean of more than 50 hours each this year.', 'the mean number of hours volunteered per member', '50 hours'],
+    ['p', .45, '<', 'A Lunar New Year festival committee believes that, thanks to new shuttle buses, fewer than 45% of visitors drove their own cars.', 'the percentage of visitors who drove their own cars', '45%'],
+    ['m', 9.5, '<', 'A Black-owned barbershop believes its new online booking system has reduced the mean number of missed appointments per week below 9.5.', 'the mean number of missed appointments per week', '9.5'],
+    ['p', .15, '>', 'A Latinx community radio station believes that more than 15% of local households now listen every week.', 'the percentage of local households that listen every week', '15%'],
+    // everyday scenarios: college admissions, exercise, sleep, campus life (author, 18 Nov 2026)
+    ['p', .65, '>', 'A high school counselor believes that more than 65% of this year’s seniors were accepted to at least one four-year college.', 'the percentage of seniors accepted to at least one four-year college', '65%'],
+    ['m', 6, '≠', 'A college admissions advisor wants to know whether the mean number of colleges that students apply to is different from 6.', 'the mean number of colleges students apply to', '6'],
+    ['p', .30, '<', 'A university believes that its acceptance rate this year is less than 30%.', 'the percentage of applicants who are accepted', '30%'],
+    ['m', 3.4, '>', 'A university believes that the mean high school GPA of the students it accepted this year is higher than 3.4.', 'the mean high school GPA of accepted students', '3.4'],
+    ['m', 150, '>', 'A fitness coach believes that college students exercise a mean of more than 150 minutes per week.', 'the mean number of minutes college students exercise per week', '150 minutes'],
+    ['p', .50, '<', 'A campus recreation center believes that fewer than 50% of students exercise at least three times a week.', 'the percentage of students who exercise at least three times a week', '50%'],
+    ['m', 7000, '≠', 'A health class wants to know whether the mean number of steps students take each day is different from 7,000.', 'the mean number of steps students take each day', '7,000'],
+    ['p', .20, '≠', 'A gym wants to know whether the percentage of its members who take group fitness classes is different from 20%.', 'the percentage of members who take group fitness classes', '20%'],
+    ['m', 7, '<', 'A sleep researcher believes that college students sleep a mean of less than 7 hours a night.', 'the mean amount of sleep college students get each night', '7 hours'],
+    ['p', .40, '>', 'A coffee shop near campus believes that more than 40% of its customers are students.', 'the percentage of customers who are students', '40%'],
+    ['m', 25, '<', 'A city transit agency believes that a new bus route has cut the mean commute to campus to less than 25 minutes.', 'the mean commute to campus', '25 minutes'],
+    ['m', 350, '>', 'A campus bookstore believes that the mean amount students spend on textbooks each term has risen above $350.', 'the mean amount students spend on textbooks each term', '$350'],
+    // learning communities: MESA, Puente, Puente MaS, Umoja (author, 18 Nov 2026)
+    ['p', .60, '>', 'A college’s MESA program believes that more than 60% of its students transfer to a four-year university in a STEM major.', 'the percentage of MESA students who transfer in a STEM major', '60%'],
+    ['m', 10, '>', 'A MESA center believes that its students spend a mean of more than 10 hours a week studying in the center.', 'the mean number of hours a week MESA students study in the center', '10 hours'],
+    ['p', .35, '≠', 'A MESA program wants to know whether the percentage of its students who are women is different from 35%.', 'the percentage of MESA students who are women', '35%'],
+    ['p', .75, '>', 'A Puente program believes that more than 75% of its students complete their English course sequence in their first year.', 'the percentage of Puente students who complete their English course sequence in their first year', '75%'],
+    ['m', 2.8, '>', 'A Puente counselor believes that Puente students have a mean GPA higher than 2.8.', 'the mean GPA of Puente students', '2.8'],
+    ['p', .50, '>', 'The Puente MaS program believes that more than 50% of its students pass their first college-level math course on the first try.', 'the percentage of Puente MaS students who pass their first college-level math course on the first try', '50%'],
+    ['p', .70, '>', 'An Umoja learning community believes that more than 70% of its students return for a second year of college.', 'the percentage of Umoja students who return for a second year', '70%'],
+    ['m', 12, '≠', 'An Umoja program wants to know whether the mean number of units its students take each term is different from 12.', 'the mean number of units Umoja students take each term', '12']
+  ].map(([par, v, alt, claim, what, words]) => ({par, v, alt, claim, what, words}));
+
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--){ const j = SimKit.rint(0, i); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  let bag = [], sc, reject, tailOk, step, streak = 0, best = 0, wins = 0, plays = 0, mastered = false, lastAlt = [], lastRej = [];
+  const sym = s => `<i>${s.par === 'm' ? 'μ' : 'p'}</i>`;
+  const h0 = s => `<i>H</i><sub>0</sub>: ${sym(s)} = ${s.v}`;
+  const ha = s => `<i>H</i><sub>A</sub>: ${sym(s)} ${s.alt} ${s.v}`;
+  const TAIL = {'<': 'left-tailed', '>': 'right-tailed', '≠': 'two-tailed'};
+  const REL = {'<': 'less than', '>': 'greater than', '≠': 'different from'};
+
+  function pickScenario(){
+    // shuffled bag; avoid the same kind of test three times in a row
+    for (let k = 0; k < 50; k++){
+      if (!bag.length) bag = shuffle(S.slice());
+      const s = bag.pop();
+      if (lastAlt.length >= 2 && lastAlt.every(a => a === s.alt)){ bag.unshift(s); continue; }
+      return s;
+    }
+    return bag.pop();
+  }
+  function round(){
+    sc = pickScenario(); lastAlt = lastAlt.concat(sc.alt).slice(-2);
+    // reject or fail to reject at random, but not the same decision three times in a row
+    reject = lastRej.length >= 2 && lastRej[0] === lastRej[1] ? !lastRej[1] : Math.random() < .5;
+    lastRej = lastRej.concat(reject).slice(-2);
+    step = 1; tailOk = null;
+    $('scen').textContent = sc.claim; $('h0').innerHTML = `The null hypothesis is ${h0(sc)}.`;
+    document.querySelectorAll('[data-t]').forEach(b => { b.disabled = false; b.className = 'btn alt'; });
+    $('res').className = 'res'; $('yes').className = 'yes'; $('yes').innerHTML = '';
+    $('decision').className = 'decision'; $('decision').innerHTML = '';
+    $('concl').className = 'concl'; $('copts').innerHTML = '';
+    $('fb').className = 'fb'; $('fb').innerHTML = ''; $('next').hidden = true;
+  }
+  function pv(){   // a P-value that matches the decision at α = 0.05
+    const p = reject ? 0.001 + Math.random() * 0.039 : 0.07 + Math.random() * 0.5;
+    return p < 0.01 ? p.toFixed(4) : p.toFixed(3);
+  }
+  function chooseTail(t){
+    if (step !== 1) return; step = 2; tailOk = t === sc.alt;
+    document.querySelectorAll('[data-t]').forEach(b => { b.disabled = true;
+      b.className = 'btn ' + (b.dataset.t === sc.alt ? 'right' : b.dataset.t === t ? 'wrong' : 'alt dim'); });
+    $('res').className = 'res show'; $('yes').className = 'yes ' + (tailOk ? 'ok' : 'no');
+    $('yes').innerHTML = tailOk ? `<span class="tick" aria-hidden="true">✓</span><span><span class="yw">Yes!</span> ${ha(sc)}, so this is a ${TAIL[sc.alt]} test.</span>`
+      : `<span class="tick x" aria-hidden="true">✗</span><span><span class="yw">Not quite.</span> The claim says ${REL[sc.alt]} ${sc.words}, so ${ha(sc)} and this is a ${TAIL[sc.alt]} test.</span>`;
+    const p = pv();
+    $('decision').className = 'decision show ' + (reject ? 'rej' : 'ftr');
+    $('decision').innerHTML = `<div class="big">${reject ? `Reject ${h0(sc)}!` : `Fail to reject ${h0(sc)}`}</div><div class="why">P-value = ${p} ${reject ? '&lt;' : '&gt;'} α = 0.05</div>`;
+    const st0 = `${sc.what} is ${sc.words}`, stA = `${sc.what} is ${REL[sc.alt]} ${sc.words}`;
+    const all = [
+      {k: 'h0yes', t: `There is enough evidence to conclude that ${st0}.`},
+      {k: 'h0no', t: `There is not enough evidence to conclude that ${st0}.`},
+      {k: 'hayes', t: `There is enough evidence to conclude that ${stA}.`},
+      {k: 'hano', t: `There is not enough evidence to conclude that ${stA}.`}];
+    const truth = reject ? 'hayes' : 'hano';
+    // three choices: the right one and two of the other three, picked at random
+    const opts = shuffle([all.find(o => o.k === truth)].concat(shuffle(all.filter(o => o.k !== truth)).slice(0, 2)));
+    $('copts').innerHTML = opts.map((o, i) => `<label><input type="radio" name="c" value="${o.k}"><b>${'abc'[i]})</b><span>${o.t}</span></label>`).join('');
+    $('concl').className = 'concl show';
+    document.querySelectorAll('#copts input').forEach(r => r.onchange = () => conclude(r.value));
+  }
+  function conclude(k){
+    if (step !== 2) return; step = 3; plays++;
+    const truth = reject ? 'hayes' : 'hano', cOk = k === truth, ok = tailOk && cOk;
+    document.querySelectorAll('#copts input').forEach(r => { r.disabled = true;
+      r.parentElement.className = r.value === truth ? 'right' : r.value === k ? 'wrong' : ''; });
+    const why = reject
+      ? `We rejected <i>H</i><sub>0</sub>, so there is enough evidence to support the alternative hypothesis, ${ha(sc)}.`
+      : `We failed to reject <i>H</i><sub>0</sub>, so there is not enough evidence to support the alternative hypothesis, ${ha(sc)}.`;
+    let tip = '';
+    if (!cOk){
+      if (k === 'h0yes') tip = 'A hypothesis test never proves the null hypothesis. The conclusion is always about the alternative hypothesis.';
+      else if (k === 'h0no') tip = 'The conclusion should be about the alternative hypothesis, the claim being tested, not the null hypothesis.';
+      else if (k === 'hayes') tip = 'When we fail to reject the null hypothesis, the evidence was not strong enough to support the alternative.';
+      else tip = 'When we reject the null hypothesis, the evidence is strong enough to support the alternative.';
+    }
+    if (ok){ wins++; streak++; best = Math.max(best, streak);
+      $('fb').className = 'fb ok';
+      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><p><span class="big">Correct!</span>${mastered ? `That makes ${streak} in a row.` : streak >= GOAL ? 'That makes 5 in a row!' : `Your streak is ${streak} in a row. ${GOAL - streak} more to go!`}</p></span>`;
+    } else {
+      streak = 0;
+      $('fb').className = 'fb no';
+      $('fb').innerHTML = `<p><b>Not quite.</b> ${!tailOk && cOk ? 'You chose the right conclusion, but the type of test was not right, so this round doesn’t count. ' : ''}${why}</p>${tip ? `<p>${tip}</p>` : ''}<p>Your streak starts again from 0.</p><p class="cheer">Try it again, you've got this!</p>`;
+    }
+    $('next').hidden = false; status();
+    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 700); } else { $('next').focus({preventScroll: true}); showNext(); }
+  }
+  function status(){
+    $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${wins} of ${plays}`;
+    $('dots').innerHTML = Array.from({length: GOAL}, (_, i) => `<i class="${i < Math.min(streak, GOAL) ? 'on' : ''}"></i>`).join('');
+  }
+  function celebrate(){
+    $('master').classList.add('show'); $('keep').focus({preventScroll: true});
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols = ['#E9A23B', '#C8312B', '#365F91', '#1E7B3A', '#7030A0', '#f2d14c', '#2F6FD0'];
+    for (let i = 0; i < 90; i++){
+      const c = document.createElement('i'); c.className = 'confetti';
+      const dur = 1.8 + Math.random() * 1.6;
+      c.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};--dx:${Math.random() * 160 - 80}px;--r:${Math.random() * 1080 - 540}deg;animation-duration:${dur}s;animation-delay:${Math.random() * .6}s`;
+      document.body.appendChild(c); setTimeout(() => c.remove(), (dur + 0.8) * 1000);
+    }
+  }
+  function startOver(){ streak = 0; best = 0; wins = 0; plays = 0; mastered = false; $('master').classList.remove('show'); status(); round(); }
+  document.querySelectorAll('[data-t]').forEach(b => b.onclick = () => chooseTail(b.dataset.t));
+  function showNext(){   // keep the feedback and the Next button on screen
+    setTimeout(() => $('next').scrollIntoView({block: 'nearest', behavior: SimKit.embed || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}), SimKit.embed ? 150 : 0);
+  }
+  function top(){   // after Next the game gets shorter; scroll back up to the new scenario if it is out of view
+    if (SimKit.embed) setTimeout(() => $('scen').scrollIntoView({block: 'nearest'}), 150);   // inside a chapter page, after the box has shrunk
+    else { const r = $('scen').getBoundingClientRect();
+      if (r.top < 0 || r.top > innerHeight * .6) $('scen').scrollIntoView({block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); }
+    document.querySelector('[data-t]').focus({preventScroll: true});
+  }
+  $('next').onclick = () => { round(); top(); };
+  $('reset').onclick = startOver;
+  $('again').onclick = startOver;
+  $('keep').onclick = () => { $('master').classList.remove('show'); round(); top(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
+  if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({alt: sc.alt, reject});
+  status(); round();
+})();
+</script>
+</body></html>

@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The P-Value Decision Game – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this game */
+.scen{font-size:1.05rem;line-height:1.5;margin:0 0 .4rem}
+html.embed .scen{scroll-margin-top:120px}   /* clear the chapter page's sticky header */
+#next{scroll-margin-bottom:16px}
+.scen .lvl{font-weight:700;white-space:nowrap}
+.hyps{display:flex;flex-wrap:wrap;gap:.2rem 1.6rem;font:600 1.05rem/1.4 var(--sans);margin:0 0 .5rem;font-variant-numeric:tabular-nums}
+.hyps i{font-family:var(--serif)}
+.collect{display:flex;align-items:center;gap:.6rem 1.2rem;flex-wrap:wrap;margin:.2rem 0 .5rem}
+.board{flex:none;width:118px;height:150px}
+.board.idle{opacity:.55}
+.cpanel{flex:1 1 15rem;display:flex;flex-direction:column;align-items:flex-start;gap:.4rem}
+.cpanel .status{color:var(--muted);font-size:.95rem;margin:0;min-height:1.3em}
+.pv{display:none;padding:.35rem .9rem;border:2.5px solid #2C4D94;border-radius:10px;background:#E8EEF7;animation:drop .5s cubic-bezier(.2,1.5,.4,1)}
+.pv.show{display:block}
+.pv .big{font:800 1.3rem/1.2 var(--sans);color:#1d2a4d;font-variant-numeric:tabular-nums}
+.pv .sub{font-size:.85rem;color:var(--muted)}
+@keyframes drop{0%{transform:translateY(-14px) scale(.85);opacity:0}100%{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.pv{animation:none}}
+.q{font:700 1rem/1.35 var(--sans);color:var(--navy);margin:.3rem 0 .3rem}
+.concl{display:none}.concl.show{display:block}
+.copts{display:grid;gap:.3rem;margin:0 0 .5rem}
+.copts label{display:flex;gap:.55rem;align-items:flex-start;padding:.3rem .6rem;border:1.5px solid var(--rule);border-radius:6px;cursor:pointer;line-height:1.35}
+.copts label input{margin-top:.25rem;flex:none}
+.copts label b{flex:none;min-width:1.2em}
+.copts label.right{background:#E6F2E8;border-color:#1E7B3A}
+.copts label.wrong{background:#FBEAE8;border-color:#8a2a24}
+.fb{display:none;margin:0 0 .5rem;padding:.4rem .7rem;border-radius:8px;font-size:.95rem}
+.fb.ok{display:flex;gap:.8rem;align-items:center;background:#E6F2E8;border:1.5px solid #1E7B3A}
+.fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
+.fb .badge{flex:none;width:34px;height:34px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;line-height:1;box-shadow:0 0 0 4px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.fb .big{font:800 1.1rem/1.1 var(--sans);color:#1E7B3A;margin-right:.3rem}
+.fb.ok p{margin:0}
+.fb p{margin:.15rem 0}
+.fb .cheer{font-weight:700;color:#8a2a24;margin-top:.35rem}
+@keyframes pop{0%{transform:scale(.2) rotate(-40deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.fb .badge{animation:none}}
+.sim .sim-row{margin:0}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.5rem 0 0}
+.dots{display:flex;gap:5px}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
+.dots i.on{background:#E9A23B;border-color:#b87710}
+.streak .lab{color:var(--muted);font-size:.9rem}.streak b{font-size:1.1rem}
+/* the master overlay */
+.master{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(20,24,40,.55);padding:16px}
+.master.show{display:flex}
+.mcard{position:relative;background:#fff;border:3px solid var(--navy);border-radius:14px;max-width:440px;width:100%;padding:1.2rem;text-align:center;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+.mcard img{width:150px;height:150px;border-radius:12px;border:3px solid var(--navy);display:block;margin:0 auto .6rem;animation:bob 1.2s ease-in-out .5s 3}
+.bubble{position:relative;background:#FFF4C7;border:2px solid #2C4D94;border-radius:16px;padding:.7rem .9rem;font:700 1.15rem/1.35 var(--sans);color:#1d2a4d;margin:0 0 1rem}
+.bubble::before{content:"";position:absolute;left:50%;top:-12px;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid #2C4D94}
+.mcard .btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.confetti{position:fixed;top:-20px;width:10px;height:15px;border-radius:2px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+@keyframes popin{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.mcard,.mcard img{animation:none}}
+.dots i.fin{border-style:dashed}
+.dots i.fin.on{border-style:solid}
+.final{display:inline-block;background:#E6D5FF;border:1.5px solid #7030A0;color:#4b1f73;border-radius:999px;padding:.05rem .6rem;font-size:.85rem;font-weight:700;margin-right:.4rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>The P-Value Decision Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Game</p>
+  <h1>The P-Value Decision Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-8/section-8-1.html">Section 8.1 The Logic of Hypothesis Testing</a></p>
+</header>
+<p class="sim-intro">Read the claim and its hypotheses, collect the data, then compare the P-value with the significance level and choose the right decision and conclusion. Win 3 rounds in a row to win the game.</p>
+
+<section class="sim" aria-label="The P-Value Decision Game">
+  <p class="scen" id="scen"></p>
+  <div class="hyps" id="hyps"></div>
+  <div class="collect">
+    <svg class="board idle" id="board" viewBox="0 0 118 150" role="img" aria-label="Clipboard for the sample data">
+      <rect x="2" y="8" width="114" height="140" rx="8" fill="#B07A45" stroke="#7a5128" stroke-width="2"/>
+      <rect x="10" y="20" width="98" height="122" rx="2" fill="#fff" stroke="#d9d4c7"/>
+      <rect x="38" y="2" width="42" height="16" rx="4" fill="#8f9aa8" stroke="#5d6672" stroke-width="2"/>
+      <g id="ink"></g>
+    </svg>
+    <div class="cpanel">
+      <button class="btn" id="collect">Click here to collect data to test the claim</button>
+      <p class="status" id="status" aria-live="polite"></p>
+      <div class="pv" id="pv" aria-live="polite"></div>
+    </div>
+  </div>
+  <div class="concl" id="concl">
+    <p class="q">Which decision and conclusion is correct?</p>
+    <div class="copts" id="copts" role="radiogroup" aria-label="Decision and conclusion"></div>
+  </div>
+  <div class="fb" id="fb" aria-live="polite"></div>
+  <div class="sim-row">
+    <button class="btn" id="next" hidden>Next</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="streak">
+    <div><span class="lab">Streak</span> <b id="streakn">0</b> <span class="lab">of 3</span></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div><span class="lab">Rounds won</span> <b id="score">0 of 0</b></div>
+    <div><span class="lab">Best streak</span> <b id="best">0</b></div>
+  </div>
+</section>
+
+<div class="master" id="master" role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="mcard">
+    <img src="data.jpg" alt="Data, Stat-Man's sidekick, smiling.">
+    <p class="bubble" id="mtext">Congratulations! You are now a master at making decisions in hypothesis tests!</p>
+    <div class="btns"><button class="btn" id="keep">Keep playing</button><button class="btn alt" id="again">Start over</button></div>
+  </div>
+</div>
+
+<aside class="sim-notice">
+  <p class="t">What you should notice</p>
+  <p>Compare the P-value with the significance level <i>α</i>. If the P-value is <b>less than <i>α</i></b>, we <b>reject <i>H</i><sub>0</sub></b> and there is enough evidence to support the claim in <i>H</i><sub>A</sub>. If the P-value is <b>not less than <i>α</i></b>, we <b>fail to reject <i>H</i><sub>0</sub></b> and there is not enough evidence to support it. The same P-value can lead to different decisions: a P-value of 0.03 rejects <i>H</i><sub>0</sub> at <i>α</i> = 0.05 but not at <i>α</i> = 0.01. A hypothesis test never proves either hypothesis.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const GOAL = 3;
+  /* scenarios: [parameter (m = mean, p = proportion), value in H0, H_A sign, the claim, what is measured, the value in words]
+     Most feature people of color, LGBTQ+ people, first-generation students or learning communities, in a positive light; others are everyday campus scenarios. */
+  const S = [
+    ['m', 32, '>', 'A Black-owned business thinks that the average number of customers has increased from 32 per day last year.', 'the mean number of customers per day', '32'],
+    ['p', .25, '>', 'A coding school for Latina women believes that more than 25% of its graduates land a software job within six months.', 'the percentage of graduates who land a software job within six months', '25%'],
+    ['m', 18, '≠', 'A Navajo weaving cooperative wants to know whether the mean time to finish a small rug is different from the 18 days reported in an earlier study.', 'the mean time to finish a small rug', '18 days'],
+    ['p', .40, '<', 'A community health clinic serving Asian American families believes its reminder texts have lowered the percentage of missed appointments below 40%.', 'the percentage of missed appointments', '40%'],
+    ['m', 4.5, '<', 'A Latinx-owned food truck believes its new ordering app has cut the mean wait for an order to less than 4.5 minutes.', 'the mean wait for an order', '4.5 minutes'],
+    ['m', 3.1, '>', 'An LGBTQ+ student center thinks that students in its peer mentoring program have a mean GPA higher than 3.1.', 'the mean GPA of students in the program', '3.1'],
+    ['p', .30, '>', 'An HBCU believes that more than 30% of its graduates go on to graduate school.', 'the percentage of graduates who go on to graduate school', '30%'],
+    ['m', 120, '≠', 'A tribal college wants to know whether the mean number of units its graduates complete is different from 120.', 'the mean number of units graduates complete', '120'],
+    ['p', .50, '≠', 'The organizers of a Pride 5K want to know whether the percentage of first-time runners is different from 50%.', 'the percentage of first-time runners', '50%'],
+    ['m', 5.2, '<', 'A first-generation student success program believes its advising has reduced the mean time to finish a bachelor’s degree to less than 5.2 years.', 'the mean time to finish a bachelor’s degree', '5.2 years'],
+    ['m', 850, '>', 'A Hmong farmers’ cooperative believes its new irrigation system has increased the mean harvest per family above 850 pounds.', 'the mean harvest per family', '850 pounds'],
+    ['p', .15, '<', 'A bilingual tax-help clinic in a Latinx neighborhood believes that fewer than 15% of the returns it prepares need corrections.', 'the percentage of returns that need corrections', '15%'],
+    ['m', 65, '≠', 'A Filipino American community choir wants to know whether the mean length of its concerts is different from 65 minutes.', 'the mean length of its concerts', '65 minutes'],
+    ['p', .60, '>', 'A Juneteenth festival committee believes that more than 60% of this year’s visitors are coming for the first time.', 'the percentage of first-time visitors', '60%'],
+    ['m', 12, '>', 'A Native American youth basketball league believes the mean number of volunteers at each game has grown beyond 12.', 'the mean number of volunteers at each game', '12'],
+    ['p', .35, '≠', 'A student wants to know whether the percentage of engineers in their city who are BIPOC is different from 35%.', 'the percentage of engineers in the city who are BIPOC', '35%'],
+    ['m', 28, '<', 'An Afro-Latino-owned bakery believes its new oven has cut the mean baking time for a batch of bread to less than 28 minutes.', 'the mean baking time for a batch of bread', '28 minutes'],
+    ['m', 14, '≠', 'A Korean language school run by Korean American families wants to know whether its mean class size is different from 14 students.', 'the mean class size', '14 students'],
+    ['p', .70, '>', 'A first-generation scholarship fund believes that more than 70% of its scholarship winners graduate within four years.', 'the percentage of scholarship winners who graduate within four years', '70%'],
+    ['m', 24, '≠', 'A Vietnamese American restaurant wants to know whether the mean amount each customer spends is different from $24.', 'the mean amount each customer spends', '$24'],
+    ['m', 50, '>', 'A transgender-led nonprofit thinks that its members volunteered a mean of more than 50 hours each this year.', 'the mean number of hours volunteered per member', '50 hours'],
+    ['p', .45, '<', 'A Lunar New Year festival committee believes that, thanks to new shuttle buses, fewer than 45% of visitors drove their own cars.', 'the percentage of visitors who drove their own cars', '45%'],
+    ['m', 9.5, '<', 'A Black-owned barbershop believes its new online booking system has reduced the mean number of missed appointments per week below 9.5.', 'the mean number of missed appointments per week', '9.5'],
+    ['p', .15, '>', 'A Latinx community radio station believes that more than 15% of local households now listen every week.', 'the percentage of local households that listen every week', '15%'],
+    ['p', .12, '>', 'A society of Latina engineers believes that the percentage of engineers in its region who are Latina is now higher than 12%.', 'the percentage of engineers in the region who are Latina', '12%'],
+    ['p', .40, '>', 'A university’s first-generation student center believes that more than 40% of first-generation students choose a STEM major.', 'the percentage of first-generation students who choose a STEM major', '40%'],
+    ['m', 2500, '>', 'A community foundation believes that its mean scholarship award to first-generation college students is now more than $2,500.', 'the mean scholarship award', '$2,500'],
+    ['p', .80, '>', 'A summer bridge program for first-generation students believes that more than 80% of its participants return for their second year of college.', 'the percentage of participants who return for their second year', '80%'],
+    ['m', 15, '≠', 'A first-generation student club wants to know whether the mean number of units its members take each term is different from 15.', 'the mean number of units members take each term', '15'],
+    ['p', .25, '≠', 'A community college counselor wants to know whether the percentage of first-generation students who change their major is different from 25%.', 'the percentage of first-generation students who change their major', '25%'],
+    ['m', 6, '<', 'A peer tutoring program for first-generation students believes it has cut the mean wait for a tutoring appointment to less than 6 days.', 'the mean wait for a tutoring appointment', '6 days'],
+    ['p', .55, '>', 'A first-generation mentoring network believes that more than 55% of its members land a paid internship before they graduate.', 'the percentage of members who land a paid internship before graduating', '55%'],
+    ['p', .10, '<', 'A financial aid office believes its new workshops for first-generation families have lowered the percentage of incomplete aid applications below 10%.', 'the percentage of incomplete aid applications', '10%'],
+    // everyday scenarios: college admissions, exercise, sleep, campus life (author, 18 Nov 2026)
+    ['p', .65, '>', 'A high school counselor believes that more than 65% of this year’s seniors were accepted to at least one four-year college.', 'the percentage of seniors accepted to at least one four-year college', '65%'],
+    ['m', 6, '≠', 'A college admissions advisor wants to know whether the mean number of colleges that students apply to is different from 6.', 'the mean number of colleges students apply to', '6'],
+    ['p', .30, '<', 'A university believes that its acceptance rate this year is less than 30%.', 'the percentage of applicants who are accepted', '30%'],
+    ['m', 3.4, '>', 'A university believes that the mean high school GPA of the students it accepted this year is higher than 3.4.', 'the mean high school GPA of accepted students', '3.4'],
+    ['m', 150, '>', 'A fitness coach believes that college students exercise a mean of more than 150 minutes per week.', 'the mean number of minutes college students exercise per week', '150 minutes'],
+    ['p', .50, '<', 'A campus recreation center believes that fewer than 50% of students exercise at least three times a week.', 'the percentage of students who exercise at least three times a week', '50%'],
+    ['m', 7000, '≠', 'A health class wants to know whether the mean number of steps students take each day is different from 7,000.', 'the mean number of steps students take each day', '7,000'],
+    ['p', .20, '≠', 'A gym wants to know whether the percentage of its members who take group fitness classes is different from 20%.', 'the percentage of members who take group fitness classes', '20%'],
+    ['m', 7, '<', 'A sleep researcher believes that college students sleep a mean of less than 7 hours a night.', 'the mean amount of sleep college students get each night', '7 hours'],
+    ['p', .40, '>', 'A coffee shop near campus believes that more than 40% of its customers are students.', 'the percentage of customers who are students', '40%'],
+    ['m', 25, '<', 'A city transit agency believes that a new bus route has cut the mean commute to campus to less than 25 minutes.', 'the mean commute to campus', '25 minutes'],
+    ['m', 350, '>', 'A campus bookstore believes that the mean amount students spend on textbooks each term has risen above $350.', 'the mean amount students spend on textbooks each term', '$350'],
+    // learning communities: MESA, Puente, Puente MaS, Umoja (author, 18 Nov 2026)
+    ['p', .60, '>', 'A college’s MESA program believes that more than 60% of its students transfer to a four-year university in a STEM major.', 'the percentage of MESA students who transfer in a STEM major', '60%'],
+    ['m', 10, '>', 'A MESA center believes that its students spend a mean of more than 10 hours a week studying in the center.', 'the mean number of hours a week MESA students study in the center', '10 hours'],
+    ['p', .35, '≠', 'A MESA program wants to know whether the percentage of its students who are women is different from 35%.', 'the percentage of MESA students who are women', '35%'],
+    ['p', .75, '>', 'A Puente program believes that more than 75% of its students complete their English course sequence in their first year.', 'the percentage of Puente students who complete their English course sequence in their first year', '75%'],
+    ['m', 2.8, '>', 'A Puente counselor believes that Puente students have a mean GPA higher than 2.8.', 'the mean GPA of Puente students', '2.8'],
+    ['p', .50, '>', 'The Puente MaS program believes that more than 50% of its students pass their first college-level math course on the first try.', 'the percentage of Puente MaS students who pass their first college-level math course on the first try', '50%'],
+    ['p', .70, '>', 'An Umoja learning community believes that more than 70% of its students return for a second year of college.', 'the percentage of Umoja students who return for a second year', '70%'],
+    ['m', 12, '≠', 'An Umoja program wants to know whether the mean number of units its students take each term is different from 12.', 'the mean number of units Umoja students take each term', '12']
+  ].map(([par, v, alt, claim, what, words]) => ({par, v, alt, claim, what, words}));
+
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--){ const j = SimKit.rint(0, i); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let bag = [], sc, alpha, p, reject, step, streak = 0, best = 0, wins = 0, plays = 0, mastered = false, lastRej = [], timer = null;
+  const sym = s => `<i>${s.par === 'm' ? 'μ' : 'p'}</i>`;
+  const h0 = s => `<i>H</i><sub>0</sub>: ${sym(s)} = ${s.v}`;
+  const ha = s => `<i>H</i><sub>A</sub>: ${sym(s)} ${s.alt} ${s.v}`;
+  const REL = {'<': 'less than', '>': 'greater than', '≠': 'different from'};
+  const fmtP = x => x.toFixed(4);
+  const rnd = (a, b) => a + Math.random() * (b - a);
+
+  function round(){
+    if (timer){ clearInterval(timer); timer = null; }
+    if (!bag.length) bag = shuffle(S.slice());
+    sc = bag.pop();
+    alpha = Math.random() < .5 ? 0.05 : 0.01;
+    reject = lastRej.length >= 2 && lastRej[0] === lastRej[1] ? !lastRej[1] : Math.random() < .5;
+    lastRej = lastRej.concat(reject).slice(-2);
+    // P-values: about a third land between 0.01 and 0.05, where the significance level decides
+    if (alpha === 0.05) p = reject ? (Math.random() < .5 ? rnd(.011, .049) : rnd(.0004, .0099)) : (Math.random() < .35 ? rnd(.051, .099) : rnd(.1, .62));
+    else p = reject ? rnd(.0002, .0095) : (Math.random() < .5 ? rnd(.0105, .049) : rnd(.06, .62));
+    p = +fmtP(p);
+    step = 1;
+    $('scen').innerHTML = `${sc.claim} <span class="lvl">Test the claim at the ${alpha} significance level.</span>`;
+    $('hyps').innerHTML = `<span>${h0(sc)}</span><span>${ha(sc)}</span>`;
+    $('ink').innerHTML = ''; $('board').classList.add('idle');
+    $('collect').hidden = false; $('collect').disabled = false;
+    $('status').textContent = ''; $('pv').className = 'pv'; $('pv').innerHTML = '';
+    $('concl').className = 'concl'; $('copts').innerHTML = '';
+    $('fb').className = 'fb'; $('fb').innerHTML = ''; $('next').hidden = true;
+  }
+
+  /* the clipboard fills with small, barely legible numbers (a mean) or words (a proportion) */
+  function sampleItem(){
+    if (sc.par === 'p') return Math.random() < sc.v + .08 ? 'yes' : 'no';
+    const sd = Math.abs(sc.v) * .12 || 1, x = sc.v + sd * (Math.random() + Math.random() + Math.random() - 1.5) * 1.6;
+    const dec = sc.v >= 100 ? 0 : 1;
+    return x.toFixed(dec);
+  }
+  function collect(){
+    if (step !== 1) return; step = 1.5;
+    $('collect').disabled = true; $('collect').hidden = true; $('board').classList.remove('idle');
+    $('status').textContent = sc.par === 'm' ? 'Collecting the sample data…' : 'Collecting the survey responses…';
+    const rows = 11, cols = 3, cells = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) cells.push([r, c]);
+    const ns = 'http://www.w3.org/2000/svg', ink = $('ink');
+    const add = ([r, c]) => {
+      const t = document.createElementNS(ns, 'text');
+      t.setAttribute('x', 16 + c * 31); t.setAttribute('y', 33 + r * 10);
+      t.setAttribute('font-size', '7'); t.setAttribute('fill', '#3a4660'); t.setAttribute('font-family', 'Source Sans 3, sans-serif');
+      t.textContent = sampleItem(); ink.appendChild(t);
+    };
+    const done = () => {
+      timer = null; step = 2;
+      $('status').textContent = `Done! n = ${rows * cols} ${sc.par === 'm' ? 'values' : 'responses'} collected.`;
+      $('pv').className = 'pv show';
+      $('pv').innerHTML = `<div class="big">P-value = ${fmtP(p)}</div><div class="sub">Significance level <i>α</i> = ${alpha}</div>`;
+      showOptions();
+    };
+    if (reduce()){ cells.forEach(add); done(); return; }
+    let k = 0;
+    timer = setInterval(() => { add(cells[k++]); if (k >= cells.length){ clearInterval(timer); done(); } }, 55);
+  }
+
+  function showOptions(){
+    const claim = `${sc.what} is ${REL[sc.alt]} ${sc.words}`, nul = `${sc.what} is ${sc.words}`;
+    const LT = 'Since the P-value is less than the significance level', GT = 'Since the P-value is greater than the significance level';
+    const R = 'we reject the null hypothesis', F = 'we fail to reject the null hypothesis';
+    const yes = `There is enough evidence to support the claim that ${claim}.`, no = `There is not enough evidence to support the claim that ${claim}.`;
+    let right, sameWrong, other;
+    if (reject){
+      right = {k: 'ok', t: `${LT}, ${R}. ${yes}`};
+      sameWrong = shuffle([
+        {k: 'cmp', t: `${GT}, ${R}. ${yes}`},
+        {k: 'concl', t: `${LT}, ${R}. ${no}`},
+        {k: 'prove', t: `${LT}, ${R}. This proves that ${claim}.`}])[0];
+      other = {k: 'dec', t: `${LT}, ${F}. ${no}`};
+    } else {
+      right = {k: 'ok', t: `${GT}, ${F}. ${no}`};
+      sameWrong = shuffle([
+        {k: 'cmp', t: `${LT}, ${F}. ${no}`},
+        {k: 'concl', t: `${GT}, ${F}. ${yes}`},
+        {k: 'prove', t: `${GT}, ${F}. This proves that ${nul}.`}])[0];
+      other = {k: 'dec', t: `${GT}, ${R}. ${yes}`};
+    }
+    const opts = shuffle([right, sameWrong, other]);
+    $('copts').innerHTML = opts.map((o, i) => `<label><input type="radio" name="c" value="${o.k}"><b>${'abc'[i]})</b><span>${o.t}</span></label>`).join('');
+    $('concl').className = 'concl show';
+    document.querySelectorAll('#copts input').forEach(r => r.onchange = () => decide(r.value));
+    showNext('#copts');
+  }
+
+  function decide(k){
+    if (step !== 2) return; step = 3; plays++;
+    const ok = k === 'ok';
+    document.querySelectorAll('#copts input').forEach(r => { r.disabled = true;
+      r.parentElement.className = r.value === 'ok' ? 'right' : r.value === k ? 'wrong' : ''; });
+    const cmp = `The P-value ${fmtP(p)} is ${reject ? 'less' : 'greater'} than <i>α</i> = ${alpha}, so we ${reject ? 'reject' : 'fail to reject'} <i>H</i><sub>0</sub>.`;
+    if (ok){ wins++; streak++; best = Math.max(best, streak);
+      $('fb').className = 'fb ok';
+      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><p><span class="big">Correct!</span>${mastered ? `That makes ${streak} in a row.` : streak >= GOAL ? `That makes ${GOAL} in a row!` : `Your streak is ${streak} in a row. ${GOAL - streak} more to go!`}</p></span>`;
+    } else {
+      streak = 0;
+      const tip = {
+        cmp: 'Check the comparison: read the P-value and the significance level carefully.',
+        concl: reject ? 'When we reject the null hypothesis, there is enough evidence to support the claim.' : 'When we fail to reject the null hypothesis, there is not enough evidence to support the claim.',
+        prove: 'A hypothesis test never proves a hypothesis. It tells us whether there is enough evidence.',
+        dec: reject ? 'A P-value less than the significance level means we reject the null hypothesis.' : 'A P-value that is not less than the significance level means we fail to reject the null hypothesis.'}[k];
+      $('fb').className = 'fb no';
+      $('fb').innerHTML = `<p><b>Not quite.</b> ${cmp} ${tip}</p><p>Your streak starts again from 0. <span class="cheer">Try it again, you've got this!</span></p>`;
+    }
+    $('next').hidden = false; status();
+    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 700); } else { $('next').focus({preventScroll: true}); showNext('#next'); }
+  }
+  function showNext(sel){   // keep the newest part and the Next button on screen
+    const el = document.querySelector(sel);
+    setTimeout(() => el.scrollIntoView({block: 'nearest', behavior: SimKit.embed || reduce() ? 'auto' : 'smooth'}), SimKit.embed ? 150 : 0);
+  }
+  function top(){   // after Next the game gets shorter; scroll back up to the new scenario if it is out of view
+    if (SimKit.embed) setTimeout(() => $('scen').scrollIntoView({block: 'nearest'}), 150);
+    else { const r = $('scen').getBoundingClientRect();
+      if (r.top < 0 || r.top > innerHeight * .6) $('scen').scrollIntoView({block: 'start', behavior: reduce() ? 'auto' : 'smooth'}); }
+    $('collect').focus({preventScroll: true});
+  }
+  function status(){
+    $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${wins} of ${plays}`;
+    $('dots').innerHTML = Array.from({length: GOAL}, (_, i) => `<i class="${i < Math.min(streak, GOAL) ? 'on' : ''}"></i>`).join('');
+  }
+  function celebrate(){
+    $('master').classList.add('show'); $('keep').focus({preventScroll: true});
+    if (reduce()) return;
+    const cols = ['#E9A23B', '#C8312B', '#365F91', '#1E7B3A', '#7030A0', '#f2d14c', '#2F6FD0'];
+    for (let i = 0; i < 90; i++){
+      const c = document.createElement('i'); c.className = 'confetti';
+      const dur = 1.8 + Math.random() * 1.6;
+      c.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};--dx:${Math.random() * 160 - 80}px;--r:${Math.random() * 1080 - 540}deg;animation-duration:${dur}s;animation-delay:${Math.random() * .6}s`;
+      document.body.appendChild(c); setTimeout(() => c.remove(), (dur + 0.8) * 1000);
+    }
+  }
+  function startOver(){ streak = 0; best = 0; wins = 0; plays = 0; mastered = false; $('master').classList.remove('show'); status(); round(); }
+  $('collect').onclick = collect;
+  $('next').onclick = () => { round(); top(); };
+  $('reset').onclick = startOver;
+  $('again').onclick = startOver;
+  $('keep').onclick = () => { $('master').classList.remove('show'); round(); top(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
+  if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({alpha, p, reject, par: sc.par, step});
+  status(); round();
+})();
+</script>
+</body></html>

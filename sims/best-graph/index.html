@@ -208,7 +208,31 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
     ['time', 'A college records how many first-generation students earned scholarships each year from 2012 to 2026.', 1],
     ['time', 'A university records the graduation rate of its first-generation students each year from 2010 to 2026.', 1],
     ['split', 'Declared majors are compared for first-generation and continuing-generation students.', 1],
-    ['split', 'The types of scholarships awarded to first-generation students are compared for first-year and second-year students.', 1]
+    ['split', 'The types of scholarships awarded to first-generation students are compared for first-year and second-year students.', 1],
+    // everyday scenarios: college admissions, exercise, campus life (author, 18 Nov 2026)
+    ['nom', 'Students list the type of exercise they do most often: running, walking, weightlifting, yoga, team sports or other.'],
+    ['nom', 'High school seniors report the type of college they plan to attend: community college, public university, private university or trade school.'],
+    ['ord', 'Students say how often they exercise: never, rarely, sometimes, often or daily.'],
+    ['ord', 'College applicants rate how stressful the application process was: not at all, somewhat, very or extremely stressful.'],
+    ['quant', 'Gym members record how many minutes they exercised each day for a week.'],
+    ['quant', 'High school seniors report how many colleges they applied to.'],
+    ['quant', 'A university records the high school GPAs of the students it accepted this year.'],
+    ['quant', 'Students wearing fitness trackers record how many steps they took in one day.'],
+    ['time', 'A university records its acceptance rate each year from 2005 to 2026.'],
+    ['time', 'A campus gym records the number of visitors each day during January.'],
+    ['split', 'Students’ favorite type of exercise is compared for students who live on campus and off campus.'],
+    ['split', 'Admission decisions (accepted, waitlisted or denied) are compared for in-state and out-of-state applicants.'],
+    // learning communities: MESA, Puente, Puente MaS, Umoja (author, 18 Nov 2026), also counted in the every-round list
+    ['nom', 'Students in a MESA program list the STEM major they plan to pursue.', 1],
+    ['nom', 'Students in an Umoja learning community list the four-year university they plan to transfer to.', 1],
+    ['ord', 'Students in a Puente class rate how prepared they feel to transfer: somewhat, very or extremely prepared.', 1],
+    ['quant', 'A MESA center records how many hours each student spent in its study center this semester.', 1],
+    ['quant', 'Students in the Puente MaS program report how many hours they spent in study groups this month.', 1],
+    ['quant', 'An Umoja learning community records the number of units each member completed this year.', 1],
+    ['time', 'A college records how many Puente students transferred to four-year universities each year from 2010 to 2026.', 1],
+    ['time', 'A MESA program records how many of its students earned STEM degrees each year from 2012 to 2026.', 1],
+    ['split', 'The universities students plan to transfer to are compared for the Umoja and Puente learning communities.', 1],
+    ['split', 'Intended majors are compared for students in MESA and students in Puente MaS.', 1]
   ].map(([c, t, r]) => ({c, t, r: !!r}));
 
   const WHY = {
