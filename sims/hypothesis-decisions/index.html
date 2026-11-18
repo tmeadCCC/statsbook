@@ -127,7 +127,7 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
   const $ = id => document.getElementById(id);
   const GOAL = 3;
   /* scenarios: [parameter (m = mean, p = proportion), value in H0, H_A sign, the claim, what is measured, the value in words]
-     All feature people of color, LGBTQ+ people or first-generation students, in a positive light. */
+     Most feature people of color, LGBTQ+ people, first-generation students or learning communities, in a positive light; others are everyday campus scenarios. */
   const S = [
     ['m', 32, '>', 'A Black-owned business thinks that the average number of customers has increased from 32 per day last year.', 'the mean number of customers per day', '32'],
     ['p', .25, '>', 'A coding school for Latina women believes that more than 25% of its graduates land a software job within six months.', 'the percentage of graduates who land a software job within six months', '25%'],
@@ -161,7 +161,29 @@ html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
     ['p', .25, '≠', 'A community college counselor wants to know whether the percentage of first-generation students who change their major is different from 25%.', 'the percentage of first-generation students who change their major', '25%'],
     ['m', 6, '<', 'A peer tutoring program for first-generation students believes it has cut the mean wait for a tutoring appointment to less than 6 days.', 'the mean wait for a tutoring appointment', '6 days'],
     ['p', .55, '>', 'A first-generation mentoring network believes that more than 55% of its members land a paid internship before they graduate.', 'the percentage of members who land a paid internship before graduating', '55%'],
-    ['p', .10, '<', 'A financial aid office believes its new workshops for first-generation families have lowered the percentage of incomplete aid applications below 10%.', 'the percentage of incomplete aid applications', '10%']
+    ['p', .10, '<', 'A financial aid office believes its new workshops for first-generation families have lowered the percentage of incomplete aid applications below 10%.', 'the percentage of incomplete aid applications', '10%'],
+    // everyday scenarios: college admissions, exercise, sleep, campus life (author, 18 Nov 2026)
+    ['p', .65, '>', 'A high school counselor believes that more than 65% of this year’s seniors were accepted to at least one four-year college.', 'the percentage of seniors accepted to at least one four-year college', '65%'],
+    ['m', 6, '≠', 'A college admissions advisor wants to know whether the mean number of colleges that students apply to is different from 6.', 'the mean number of colleges students apply to', '6'],
+    ['p', .30, '<', 'A university believes that its acceptance rate this year is less than 30%.', 'the percentage of applicants who are accepted', '30%'],
+    ['m', 3.4, '>', 'A university believes that the mean high school GPA of the students it accepted this year is higher than 3.4.', 'the mean high school GPA of accepted students', '3.4'],
+    ['m', 150, '>', 'A fitness coach believes that college students exercise a mean of more than 150 minutes per week.', 'the mean number of minutes college students exercise per week', '150 minutes'],
+    ['p', .50, '<', 'A campus recreation center believes that fewer than 50% of students exercise at least three times a week.', 'the percentage of students who exercise at least three times a week', '50%'],
+    ['m', 7000, '≠', 'A health class wants to know whether the mean number of steps students take each day is different from 7,000.', 'the mean number of steps students take each day', '7,000'],
+    ['p', .20, '≠', 'A gym wants to know whether the percentage of its members who take group fitness classes is different from 20%.', 'the percentage of members who take group fitness classes', '20%'],
+    ['m', 7, '<', 'A sleep researcher believes that college students sleep a mean of less than 7 hours a night.', 'the mean amount of sleep college students get each night', '7 hours'],
+    ['p', .40, '>', 'A coffee shop near campus believes that more than 40% of its customers are students.', 'the percentage of customers who are students', '40%'],
+    ['m', 25, '<', 'A city transit agency believes that a new bus route has cut the mean commute to campus to less than 25 minutes.', 'the mean commute to campus', '25 minutes'],
+    ['m', 350, '>', 'A campus bookstore believes that the mean amount students spend on textbooks each term has risen above $350.', 'the mean amount students spend on textbooks each term', '$350'],
+    // learning communities: MESA, Puente, Puente MaS, Umoja (author, 18 Nov 2026)
+    ['p', .60, '>', 'A college’s MESA program believes that more than 60% of its students transfer to a four-year university in a STEM major.', 'the percentage of MESA students who transfer in a STEM major', '60%'],
+    ['m', 10, '>', 'A MESA center believes that its students spend a mean of more than 10 hours a week studying in the center.', 'the mean number of hours a week MESA students study in the center', '10 hours'],
+    ['p', .35, '≠', 'A MESA program wants to know whether the percentage of its students who are women is different from 35%.', 'the percentage of MESA students who are women', '35%'],
+    ['p', .75, '>', 'A Puente program believes that more than 75% of its students complete their English course sequence in their first year.', 'the percentage of Puente students who complete their English course sequence in their first year', '75%'],
+    ['m', 2.8, '>', 'A Puente counselor believes that Puente students have a mean GPA higher than 2.8.', 'the mean GPA of Puente students', '2.8'],
+    ['p', .50, '>', 'The Puente MaS program believes that more than 50% of its students pass their first college-level math course on the first try.', 'the percentage of Puente MaS students who pass their first college-level math course on the first try', '50%'],
+    ['p', .70, '>', 'An Umoja learning community believes that more than 70% of its students return for a second year of college.', 'the percentage of Umoja students who return for a second year', '70%'],
+    ['m', 12, '≠', 'An Umoja program wants to know whether the mean number of units its students take each term is different from 12.', 'the mean number of units Umoja students take each term', '12']
   ].map(([par, v, alt, claim, what, words]) => ({par, v, alt, claim, what, words}));
 
   const shuffle = a => { for (let i = a.length - 1; i > 0; i--){ const j = SimKit.rint(0, i); [a[i], a[j]] = [a[j], a[i]]; } return a; };
