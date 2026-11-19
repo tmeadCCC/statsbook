@@ -100,6 +100,16 @@
    ],
    "blurb": "Read a claim and its hypotheses, collect the data and get the P-value, then choose the correct decision and conclusion at the 0.05 or 0.01 significance level. Win 3 rounds in a row.",
    "statbelt": false
+  },
+  {
+   "id": "clt",
+   "title": "Central Limit Theorem Simulation",
+   "kind": "Simulation",
+   "sections": [
+    "7.3"
+   ],
+   "blurb": "Choose a parent distribution and sample size, take samples, and watch each sample mean drop into the distribution of sample means as it builds a bell shape. Add samples 5, 10 or 100 at a time and show the normal curve.",
+   "statbelt": false
   }
  ]
 }
