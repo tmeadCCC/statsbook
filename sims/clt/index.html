@@ -33,7 +33,7 @@
       <option value="right">Skewed right</option>
       <option value="left">Skewed left</option>
       <option value="u">U-shaped</option>
-      <option value="bell">Mound-shaped</option>
+      <option value="bell">Bell-shaped</option>
     </select></label>
     <label>Sample size <select id="n">
       <option value="2">n = 2</option>
@@ -58,7 +58,7 @@
 
 <aside class="sim-notice">
   <p class="t">What to notice</p>
-  <p>Whatever the shape of the parent distribution, the sample means pile up around the parent mean <i>μ</i>, and their distribution looks more and more bell-shaped. The means are also less spread out than the parent values: their standard deviation is close to <i>σ</i>/√<i>n</i>. Try a larger sample size and the distribution of sample means gets narrower and closer to normal. That is the Central Limit Theorem.</p>
+  <p>Whatever the shape of the parent distribution, the sample means pile up around the parent mean <i>μ</i>, and their distribution looks more and more bell-shaped. The means are also less spread out than the parent values: their standard deviation is close to <i>σ</i>/√<i>n</i>. If you select <i>n</i> = 30 the distribution of sample means gets narrower and closer to normal. If the parent distribution is bell-shaped, the distribution of sample means gets closer to normal regardless of the sample size. But, if the sample size is under 30 and the parent distribution is not bell-shaped, the distribution may not ever be perfectly normal. That is the Central Limit Theorem.</p>
 </aside>
 <p class="sim-back"><a href="../index.html">All simulations and games</a></p>
 </main></div>
@@ -73,7 +73,7 @@
     right: {name: 'Skewed right', p: [.35, .25, .17, .11, .07, .05]},
     left:  {name: 'Skewed left', p: [.05, .07, .11, .17, .25, .35]},
     u:     {name: 'U-shaped', p: [.30, .12, .08, .08, .12, .30]},
-    bell:  {name: 'Mound-shaped', p: [.05, .15, .30, .30, .15, .05]}
+    bell:  {name: 'Bell-shaped', p: [.05, .15, .30, .30, .15, .05]}
   };
   const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const cv = $('cv'), ctx = cv.getContext('2d');
