@@ -110,6 +110,16 @@
    ],
    "blurb": "Choose a parent distribution and sample size, take samples, and watch each sample mean drop into the distribution of sample means as it builds a bell shape. Add samples 5, 10 or 100 at a time and show the normal curve.",
    "statbelt": false
+  },
+  {
+   "id": "confidence-intervals",
+   "title": "Confidence Interval Simulation",
+   "kind": "Simulation",
+   "sections": [
+    "9.1"
+   ],
+   "blurb": "Take random samples from a normal population and build confidence intervals one, 10 or 100 at a time. Green intervals contain the population mean and red ones miss it; the tally shows what percent capture μ.",
+   "statbelt": false
   }
  ]
 }
