@@ -69,9 +69,22 @@
 (function(){
   const $ = id => document.getElementById(id);
   const GREEN = '#1E9E45', RED = '#D7261E', INK = '#1d2a4d', MUTED = '#5b6474', MAX = 1000;
-  const Z = {'0.90': 1.6449, '0.95': 1.9600, '0.99': 2.5758};
+  /* t critical values (degrees of freedom n - 1), from the t distribution's CDF via the regularized incomplete beta function */
+  function lgamma(x){ const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, .1208650973866179e-2, -.5395239384953e-5];
+    let y = x, t = x + 5.5; t -= (x + .5) * Math.log(t); let ser = 1.000000000190015; for (let j = 0; j < 6; j++) ser += c[j] / ++y; return -t + Math.log(2.5066282746310005 * ser / x); }
+  function betacf(a, b, x){ let qab = a + b, qap = a + 1, qam = a - 1, c = 1, d = 1 - qab * x / qap; if (Math.abs(d) < 1e-30) d = 1e-30; d = 1 / d; let h = d;
+    for (let m = 1; m <= 200; m++){ const m2 = 2 * m; let aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30; c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30; d = 1 / d; h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30; c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30; d = 1 / d; const del = d * c; h *= del; if (Math.abs(del - 1) < 3e-12) break; }
+    return h; }
+  function ibeta(a, b, x){ if (x <= 0) return 0; if (x >= 1) return 1;
+    const bt = Math.exp(lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+    return x < (a + 1) / (a + b + 2) ? bt * betacf(a, b, x) / a : 1 - bt * betacf(b, a, 1 - x) / b; }
+  const tUpper = (t, df) => .5 * ibeta(df / 2, .5, df / (df + t * t));      // P(T > t) for t > 0
+  function tcrit(conf, df){ const tail = (1 - conf) / 2; let a = 0, b = 1000; for (let i = 0; i < 100; i++){ const m = (a + b) / 2; if (tUpper(m, df) > tail) a = m; else b = m; } return (a + b) / 2; }
   const svgNS = 'http://www.w3.org/2000/svg';
-  let mu, sd, n, cl, z, se, me, lo, hi, ivs = [], nIn = 0, animT = null;
+  let mu, sd, n, cl, tc, se, lo, hi, ivs = [], nIn = 0, animT = null;
 
   function randn(){ let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
   function read(){
@@ -82,10 +95,11 @@
     if (!(k >= 2 && k <= 1000)) bad.push('a sample size from 2 to 1000');
     $('note').textContent = bad.length ? `Please enter ${bad.join(', ')}.` : '';
     if (bad.length) return false;
-    mu = m; sd = s; n = k; cl = $('cl').value; z = Z[cl];
-    se = sd / Math.sqrt(n); me = z * se;
-    // the x-axis: wide enough for nearly every interval (sample means rarely land more than 3.3 standard errors away)
-    const half = me + 3.3 * se; lo = mu - half; hi = mu + half;
+    mu = m; sd = s; n = k; cl = $('cl').value; tc = tcrit(+cl, n - 1);
+    se = sd / Math.sqrt(n);
+    // the x-axis: wide enough for nearly every interval (sample means rarely land more than 3.3 standard errors away,
+    // and the sample SD is rarely far above sigma); an interval that runs past the edge is drawn to the edge
+    const half = se * (tc * Math.min(2, 1 + 2.5 / Math.sqrt(2 * (n - 1))) + 3.3); lo = mu - half; hi = mu + half;
     return true;
   }
   function reset(){
@@ -98,10 +112,11 @@
   }
   function buttons(off){ ['b1', 'b10', 'b100'].forEach(id => $(id).disabled = off || ivs.length >= MAX); }
   function make(){
-    let sum = 0; for (let i = 0; i < n; i++) sum += mu + sd * randn();   // a real sample of n values
-    const xb = sum / n, a = xb - me, b = xb + me, hit = a <= mu && mu <= b;
+    const x = Array.from({length: n}, () => mu + sd * randn());   // a real sample of n values
+    const xb = x.reduce((a, b) => a + b, 0) / n, s = Math.sqrt(x.reduce((a, b) => a + (b - xb) ** 2, 0) / (n - 1));
+    const e = tc * s / Math.sqrt(n), a = xb - e, b = xb + e, hit = a <= mu && mu <= b;
     if (hit) nIn++;
-    ivs.push({xb, a, b, hit});
+    ivs.push({xb, s, a, b, hit});
     return ivs[ivs.length - 1];
   }
   const f = (x, d) => x.toFixed(d);
@@ -178,7 +193,7 @@
   $('reset').onclick = reset;
   ['mu', 'sd', 'n', 'cl'].forEach(id => $(id).addEventListener('change', reset));
   let rw; window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => draw(false), 120); });
-  if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({count: ivs.length, nIn, lo, hi, me, outOfRange: ivs.filter(v => v.a < lo || v.b > hi).length});
+  if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({count: ivs.length, nIn, lo, hi, tc, outOfRange: ivs.filter(v => v.a < lo || v.b > hi).length});
   reset();
 })();
 </script>
