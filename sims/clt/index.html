@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Central Limit Theorem Simulation – Introduction to Statistics with Technology</title>
+<meta name="description" content="Take samples from a parent distribution and watch the sample means pile up into a bell-shaped distribution.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this simulation */
+.sim select{font:inherit;padding:.3rem .4rem;border:1.5px solid var(--rule);border-radius:6px;background:#fff;margin-left:.3rem}
+.sim .sim-row label{font-weight:600}
+.stage{position:relative;margin:.2rem 0 .4rem}
+.stage canvas{display:block;width:100%;touch-action:manipulation}
+.stats{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:.2rem 0 .6rem;font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.stats b{color:var(--ink)}
+.stats i{font-family:var(--serif)}
+.chk{display:flex;align-items:center;gap:.4rem;font-weight:600}
+.chk input{width:1.1rem;height:1.1rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Central Limit Theorem Simulation</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Simulation</p>
+  <h1>Central Limit Theorem Simulation</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-7/section-7-3.html">Section 7.3 The Central Limit Theorem</a></p>
+</header>
+<p class="sim-intro">Choose a parent distribution and a sample size, then take samples. Each sample’s values drop into the parent distribution, and its mean drops into the distribution of sample means below. Watch how the sample means gather around the center and build a bell shape.</p>
+
+<section class="sim" aria-label="Central Limit Theorem Simulation">
+  <div class="sim-row">
+    <label>Parent distribution <select id="dist">
+      <option value="uni">Uniform (a fair die)</option>
+      <option value="right">Skewed right</option>
+      <option value="left">Skewed left</option>
+      <option value="u">U-shaped</option>
+      <option value="bell">Bell-shaped</option>
+    </select></label>
+    <label>Sample size <select id="n">
+      <option value="2">n = 2</option>
+      <option value="5">n = 5</option>
+      <option value="10" selected>n = 10</option>
+      <option value="30">n = 30</option>
+    </select></label>
+  </div>
+  <div class="sim-row" role="group" aria-label="Take samples">
+    <button class="btn" id="s1">Sample</button>
+    <button class="btn" id="s5">Add 5 more samples</button>
+    <button class="btn" id="s10">Add 10 samples</button>
+    <button class="btn" id="s100">Add 100 samples</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="stage"><canvas id="cv" role="img" aria-label="Dot plots of the parent distribution and the distribution of sample means"></canvas></div>
+  <div class="sim-row">
+    <label class="chk"><input type="checkbox" id="norm"> Show the normal curve over the distribution of sample means</label>
+  </div>
+  <div class="stats" id="stats" aria-live="polite"></div>
+</section>
+
+<aside class="sim-notice">
+  <p class="t">What to notice</p>
+  <p>Whatever the shape of the parent distribution, the sample means pile up around the parent mean <i>μ</i>, and their distribution looks more and more bell-shaped. The means are also less spread out than the parent values: their standard deviation is close to <i>σ</i>/√<i>n</i>. If you select <i>n</i> = 30 the distribution of sample means gets narrower and closer to normal. If the parent distribution is bell-shaped, the distribution of sample means gets closer to normal regardless of the sample size. But, if the sample size is under 30 and the parent distribution is not bell-shaped, the distribution may not ever be perfectly normal. That is the Central Limit Theorem.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const BLUE = '#2F6FD0', BLUE_D = '#1d4f9e', GREEN = '#3DAE4F', GREEN_D = '#23803a', INK = '#1d2a4d', MUTED = '#5b6474', AXIS = '#222';
+  /* parent distributions on the faces 1 to 6 */
+  const DIST = {
+    uni:   {name: 'Uniform', p: [1, 1, 1, 1, 1, 1].map(x => x / 6)},
+    right: {name: 'Skewed right', p: [.35, .25, .17, .11, .07, .05]},
+    left:  {name: 'Skewed left', p: [.05, .07, .11, .17, .25, .35]},
+    u:     {name: 'U-shaped', p: [.30, .12, .08, .08, .12, .30]},
+    bell:  {name: 'Bell-shaped', p: [.05, .15, .30, .30, .15, .05]}
+  };
+  const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cv = $('cv'), ctx = cv.getContext('2d');
+  let lastDrop = 0, dist, n, mu, sigma, binw, parent, means, meanBins, nSamples, sprites, sample, token = 0, busy = false;
+  let W = 760, L = {};
+
+  function draw1(){ let u = Math.random(), k = 0; const p = dist.p; while (k < 5 && u > p[k]){ u -= p[k]; k++; } return k + 1; }
+  const bin = m => Math.round(m / binw + 1e-9);          // index of the bin a mean falls in
+  const binX = b => b * binw;
+
+  function reset(){
+    token++; busy = false;
+    dist = DIST[$('dist').value]; n = +$('n').value;
+    mu = dist.p.reduce((s, p, i) => s + p * (i + 1), 0);
+    sigma = Math.sqrt(dist.p.reduce((s, p, i) => s + p * (i + 1) ** 2, 0) - mu * mu);
+    binw = Math.max(0.1, 1 / n);
+    lastDrop = 0; parent = [0, 0, 0, 0, 0, 0, 0]; meanBins = new Map(); means = []; nSamples = 0; sprites = []; sample = null;
+    scale(); buttons(); stats(); paint();
+  }
+
+  /* ---------- layout ---------- */
+  function layout(){
+    W = Math.max(300, Math.round(cv.parentElement.clientWidth));
+    const narrow = W < 520;
+    const f = narrow ? 13 : 14;
+    const SH = narrow ? 92 : 98, PH = narrow ? 140 : 150, MH = narrow ? 140 : 150;
+    L = {f, narrow, l: narrow ? 12 : 26, r: narrow ? 12 : 26};
+    L.sTop = 4; L.sY = L.sTop + 22 + SH - 26;            // axis line under the current sample
+    L.pT = L.sY + 34; L.pY = L.pT + 22 + PH;              // parent title, parent axis
+    L.mT = L.pY + 40; L.mY = L.mT + 22 + MH;              // means title, means axis
+    L.H = L.mY + 26; L.PH = PH; L.MH = MH; L.SH = SH;
+    const dpr = window.devicePixelRatio || 1;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(L.H * dpr); cv.style.height = L.H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  const X = v => L.l + (v - 0.5) / 6 * (W - L.l - L.r);
+  const colW = () => (W - L.l - L.r) / 6;
+
+  /* dot sizes shrink as the stacks grow so everything stays in the window */
+  let dp, dm, ds;
+  function scale(extraParent, extraBins){
+    const pc = parent.map((c, i) => c + (extraParent ? extraParent[i] : 0));
+    const maxP = Math.max(1, ...pc.slice(1));
+    let maxM = 1;
+    const keys = new Set([...meanBins.keys(), ...(extraBins ? extraBins.keys() : [])]);
+    keys.forEach(k => { maxM = Math.max(maxM, (meanBins.get(k) || 0) + (extraBins ? extraBins.get(k) || 0 : 0)); });
+    const dMax = L.narrow ? 13 : 16;
+    dp = Math.min(dMax, (L.PH - 6) / maxP);
+    dm = Math.min(dMax, binw / 6 * (W - L.l - L.r) * 0.98, (L.MH - 6) / maxM);
+    ds = dMax;
+  }
+  function sampleScale(s){
+    const c = [0, 0, 0, 0, 0, 0, 0]; s.forEach(v => c[v]++);
+    ds = Math.min(L.narrow ? 13 : 16, (L.SH - 34) / Math.max(...c));
+  }
+
+  /* ---------- drawing ---------- */
+  function dot(x, y, d, fill, alpha){
+    ctx.globalAlpha = alpha == null ? 1 : alpha; ctx.fillStyle = fill;
+    if (d >= 4){ ctx.beginPath(); ctx.arc(x, y, d * 0.44, 0, 7); ctx.fill(); }
+    else ctx.fillRect(x - Math.min(7, colW() * .1), y - d / 2, Math.min(14, colW() * .2), Math.max(.6, d - (d > 1.6 ? .35 : 0)));
+    ctx.globalAlpha = 1;
+  }
+  function mdot(x, y, d, fill, alpha){   // a mean dot: rectangles are as wide as the bin when the dots get tiny
+    ctx.globalAlpha = alpha == null ? 1 : alpha; ctx.fillStyle = fill;
+    if (d >= 4){ ctx.beginPath(); ctx.arc(x, y, d * 0.44, 0, 7); ctx.fill(); }
+    else { const w = Math.max(2, binw / 6 * (W - L.l - L.r) * .8); ctx.fillRect(x - w / 2, y - d / 2, w, Math.max(.6, d - (d > 1.6 ? .3 : 0))); }
+    ctx.globalAlpha = 1;
+  }
+  function tri(x, y, s, alpha){   // apex at (x, y), pointing up
+    ctx.globalAlpha = alpha == null ? 1 : alpha; ctx.fillStyle = GREEN;
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + s * .62, y + s * 1.1); ctx.lineTo(x - s * .62, y + s * 1.1); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+  function axis(y, ticks){
+    ctx.strokeStyle = AXIS; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(L.l - 6, y); ctx.lineTo(W - L.r + 6, y); ctx.stroke();
+    if (!ticks) return;
+    ctx.fillStyle = INK; ctx.font = `${L.f}px "Source Sans 3", sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (let v = 1; v <= 6; v++){ const x = X(v); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + 5); ctx.stroke(); ctx.fillText(v, x, y + 7); }
+    if (ticks === 2){ ctx.lineWidth = 1; for (let v = 1.5; v < 6; v += 1){ const x = X(v); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + 3); ctx.stroke(); } }
+  }
+  function title(t, y){
+    ctx.fillStyle = INK; ctx.font = `700 ${L.f + 1}px "Source Sans 3", sans-serif`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.fillText(t, L.l - 4, y);
+  }
+  function pdf(x){ const s = sigma / Math.sqrt(n); return Math.exp(-.5 * ((x - mu) / s) ** 2) / (s * Math.sqrt(2 * Math.PI)); }
+
+  function paint(){
+    ctx.clearRect(0, 0, W, L.H);
+    // the current sample
+    ctx.fillStyle = sample ? INK : MUTED; ctx.font = `${sample ? 700 : 400} ${L.f}px "Source Sans 3", sans-serif`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    if (sample){
+      ctx.fillText(`Sample ${sample.k}`, L.l - 4, L.sTop);
+      if (sample.showMean){ const w = ctx.measureText(`Sample ${sample.k}`).width; ctx.fillStyle = GREEN_D; ctx.font = `italic 700 ${L.f + 1}px Tinos, serif`;
+        ctx.fillText(`  x̄ = ${sample.mean.toFixed(2).replace(/0$/, '')}`, L.l - 4 + w, L.sTop - 1); }
+    } else ctx.fillText(lastDrop ? `Added ${lastDrop} samples at once. Their values and means dropped straight into place.` : nSamples ? '' : 'Press Sample to take a sample of ' + n + '.', L.l - 4, L.sTop);
+    ctx.globalAlpha = .35; axis(L.sY, 0); ctx.globalAlpha = 1;
+    // parent distribution
+    title('Parent Distribution', L.pT); axis(L.pY, 1);
+    for (let v = 1; v <= 6; v++) for (let k = 0; k < parent[v]; k++) dot(X(v), L.pY - dp / 2 - k * dp, dp, BLUE);
+    // distribution of sample means
+    title('Distribution of Sample Means', L.mT); axis(L.mY, 2);
+    meanBins.forEach((c, b) => { for (let k = 0; k < c; k++) mdot(X(binX(b)), L.mY - dm / 2 - k * dm, dm, GREEN); });
+    if ($('norm').checked && nSamples){
+      ctx.strokeStyle = '#7030A0'; ctx.lineWidth = 2.2; ctx.beginPath();
+      for (let i = 0; i <= 240; i++){ const x = 0.5 + 6 * i / 240, y = L.mY - nSamples * binw * pdf(x) * dm;
+        i ? ctx.lineTo(X(x), Math.max(L.mT + 20, y)) : ctx.moveTo(X(x), Math.max(L.mT + 20, y)); }
+      ctx.stroke();
+    }
+    // things in motion, drawn on top
+    sprites.forEach(s => s.draw());
+  }
+
+  /* ---------- animation helpers ---------- */
+  const ease = t => t < .5 ? 2 * t * t : 1 - 2 * (1 - t) * (1 - t);
+  let raf = null;
+  function loop(){ paint(); raf = sprites.length || busy ? requestAnimationFrame(loop) : null; }
+  function kick(){ if (!raf) raf = requestAnimationFrame(loop); }
+  function wait(ms, tk){ return new Promise(res => setTimeout(() => res(tk === token), ms)); }
+  function tween(ms, fn, tk){
+    return new Promise(res => { const t0 = performance.now();
+      const step = now => { if (tk !== token) return res(false); const t = Math.min(1, (now - t0) / ms); fn(t); if (t < 1) requestAnimationFrame(step); else res(true); };
+      requestAnimationFrame(step); });
+  }
+  function poof(x, y, d){
+    const t0 = performance.now(), parts = Array.from({length: 8}, (_, i) => ({a: i * Math.PI / 4 + Math.random() * .4, r: .8 + Math.random() * .6}));
+    const s = {draw(){ const t = Math.min(1, (performance.now() - t0) / 380);
+      ctx.globalAlpha = 1 - t; ctx.strokeStyle = GREEN; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d * (.5 + 1.6 * t), 0, 7); ctx.stroke();
+      ctx.fillStyle = '#9bd8a5'; parts.forEach(p => { ctx.beginPath(); ctx.arc(x + Math.cos(p.a) * d * 2.2 * t * p.r, y + Math.sin(p.a) * d * 2.2 * t * p.r, Math.max(1, d * .14), 0, 7); ctx.fill(); });
+      ctx.globalAlpha = 1; if (t >= 1) sprites.splice(sprites.indexOf(s), 1); }};
+    sprites.push(s); kick();
+  }
+
+  /* ---------- one sample, fully animated ---------- */
+  async function animatedSample(tk, speed){
+    const vals = Array.from({length: n}, draw1), m = vals.reduce((a, b) => a + b, 0) / n, b = bin(m);
+    sampleScale(vals);
+    const cnt = [0, 0, 0, 0, 0, 0, 0];
+    const pts = vals.slice().sort((a, b) => a - b).map(v => ({v, x: X(v), y: L.sY - ds / 2 - (cnt[v]++) * ds}));
+    sample = {k: nSamples + 1, mean: m, showMean: false}; lastDrop = 0;
+    // the sample dots appear
+    const shown = {draw(){ pts.forEach(p => { if (p.on) dot(p.x, p.y, ds, BLUE); }); }};
+    sprites.push(shown); busy = true; kick();
+    for (let i = 0; i < pts.length; i++){ pts[i].on = true; if (!await wait(Math.max(12, 260 / n) * speed, tk)) return false; }
+    if (!await wait(380 * speed, tk)) return false;
+    // ghost dots slide to the mean and merge into the triangle
+    const mx = X(m), ty = L.sY + 2, ts = Math.max(9, ds * 1.15);
+    const ghosts = pts.map(p => ({x: p.x, y: p.y}));
+    const g = {t: 0, draw(){ ghosts.forEach((q, i) => dot(q.x + (mx - q.x) * ease(this.t), q.y + (ty + ts * .5 - q.y) * ease(this.t), ds, BLUE, .4 * (1 - .6 * this.t))); }};
+    sprites.push(g);
+    if (!await tween(750 * speed, t => { g.t = t; }, tk)) return false;
+    sprites.splice(sprites.indexOf(g), 1);
+    const T = {x: mx, y: ty, s: ts, k: 0, draw(){ tri(this.x, this.y, this.s * this.k); }};
+    sprites.push(T); sample.showMean = true;
+    if (!await tween(180 * speed, t => { T.k = .4 + .6 * t; }, tk)) return false;
+    if (!await wait(520 * speed, tk)) return false;
+    // everything falls: blue dots into the parent dot plot, the triangle into the plot of means
+    const add = [0, 0, 0, 0, 0, 0, 0]; vals.forEach(v => add[v]++);
+    const eb = new Map([[b, 1]]); scale(add, eb);
+    const fill = parent.slice();
+    pts.forEach(p => { p.tx = p.x; p.ty = L.pY - dp / 2 - (fill[p.v]++) * dp; p.sy = p.y; });
+    const mTarget = L.mY - dm / 2 - (meanBins.get(b) || 0) * dm, mxB = X(binX(b));
+    sprites.splice(sprites.indexOf(shown), 1);
+    const fallers = {t: 0, draw(){ pts.forEach((p, i) => { if (p.done) return; const tt = Math.max(0, Math.min(1, (this.t * 1.25 - i * .25 / pts.length)));
+      dot(p.tx, p.sy + (p.ty - p.sy) * tt * tt, ds + (dp - ds) * tt, BLUE); }); }};
+    sprites.push(fallers);
+    const sy = T.y;
+    let landedParent = false;
+    const ok = await tween(1000 * speed, t => {
+      fallers.t = Math.min(1, t / .7);
+      if (!landedParent && t >= .7){ landedParent = true; vals.forEach(v => parent[v]++); sprites.splice(sprites.indexOf(fallers), 1); }
+      T.y = sy + (mTarget - ts * .55 - sy) * t * t; T.x = mx + (mxB - mx) * t;
+    }, tk);
+    if (!ok) return false;
+    if (!landedParent){ vals.forEach(v => parent[v]++); sprites.splice(sprites.indexOf(fallers), 1); }
+    sprites.splice(sprites.indexOf(T), 1);
+    meanBins.set(b, (meanBins.get(b) || 0) + 1); means.push(m); nSamples++;
+    poof(mxB, mTarget, Math.max(dm, 6));
+    stats();
+    return true;
+  }
+
+  /* ---------- many samples at once: everything just drops into place ---------- */
+  async function dropSamples(k, tk){
+    const add = [0, 0, 0, 0, 0, 0, 0], eb = new Map(), newMeans = [];
+    for (let j = 0; j < k; j++){ let s = 0; for (let i = 0; i < n; i++){ const v = draw1(); add[v]++; s += v; } const m = s / n; newMeans.push(m); eb.set(bin(m), (eb.get(bin(m)) || 0) + 1); }
+    scale(add, eb); sample = null; lastDrop = k > 1 ? k : 0;
+    const drops = [], fillP = parent.slice(), fillM = new Map(meanBins);
+    for (let v = 1; v <= 6; v++) for (let i = 0; i < add[v]; i++){ const ty = L.pY - dp / 2 - (fillP[v]++) * dp; drops.push({x: X(v), ty, sy: L.pT + 18 - Math.random() * 30, d: Math.random() * .35, m: false}); }
+    eb.forEach((c, b) => { for (let i = 0; i < c; i++){ const f = fillM.get(b) || 0; fillM.set(b, f + 1); drops.push({x: X(binX(b)), ty: L.mY - dm / 2 - f * dm, sy: L.mT + 18 - Math.random() * 30, d: Math.random() * .35, m: true}); } });
+    const fall = {t: 0, draw(){ drops.forEach(q => { const tt = Math.max(0, Math.min(1, (this.t - q.d) / .65)); const y = q.sy + (q.ty - q.sy) * tt * tt;
+      if (tt > 0) (q.m ? mdot : dot)(q.x, y, q.m ? dm : dp, q.m ? GREEN : BLUE); }); }};
+    sprites.push(fall); busy = true; kick();
+    const ok = reduce() ? true : await tween(900, t => { fall.t = t; }, tk);
+    sprites.splice(sprites.indexOf(fall), 1);
+    if (!ok) return false;
+    for (let v = 1; v <= 6; v++) parent[v] += add[v];
+    meanBins = fillM; means.push(...newMeans); nSamples += k;
+    stats(); return true;
+  }
+
+  /* ---------- quick, no-motion version of one sample (reduced motion) ---------- */
+  function instantSample(){ return dropSamples(1, token); }
+
+  async function run(kind){
+    if (busy) return;
+    const tk = ++token; busy = true; buttons();
+    if (kind === 1) await (reduce() ? instantSample() : animatedSample(tk, 1));
+    else if (kind === 5){ for (let i = 0; i < 5; i++){ if (!(await (reduce() ? dropSamples(1, tk) : animatedSample(tk, .5)))) break; } }
+    else await dropSamples(kind, tk);
+    if (tk !== token) return;
+    busy = false; if (kind !== 1 && kind !== 5) sample = null; buttons(); kick();
+  }
+  function buttons(){ ['s1', 's5', 's10', 's100'].forEach(id => $(id).disabled = busy); $('dist').disabled = $('n').disabled = false; }
+
+  function stats(){
+    const se = sigma / Math.sqrt(n);
+    let m = 0, sd = 0;
+    if (means.length){ m = means.reduce((a, b) => a + b, 0) / means.length; if (means.length > 1) sd = Math.sqrt(means.reduce((a, b) => a + (b - m) ** 2, 0) / (means.length - 1)); }
+    $('stats').innerHTML = `<span>Parent: <i>μ</i> = <b>${mu.toFixed(3)}</b>, <i>σ</i> = <b>${sigma.toFixed(3)}</b></span>` +
+      `<span>Samples of <i>n</i> = ${n}: <b>${nSamples.toLocaleString()}</b></span>` +
+      `<span>Mean of the sample means: <b>${means.length ? m.toFixed(3) : '–'}</b> (<i>μ</i> = ${mu.toFixed(3)})</span>` +
+      `<span>SD of the sample means: <b>${means.length > 1 ? sd.toFixed(3) : '–'}</b> (<i>σ</i>/√<i>n</i> = ${se.toFixed(3)})</span>`;
+  }
+
+  $('s1').onclick = () => run(1);
+  $('s5').onclick = () => run(5);
+  $('s10').onclick = () => run(10);
+  $('s100').onclick = () => run(100);
+  $('reset').onclick = () => { reset(); kick(); };
+  $('dist').onchange = $('n').onchange = () => { reset(); kick(); };
+  $('norm').onchange = () => kick();
+  let rw = null;
+  window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { const w = Math.round(cv.parentElement.clientWidth); if (w !== W){ layout(); scale(); paint(); } }, 120); });
+  if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({nSamples, parent: parent.slice(), means: means.length, busy, bins: [...meanBins.values()].reduce((a, b) => a + b, 0)});
+  layout(); reset();
+  document.fonts && document.fonts.ready.then(() => paint());
+})();
+</script>
+</body></html>
