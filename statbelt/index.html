@@ -149,6 +149,7 @@ table.ct{width:100%;margin-top:8px}
 .nc{fill:none;stroke:var(--ink);stroke-width:2}.ns{fill:var(--acc);fill-opacity:.55;stroke:none}.nz{stroke:#b03a2e;stroke-width:2;fill:none}.nzt{fill:#b03a2e;font-size:15px;font-weight:700}.sha{fill:var(--ink);font-size:15px;font-weight:600;font-family:inherit}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .nz{stroke:#ff8f84}:root:not([data-theme="light"]) .nzt{fill:#ff8f84}}:root[data-theme="dark"] .nz{stroke:#ff8f84}:root[data-theme="dark"] .nzt{fill:#ff8f84}
 .fcap{margin-top:4px}
+table.ct.grpt td:first-child,table.ct.grpt th:first-child{text-align:left!important}
 .pvcap{text-align:center;margin:4px 0 2px}.rrchk{text-align:center}.rrchk label{justify-content:center}
 .rrh{stroke:#0f766e;stroke-width:2.2}.rrf{fill:#0f766e;fill-opacity:.16;stroke:none}.rrb{stroke:#0f766e;stroke-width:5}.rrl{stroke:#0f766e;stroke-width:2;stroke-dasharray:6 4;fill:none}.rrt{fill:#0f766e;font-size:13px;font-weight:700}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .rrh,:root:not([data-theme="light"]) .rrb,:root:not([data-theme="light"]) .rrl{stroke:#5eead4}:root:not([data-theme="light"]) .rrt,:root:not([data-theme="light"]) .rrf{fill:#5eead4}}:root[data-theme="dark"] .rrh,:root[data-theme="dark"] .rrb,:root[data-theme="dark"] .rrl{stroke:#5eead4}:root[data-theme="dark"] .rrt,:root[data-theme="dark"] .rrf{fill:#5eead4}
@@ -2947,10 +2948,68 @@ function discCustomCalc(pairs,mode,a,b,d){
   /* ---------- tests: one proportion ---------- */
   const zq=q=>solveMono(normCDF,q,true,-1,1);
   const lvl=str=>{let v=parseVal(str);if(v>1)v/=100;return v;};
-  const srcBlock=(k,lab,dx,dn,sub)=>{sub=sub||'';return `<fieldset class="srcset"><legend>${lab||'Where is the data?'}</legend>`
+  /* ---------- grouped data for confidence intervals: one row of the spreadsheet per category ---------- */
+  const GRPCOLS={prop:[['c','Category column'],['x','Successes column'],['n','Trials column']],mean:[['c','Category column'],['m','Mean column'],['s','Standard deviation column'],['n','Sample size column']],sd:[['c','Category column'],['s','Standard deviation column'],['n','Sample size column']]};
+  const GRPLAB={prop:'Grouped data from the main spreadsheet: one row per category, with columns for the category, the number of successes and the number of trials',mean:'Grouped data from the main spreadsheet: one row per category, with columns for the category, the mean, the standard deviation and the sample size',sd:'Grouped data from the main spreadsheet: one row per category, with columns for the category, the standard deviation and the sample size'};
+  const grpRadio=(k,kind)=>`<label><input type="radio" name="${k}-src" value="grp">${GRPLAB[kind]}</label>`;
+  const grpDiv=(k,kind)=>`<div id="${k}-grp" hidden>${GRPCOLS[kind].map(([c,l])=>`<div class="cl"><label for="${k}-g${c}">${l}</label><select id="${k}-g${c}"></select></div>`).join('')}<p class="small" id="${k}-ginfo"></p></div>`;
+  function grpSync(k,kind){
+    if(!$(k+'-gc'))return;
+    const has=[];for(let c=0;c<COLS;c++)if(data.some(r=>String(r[c]).trim()!==''))has.push(c);
+    GRPCOLS[kind].forEach(([c],i)=>{const sel=$(k+'-g'+c),old=sel.value;sel.innerHTML=has.map(j=>`<option value="${j}">${E(names[j])}</option>`).join('');if(old!==''&&has.map(String).includes(old))sel.value=old;else if(has[i]!=null)sel.value=String(has[i]);});
+  }
+  function grpRead(k,kind){
+    const ids=GRPCOLS[kind].map(([c])=>+$(k+'-g'+c).value);
+    if(ids.some(v=>!isFinite(v)))return {err:'Enter grouped data in the spreadsheet: one row per category.'};
+    if(new Set(ids).size<ids.length)return {err:'Choose a different column for each box.'};
+    const num=v=>{const t=String(v).trim();return t===''?NaN:Number(t.replace(/,/g,''));},groups=[];let skipped=0;
+    for(const r of data){
+      const cat=String(r[ids[0]]).trim(),vals=ids.slice(1).map(c=>num(r[c]));
+      if(cat===''&&vals.every(v=>isNaN(v)))continue;
+      if(vals.some(v=>!isFinite(v))){skipped++;continue;}
+      const nm=cat||'Row '+(data.indexOf(r)+1);
+      if(kind==='prop'){const [x,n]=vals;if(!(Number.isInteger(n)&&n>=1&&Number.isInteger(x)&&x>=0&&x<=n))return {err:`${nm}: successes must be a whole number from 0 to the number of trials, and trials must be a whole number of at least 1.`};groups.push({cat:nm,x,n});}
+      else if(kind==='mean'){const [m,sd,n]=vals;if(!(sd>=0))return {err:`${nm}: the standard deviation must be 0 or more.`};if(!(Number.isInteger(n)&&n>=2))return {err:`${nm}: the sample size must be a whole number of at least 2.`};groups.push({cat:nm,mean:m,sd,n});}
+      else{const [sd,n]=vals;if(!(sd>=0))return {err:`${nm}: the standard deviation must be 0 or more.`};if(!(Number.isInteger(n)&&n>=2))return {err:`${nm}: the sample size must be a whole number of at least 2.`};groups.push({cat:nm,sd,n});}
+    }
+    if(!groups.length)return {err:'No complete rows were found. Each row needs a category and a number in each of the other chosen columns.'};
+    if(groups.length>20)return {err:'Use 20 categories or fewer.'};
+    $(k+'-ginfo').textContent=`${groups.length} ${groups.length===1?'category':'categories'}`+(skipped?`; ${skipped} ${skipped===1?'row was':'rows were'} skipped because a number was missing.`:'.');
+    return {groups};
+  }
+  /* run the one-sample runner once per category and combine the answers */
+  function grpRun(groups,one){
+    const out=[];
+    for(const g of groups){const r=one(g);if(r.err)return {err:`${g.cat}: ${r.err}`};out.push([g,r]);}
+    const labs=out[0][1].rows.map(x=>x[0]),cauts=[],warns=[];
+    const interps=out.map(([g,r])=>{const c=ciSplit(r.note);if(c.caut&&!cauts.includes(c.caut))cauts.push(c.caut);if(r.warn)warns.push(g.cat+': '+r.warn);return g.cat+': '+c.interp;});
+    return {grouped:true,head:['Category'].concat(labs),rows:out.map(([g,r])=>[g.cat].concat(r.rows.map(x=>x[1]))),plots:out.map(([g,r])=>Object.assign({cat:g.cat},r.plot)),interps,caut:cauts.join(' '),warn:warns.join(' '),note:interps.join(' ')+(cauts.length?' '+cauts.join(' '):'')};
+  }
+  const grpTable=(title,r)=>`<div class="hscroll"><table class="ct grpt"><caption style="text-align:left;font-weight:600;padding:6px 0 0">${E(title)}</caption><thead><tr>${r.head.map(h=>`<th>${E(h)}</th>`).join('')}</tr></thead><tbody>${r.rows.map(row=>`<tr>${row.map((v,i)=>`<td${i===0?' style="text-align:left;font-weight:600"':''}>${E(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`+(r.warn?`<p class="cerr" role="alert">${E(r.warn)}</p>`:'');
+  /* stacked confidence interval plot: one interval per category on a shared axis */
+  function ciStackSvg(P,d){
+    const L=150,R=GW-24,RH=64,top=30,n=P.length,ya=top+n*RH+6,H=ya+52;
+    let a=Math.min(...P.map(p=>p.lo)),b=Math.max(...P.map(p=>p.hi));const w=(b-a)||Math.abs(a)||1;a-=0.08*w;b+=0.08*w;
+    const sx=x=>L+(x-a)*(R-L)/(b-a),f=x=>fmtX(x,d),X=v=>sx(v).toFixed(1);
+    let o=tx(L+(R-L)/2,18,`${P[0].sym} and the interval for each category`,'middle','lbl b');
+    ticks(a,b,6).forEach(t=>{o+=`<line x1="${X(t)}" x2="${X(t)}" y1="${top-4}" y2="${ya}" stroke="#d3c9e6" stroke-width="1"/><line class="ax" x1="${X(t)}" x2="${X(t)}" y1="${ya}" y2="${ya+5}"/>`+tx(sx(t),ya+20,fmtX(t,Math.min(d,+(String(t).split('.')[1]||'').length)||0));});
+    o+=`<line class="ax" x1="${L}" x2="${R}" y1="${ya}" y2="${ya}"/>`;
+    P.forEach((p,i)=>{
+      const y=top+i*RH+RH/2,c=p.cat.length>20?p.cat.slice(0,19)+'…':p.cat;
+      o+=tx(L-12,y+5,E(c),'end','lbl b');
+      o+=`<rect class="bar" x="${X(p.lo)}" y="${y-5}" width="${(sx(p.hi)-sx(p.lo)).toFixed(1)}" height="10"/>`;
+      [p.lo,p.hi].forEach(x=>{o+=`<line class="ax" x1="${X(x)}" x2="${X(x)}" y1="${y-11}" y2="${y+11}"/>`;});
+      o+=`<circle cx="${X(p.val)}" cy="${y}" r="6" fill="#241a3a" stroke="#ffffff" stroke-width="2"/>`;
+      o+=tx(sx(p.val),y-14,f(p.val),'middle','lbl');
+      o+=tx(sx(p.lo)-4,y+24,f(p.lo),'end','lbl')+tx(sx(p.hi)+4,y+24,f(p.hi),'start','lbl');
+    });
+    o+=tx(L+(R-L)/2,H-8,'Dot: sample statistic. Bar: confidence interval.','middle','lbl');
+    return {svg:`<svg class="gsvg" viewBox="0 0 ${GW} ${H}" role="img" aria-label="Stacked confidence intervals">${o}</svg>`,h:H};
+  }
+  const srcBlock=(k,lab,dx,dn,sub,grp)=>{sub=sub||'';return `<fieldset class="srcset"><legend>${lab||'Where is the data?'}</legend>`
     +`<label><input type="radio" name="${k}-src" value="sum" checked>Summarized data: type the number of successes and the number of trials</label>`
-    +`<label><input type="radio" name="${k}-src" value="col">Column data from the main spreadsheet</label></fieldset>`
-    +`<div id="${k}-sum">${fld(k+'-x','Number of successes x'+sub,`step="1" min="0" value="${dx||56}"`)}${fld(k+'-n','Number of trials n'+sub,`step="1" min="1" value="${dn||100}"`)}</div>`
+    +`<label><input type="radio" name="${k}-src" value="col">Column data from the main spreadsheet</label>${grp?grpRadio(k,'prop'):''}</fieldset>`
+    +(grp?grpDiv(k,'prop'):'')+`<div id="${k}-sum">${fld(k+'-x','Number of successes x'+sub,`step="1" min="0" value="${dx||56}"`)}${fld(k+'-n','Number of trials n'+sub,`step="1" min="1" value="${dn||100}"`)}</div>`
     +`<div id="${k}-col" hidden><div class="cl"><label for="${k}-c">Column</label><select id="${k}-c"></select></div>`
     +`<div class="cl"><label for="${k}-v">Count as a success</label><select id="${k}-v"></select></div><p class="small" id="${k}-cinfo"></p></div>`;};
   function fillVals(k,keep){
@@ -2966,11 +3025,12 @@ function discCustomCalc(pairs,mode,a,b,d){
     const list=has;
     sel.innerHTML=list.map(c=>`<option value="${c}">${E(names[c])}</option>`).join('');
     if(old&&list.map(String).includes(old))sel.value=old;
-    fillVals(k,keep);
+    fillVals(k,keep);grpSync(k,'prop');
   }
   function counts(k){
-    const col=document.querySelector(`input[name="${k}-src"]:checked`).value==='col';
-    $(k+'-sum').hidden=col;$(k+'-col').hidden=!col;
+    const mode=document.querySelector(`input[name="${k}-src"]:checked`).value,col=mode==='col';
+    $(k+'-sum').hidden=mode!=='sum';$(k+'-col').hidden=!col;if($(k+'-grp'))$(k+'-grp').hidden=mode!=='grp';
+    if(mode==='grp')return grpRead(k,'prop');
     if(!col){
       const x=nv(k+'-x'),n=nv(k+'-n');
       if(!(Number.isInteger(n)&&n>=1)) return {err:'Enter the number of trials n as a whole number of at least 1.'};
@@ -3081,15 +3141,18 @@ function discCustomCalc(pairs,mode,a,b,d){
     return P.mode==='sym'&&P.E!=null?`Sample statistic ${P.sym} = ${f(P.val)}. Margin of error E = ${f(P.E)}. The interval is from ${f(P.lo)} to ${f(P.hi)}.`+(Math.abs(P.rawLo-P.lo)>1e-12||Math.abs(P.rawHi-P.hi)>1e-12?` ${P.clip||''}`:''):`Sample proportion ${P.sym} = ${f(P.val)}. This interval is not centered at ${P.sym}, so its endpoints are not ${P.sym} ± E. It runs from ${f(P.lo)} to ${f(P.hi)}.`;
   }
   const ciSplit=note=>{note=note||'';const m=note.search(/ ?(With a small sample|These procedures assume|The pooled method assumes)/);return m<0?{interp:note,caut:''}:{interp:note.slice(0,m).trim(),caut:note.slice(m).trim()};};
-  const ciNoteTxt=(k,r)=>{if(!r||r.err)return '';const c=ciSplit(r.note);return [$(k+'-interp').checked?c.interp:'',c.caut].filter(Boolean).join(' ');};
+  const grpCap=r=>`Each bar is the ${r.head.find(h=>/onfidence level/.test(h))?r.rows[0][r.head.findIndex(h=>/onfidence level/.test(h))]+' ':''}confidence interval for one category. The dot is the sample statistic.`;
+  const ciNoteTxt=(k,r)=>{if(!r||r.err)return '';if(r.grouped)return [$(k+'-interp').checked?r.interps.join(' '):'',r.caut].filter(Boolean).join(' ');const c=ciSplit(r.note);return [$(k+'-interp').checked?c.interp:'',c.caut].filter(Boolean).join(' ');};
   function ciUI(k,title){
     const upd=(res,d)=>{const on=$(k+'-plot').checked,pf=$(k+'-pf'),bw=$(k+'-pwin');
-      {const c=ciSplit(res&&!res.err?res.note:''),ib=$(k+'-ibox');$(k+'-note').textContent=c.caut;ib.innerHTML=$(k+'-interp').checked&&c.interp?`<div class="tdec"><h4>Interpretation</h4><p>${E(c.interp)}</p></div>`:'';}
+      {const ok=res&&!res.err,c=ok&&res.grouped?{interp:'',caut:res.caut}:ciSplit(ok?res.note:''),ib=$(k+'-ibox'),show=$(k+'-interp').checked;$(k+'-note').textContent=c.caut;
+       ib.innerHTML=!show?'':ok&&res.grouped?`<div class="tdec"><h4>Interpretation</h4>${res.interps.map(t=>`<p>${E(t)}</p>`).join('')}</div>`:c.interp?`<div class="tdec"><h4>Interpretation</h4><p>${E(c.interp)}</p></div>`:'';}
+      if(on&&res&&!res.err&&res.grouped){const S=ciStackSvg(res.plots,d);pf.innerHTML=`<div>${S.svg}</div><p class="small" style="margin:2px 0 0">${E(grpCap(res))}</p>`;bw.hidden=false;return;}
       if(!on||!res||res.err||!res.plot){pf.innerHTML='';bw.hidden=true;return;}
       pf.innerHTML=`<div>${ciSvg(res.plot,d)}</div><p class="small" style="margin:2px 0 0">${E(ciCap(res.plot,d))}</p>`;bw.hidden=false;};
     $(k+'-pwin').onclick=async()=>{
-      const r=last[k],st=$(k+'-st');if(!r||r.err||!r.plot){st.textContent='Fix the entries above first.';return;}
-      const d=+$(k+'-dec').value,g={title:'Confidence interval plot: '+title,svg:ciSvg(r.plot,d),cap:ciCap(r.plot,d)},prev=GS;
+      const r=last[k],st=$(k+'-st');if(!r||r.err||!(r.plot||r.grouped)){st.textContent='Fix the entries above first.';return;}
+      const d=+$(k+'-dec').value,S=r.grouped?ciStackSvg(r.plots,d):null,g=r.grouped?{title:'Confidence interval plot: '+title,svg:S.svg,gh:S.h,cap:grpCap(r)}:{title:'Confidence interval plot: '+title,svg:ciSvg(r.plot,d),cap:ciCap(r.plot,d)},prev=GS;
       GS=SCHEMES.purple;
       try{const cv=await pngCanvas(g);GS=prev;makePop(g,cv);st.textContent='Opened in a new window. Use Copy image or Save PNG there.';}
       catch(e){GS=prev;st.textContent='The plot could not be drawn. Please try again.';}
@@ -3099,15 +3162,15 @@ function discCustomCalc(pairs,mode,a,b,d){
   const withPlot=(html,k)=>html.replace(`<div id="${k}-out" aria-live="polite"></div>`,`<div id="${k}-out" aria-live="polite"></div><div class="checks" style="margin-top:6px"><label><input type="checkbox" id="${k}-plot">Show confidence interval plot</label></div><div class="checks"><label><input type="checkbox" id="${k}-interp">Show interpretation</label></div><div id="${k}-pf"></div><div class="row" style="margin-top:6px"><button id="${k}-pwin" hidden>Open plot in a new window</button></div><div id="${k}-ibox" aria-live="polite"></div>`);
   function buildProp(k,sec,body,runner,title,o){
     o=o||{};const srcs=o.srcs||[k];
-    const el=addSec(sec,srcs.map((s,i)=>srcBlock(s,o.labels&&o.labels[i],o.dx&&o.dx[i],o.dn&&o.dn[i],o.subs&&o.subs[i])).join('')+body
+    const el=addSec(sec,srcs.map((s,i)=>srcBlock(s,o.labels&&o.labels[i],o.dx&&o.dx[i],o.dn&&o.dn[i],o.subs&&o.subs[i],o.grp)).join('')+body
       +(o.test?testTail(k):(o.horiz?withPlot(tail(k),k):tail(k))));
     if(o.test)twoCol(el);
     const upd=(o.horiz&&!o.test)?ciUI(k,title):null;
-    const figs={},H=o.horiz||o.test,tbl=r=>H?{head:r.rows.map(x=>x[0]),rows:[r.rows.map(x=>x[1])],wrap:true}:{head:[title,'Value'],rows:r.rows};
+    const figs={},H=o.horiz||o.test,tbl=r=>r.grouped?{head:r.head,rows:r.rows,wrap:true}:H?{head:r.rows.map(x=>x[0]),rows:[r.rows.map(x=>x[1])],wrap:true}:{head:[title,'Value'],rows:r.rows};
     const decLines=r=>r.decision?['Decision: '+r.decision.title,'Reasoning: '+r.decision.reason,'Interpretation: '+r.decision.interp]:[];
     const run=()=>{
       const d=+$(k+'-dec').value,cn=srcs.map(counts),bad=cn.find(c=>c.err);
-      const res=bad?bad:runner(cn,d);
+      const res=bad?bad:cn[0].groups?grpRun(cn[0].groups,g=>runner([g],d)):runner(cn,d);
       last[k]=res;
       if(o.test){
         const sm=$(k+'-tsum'),fg=$(k+'-fig'),db=$(k+'-decbox');
@@ -3120,6 +3183,7 @@ function discCustomCalc(pairs,mode,a,b,d){
           $(k+'-out').innerHTML=`<div class="hscroll"><table class="ct"><caption style="text-align:left;font-weight:600;padding:6px 0 0">${E(title)}</caption><thead><tr>${t.head.map(h=>`<th>${E(h)}</th>`).join('')}</tr></thead><tbody><tr>${t.rows[0].map(v=>`<td>${E(v)}</td>`).join('')}</tr></tbody></table></div>`+(res.warn?`<p class="cerr" role="alert">${E(res.warn)}</p>`:'');
           db.innerHTML=$(k+'-show').checked&&res.decision?`<div class="tdec"><h4>Decision</h4><p class="sym">${E(res.decision.title)}</p><p><b>Reasoning:</b> ${E(res.decision.reason)}</p><p><b>Interpretation:</b> ${E(res.decision.interp)}</p></div>`:'';
         }
+      }else if(res.grouped){$(k+'-out').innerHTML=grpTable(title,res);
       }else if(H&&!res.err){
         const t=tbl(res);
         $(k+'-out').innerHTML=`<div class="hscroll"><table class="ct"><caption style="text-align:left;font-weight:600;padding:6px 0 0">${E(title)}</caption><thead><tr>${t.head.map(h=>`<th>${E(h)}</th>`).join('')}</tr></thead><tbody><tr>${t.rows[0].map(v=>`<td>${E(v)}</td>`).join('')}</tr></tbody></table></div>`+(res.warn?`<p class="cerr" role="alert">${E(res.warn)}</p>`:'');
@@ -3129,6 +3193,7 @@ function discCustomCalc(pairs,mode,a,b,d){
     };
     el.addEventListener('input',run);
     el.addEventListener('change',e=>{srcs.forEach(s=>{if(e.target.id===s+'-c')fillVals(s,false);});run();});
+    if(o.grp)srcs.forEach(s=>el.querySelectorAll(`input[name="${s}-src"]`).forEach(r=>r.addEventListener('change',()=>syncCols(s,true))));
     srcs.forEach(s=>$(s+'-v').addEventListener('mousedown',()=>fillVals(s,true)));
     document.querySelectorAll(`[data-sec="${sec}"]`).forEach(b=>b.addEventListener('click',()=>{srcs.forEach(s=>syncCols(s,true));run();}));
     (window.colHooks=window.colHooks||[]).push(()=>srcs.forEach(s=>syncCols(s,true)));
@@ -3186,7 +3251,7 @@ function discCustomCalc(pairs,mode,a,b,d){
       if(se!=null) rows.push(['Standard error',fmtX(se,Math.max(d,4))],['Margin of error E',fmtX(moe,d)]);
       rows.push(['Lower limit',fmtP(L,d)],['Upper limit',fmtP(U,d)]);
       return {rows,warn,plot:{sym:psy,val:pc,E:se!=null?moe:null,lo:L,hi:U,rawLo:lo,rawHi:hi,mode:m==='wilson'?'asym':'sym',clip:'Because a proportion cannot be below 0 or above 1, the interval is cut off at 0 or 1.'},note:`We are ${cfx(+(cl*100).toPrecision(10))}% confident that the true population proportion is between ${fmtP(L,d)} and ${fmtP(U,d)}.`};
-    },'Confidence Interval for a Proportion',{horiz:true});
+    },'Confidence Interval for a Proportion',{horiz:true,grp:true});
 
   /* two-sample test */
   buildProp('tw','t-prop2',
@@ -3296,18 +3361,20 @@ function discCustomCalc(pairs,mode,a,b,d){
   const msrcHtml=(sp)=>{const k=sp.k,pair=sp.kind==='pair',df=sp.defs,sb=sp.sub||'';
     return `<fieldset class="srcset"><legend>${sp.label}</legend>`
       +`<label><input type="radio" name="${k}-src" value="sum" checked>${pair?'Summarized data: type the mean and standard deviation of the differences':sp.nomean?'Summarized data: type the standard deviation and sample size':'Summarized data: type the mean, standard deviation and sample size'}</label>`
-      +`<label><input type="radio" name="${k}-src" value="col">${pair?'Two columns from the main spreadsheet (paired row by row)':'Column data from the main spreadsheet'}</label></fieldset>`
+      +`<label><input type="radio" name="${k}-src" value="col">${pair?'Two columns from the main spreadsheet (paired row by row)':'Column data from the main spreadsheet'}</label>${sp.grp?grpRadio(k,sp.nomean?'sd':'mean'):''}</fieldset>`+(sp.grp?grpDiv(k,sp.nomean?'sd':'mean'):'')
       +`<div id="${k}-sum">${sp.nomean?'':fld(k+'-mean',pair?'Mean difference d̄':'Sample mean x̄'+sb,`step="any" value="${df[0]}"`)}${fld(k+'-sd',pair?'Standard deviation of differences s_d':'Sample standard deviation s'+sb,`step="any" min="0" value="${df[1]}"`)}${fld(k+'-n',pair?'Number of pairs n':'Sample size n'+sb,`step="1" min="2" value="${df[2]}"`)}</div>`
       +`<div id="${k}-col" hidden><div class="cl"><label for="${k}-c">${pair?'First column (x₁)':'Column'}</label><select id="${k}-c"></select></div>${pair?`<div class="cl"><label for="${k}-c2">Second column (x₂)</label><select id="${k}-c2"></select></div><p class="small" style="margin:0 0 4px">Each pair is one row. The difference is d = x₁ − x₂. Rows missing either value are skipped.</p>`:''}<p class="small" id="${k}-cinfo"></p></div>`;};
   function msync(sp){
     const has=[];for(let c=0;c<COLS;c++)if(data.some(r=>String(r[c]).trim()!==''))has.push(c);
     const fill=(id,pref)=>{const sel=$(id),old=sel.value;sel.innerHTML=has.map(c=>`<option value="${c}">${E(names[c])}</option>`).join('');if(old&&has.map(String).includes(old))sel.value=old;else if(pref!=null&&has[pref]!=null)sel.value=has[pref];};
+    if(sp.grp)grpSync(sp.k,sp.nomean?'sd':'mean');
     fill(sp.k+'-c',0);if(sp.kind==='pair'){fill(sp.k+'-c2',1);const c1=$(sp.k+'-c'),c2=$(sp.k+'-c2');if(c1.value===c2.value&&has.length>1){const o=has.find(x=>String(x)!==c1.value);c2.value=String(o);}}
   }
   const msd=a=>{const n=a.length,m=a.reduce((p,q)=>p+q,0)/n;return {n,mean:m,sd:Math.sqrt(a.reduce((p,q)=>p+(q-m)*(q-m),0)/(n-1))};};
   function mdata(sp){
-    const k=sp.k,pair=sp.kind==='pair',col=document.querySelector(`input[name="${k}-src"]:checked`).value==='col';
-    $(k+'-sum').hidden=col;$(k+'-col').hidden=!col;
+    const k=sp.k,pair=sp.kind==='pair',mode=document.querySelector(`input[name="${k}-src"]:checked`).value,col=mode==='col';
+    $(k+'-sum').hidden=mode!=='sum';$(k+'-col').hidden=!col;if($(k+'-grp'))$(k+'-grp').hidden=mode!=='grp';
+    if(mode==='grp')return grpRead(k,sp.nomean?'sd':'mean');
     if(!col){
       const vm=sp.varMode&&sp.varMode(),m=sp.nomean?0:nv(k+'-mean'),sd0=nv(k+'-sd'),n=nv(k+'-n'),sd=vm?Math.sqrt(sd0):sd0;
       if(!isFinite(m)) return {err:pair?'Enter the mean difference d̄.':'Enter the sample mean x̄.'};
@@ -3330,12 +3397,12 @@ function discCustomCalc(pairs,mode,a,b,d){
     const el=addSec(sec,(o.top||'')+srcs.map(msrcHtml).join('')+body+(o.test?testTail(k):withPlot(tail(k),k)));
     if(o.test)twoCol(el);
     const upd=o.test?null:ciUI(k,title);
-    const figs={},tbl=r=>({head:r.rows.map(x=>x[0]),rows:[r.rows.map(x=>x[1])],wrap:true});
+    const figs={},tbl=r=>r.grouped?{head:r.head,rows:r.rows,wrap:true}:({head:r.rows.map(x=>x[0]),rows:[r.rows.map(x=>x[1])],wrap:true});
     const decLines=r=>r.decision?['Decision: '+r.decision.title,'Reasoning: '+r.decision.reason,'Interpretation: '+r.decision.interp]:[];
     const hTable=(t,r)=>`<div class="hscroll"><table class="ct"><caption style="text-align:left;font-weight:600;padding:6px 0 0">${E(title)}</caption><thead><tr>${t.head.map(h=>`<th>${E(h)}</th>`).join('')}</tr></thead><tbody><tr>${t.rows[0].map(v=>`<td>${E(v)}</td>`).join('')}</tr></tbody></table></div>`+(r.warn?`<p class="cerr" role="alert">${E(r.warn)}</p>`:'');
     const run=()=>{
       if(o.pre)o.pre();
-      const d=+$(k+'-dec').value,ds=srcs.map(mdata),bad=ds.find(c=>c.err),res=bad?bad:runner(ds,d);
+      const d=+$(k+'-dec').value,ds=srcs.map(mdata),bad=ds.find(c=>c.err),res=bad?bad:ds[0].groups?grpRun(ds[0].groups,g=>runner([g],d)):runner(ds,d);
       last[k]=res;
       if(o.test){
         const sm=$(k+'-tsum'),fg=$(k+'-fig'),db=$(k+'-decbox');
@@ -3348,12 +3415,14 @@ function discCustomCalc(pairs,mode,a,b,d){
           $(k+'-gctl').hidden=false;$(k+'-out').innerHTML=hTable(t,res);
           db.innerHTML=$(k+'-show').checked&&res.decision?`<div class="tdec"><h4>Decision</h4><p class="sym">${E(res.decision.title)}</p><p><b>Reasoning:</b> ${E(res.decision.reason)}</p><p><b>Interpretation:</b> ${E(res.decision.interp)}</p></div>`:'';
         }
-      }else if(!res.err){$(k+'-out').innerHTML=hTable(tbl(res),res);}
+      }else if(res.grouped){$(k+'-out').innerHTML=grpTable(title,res);}
+      else if(!res.err){$(k+'-out').innerHTML=hTable(tbl(res),res);}
       else render($(k+'-out'),res,title);
       $(k+'-note').textContent=res.err?'':(res.note||'');
       if(upd)upd(res,d);
     };
     el.addEventListener('input',run);el.addEventListener('change',run);
+    srcs.forEach(sp=>{if(sp.grp)el.querySelectorAll(`input[name="${sp.k}-src"]`).forEach(r=>r.addEventListener('change',()=>{msync(sp);run();}));});
     document.querySelectorAll(`[data-sec="${sec}"]`).forEach(b=>b.addEventListener('click',()=>{srcs.forEach(msync);run();}));
     (window.colHooks=window.colHooks||[]).push(()=>srcs.forEach(msync));
     if(o.test){
@@ -3420,7 +3489,7 @@ function discCustomCalc(pairs,mode,a,b,d){
   }
   const SP1={k:'mt1',kind:'one',label:'Where is the data?',defs:[50,10,30]};
   meanTest('mt1','t-mt1',SP1,'Mean Test Results',{sym:'μ',nm:'mean',zero:'50',zopt:true,xlab:'Sample mean x̄',slab:'Sample standard deviation s',pw:'population mean'});
-  meanCI('mc1','t-mc1',{k:'mc1',kind:'one',label:'Where is the data?',defs:[50,10,30]},'Confidence Interval for a Mean',{zopt:true,csym:'x̄',xlab:'Sample mean x̄',slab:'Sample standard deviation s',pw:'population mean'});
+  meanCI('mc1','t-mc1',{k:'mc1',kind:'one',label:'Where is the data?',defs:[50,10,30],grp:true},'Confidence Interval for a Mean',{zopt:true,csym:'x̄',xlab:'Sample mean x̄',slab:'Sample standard deviation s',pw:'population mean'});
   meanTest('mtp','t-mtp',{k:'mtp',kind:'pair',label:'Where is the data?',defs:[2.5,4,20]},'Paired Samples Test Results',{sym:'μd',nm:'mean difference',zero:'0',zopt:false,xlab:'Mean difference d̄',slab:'Standard deviation of differences s_d',pw:'population mean difference'});
   meanCI('mcp','t-mcp',{k:'mcp',kind:'pair',label:'Where is the data?',defs:[2.5,4,20]},'Confidence Interval for a Mean Difference (Paired)',{zopt:false,csym:'d̄',xlab:'Mean difference d̄',slab:'Standard deviation of differences s_d',pw:'population mean difference'});
 
@@ -3578,7 +3647,7 @@ function discCustomCalc(pairs,mode,a,b,d){
         lowLines:['√[(n − 1)s² / χ²ᵣ]',`√[(${df})(${f(v)}) / ${f(cR)}] = ${f(Math.sqrt(vlo))}`],upLines:['√[(n − 1)s² / χ²ₗ]',`√[(${df})(${f(v)}) / ${f(cL)}] = ${f(Math.sqrt(vhi))}`],
         cap:`Sample standard deviation s = ${f(r.sd)}. The ${lv} confidence interval for the population standard deviation σ is from ${f(Math.sqrt(vlo))} to ${f(Math.sqrt(vhi))}. The interval is not symmetric about s and has no margin of error. χ²ₗ is the left and χ²ᵣ the right chi-square value.`};
       return {rows,plot,note:`We are ${lv} confident that the population standard deviation σ is between ${f(Math.sqrt(vlo))} and ${f(Math.sqrt(vhi))}, which means the variance σ² is between ${f(vlo)} and ${f(vhi)}. ${NORMNOTE}`};
-    },'Confidence Interval for a Standard Deviation or Variance',{srcs:[SDSRC('vc1','Where is the data?',[0,10,25])]});
+    },'Confidence Interval for a Standard Deviation or Variance',{srcs:[Object.assign(SDSRC('vc1','Where is the data?',[0,10,25]),{grp:true})]});
 
   buildMean('vt2','t-vt2',
     `<div class="cl"><label for="vt2-side">Type of test</label><select id="vt2-side">${SIDEOPT('σ₁','σ₂')}</select></div>`
