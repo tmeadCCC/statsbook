@@ -150,7 +150,7 @@ table.ct{width:100%;margin-top:8px}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .nz{stroke:#ff8f84}:root:not([data-theme="light"]) .nzt{fill:#ff8f84}}:root[data-theme="dark"] .nz{stroke:#ff8f84}:root[data-theme="dark"] .nzt{fill:#ff8f84}
 .fcap{margin-top:4px}
 table.ct.grpt td:first-child,table.ct.grpt th:first-child{text-align:left!important}
-.mcpair{border-left:3px solid var(--line);padding-left:8px;margin:4px 0}.mcrm{padding:2px 9px;font-size:16px;line-height:1}
+.ckwrap{align-items:flex-start}.cklab{min-width:150px;color:var(--mute);font-size:13px;padding-top:4px}.ckrow{display:flex;flex-wrap:wrap;gap:4px 16px}.ckrow label{display:inline-flex;gap:6px;align-items:center;font-size:14px;cursor:pointer}.ckrow input{accent-color:var(--acc);width:16px;height:16px}
 .pvcap{text-align:center;margin:4px 0 2px}.rrchk{text-align:center}.rrchk label{justify-content:center}
 .rrh{stroke:#0f766e;stroke-width:2.2}.rrf{fill:#0f766e;fill-opacity:.16;stroke:none}.rrb{stroke:#0f766e;stroke-width:5}.rrl{stroke:#0f766e;stroke-width:2;stroke-dasharray:6 4;fill:none}.rrt{fill:#0f766e;font-size:13px;font-weight:700}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .rrh,:root:not([data-theme="light"]) .rrb,:root:not([data-theme="light"]) .rrl{stroke:#5eead4}:root:not([data-theme="light"]) .rrt,:root:not([data-theme="light"]) .rrf{fill:#5eead4}}:root[data-theme="dark"] .rrh,:root[data-theme="dark"] .rrb,:root[data-theme="dark"] .rrl{stroke:#5eead4}:root[data-theme="dark"] .rrt,:root[data-theme="dark"] .rrf{fill:#5eead4}
@@ -2949,37 +2949,37 @@ function discCustomCalc(pairs,mode,a,b,d){
   /* ---------- tests: one proportion ---------- */
   const zq=q=>solveMono(normCDF,q,true,-1,1);
   const lvl=str=>{let v=parseVal(str);if(v>1)v/=100;return v;};
-  /* ---------- several columns at once for confidence intervals ---------- */
-  const moreHtml=k=>`<div id="${k}-more"></div><div class="row" style="margin:2px 0 6px"><button type="button" id="${k}-add">+ Add another column</button></div>`;
+  /* ---------- several columns at once for confidence intervals: a row of column check boxes ---------- */
   const colsHas=()=>{const h=[];for(let c=0;c<COLS;c++)if(data.some(r=>String(r[c]).trim()!==''))h.push(c);return h;};
+  /* proportion: categorical columns (any non-number, or numbers with exactly two values such as 0/1); mean and sd: number columns */
+  const colKind=c=>{const v=data.map(r=>String(r[c]).trim()).filter(t=>t!=='');if(!v.length)return '';const allNum=v.every(t=>isNum(t));if(!allNum)return 'cat';return new Set(v).size<=2?'both':'num';};
+  const ckCols=prop=>colsHas().filter(c=>{const t=colKind(c);return prop?(t==='cat'||t==='both'):(t==='num'||t==='both')&&colVals(c).length>=2;});
+  const moreHtml=(k,prop)=>`<div class="cl ckwrap"><span class="cklab">Columns</span><div class="ckrow" id="${k}-cks" role="group" aria-label="Columns to include"></div></div>`+(prop?`<div id="${k}-succ"></div>`:'');
   function valsFill(c,sel,keep){
     const old=keep?sel.value:'',seen=[];(data||[]).forEach(r=>{const v=String(r[c]).trim();if(v!==''&&!seen.includes(v)&&seen.length<200)seen.push(v);});
     sel.innerHTML=seen.map(v=>`<option value="${E(v)}">${E(v)}</option>`).join('');
     if(old&&seen.includes(old))sel.value=old;else{const pref=seen.find(v=>['1','yes','y','true','success','s'].includes(v.toLowerCase()));if(pref)sel.value=pref;}
   }
-  let mcN=0;
-  function addPair(k,prop){
-    const box=$(k+'-more'),id=k+'-mc'+(++mcN),has=colsHas(),pick=prop?has:has.filter(c=>colVals(c).length>=2),used=[$(k+'-c').value,...[...box.querySelectorAll('.mc-c')].map(x=>x.value)];
-    const d=document.createElement('div');d.className='mcpair';
-    d.innerHTML=`<div class="cl"><label for="${id}">Another column</label><select class="mc-c" id="${id}"></select><button type="button" class="mcrm" aria-label="Remove this column" title="Remove this column">×</button></div>`+(prop?`<div class="cl"><label for="${id}v">Count as a success</label><select class="mc-v" id="${id}v"></select></div>`:'');
-    box.appendChild(d);
-    const sel=d.querySelector('.mc-c');sel.innerHTML=has.map(c=>`<option value="${c}">${E(names[c])}</option>`).join('');
-    const nx=pick.find(c=>!used.includes(String(c)));if(nx!=null)sel.value=String(nx);
-    if(prop)valsFill(+sel.value,d.querySelector('.mc-v'),false);
+  /* success-value pickers, one per checked column (proportion only) */
+  function succSync(k){
+    const box=$(k+'-succ');if(!box)return;const keep={};box.querySelectorAll('select').forEach(x=>keep[x.dataset.c]=x.value);
+    const on=[...$(k+'-cks').querySelectorAll('input:checked')].map(x=>+x.value);
+    box.innerHTML=on.map(c=>`<div class="cl"><label for="${k}-sv${c}">Count as a success in ${E(names[c])}</label><select id="${k}-sv${c}" data-c="${c}"></select></div>`).join('');
+    box.querySelectorAll('select').forEach(x=>{if(keep[x.dataset.c]!=null){const o=document.createElement('option');o.value=keep[x.dataset.c];x.appendChild(o);x.value=keep[x.dataset.c];}valsFill(+x.dataset.c,x,true);});
   }
   function moreSync(k,prop){
-    const box=$(k+'-more');if(!box)return;const has=colsHas();
-    box.querySelectorAll('.mcpair').forEach(d=>{const sel=d.querySelector('.mc-c'),old=sel.value;sel.innerHTML=has.map(c=>`<option value="${c}">${E(names[c])}</option>`).join('');if(has.map(String).includes(old))sel.value=old;if(prop)valsFill(+sel.value,d.querySelector('.mc-v'),true);});
+    const box=$(k+'-cks');if(!box)return;
+    const was=new Set([...box.querySelectorAll('input:checked')].map(x=>x.value)),first=!box.dataset.init,list=ckCols(prop);
+    box.innerHTML=list.map(c=>`<label><input type="checkbox" value="${c}"${was.has(String(c))?' checked':''}>${E(names[c])}</label>`).join('')||`<span class="small">No ${prop?'categorical':'numerical'} columns with data yet.</span>`;
+    if((first||!box.querySelector('input:checked'))&&box.querySelector('input'))box.querySelector('input').checked=true;
+    box.dataset.init='1';if(prop)succSync(k);
   }
-  /* wire the add / remove buttons; run() redraws */
-  function moreWire(el,k,prop,run){
-    el.addEventListener('click',e=>{
-      if(e.target.id===k+'-add'){addPair(k,prop);run();}
-      else if(e.target.classList.contains('mcrm')&&e.target.closest('#'+k+'-more')){e.target.closest('.mcpair').remove();run();}
-    });
-    if(prop)el.addEventListener('change',e=>{if(e.target.classList.contains('mc-c')&&e.target.closest('#'+k+'-more'))valsFill(+e.target.value,e.target.closest('.mcpair').querySelector('.mc-v'),false);},true);
+  function moreWire(el,k,prop){
+    if(prop)el.addEventListener('change',e=>{if(e.target.closest('#'+k+'-cks'))succSync(k);},true);
   }
-  const morePairs=k=>{const box=$(k+'-more');return box?[...box.querySelectorAll('.mcpair')]:[];};
+  /* check exactly one column (used when a hypothesis test hands its data to the interval) */
+  window.ciPick=(k,c,v)=>{const box=$(k+'-cks');if(!box)return;box.querySelectorAll('input').forEach(x=>x.checked=x.value===String(c));succSync(k);if(v!=null&&$(k+'-sv'+c))$(k+'-sv'+c).value=v;};
+  const ckOn=k=>{const box=$(k+'-cks');return box?[...box.querySelectorAll('input:checked')].map(x=>+x.value):null;};
   /* give each group a distinct label: the column name, plus the success value when a column is used twice */
   const labelGroups=G=>{G.forEach(g=>{g.cat=g.base;});G.forEach(g=>{if(G.filter(h=>h.base===g.base).length>1)g.cat=g.base+(g.v!=null?' ('+g.v+')':' '+(G.indexOf(g)+1));});return G;};
   /* ---------- grouped data for confidence intervals: one row of the spreadsheet per category ---------- */
@@ -3044,8 +3044,8 @@ function discCustomCalc(pairs,mode,a,b,d){
     +`<label><input type="radio" name="${k}-src" value="sum" checked>Summarized data: type the number of successes and the number of trials</label>`
     +`<label><input type="radio" name="${k}-src" value="col">Column data from the main spreadsheet</label>${grp?grpRadio(k,'prop'):''}</fieldset>`
     +(grp?grpDiv(k,'prop'):'')+`<div id="${k}-sum">${fld(k+'-x','Number of successes x'+sub,`step="1" min="0" value="${dx||56}"`)}${fld(k+'-n','Number of trials n'+sub,`step="1" min="1" value="${dn||100}"`)}</div>`
-    +`<div id="${k}-col" hidden><div class="cl"><label for="${k}-c">Column</label><select id="${k}-c"></select></div>`
-    +`<div class="cl"><label for="${k}-v">Count as a success</label><select id="${k}-v"></select></div>${grp?moreHtml(k):''}<p class="small" id="${k}-cinfo"></p></div>`;};
+    +`<div id="${k}-col" hidden><div${grp?' hidden':''}><div class="cl"><label for="${k}-c">Column</label><select id="${k}-c"></select></div>`
+    +`<div class="cl"><label for="${k}-v">Count as a success</label><select id="${k}-v"></select></div></div>${grp?moreHtml(k,true):''}<p class="small" id="${k}-cinfo"></p></div>`;};
   function fillVals(k,keep){
     const c=+$(k+'-c').value,sel=$(k+'-v'),old=keep?sel.value:'';
     const seen=[];(data||[]).forEach(r=>{const v=String(r[c]).trim();if(v!==''&&!seen.includes(v)&&seen.length<200)seen.push(v);});
@@ -3072,10 +3072,12 @@ function discCustomCalc(pairs,mode,a,b,d){
       return {x,n};
     }
     const c=+$(k+'-c').value,sv=$(k+'-v').value;
-    if(morePairs(k).length){
-      const G=[[c,sv]].concat(morePairs(k).map(d=>[+d.querySelector('.mc-c').value,d.querySelector('.mc-v').value])).map(([cc,v])=>{const vs=data.map(r=>String(r[cc]).trim()).filter(t=>t!=='');return {base:names[cc],v,x:vs.filter(t=>t.toLowerCase()===String(v).toLowerCase()).length,n:vs.length};});
-      const bad=G.find(g=>!g.n);if(bad)return {err:`The column ${bad.base} has no data. Enter data in the spreadsheet or choose another column.`};
-      labelGroups(G);$(k+'-cinfo').textContent=G.map(g=>`${g.cat}: ${g.x} of ${g.n} counted as a success ("${g.v}").`).join(' ');
+    const on=ckOn(k);
+    if(on){
+      if(!on.length)return {err:'Check at least one column.'};
+      const G=on.map(cc=>{const v=$(k+'-sv'+cc)?$(k+'-sv'+cc).value:'',vs=data.map(r=>String(r[cc]).trim()).filter(t=>t!=='');return {base:names[cc],v,x:vs.filter(t=>t.toLowerCase()===String(v).toLowerCase()).length,n:vs.length};});
+      labelGroups(G);$(k+'-cinfo').textContent=G.map(g=>`${on.length>1?g.cat+': ':''}${g.n} values in this column; ${g.x} counted as a success ("${g.v}").`).join(' ');
+      if(G.length===1)return {x:G[0].x,n:G[0].n};
       return {groups:G};
     }
     const vals=data.map(r=>String(r[c]).trim()).filter(v=>v!=='');
@@ -3233,7 +3235,7 @@ function discCustomCalc(pairs,mode,a,b,d){
     };
     el.addEventListener('input',run);
     el.addEventListener('change',e=>{srcs.forEach(s=>{if(e.target.id===s+'-c')fillVals(s,false);});run();});
-    if(o.grp)srcs.forEach(s=>moreWire(el,s,true,run));
+    if(o.grp)srcs.forEach(s=>moreWire(el,s,true));
     if(o.grp)srcs.forEach(s=>el.querySelectorAll(`input[name="${s}-src"]`).forEach(r=>r.addEventListener('change',()=>syncCols(s,true))));
     srcs.forEach(s=>$(s+'-v').addEventListener('mousedown',()=>fillVals(s,true)));
     document.querySelectorAll(`[data-sec="${sec}"]`).forEach(b=>b.addEventListener('click',()=>{srcs.forEach(s=>syncCols(s,true));run();}));
@@ -3404,7 +3406,7 @@ function discCustomCalc(pairs,mode,a,b,d){
       +`<label><input type="radio" name="${k}-src" value="sum" checked>${pair?'Summarized data: type the mean and standard deviation of the differences':sp.nomean?'Summarized data: type the standard deviation and sample size':'Summarized data: type the mean, standard deviation and sample size'}</label>`
       +`<label><input type="radio" name="${k}-src" value="col">${pair?'Two columns from the main spreadsheet (paired row by row)':'Column data from the main spreadsheet'}</label>${sp.grp?grpRadio(k,sp.nomean?'sd':'mean'):''}</fieldset>`+(sp.grp?grpDiv(k,sp.nomean?'sd':'mean'):'')
       +`<div id="${k}-sum">${sp.nomean?'':fld(k+'-mean',pair?'Mean difference d̄':'Sample mean x̄'+sb,`step="any" value="${df[0]}"`)}${fld(k+'-sd',pair?'Standard deviation of differences s_d':'Sample standard deviation s'+sb,`step="any" min="0" value="${df[1]}"`)}${fld(k+'-n',pair?'Number of pairs n':'Sample size n'+sb,`step="1" min="2" value="${df[2]}"`)}</div>`
-      +`<div id="${k}-col" hidden><div class="cl"><label for="${k}-c">${pair?'First column (x₁)':'Column'}</label><select id="${k}-c"></select></div>${pair?`<div class="cl"><label for="${k}-c2">Second column (x₂)</label><select id="${k}-c2"></select></div><p class="small" style="margin:0 0 4px">Each pair is one row. The difference is d = x₁ − x₂. Rows missing either value are skipped.</p>`:''}${sp.grp?moreHtml(k):''}<p class="small" id="${k}-cinfo"></p></div>`;};
+      +`<div id="${k}-col" hidden><div class="cl"${sp.grp?' hidden':''}><label for="${k}-c">${pair?'First column (x₁)':'Column'}</label><select id="${k}-c"></select></div>${pair?`<div class="cl"><label for="${k}-c2">Second column (x₂)</label><select id="${k}-c2"></select></div><p class="small" style="margin:0 0 4px">Each pair is one row. The difference is d = x₁ − x₂. Rows missing either value are skipped.</p>`:''}${sp.grp?moreHtml(k,false):''}<p class="small" id="${k}-cinfo"></p></div>`;};
   function msync(sp){
     const has=[];for(let c=0;c<COLS;c++)if(data.some(r=>String(r[c]).trim()!==''))has.push(c);
     const fill=(id,pref)=>{const sel=$(id),old=sel.value;sel.innerHTML=has.map(c=>`<option value="${c}">${E(names[c])}</option>`).join('');if(old&&has.map(String).includes(old))sel.value=old;else if(pref!=null&&has[pref]!=null)sel.value=has[pref];};
@@ -3428,11 +3430,14 @@ function discCustomCalc(pairs,mode,a,b,d){
       const c1=+$(k+'-c').value,c2=+$(k+'-c2').value;a=[];
       data.forEach(r=>{if(isNum(r[c1])&&isNum(r[c2]))a.push(Number(String(r[c1]).trim())-Number(String(r[c2]).trim()));});
       if(c1===c2) return {err:'Choose two different columns.'};
-    }else if(sp.grp&&morePairs(k).length){
-      const G=[+$(k+'-c').value].concat(morePairs(k).map(d=>+d.querySelector('.mc-c').value)).map(c=>{const v=colVals(c);return Object.assign({base:names[c],cnt:v.length},v.length>=2?msd(v):{});});
-      const bad=G.find(g=>g.cnt<2);if(bad)return {err:`The column ${bad.base} needs at least 2 numbers. Enter data in the spreadsheet or choose another column.`};
-      labelGroups(G);$(k+'-cinfo').textContent=G.map(g=>`${g.cat}: ${g.n} values, ${sp.nomean?'':`mean = ${cfx(+g.mean.toPrecision(8))}, `}standard deviation = ${cfx(+g.sd.toPrecision(8))}.`).join(' ');
-      return {groups:G};
+    }else if(sp.grp&&ckOn(k)){
+      const on=ckOn(k);if(!on.length)return {err:'Check at least one column.'};
+      if(on.length===1)a=colVals(on[0]);
+      else{
+        const G=on.map(c=>Object.assign({base:names[c]},msd(colVals(c))));
+        labelGroups(G);$(k+'-cinfo').textContent=G.map(g=>`${g.cat}: ${g.n} values, ${sp.nomean?'':`mean = ${cfx(+g.mean.toPrecision(8))}, `}standard deviation = ${cfx(+g.sd.toPrecision(8))}.`).join(' ');
+        return {groups:G};
+      }
     }else a=colVals(+$(k+'-c').value);
     if(a.length<2) return {err:pair?'The two columns need at least 2 rows where both have numbers.':'The selected column needs at least 2 numbers. Enter data in the spreadsheet or choose another column.'};
     const r=msd(a),vm2=sp.varMode&&sp.varMode();$(k+'-cinfo').textContent=`${r.n} ${pair?'pairs':'values'}: ${sp.nomean?'':`mean ${pair?'difference ':''}= ${cfx(+r.mean.toPrecision(8))}, `}${vm2?'variance = '+cfx(+(r.sd*r.sd).toPrecision(8)):'standard deviation = '+cfx(+r.sd.toPrecision(8))}.`;
@@ -3468,7 +3473,6 @@ function discCustomCalc(pairs,mode,a,b,d){
       if(upd)upd(res,d);
     };
     el.addEventListener('input',run);el.addEventListener('change',run);
-    srcs.forEach(sp=>{if(sp.grp)moreWire(el,sp.k,false,run);});
     srcs.forEach(sp=>{if(sp.grp)el.querySelectorAll(`input[name="${sp.k}-src"]`).forEach(r=>r.addEventListener('change',()=>{msync(sp);run();}));});
     document.querySelectorAll(`[data-sec="${sec}"]`).forEach(b=>b.addEventListener('click',()=>{srcs.forEach(msync);run();}));
     (window.colHooks=window.colHooks||[]).push(()=>srcs.forEach(msync));
@@ -4005,12 +4009,12 @@ function discCustomCalc(pairs,mode,a,b,d){
     const copyProp=(a,b)=>{
       const v=setSrc(a,b);
       if(v==='sum'){$(b+'-x').value=$(a+'-x').value;$(b+'-n').value=$(a+'-n').value;}
-      else{$(b+'-c').value=$(a+'-c').value;fire($(b+'-c'),'change');$(b+'-v').value=$(a+'-v').value;}
+      else{$(b+'-c').value=$(a+'-c').value;fire($(b+'-c'),'change');$(b+'-v').value=$(a+'-v').value;window.ciPick(b,$(a+'-c').value,$(a+'-v').value);}
     };
     const copyMean=(a,b,pair,nomean)=>{
       const v=setSrc(a,b);
       if(v==='sum'){(nomean?['sd','n']:['mean','sd','n']).forEach(f=>$(b+'-'+f).value=$(a+'-'+f).value);}
-      else{$(b+'-c').value=$(a+'-c').value;if(pair)$(b+'-c2').value=$(a+'-c2').value;}
+      else{$(b+'-c').value=$(a+'-c').value;if(pair)$(b+'-c2').value=$(a+'-c2').value;window.ciPick(b,$(a+'-c').value);}
     };
     const MAP=[
       {k:'tp',sec:'t-ci',to:'ci',a:'tp-a',run:()=>copyProp('tp','ci')},
