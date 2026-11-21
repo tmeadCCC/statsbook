@@ -130,19 +130,19 @@
 </g>
 <g clip-path="url(#clip_12)">
 <text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-544.25" x="167.5">t</tspan></text>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-544.25" x="172.05">&#x2227;</tspan></text>
-<text fill="#800000" xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-544.25" x="182">&#x00bf;</tspan></text>
-<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M190.5 557.85H195.95V558.25H190.5Z" fill-rule="evenodd"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-551.1" x="190.65">x</tspan></text>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-551.1" x="196.85">&#x2212;</tspan></text>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-551.1" x="207.35">&#x03bc;</tspan></text>
-<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M189.3 547.3H214.25V547.89999H189.3Z" fill-rule="evenodd"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-536" x="199.55">s</tspan></text>
-<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M194.25 532.2H209.3V532.8H194.25Z" fill-rule="evenodd"/>
-<text xml:space="preserve" transform="matrix(.90350797 0 -0 1.1067972 -129.04984 108.64998)" font-size="13.281566" font-family="OpenSymbol"><tspan y="-469.10133" x="215.93613">&#x221a;</tspan></text>
-<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M201.5 530.6H208.5V531H201.5Z" fill-rule="evenodd"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-519.85" x="202.5">n</tspan></text>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-544.25" x="215.15">=</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-544.25" x="172.05">=</tspan></text>
+<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M183.7 557.85H189.15V558.25H183.7Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-551.1" x="183.85">x</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-551.1" x="190.05">&#x2212;</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-551.1" x="200.55">&#x03bc;</tspan></text>
+<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M182.5 547.3H207.45V547.89999H182.5Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-536" x="192.75">s</tspan></text>
+<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M187.45 532.2H202.5V532.8H187.45Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(.90350797 0 -0 1.1067972 -129.04984 108.64998)" font-size="13.281566" font-family="OpenSymbol"><tspan y="-469.10133" x="208.4099">&#x221a;</tspan></text>
+<path transform="matrix(1,0,0,-1,-129.04984,108.64998)" d="M194.7 530.6H201.7V531H194.7Z" fill-rule="evenodd"/>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif" font-style="italic"><tspan y="-519.85" x="195.7">n</tspan></text>
+<text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-544.25" x="208.35">&#x2227;</tspan></text>
+<text fill="#800000" xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-544.25" x="218.3">&#x00bf;</tspan></text>
 <text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-551.1" x="226.25 232.25 238.25">339</tspan></text>
 <text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="OpenSymbol"><tspan y="-551.1" x="244.75">&#x2212;</tspan></text>
 <text xml:space="preserve" transform="matrix(1 0 -0 1 -129.04984 108.64998)" font-size="12" font-family="'Liberation Serif','Times New Roman',Tinos,Times,serif"><tspan y="-551.1" x="255 261 267">456</tspan></text>
