@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Correlation Whisperer Game – Introduction to Statistics with Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this game */
+html.embed .plot{scroll-margin-top:120px}
+#next{scroll-margin-bottom:16px}
+.plot svg{display:block;width:100%;max-width:640px;height:auto;margin:0 auto}
+.guess{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .8rem;margin:.5rem 0 .6rem}
+.guess label{font:700 1rem/1.3 var(--sans);color:var(--navy)}
+.guess input{font:600 1.1rem/1.2 var(--sans);width:6.5rem;padding:.45rem .55rem;border:1.5px solid var(--rule);border-radius:6px;font-variant-numeric:tabular-nums}
+.guess .hint{color:var(--muted);font-size:.9rem}
+.err{color:#8a2a24;font-size:.92rem;margin:-.2rem 0 .5rem;min-height:0}
+.fb{display:none;margin:0 0 .5rem;padding:.4rem .7rem;border-radius:8px;font-size:.95rem}
+.fb.ok{display:flex;gap:.8rem;align-items:center;background:#E6F2E8;border:1.5px solid #1E7B3A}
+.fb.no{display:block;background:#FBEAE8;border:1.5px solid #8a2a24}
+.fb .badge{flex:none;width:34px;height:34px;border-radius:50%;background:#1E7B3A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;line-height:1;box-shadow:0 0 0 4px #bfe0c6;animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+.fb .big{font:800 1.1rem/1.1 var(--sans);color:#1E7B3A;margin-right:.3rem}
+.fb.ok p{margin:0}
+.fb p{margin:.15rem 0}
+.fb .cheer{font-weight:700;color:#8a2a24;margin-top:.35rem}
+@keyframes pop{0%{transform:scale(.2) rotate(-40deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.fb .badge{animation:none}}
+.sim .sim-row{margin:0}
+.streak{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;margin:.5rem 0 0}
+.dots{display:flex;gap:5px}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--navy);background:#fff;transition:background .2s}
+.dots i.on{background:#E9A23B;border-color:#b87710}
+.streak .lab{color:var(--muted);font-size:.9rem}.streak b{font-size:1.1rem}
+/* the master overlay */
+.master{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(20,24,40,.55);padding:16px}
+.master.show{display:flex}
+.mcard{position:relative;background:#fff;border:3px solid var(--navy);border-radius:14px;max-width:440px;width:100%;padding:1.2rem;text-align:center;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+.mcard img{width:150px;height:150px;border-radius:12px;border:3px solid var(--navy);display:block;margin:0 auto .6rem;animation:bob 1.2s ease-in-out .5s 3}
+.bubble{position:relative;background:#FFF4C7;border:2px solid #2C4D94;border-radius:16px;padding:.7rem .9rem;font:700 1.15rem/1.35 var(--sans);color:#1d2a4d;margin:0 0 1rem}
+.bubble::before{content:"";position:absolute;left:50%;top:-12px;margin-left:-10px;border:10px solid transparent;border-top:0;border-bottom:12px solid #2C4D94}
+.mcard .btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.confetti{position:fixed;top:-20px;width:10px;height:15px;border-radius:2px;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--r))}}
+@keyframes popin{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+html.embed .master{position:absolute;align-items:flex-start;padding-top:40px}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.mcard,.mcard img{animation:none}}
+.dots i.fin{border-style:dashed}
+.dots i.fin.on{border-style:solid}
+.final{display:inline-block;background:#E6D5FF;border:1.5px solid #7030A0;color:#4b1f73;border-radius:999px;padding:.05rem .6rem;font-size:.85rem;font-weight:700;margin-right:.4rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Correlation Whisperer Game</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Game</p>
+  <h1>Correlation Whisperer Game</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-4/section-4-1.html">Section 4.1 Scatterplots and Correlation</a></p>
+</header>
+<p class="sim-intro">Look at the scatterplot and guess the correlation <i>r</i>, a number from −1 to 1. If your guess is within 0.1 of the actual correlation, you win the round. Win 5 rounds in a row to become a Correlation Whisperer.</p>
+
+<section class="sim" aria-label="Correlation Whisperer Game">
+  <div class="plot" id="plot"><svg id="g" role="img" aria-label="Scatterplot"></svg></div>
+  <form class="guess" id="form" autocomplete="off">
+    <label for="r">Your guess for <i>r</i>:</label>
+    <input id="r" type="text" inputmode="decimal" placeholder="e.g. 0.65" aria-describedby="hint">
+    <button class="btn" id="check" type="submit">Check</button>
+    <span class="hint" id="hint">A number from −1 to 1</span>
+  </form>
+  <p class="err" id="err" aria-live="polite"></p>
+  <div class="fb" id="fb" aria-live="polite"></div>
+  <div class="sim-row">
+    <button class="btn" id="next" hidden>Next</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="streak">
+    <div><span class="lab">Streak</span> <b id="streakn">0</b> <span class="lab">of 5</span></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div><span class="lab">Rounds won</span> <b id="score">0 of 0</b></div>
+    <div><span class="lab">Best streak</span> <b id="best">0</b></div>
+  </div>
+</section>
+
+<div class="master" id="master" role="dialog" aria-modal="true" aria-labelledby="mtext">
+  <div class="mcard">
+    <img src="data.jpg" alt="Data, Stat-Man's sidekick, smiling.">
+    <p class="bubble" id="mtext">Congratulations! You are a Correlation Whisperer!</p>
+    <div class="btns"><button class="btn" id="keep">Keep playing</button><button class="btn alt" id="again">Start over</button></div>
+  </div>
+</div>
+
+<aside class="sim-notice">
+  <p class="t">What you should notice</p>
+  <p>The faint lines mark the mean of <i>x</i> and the mean of <i>y</i>. When most points fall in the upper-right and lower-left regions, the correlation is positive; when most fall in the upper-left and lower-right, it is negative. The more tightly the points hug a straight line, the closer <i>r</i> is to 1 or −1. When the points are spread evenly over all four regions, <i>r</i> is close to 0.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const GOAL = 5, TOL = 0.1;
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--){ const j = SimKit.rint(0, i); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  function randn(){ let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  /* kinds of rounds: strong and weak, positive and negative, and near 0 */
+  const KINDS = {
+    strongPos: () => rnd(.82, .97), modPos: () => rnd(.45, .75), weakPos: () => rnd(.18, .38),
+    zero: () => rnd(-.08, .08),
+    weakNeg: () => -rnd(.18, .38), modNeg: () => -rnd(.45, .75), strongNeg: () => -rnd(.82, .97)
+  };
+  let bag = [], last = null, pts, r, xs, ys, step, streak = 0, best = 0, wins = 0, plays = 0, mastered = false;
+
+  function pickKind(){
+    for (let k = 0; k < 20; k++){
+      if (!bag.length) bag = shuffle(Object.keys(KINDS));
+      const c = bag.pop(); if (c !== last || k > 10){ last = c; return c; } bag.unshift(c);
+    }
+  }
+  function corr(p){
+    const n = p.length, mx = p.reduce((s, q) => s + q[0], 0) / n, my = p.reduce((s, q) => s + q[1], 0) / n;
+    let sxy = 0, sxx = 0, syy = 0; p.forEach(([x, y]) => { sxy += (x - mx) * (y - my); sxx += (x - mx) ** 2; syy += (y - my) ** 2; });
+    return {r: sxy / Math.sqrt(sxx * syy), mx, my};
+  }
+  function makeData(){
+    const target = KINDS[pickKind()](), n = SimKit.rint(25, 45);
+    // generate, then keep the sample whose correlation lands closest to the target
+    let bestP = null, bestD = 9;
+    for (let t = 0; t < 40; t++){
+      const p = Array.from({length: n}, () => { const x = randn(); return [x, target * x + Math.sqrt(1 - target * target) * randn()]; });
+      const d = Math.abs(corr(p).r - target); if (d < bestD){ bestD = d; bestP = p; } if (d < .02) break;
+    }
+    // put the data on everyday-looking scales
+    const ax = rnd(5, 60), sx = rnd(2, 12), ay = rnd(10, 200), sy = rnd(4, 40);
+    return bestP.map(([x, y]) => [Math.round((ax + sx * x) * 10) / 10, Math.round((ay + sy * y) * 10) / 10]);
+  }
+  function ticks(a, b, want){
+    const raw = (b - a) / want, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+    const step = (m < 1.5 ? 1 : m < 3 ? 2 : m < 7 ? 5 : 10) * p, out = [];
+    for (let t = Math.ceil(a / step) * step; t <= b + 1e-9; t += step) out.push(+t.toFixed(10));
+    return {out, step};
+  }
+  function draw(){
+    const narrow = $('plot').clientWidth < 520;
+    const W = narrow ? 400 : 640, H = narrow ? 330 : 380, L = narrow ? 44 : 52, R = 14, T = 12, B = 38, F = narrow ? 15 : 13;
+    const c = corr(pts);
+    const xs0 = pts.map(p => p[0]), ys0 = pts.map(p => p[1]);
+    let x0 = Math.min(...xs0), x1 = Math.max(...xs0), y0 = Math.min(...ys0), y1 = Math.max(...ys0);
+    const px = (x1 - x0) * .06, py = (y1 - y0) * .08; x0 -= px; x1 += px; y0 -= py; y1 += py;
+    const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), Y = v => H - B - (v - y0) / (y1 - y0) * (H - B - T);
+    let s = `<rect x="${L}" y="${T}" width="${W - L - R}" height="${H - B - T}" fill="#fff" stroke="#c9ced8"/>`;
+    const tx = ticks(x0, x1, narrow ? 5 : 7), ty = ticks(y0, y1, 6);
+    const dx = Math.max(0, -Math.floor(Math.log10(tx.step) + 1e-9)), dy = Math.max(0, -Math.floor(Math.log10(ty.step) + 1e-9));
+    tx.out.forEach(t => { const x = X(t); s += `<line x1="${x}" y1="${H - B}" x2="${x}" y2="${H - B + 5}" stroke="#333"/><text x="${x}" y="${H - B + 8 + F}" font-size="${F}" text-anchor="middle" fill="#1d2a4d" font-family="Source Sans 3, sans-serif">${t.toFixed(dx)}</text>`; });
+    ty.out.forEach(t => { const y = Y(t); s += `<line x1="${L - 5}" y1="${y}" x2="${L}" y2="${y}" stroke="#333"/><text x="${L - 8}" y="${y + F * .35}" font-size="${F}" text-anchor="end" fill="#1d2a4d" font-family="Source Sans 3, sans-serif">${t.toFixed(dy)}</text>`; });
+    // faint lines at the mean of x and the mean of y
+    s += `<line x1="${X(c.mx)}" y1="${T}" x2="${X(c.mx)}" y2="${H - B}" stroke="#7a8496" stroke-width="1.4" stroke-dasharray="5 4" opacity=".55"/>`;
+    s += `<line x1="${L}" y1="${Y(c.my)}" x2="${W - R}" y2="${Y(c.my)}" stroke="#7a8496" stroke-width="1.4" stroke-dasharray="5 4" opacity=".55"/>`;
+    s += `<text x="${X(c.mx) + 4}" y="${T + F}" font-size="${F - 1}" fill="#7a8496" font-family="Tinos, serif" font-style="italic">x̄</text>`;
+    s += `<text x="${W - R - 4}" y="${Y(c.my) - 5}" font-size="${F - 1}" fill="#7a8496" font-family="Tinos, serif" font-style="italic" text-anchor="end">ȳ</text>`;
+    pts.forEach(([x, y]) => { s += `<circle cx="${X(x)}" cy="${Y(y)}" r="${narrow ? 5 : 4.5}" fill="#2F6FD0" fill-opacity=".85" stroke="#1d4f9e" stroke-width="1"/>`; });
+    $('g').setAttribute('viewBox', `0 0 ${W} ${H}`); $('g').innerHTML = s;
+  }
+  function round(){
+    pts = makeData(); r = Math.round(corr(pts).r * 100) / 100; step = 1;
+    draw();
+    $('r').value = ''; $('r').disabled = false; $('check').disabled = false; $('err').textContent = '';
+    $('fb').className = 'fb'; $('fb').innerHTML = ''; $('next').hidden = true;
+  }
+  const fmt = v => (v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+  function parse(t){
+    t = t.trim().replace(/[−–—]/g, '-').replace(',', '.');
+    if (!/^[-+]?(\d+\.?\d*|\.\d+)$/.test(t)) return NaN;
+    return parseFloat(t);
+  }
+  function check(e){
+    e.preventDefault(); if (step !== 1) return;
+    const g = parse($('r').value);
+    if (!isFinite(g) || g < -1 || g > 1){ $('err').textContent = 'Please type a number from −1 to 1, like 0.6 or −0.25.'; $('r').focus(); return; }
+    $('err').textContent = ''; step = 2; plays++;
+    $('r').disabled = true; $('check').disabled = true;
+    const ok = Math.abs(g - r) <= TOL + 1e-9;
+    if (ok){ wins++; streak++; best = Math.max(best, streak);
+      $('fb').className = 'fb ok';
+      $('fb').innerHTML = `<span class="badge" aria-hidden="true">✓</span><span><p><span class="big">Yes,</span> the actual correlation is ${fmt(r)} and you are within 0.1! ${mastered ? `That makes ${streak} in a row.` : streak >= GOAL ? `That makes ${GOAL} in a row!` : `Your streak is ${streak} in a row. ${GOAL - streak} more to go!`}</p></span>`;
+    } else {
+      streak = 0;
+      const dir = g < r ? 'low' : 'high';
+      $('fb').className = 'fb no';
+      $('fb').innerHTML = `<p><b>Not quite.</b> The actual correlation is ${fmt(r)}. Your guess of ${fmt(g)} was a little too ${dir}${Math.sign(g) !== Math.sign(r) && Math.abs(r) > .1 ? `; look at which regions most of the points fall in to decide whether <i>r</i> is positive or negative` : ''}.</p><p>Your streak starts again from 0. <span class="cheer">Try it again, you've got this!</span></p>`;
+    }
+    $('next').hidden = false; status();
+    if (!mastered && streak >= GOAL){ mastered = true; setTimeout(celebrate, 700); }
+    else { $('next').focus({preventScroll: true}); setTimeout(() => $('next').scrollIntoView({block: 'nearest', behavior: SimKit.embed ? 'auto' : 'smooth'}), SimKit.embed ? 150 : 0); }
+  }
+  function top(){
+    if (SimKit.embed) setTimeout(() => $('plot').scrollIntoView({block: 'nearest'}), 150);
+    else { const b = $('plot').getBoundingClientRect(); if (b.top < 0) $('plot').scrollIntoView({block: 'start', behavior: 'smooth'}); }
+    $('r').focus({preventScroll: true});
+  }
+  function status(){
+    $('streakn').textContent = streak; $('best').textContent = best; $('score').textContent = `${wins} of ${plays}`;
+    $('dots').innerHTML = Array.from({length: GOAL}, (_, i) => `<i class="${i < Math.min(streak, GOAL) ? 'on' : ''}"></i>`).join('');
+  }
+  function celebrate(){
+    $('master').classList.add('show'); $('keep').focus({preventScroll: true});
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols = ['#E9A23B', '#C8312B', '#365F91', '#1E7B3A', '#7030A0', '#f2d14c', '#2F6FD0'];
+    for (let i = 0; i < 90; i++){
+      const c = document.createElement('i'); c.className = 'confetti';
+      const dur = 1.8 + Math.random() * 1.6;
+      c.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};--dx:${Math.random() * 160 - 80}px;--r:${Math.random() * 1080 - 540}deg;animation-duration:${dur}s;animation-delay:${Math.random() * .6}s`;
+      document.body.appendChild(c); setTimeout(() => c.remove(), (dur + 0.8) * 1000);
+    }
+  }
+  function startOver(){ streak = 0; best = 0; wins = 0; plays = 0; mastered = false; last = null; $('master').classList.remove('show'); status(); round(); }
+  $('form').onsubmit = check;
+  $('next').onclick = () => { round(); top(); };
+  $('reset').onclick = startOver;
+  $('again').onclick = startOver;
+  $('keep').onclick = () => { $('master').classList.remove('show'); round(); top(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('master').classList.contains('show')) $('keep').click(); });
+  let rw; window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(draw, 120); });
+  if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({r, n: pts.length, step});
+  status(); round();
+})();
+</script>
+</body></html>
