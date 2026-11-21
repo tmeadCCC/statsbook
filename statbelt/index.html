@@ -2608,7 +2608,7 @@ function discCustomCalc(pairs,mode,a,b,d){
     }
     const sec=addSec('c-'+key,hasFig
       ?'<div class="dsplit"><div class="dleft">'+(sp3?ctl2:ctl)
-        +(isN?`<div class="cl"><label for="norm-ax">x-axis labels</label><select id="norm-ax"><option value="num">Regular numbers</option><option value="sd">Mean ± standard deviations</option></select></div>`:'')
+        +(isN?`<div class="cl"><label for="norm-ax">x-axis labels</label><select id="norm-ax"><option value="num">Regular numbers</option><option value="sd" selected>Mean ± standard deviations</option></select></div>`:'')
         +decSel(id('dec'))+wordsBtn(id('words'))+(isN?`<div class="checks" style="margin-top:6px"><label><input type="checkbox" id="norm-z">Show z-score calculations</label></div>`:'')+`</div><div class="dright"><h4 style="margin:0 0 2px;font-size:14px">${isN?'Normal probability curve':isU?'Uniform distribution':isT?'t distribution curve':'Chi-square distribution curve'}</h4><div id="${id('fig')}"></div><div id="${id('cap')}" class="fcap"></div><div class="row" style="margin:6px 0"><button id="${id('fwin')}" hidden>Open graph in a new window</button></div><div id="${id('out')}" aria-live="polite"></div><p class="small" id="${id('note')}"></p><div class="row" style="margin-top:8px"><button id="${id('win')}">Open results in a new window</button></div><p class="small" id="${id('st')}" role="status"></p></div></div>`
       :ctl+tail(key));
     exprify([...D.params.map(q=>id(q.id)),id('x'),id('b'),id('p')]);
