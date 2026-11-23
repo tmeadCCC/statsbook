@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>9.1 Basics of Confidence Intervals</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;family=Source+Sans+3:wght@400;500;700&amp;display=swap">
+<style>
+/* Layout: a single reading column that reproduces the printed page — Times body, colored Definition/Example boxes, photos floated beside the text. Deliberately single (light) theme to match the book. */
+:root{
+  --paper:#ffffff; --ink:#111111; --muted:#5a5f6b; --rule:#d9dde5;
+  --navy:#365F91; --navy-tint:#DBE5F1; --purple:#7030A0; --purple-tint:#E3D8EF;
+  --olive:#4F6228; --olive-tint:#EAF1DD; --plate:#CCC0D9; --link:#0b4fd0;
+  --serif:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  --u:1em;
+}
+body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);margin:0}
+.wrap{max-width:52rem;margin:0 auto;padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.runhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.runhead .in{max-width:52rem;margin:0 auto;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding-block:.55rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font:500 .82rem/1.3 var(--sans)}
+.runhead a{color:var(--navy);text-decoration:none}
+.runhead a:hover{text-decoration:underline}
+.runhead .where{color:var(--muted);text-align:right;min-width:0;white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem .45rem;min-width:0}
+.crumbs .sep{color:var(--muted)}
+.crumbs a{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.runhead .where{display:none}}
+article{padding-top:1.5rem}
+article p{margin:0;min-height:0}
+article p.empty{height:.9em}
+.hl1{font-size:2em;font-weight:700;margin-block:.67em}.hl2{font-size:1.5em;font-weight:700;margin-block:.83em}
+.hl3{font-size:1.17em;font-weight:700;margin-block:1em}.hl4{font-size:1em;font-weight:700;margin-block:1.33em}
+article .hl1{font:700 1.4em/1.25 var(--serif);margin:.4em 0 .6em;text-wrap:balance}
+article .hl2{font:700 1.4em/1.25 var(--serif);margin:.6em 0 .3em;padding-left:1.8em;text-wrap:balance}
+.b{font-weight:700}.i{font-style:italic}.u{text-decoration:underline}.s{text-decoration:line-through}
+a{color:var(--link)}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hang{display:inline-block;text-indent:0}
+.tab{display:inline-block;width:2em}
+img{max-width:100%;height:auto;vertical-align:middle}
+/* Definition / Example / Objective boxes */
+.box{border:1.5px solid var(--bc);margin:.5em 0;display:flow-root}
+.box > *{padding-right:.45em}
+
+.box .box-head{font:400 1em/1.45 var(--serif);color:#fff;margin:0;padding-block:.1em}
+.box .box-head .b{font-weight:700}
+/* floats: photos with credit lines, icons */
+figure{margin:0}
+.float{margin:.3em 0 .6em}
+.tbox{margin:1em 0}
+.tbox-row{display:flex;flex-wrap:wrap;gap:.8em 1.2em;justify-content:center;align-items:center;margin:1em 0}
+.tbox-row .tbox{margin:0;flex:0 1 340px;min-width:0}
+.tbox-row .tbox p.empty{display:none}
+.tbox-row .tbox table{font-size:.85em;width:auto !important;max-width:340px}
+.tbox-row .tblwrap{margin:0 !important;width:auto !important}
+.tbox-arrow{font-size:2em;color:#7F6FB0}
+.float.right{float:right;margin-left:1.2em;clear:right}
+.float.left{float:left;margin-right:1em}
+.float.photo{max-width:46%;font-size:.8em;text-align:center}
+.float.photo p{padding-left:0 !important;text-indent:0 !important}
+.float.photo img{width:100% !important;display:block;margin:0 auto .25em}
+.float.icon{width:3.6em}
+.float.icon svg,.float.icon img{width:100% !important;height:auto}
+.clear{clear:both}
+article .hl1,article .hl2,article .subhead,.box{clear:both}
+/* chapter title plate */
+.chapter-plate{display:inline-block;background:var(--navy);color:#fff;font-size:1.5em;padding:.15em .8em;margin:.2em 0 .2em 6em}
+.chapter-plate p{padding:0 !important}
+.chapter-plate span{color:#fff !important}
+/* diagrams rebuilt as SVG */
+.diagram{margin:.8em auto;overflow-x:auto}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.shape-text{overflow:visible;display:flex;flex-direction:column;height:100%;font:var(--sf,11px)/1.2 var(--serif);color:#000;padding:2px 4px;box-sizing:border-box;overflow:visible}
+.shape-text p{padding:0 !important;text-indent:0 !important}
+/* highlight ring over the process flowchart */
+.ringwrap{position:relative;display:inline-block;max-width:100%;margin-block:18px 14px}
+.ring{position:absolute;left:26.6%;top:-22%;width:21%;height:144%;border:4px solid #C00000;border-radius:50%;box-shadow:0 0 0 2px #ff6b6b inset;pointer-events:none}
+/* fractions */
+@font-face{font-family:"STIX Two Math";src:url(../fonts/STIXTwoMath-Regular.woff2) format("woff2");font-display:swap}
+math{font-family:"STIX Two Math",math;font-size:1.08em;text-indent:0;math-style:normal}
+p:has(> math.eq){margin-block:.5em}
+math.eq{display:block math;margin:.3em 0;max-width:100%;overflow-x:auto;overflow-y:hidden}
+math.eq-left,math.eq-ind{display:inline math;math-style:normal}
+math.eq-ind{margin-left:calc(3.6*var(--u))}
+math.eq-right{text-align:right}
+.eqa mtd{padding:.3em 0}
+.eqa mtd:first-child{text-align:right}
+.eqa mtd:last-child{text-align:left}
+math .mbox{border:1px solid currentColor;padding:.1em}
+/* Figure 1.3 tree */
+.tree{margin:1.2em auto;max-width:34rem;text-align:center;font-size:.92em}
+.tree .node{display:inline-block;background:#FBEFC9;border:1.3px solid #B4975A;border-radius:10px;padding:.45em .6em;box-shadow:1.5px 2px 3px rgba(0,0,0,.2);line-height:1.25}
+.t-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem;position:relative}
+.t-root{position:relative}
+.t-root::after{content:"";position:absolute;left:50%;bottom:-1.1rem;height:1.1rem;border-left:1.3px solid var(--navy)}
+.t-row2::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1.3px solid var(--navy)}
+.t-branch{position:relative;padding-top:.8rem}
+.t-branch::before{content:"";position:absolute;top:0;left:50%;height:.8rem;border-left:1.3px solid var(--navy)}
+.t-leaves{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem;position:relative}
+.t-leaves::before{content:"";position:absolute;top:-1rem;left:25%;right:25%;height:1rem;border:1.3px solid var(--navy);border-bottom:0}
+.t-leaves .node{font-weight:400;font-size:.92em}
+/* section navigation */
+.toc{list-style:none;padding:0;margin:1.2em 0;display:grid;gap:.6rem}
+.toc a{display:flex;gap:.9rem;align-items:baseline;padding:.75rem 1rem;border:1.5px solid var(--olive);background:var(--olive-tint);color:var(--ink);text-decoration:none;font-size:1.05em}
+.toc a:hover{background:#dfe9cc}
+.toc .n{font:700 .95em var(--sans);color:var(--olive);min-width:2.2em}
+.pager{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans)}
+.pager a{display:block;padding:.6rem .8rem;border:1px solid var(--rule);text-decoration:none;color:var(--ink);min-width:0}
+.pager a:hover{border-color:var(--navy)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.pager .next{text-align:right;grid-column:2}
+
+.ianchor{position:relative;height:0;clear:both;z-index:3}
+.box{position:relative;z-index:0}
+.icon-abs{position:absolute;left:0;top:.35em;width:3.4em;z-index:2}
+.icon-abs.hand{left:0;top:.6em;width:2.9em}
+.icon-abs.check-mark{left:0;top:-.7em;width:2.9em}
+.box.with-hand{margin-left:3.4em}
+.hang{box-sizing:border-box;padding-right:.3em}
+.icon-abs svg,.icon-abs img{width:100% !important;height:auto;display:block}
+.icon-abs p{padding:0 !important;text-indent:0 !important}
+@media (max-width:640px){
+  body{font-size:16px}
+  .float.right,.float.left{float:none;margin:.8em auto}
+  .float.photo{max-width:100%;width:auto !important}
+  .float.icon{float:left;margin:.2em .6em 0 0}
+  :root{--u:.5em}
+  .chapter-plate{margin-left:0}
+  .t-row2{gap:.5rem}.t-leaves{gap:.3rem}.tree{font-size:.82em}
+}
+
+.chapter-title{background:var(--plate);position:relative;padding:.35em .6em 1.5em 2.2em;margin:.5em 0 2.8em}
+.chapter-title .ch{font:700 2.6em/1.1 var(--serif)}
+.chapter-title .plate{position:absolute;right:14%;bottom:-1.05em;margin:0;background:var(--navy);color:#fff;font:400 1.6em/1.2 var(--serif);padding:.25em .9em;text-wrap:balance}
+.qed{float:right;margin:.3em 0 0 1em;display:inline-block;width:.55em;height:.8em;background:currentColor;vertical-align:-.05em}
+.hang.mk{min-width:0}
+.float.icon{width:4.6em}
+@media (max-width:640px){.chapter-title .plate{right:auto;left:1rem;font-size:1.3em}.chapter-title{padding-left:1rem}}
+/* normalized lists */
+.li .mk{display:inline-block;width:1.9em;text-indent:0}
+.li-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5em}
+.li-row .li{padding-left:1.9em !important}
+.kvl{display:inline-block;width:6.5em;text-indent:0}
+.sol-lab{display:inline-block;width:calc(5.4*var(--u));text-indent:0}
+.sol-pl{display:inline-block;width:2.2em;text-indent:0}
+.kvl.stepl{width:4.4em}
+.tab2{display:grid;align-items:baseline;grid-template-columns:auto 1fr;column-gap:3.6em;row-gap:.15em;margin:0}.tab2>div{min-width:0}.tab2>.sp{height:.6em}
+@media (max-width:640px){.tab2{grid-template-columns:1fr;column-gap:0}}
+p.tkp{text-align:center;padding:0;text-indent:0;margin:.4em 0}p.tkp img{max-width:100%;height:auto}
+.datarow span{display:inline-block;min-width:3.1em;text-indent:0}
+.datarow.dense span{min-width:1.7em}
+.sol-eq{text-indent:0}
+.has-qed{display:flow-root}
+.qed-only{clear:both}
+.after-qed{height:3em}
+.after-figure{height:1.5em;clear:both}
+/* subject subheadings inside a section */
+article .subhead{font:700 1.3em/1.25 var(--serif);color:var(--navy);margin:1.6em 0 .2em;padding-left:calc(1.8*var(--u));padding-bottom:.2em;border-bottom:1px solid var(--navy-tint)}
+.after-qed + .subhead{margin-top:.4em}
+/* one line of space between a box and a box that directly follows it */
+.box + .box{margin-top:2.4em}
+/* Tip badge */
+.tip-badge{position:absolute;left:.45em;top:.3em;width:4.4em;text-align:center;z-index:2}
+.tip-badge img{width:3.5em !important;display:block;margin:0 auto}
+.tip-word{display:block;font:700 1.25em/1.1 var(--serif);color:#C65A2C;margin-top:.1em;letter-spacing:.02em}
+.box.with-tip{min-height:5.9em}
+.box.with-tip > p,.box.with-tip > .box-head{padding-left:5.6em !important;text-indent:0 !important}
+.box.with-tip .hang{min-width:0 !important;padding-right:0}
+@media (max-width:640px){.li-row{grid-template-columns:1fr}}
+/* Word tables */
+.tblwrap{overflow-x:auto;margin:.6em 0;clear:none}
+.tblwrap.center table{margin:0 auto}
+.tbl-pair{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:1em 2em;margin:.6em 0}
+.tbl-pair .tblwrap{margin:0}
+.tbl-pair table.wt{margin:0}
+.callout-row math{font-size:1.2em}
+img.tkwide{max-width:min(1060px,calc(100vw - 32px));display:block;position:relative;left:50%;transform:translateX(-50%);text-indent:0}
+@media (max-width:640px){img.tkwide{left:auto;transform:none;max-width:100%}.mw{display:inline-block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden;vertical-align:middle}}
+.eqs{display:block;max-width:100%;text-indent:0;overflow-x:auto;overflow-y:hidden}
+.check-inline{width:1.35em;height:auto;vertical-align:-.3em;margin-left:.3em}
+@media (min-width:601px){th.nowrap{white-space:nowrap}}
+.photo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:1em 3em;margin:.8em 0}
+.photo-cred{margin:0;text-align:center}.photo-cred img{display:block;margin:0 auto .3em}.photo-cred figcaption{font-size:1em;line-height:1.3}
+table.wt{border-collapse:collapse;font-size:.95em;margin-left:calc(5.4*var(--u))}
+.tblwrap.center table.wt{margin:0 auto}
+table.wt td,table.wt th{border:1px solid #000;padding:.12em .5em;vertical-align:top}
+table.wt th{font-weight:inherit;text-align:inherit}
+table.wt.even{table-layout:fixed;width:calc(var(--n,4)*4.2em)}
+table.wt td p,table.wt th p{padding:0 !important;text-indent:0 !important;margin:0}
+table.wt td .li,table.wt th .li{padding-left:0 !important}
+/* side notes that were text boxes in Word */
+.callout{max-width:15em;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;margin:.2em 0 .6em 1.2em}
+.callout p{padding:0 !important;text-indent:0 !important}
+.wchart{display:block;margin:.6em auto}
+.wchart svg{width:100%;height:auto;display:block}
+/* Figure 2.19-style grid of labelled graphs */
+.shape-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6em 1.4em;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.shape-cell{margin:0;text-align:center;min-width:0}
+.shape-label{display:inline-block;background:var(--purple-tint);border:1.5px solid var(--purple);padding:.1em .9em;margin-bottom:.35em;font-size:.95em}
+.shape-cell img{display:block;width:100% !important;height:auto}
+@media (max-width:640px){.shape-grid{gap:1em .6em;margin-left:0}.shape-label{font-size:.8em}}
+@media (max-width:640px){math.eq-ind{margin-left:0}.tbox-arrow{transform:rotate(90deg)}}
+/* Chapter 3 number lines: drawing with its note beside it (below it on phones) */
+figure.numline{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6em 1em;margin:1em 0;max-width:none !important;overflow-x:auto}
+figure.numline svg{flex:0 1 auto;max-width:100%;height:auto}
+.nl-note{display:block;max-width:15em;background:#E6D5FF;border:1px solid #7F7F7F;padding:.35em .7em;text-align:center;font-size:.92em;line-height:1.35}
+.nl-arrow{font-size:2em;color:#7F6FB0}
+@media (max-width:640px){figure.numline{flex-direction:column}.nl-arrow{transform:rotate(90deg);line-height:1}}
+/* two figures side by side, captions above (Ch 2 Figures 2.28 and 2.29) */
+.fig-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4em;align-items:start;margin:1em 0 .4em calc(1.8*var(--u));clear:both}
+.fig-cell{margin:0;min-width:0}
+.fig-cell p{padding:0 !important;text-indent:0 !important;margin:0 0 .6em}
+.fig-cell img,.fig-cell .wchart{display:block;width:100% !important;max-width:none !important;height:auto;margin:0}
+@media (max-width:640px){.fig-pair{grid-template-columns:1fr;margin-left:0}}
+/* Ch 1 GOOD!/BAD! lines: icons and word in one row */
+.verdict{display:flex;align-items:center;justify-content:center;gap:.25em;padding:.3em 0 .5em;margin:0;line-height:1;font-weight:700;font-family:var(--serif)}
+.verdict span{display:inline-flex;align-items:center}
+.verdict img{width:min(122px,17vw) !important;height:auto}
+/* note boxes with arrows, beside a table row or a picture */
+.tbl-note{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin:.6em 0;clear:both}
+.tbl-note .tblwrap{grid-column:2}.tbl-note .tn-side{grid-column:3}
+.tbl-note .tblwrap{margin:0}
+.tn-side{display:flex;align-items:flex-end;margin-left:.2em}
+.tn-side .note-arrow{width:3.4em;height:1em;flex:none;margin-bottom:.45em}
+.side-note{max-width:13em;margin:0;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em}
+.side-note p{padding:0 !important;text-indent:0 !important;margin:0}
+.note-fig{display:flex;align-items:center;justify-content:center;gap:.4em;margin:.8em 0 .2em;clear:both}
+.note-fig .note-arrow{width:3.6em;height:1em;flex:none}
+.note-fig img{flex:none;max-width:55%}
+@media (max-width:640px){.tbl-note{display:flex;flex-direction:column;align-items:center}.tn-side{margin:.5em 0 0}.tn-side .note-arrow{display:none}.note-fig{flex-wrap:wrap}.note-fig .note-arrow{transform:rotate(90deg)}}
+/* tables with note boxes, arrows and braces beside them (positions set by the script at the end of the page) */
+.anno{position:relative;margin:.8em 0;clear:both}
+.anno-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);column-gap:2.8em;align-items:start}
+.anno-l,.anno-r{position:relative;min-width:0}
+.anno-t .tblwrap{margin:0}
+.anno-t table.wt{margin:0 !important}
+.anno-note{position:absolute;top:0;width:max-content;max-width:min(13.5em,100%);border:1.5px solid var(--purple);background:var(--purple-tint);padding:.35em .6em;font-size:.88em;line-height:1.35}
+.anno-l .anno-note{right:0}.anno-r .anno-note{left:0}
+.anno-note p{margin:0;padding:0 !important;text-indent:0 !important}
+.anno-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+@media (max-width:640px){.anno-row{display:flex;flex-direction:column;align-items:center}.anno-t{order:-1}
+ .anno-l,.anno-r{max-width:100%;align-self:stretch}.anno-note{position:static;margin:.5em auto 0;width:auto;max-width:100%}.anno-svg{display:none}}
+/* a picture with a horizontal brace and a note under it */
+.brace-fig{margin:.8em auto .4em;text-align:center;clear:both}
+.brace-fig img{display:block;width:100%;height:auto}
+.brace-fig .hbrace{display:block;width:96%;height:22px;margin:2px auto 0}
+.brace-note{display:inline-block;max-width:18em;margin-top:.3em;font-size:1em !important;border:1.5px solid var(--purple);background:var(--purple-tint);padding:.4em .7em;font-size:.9em;text-align:center}
+.brace-note p{margin:0;padding:0 !important;text-indent:0 !important}
+/* accessibility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.transcript{clear:both;margin:.4em 0 1.2em calc(1.8*var(--u));border:1.5px solid var(--purple);padding:.3em .8em;font-size:.95em}
+.transcript summary{cursor:pointer;font:600 .92rem/1.6 var(--sans);color:var(--purple)}
+.transcript p{margin:.35em 0;padding:0 !important;text-indent:0 !important}
+.transcript .tr-title{font-weight:700}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.callout-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1em 4em;margin:.6em 0}.callout-row>aside.callout{float:none;margin:0;max-width:none}.wl{margin:.6em 0}.wl-pics{max-width:100%;margin:0 auto}.wl.wide .wl-pics{max-width:min(1060px,calc(100vw - 32px));margin-left:50%;transform:translateX(-50%)}.wl-pic{display:block;max-width:100%;height:auto}.wl-flow{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}@media (max-width:600px){.wl-pics{display:none}.wl-flow{position:static!important;width:auto;height:auto;overflow:visible;clip:auto;clip-path:none;white-space:normal}}.runhead .toollink{flex:none;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;border:1px solid var(--navy);border-radius:999px;padding:.12rem .6rem;color:var(--navy);text-decoration:none}.runhead .toollink:hover{background:var(--navy);color:var(--paper);text-decoration:none}.runhead .toollink .tl-beta{font:700 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:#E9A23B;color:#1d1d1d;border-radius:3px;padding:.15rem .3rem}.runhead .where{margin-left:auto}@media (max-width:640px){.runhead .toollink .tl-name{font-size:.78rem}}/*site-chrome*/.site-foot{clear:both;margin-top:3rem;padding:1.1rem 0 0;border-top:1px solid var(--rule);font:400 .84rem/1.5 var(--sans);color:var(--muted)}.site-foot p{margin:0 0 .5rem}.site-foot a{color:var(--navy)}.site-foot img{vertical-align:middle}.site-foot .pending{background:#fff3cd;color:#5c4a00;padding:0 .2em}@media print{body{background:none}.wrap{box-shadow:none}}/*site-chrome*/
+/* webfix: hypothesis lines, conclusion diagrams */
+p.hyp{text-indent:0;margin:.15em 0;line-height:1.5}
+p.hyp + p.hyp{margin-top:0}
+p.hypfig{text-align:center;padding-left:0!important;text-indent:0;margin:.6em 0}
+p.hypfig img{max-width:100%;height:auto}
+/* webfix: side notes keep their second bullet level; tip icon under the badge; each step starts below the previous step's note */
+.snote .fbox p.li.l2,.gfig .fbox p.li.l2{padding-left:2.3em!important}
+.with-tip .icon-abs.hand{left:1.55em;top:1.3em;width:2.2em}
+div.stepclr{clear:right}
+math.calc34{margin-left:2.2em}
+figure.diagram .shape-text p.fl-num{padding-left:1.3em!important;text-indent:-1.3em!important;text-align:left}
+figure.diagram .shape-text p.fl-cont{padding-left:1.3em!important;text-indent:0!important;text-align:left}
+figure.diagram .shape-text p.fl-head{padding-left:0!important;text-indent:0!important;text-align:left}
+figure.diagram .shape-text p.fl-bul{padding-left:2.6em!important;text-indent:-1.1em!important;text-align:left}
+figure.diagram .shape-text .fl-n{display:inline-block;width:1.3em;text-indent:0}
+figure.diagram .shape-text .fl-m{display:inline-block;width:1.1em;text-indent:0}
+img.shrug{height:2.9em;width:auto;vertical-align:top;margin-left:-.25em}
+@media (min-width:641px){.gfig:has(> .sn){align-items:flex-start}.gfig > .sn{margin-top:.2em}}
+figure.photo img{max-width:100%;height:auto}
+.tblwrap.tblup{clear:both;margin-top:1em}
+.picnote{display:flex;justify-content:center;align-items:flex-start;gap:1.6em;flex-wrap:wrap;margin:.8em 0;clear:both}
+.picnote figure{margin:0;text-align:center;max-width:100%}.picnote figure img{max-width:100%;height:auto}
+.picnote .src{font-size:.8em;margin-top:.2em}
+.callout.boxed{float:none;border:1px solid #222!important;max-width:15em;margin:0;padding:.5em .7em}
+.callout.boxed.under{max-width:none;margin:.3em 0 0;font-size:.95em}
+.callout.boxed span[style*="font-size"]{font-size:inherit!important}
+.picnote .callout.boxed{margin-top:1.5em}
+p.boxpic img{max-width:calc(100% - 5ch)!important;height:auto!important}
+.snote.s1,.snote.s2{width:27em;max-width:62%}
+.snote.s1 .fbox p.li{padding-left:1.4em!important;text-indent:-1.4em!important}
+figure.diagram.wide{max-width:none;width:min(var(--fw),calc(100vw - 48px));margin-left:calc(50% - min(var(--fw),calc(100vw - 48px))/2)}
+.procflow{display:flex;align-items:stretch;justify-content:center;gap:.3em;margin:1em 0 .4em calc(1.8*var(--u))}.procflow .pf-box{flex:1 1 0;max-width:11em;background:#FFF3CC;border:1.5px solid #41719C;border-radius:.6em;padding:.6em .5em;text-align:center;font-size:.92em;line-height:1.35;display:flex;align-items:center;justify-content:center}.procflow .pf-arr{flex:none;align-self:center;color:#4472C4;font-size:1.4em}@media (max-width:640px){.procflow{flex-direction:column;align-items:center;margin-left:0}.procflow .pf-box{max-width:16em;width:100%}.procflow .pf-arr{transform:rotate(90deg)}}/*webfix9*/.stepnote{float:right;clear:right;width:17em;margin:.15em 0 .7em 1.2em;display:flex;gap:.45em;align-items:flex-start}.stepnote .sn-badge,.vflow .sn-badge{flex:none;background:#665890;color:#fff;border-radius:.35em;padding:.2em .55em;font:700 .85em/1.2 var(--sans)}.stepnote .sn-box,.vflow .sn-box{background:#FFF3CC;border:1.5px solid #41719C;border-radius:.6em;padding:.45em .7em;font-size:.88em;line-height:1.4;text-align:center}.stepnote .sn-box p,.vflow .sn-box p{margin:.1em 0;padding:0!important;text-indent:0!important;text-align:center}.vflow{display:flex;flex-direction:column;align-items:center;margin:1em 0 .3em calc(1.8*var(--u))}.vflow .vf-row{display:flex;align-items:center;gap:.6em;width:min(30em,100%)}.vflow .sn-box{flex:1}.vflow .vf-arr{color:#4472C4;font-size:1.3em;line-height:1.1;margin-left:2.2em}@media (max-width:640px){.stepnote{float:none;width:auto;margin:.3em 0 .6em 2.5em}.vflow{margin-left:0}}/*webfix9*/</style>
+<style>@media (max-width:480px){p.ex-part{padding-left:calc(2.25*var(--u))!important}}</style><style id="simbox-css">.simbox{clear:both;margin:1em 0 1em calc(1.8*var(--u,1em));border:1.5px solid var(--navy,#365F91);background:#fff;font-family:var(--sans,system-ui)}.simbox>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;background:var(--navy-tint,#DBE5F1);color:var(--navy,#365F91);font:600 1rem/1.3 var(--sans,system-ui)}.simbox>summary::-webkit-details-marker{display:none}.simbox>summary::before{content:"";flex:none;width:0;height:0;border-left:.5em solid currentColor;border-top:.32em solid transparent;border-bottom:.32em solid transparent;transition:transform .15s}.simbox[open]>summary::before{transform:rotate(90deg)}.simbox .simbox-tag{font:700 .66rem/1 var(--sans,system-ui);letter-spacing:.06em;text-transform:uppercase;background:var(--navy,#365F91);color:#fff;border-radius:3px;padding:.2rem .35rem}.simbox .simbox-body{padding:.6rem .8rem .8rem}.simbox iframe{display:block;width:100%;height:640px;border:0}.simbox .simbox-links{margin:.5rem 0 0;font-size:.88rem}@media (max-width:640px){.simbox{margin-left:0}.simbox .simbox-body{padding:.5rem}}</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../unit-3/index.html" title="Unit 3: Inferential Statistics">Unit 3</a><span class="sep" aria-hidden="true">›</span><a href="index.html">Chapter 9: Confidence Intervals</a></nav><span class="where">Section 9.1</span><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main><article>
+<h1 class="hl1" style="padding-left:calc(1.8*var(--u))"><span class="b" style="font-size:1.4em">Section </span><span class="b" style="font-size:1.4em">9.1</span><span class="b" style="font-size:1.4em">: </span><span class="b" style="font-size:1.4em">Basics of Confidence Intervals</span></h1>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#4F6228;background:#EAF1DD"><h2 class="box-head" style="padding-left:calc(0.45*var(--u));background:#4F6228"><span style="color:#FFFFFF">Learning Objectives</span></h2>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">1.</span>Describe and interpret point estimates.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">2.</span>Interpret a confidence interval if given a point estimate and margin of error.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">3.</span>Understand and describe how the margin of error is affected by confidence level and sample size.</p>
+<p class="empty" style="padding-left:calc(2.25*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#EAF1DD"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<h2 class="subhead">Point Estimates and Interval Estimates</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">In chapter 8 we conducted hypothesis tests for population proportions and population means.  In that chapter, we assumed that we knew the true value of the parameter, and then used sample data to see if it was consistent with the assumed value.  In this chapter we use sample data to make estimates for <span class="b">unknown population parameters</span>, proportions <span class="i">p</span> and means <math><mi>μ</mi></math>.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The background is that in most applications, we don’t know the true value of population parameters.  To find them, we can either (1) use a census and measure the entire population or (2) use sample data to make an estimate.  When obtaining a census is impractical or impossible, the only choice is to use sample data.  If we can obtain large amounts of unbiased data, we can be very confident in the estimates we make.  As an example, when we see reports on the average amount of time adults sleep per night, it is an estimate based on, presumably, a large amount of sample data.  There is no way to get that information from every living adult!</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">There are two types of estimates that we use.  A point estimate is a single numerical value that approximates a parameter.  For example, based on a Gallup News poll, adult Americans get an average of 6.8 hours of sleep per night.  That is a sample mean that is a point estimate for the true value of the population mean amount of sleep.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">1</span><span style="color:#FFFFFF">  </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">A <span class="b">Point Estimate</span> is a single numerical value obtained from sample data that is used to estimate a population parameter.  </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>We use the sample proportion  <math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover></math> as a point estimate for the population proportion <span class="i">p</span>.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>We use the sample mean  <math><mover accent="true"><mi>x</mi><mo stretchy="false">‾</mo></mover></math> to approximate the population mean <math><mi>μ</mi></math>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">These are called <span class="b">unbiased estimators</span> because the means of their sampling distributions are equal to the parameter they are estimating.  That is a consequence of the central limit theorem, covered in sections 7.3 and 7.4.  (By the way, it turns out that <span class="i">s</span> is a <span class="i">biased</span> estimator for <math><mi>σ</mi></math>.)  See <span class="b">Table 1</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<div class="tblwrap center"><table class="wt"><tr><th scope="colgroup" colspan="3" style="background:#D9D9D9;border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000000;vertical-align:middle"><p><span style="color:#C00000">Table 1</span>:  Point Estimates and the Unknown Parameters they Estimate</p></th></tr><tr><th scope="col" style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Measurement</p></th><th scope="col" style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">Point Estimate (from sample data)</p></th><th scope="col" style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">Unknown Parameter (from the population)</p></th></tr><tr><td style="border-top:1.0px solid #000;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Mean</p></td><td style="border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"> <math><mover accent="true"><mi>x</mi><mo stretchy="false">‾</mo></mover></math> (<span class="i">x</span>-bar)</p></td><td style="border-top:1.0px solid #000;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><math><mi>μ</mi></math> (mu)</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Standard Deviation</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><span class="i"> s</span></p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"> <math><mi>σ</mi></math> (sigma)</p></td></tr><tr><td style="border-top:0;border-left:1.0px solid #000;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p>Proportion of successes in n trials of a binomial experiment.</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center"><math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover></math> (<span class="i">p</span>-hat)</p></td><td style="border-top:0;border-left:0;border-bottom:1.0px solid #000;border-right:1.0px solid #000;vertical-align:middle"><p style="text-align:center">  <span class="i">p</span></p></td></tr></table></div>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">Remember that samples vary, so the results we obtain for sample means and sample proportions are likely not exactly equal to the population means and population proportions that they attempt to estimate.  For that reason, we will use a second type of estimate, called an interval estimate.  The interval estimates for proportions and means use a margin of error along with the point estimate to create a range of values that estimates the parameter.  These type of estimates includes a sense of center (the point estimate) along with a sense of variability (how much higher or lower than the point estimate is typical).</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">For example, sample data for the sleep statistic has a margin of error of <span class="i">E</span> = 0.5 hours.  So, we can say the average American sleeps an average of 6.8 hours per night, with most getting between 6.3 and 7.3 hours per night.  Giving the range of values allows us to know how much variation to expect.  (If you are wondering if the standard deviation is related to this, you are correct!)</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<div class="box" style="--bc:#7030A0;background:#E4D9F0"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span style="color:#FFFFFF">Definition </span><span style="color:#FFFFFF">2</span><span style="color:#FFFFFF">  </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">A <span class="b">Confidence Interval</span> is a range of values obtained from sample data that is used to estimate a population parameter.  A confidence interval always includes the following:</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>A stated level of confidence.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>An interval (range of values) that approximate the parameter.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E4D9F0">A confidence interval is often abbreviated <span class="b">CI</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E4D9F0"></p></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">1</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Interpreting a Confidence Interval</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Suppose you read online that the 95% confidence interval for the proportion of students who suffer from some form of food insecurity is (0.38,0.56).  What is the statistical interpretation?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>We are told that the proportion of students who suffer from some form of food insecurity is in the interval (0.38,0.56).  That means that we have confidence that the proportion is between 0.38 and 0.56, as decimals.  If we convert to percentages, we can summarize the interval:   We<span class="b"> </span>are 95% confident that the true population proportion of students who suffer some form of food insecurity is between 38% and 56%.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">2</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Interpreting a Confidence Interval</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Suppose you read that the 90% confidence interval for the average cost of a college textbook is (87,125)</span><span style="background:#DBE5F1">, in dollars</span><span style="background:#DBE5F1">.  What is the statistical interpretation?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>We are given the 90% confidence interval (87,125) to represent the average cost of a textbook.  The word average indicates this is an interval for a mean.  We can summarize the interval:   We<span class="b"> </span>are 90% confident that the true population mean cost of a textbook is between $87 and $125.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u))"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image2.svg" alt="" style="width:72px" class=""></p></div></div>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="b" style="color:#FFFFFF">Important Point!</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">The level of confidence in a confidence interval is not the same as probability, although it feels similar.  Confidence is the proportion of all possible intervals created using a process, based on all possible samples that could exist, that would contain the true population parameter.  Since we only use it to create one interval, the interval will either contain the true population parameter, or it won’t.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Correct Interpretation</span>:  We have 90% confidence that the true mean cost of a textbook is  between $87 and $125.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Incorrect Interpretation</span>:  The probability that the true population mean is between $87  and $125 is 0.90.  </p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Incorrect Interpretation</span>:  There is a 90% chance that the true mean is between $87  and $125.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">As with hypothesis testing, the process we follow to create confidence intervals will be the same for population proportions and population means. See <span class="b">figure 9.2</span>.  </p>
+<div class="procflow" role="list" aria-label="The process of constructing a confidence interval"><div role="listitem" class="pf-box">Find a point estimate for the parameter (<math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover></math> or <math><mover accent="true"><mi>x</mi><mo stretchy="false">‾</mo></mover></math>)</div><div class="pf-arr" aria-hidden="true">→</div><div role="listitem" class="pf-box">Find the margin of error (details in sections 9.2 and 9.3)</div><div class="pf-arr" aria-hidden="true">→</div><div role="listitem" class="pf-box">Compute the interval:<br><math><mover accent="true"><mi>p</mi><mo stretchy="false">^</mo></mover><mo>±</mo><mi>E</mi></math> or <math><mover accent="true"><mi>x</mi><mo stretchy="false">‾</mo></mover><mo>±</mo><mi>E</mi></math></div><div class="pf-arr" aria-hidden="true">→</div><div role="listitem" class="pf-box">State the interval AND the level of confidence!</div></div><p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 9.2</span>:  The process of constructing confidence intervals to estimate parameters.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="ianchor"><div class="icon-abs hand"><p style="padding-left:calc(0.45*var(--u))"><img src="images/image2.svg" alt="" style="width:72px" class=""></p></div></div>
+<div class="box with-hand" style="--bc:#7030A0;background:#E3D8EF"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#7030A0"><span class="b" style="color:#FFFFFF">Important Point!</span><span style="color:#FFFFFF"> </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">If the sampling distribution is symmetric, and a margin of error is calculated, then the confidence interval will have the form:</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(10.8*var(--u));background:#E3D8EF"><span style="color:#00500F">Point Estimate</span> <math><mo>±</mo></math> <span style="color:#C00000">Margin of Error</span></p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(17.1*var(--u));background:#E3D8EF">Or</p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(8.55*var(--u));background:#E3D8EF">Lower limit = (<span style="color:#00500F">Point Estimate</span>) – (<span style="color:#C00000">Margin of Error</span>)    </p>
+<p style="padding-left:calc(0.45*var(--u));text-indent:calc(8.55*var(--u));background:#E3D8EF">Upper Limit = (<span style="color:#00500F">Point Estimate</span>) + (<span style="color:#C00000">Margin of Error</span>)</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(8.55*var(--u));background:#E3D8EF"></p>
+<p style="padding-left:calc(0.45*var(--u));background:#E3D8EF">Since normal and Student’s t-distributions are symmetric, under the right circumstances,</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>the confidence interval for a population proportion has the form  <span class="mw"><math><mover accent="true" style="color:#00500F"><mi style="color:#00500F">p</mi><mo stretchy="false">^</mo></mover><mo>±</mo><mi style="color:#C00000">E</mi></math></span>.</p>
+<p class="li" style="padding-left:calc(1.6*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>the confidence interval for a population mean has the form  <span class="mw"><math><mover accent="true" style="color:#00500F"><mi style="color:#00500F">x</mi><mo stretchy="false">‾</mo></mover><mo>±</mo><mi style="color:#C00000">E</mi></math></span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p>
+<p class="note" style="padding-left:calc(1.6*var(--u) + 1.90em)"><span class="b">See figure 9.3</span>.</p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#E3D8EF"></p></div>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image3.png" alt="Image of a confidence interval with a point estimate and a margin of error.  The lower and upper limits are:  Point Estimate ± Margin of Error
+Or
+Lower limit = (Point Estimate) – (Margin of Error)    
+Upper Limit = (Point Estimate) + (Margin of Error)" style="width:830px" class=""></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 9.3</span>:  A confidence interval with point estimate and margin of error.</p>
+<div class="after-figure" aria-hidden="true"></div>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">3</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Shark Attacks!</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">In a study of 1,000 shark attacks, a researcher found that the proportion of non-fatal attacks is 72.6% with a margin of error</span><span style="background:#DBE5F1"> of</span><span style="background:#DBE5F1"> 2.76%.  She was 95% confident in this interval.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Identify the point estimate.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">Compute the lower and upper limits for the confidence interval.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">State and interpret the confidence interval in context. </span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));text-indent:calc(1.8*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<figure class="float right photo" style="width:277px"><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="color:#0000FF;font-size:0.8em"><img src="images/image4.jpg" alt="Photo of a shark swimming underwater.  Photo by Gerald Schömbs on Unsplash." style="width:219px" class=""></span></p>
+<p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@geerald?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Gerald Schömbs</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/shark?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span style="font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>The point estimate is  <span class="mw"><math><mover accent="true" style="color:#00500F"><mi style="color:#00500F">p</mi><mo stretchy="false">^</mo></mover><mrow style="color:#00500F"><mo>=</mo><mn>0.726</mn></mrow></math></span>, which is 72.6% written in decimal form.  This point estimate is the best guess for the true proportion of non-fatal shark attacks.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>The interval has the form <span class="mw"><math><mover accent="true" style="color:#00500F"><mi style="color:#00500F">p</mi><mo stretchy="false">^</mo></mover><mo>±</mo><mi style="color:#C00000">E</mi></math></span>.  The margin of error is 2.76%, or <span class="i" style="color:#C00000">E</span><span style="color:#C00000"> = 0.0276 </span>as a decimal.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The lower limit for the interval is <span class="mw"><math><mover accent="true" style="color:#00500F"><mi style="color:#00500F">p</mi><mo stretchy="false">^</mo></mover><mo>−</mo><mi style="color:#C00000">E</mi><mo>=</mo><mn style="color:#00500F">0.726</mn><mo>−</mo><mn style="color:#C00000">0.0276</mn><mo>=</mo><mn>0.6984</mn><mo>.</mo></math></span></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The upper limit for the interval is <span class="mw"><math><mover accent="true" style="color:#00500F"><mi style="color:#00500F">p</mi><mo stretchy="false">^</mo></mover><mo>+</mo><mi style="color:#C00000">E</mi><mo>=</mo><mn style="color:#00500F">0.726</mn><mo>+</mo><mn style="color:#C00000">0.0276</mn><mo>=</mo><mn>0.7536</mn><mo>.</mo></math></span></p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p style="text-align:center;padding-left:calc(7.2*var(--u))"><img src="images/image5.png" alt="Image of a 95% confidence interval with a point estimate 0.726 and a margin of error 0.0276." style="width:830px" class=""></p>
+<p class="empty" style="text-align:center;padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>There are several ways to write the interval, but all must include both the level of confidence and the interval values.  Here are three possible ways to express the interval.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u));text-indent:calc(-1*calc(7.2*var(--u)))"></p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">As a sentence</span>:  The researcher is 95% confident that the true proportion of shark attacks that are non-fatal is between 69.84% and 75.36%.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Using inequalities</span>:  The 95% confidence interval for the true proportion of shark attacks that are non-fatal is <math><mn>0.6984</mn><mo>&lt;</mo><mi>p</mi><mo>&lt;</mo><mn>0.7536</mn></math>.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span><span class="b">Using interval notation</span>:  The 95% confidence interval for the true proportion of shark attacks that are non-fatal is (0.6984,0.7536).</p>
+<p class="empty" style="padding-left:calc(9*var(--u))"></p>
+<p class="note" style="padding-left:calc(5.4*var(--u) + 1.90em)">In context, this means that based on the sample data, we believe that the true proportion of shark attacks that are non-fatal is somewhere between 69.84% and 75.36%.  We are 95% confident in this range, which is reasonably confident.  Remember that it is impossible to be 100% certain when you use sample data to represent a population!</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="note" style="padding-left:calc(5.4*var(--u) + 1.90em)">Regardless of how you choose to express the interval, I feel good knowing that I have around a 70% chance (or better) of surviving a shark attack.  Good news!</p>
+<p class="has-qed qed-only" style="padding-left:calc(1.8*var(--u))"> <span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">4</span><span class="b" style="color:#FFFFFF">:  </span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">In a study of the number of miles that a bicycle tire will last, a researcher is 95% confident that the mean life expectancy for bicycle tire is between 452 and 576 road miles.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">Identify the point estimate.</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">What is the margin of error?</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<figure class="float right photo" style="width:277px"><p style="padding-left:calc(0.45*var(--u))"><span style="color:#0000FF;font-size:0.8em"><img src="images/image6.jpg" alt="Image of a bicycle tire.  Photo by Daniel Llorente on Unsplash." style="width:220px" class=""></span></p>
+<p style="padding-left:calc(0.45*var(--u))"><span style="font-size:0.8em">Photo by </span><a href="https://unsplash.com/@danillorente?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span class="u" style="color:#0000FF;font-size:0.8em">Daniel Llorente</span><span class="vh"> (opens in a new tab)</span></a><span style="font-size:0.8em"> on </span><a href="https://unsplash.com/s/photos/bicycle-tire?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener"><span class="u" style="color:#0000FF;font-size:0.8em">Unsplash</span><span class="vh"> (opens in a new tab)</span></a></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u))"></p></figure><p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:calc(-5.4*var(--u) - 2.2em)"><span class="sol-lab b">Solution:</span><span class="sol-pl">a)</span><span class="b"></span>In this example, we are not given the point estimate or the margin of error.  Instead, we are given the lower and upper limits for the interval.  Because the data are numerical and the interval is for a mean, we can assume that the confidence interval is symmetric.</p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(7.2*var(--u))"><img src="images/image7.png" alt="Image of a 95% confidence interval with a point estimate not given and a margin of error not given.  The lower limit is 452 and the upper limit is 576." style="width:830px" class=""></p>
+<p class="empty"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">The sample mean must be the midpoint, or half-way, between the lower and upper limits.  To find the midpoint, we find the average of the lower and upper limits.</p>
+<p class="empty" style="padding-left:calc(7.2*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mover accent="true" style="color:#00500F"><mi style="color:#00500F">x</mi><mo stretchy="false">‾</mo></mover></mtd><mtd><mo>=</mo><mfrac><mrow><mn>452</mn><mo>+</mo><mn>576</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1028</mn><mn>2</mn></mfrac><mo>=</mo><mn style="color:#00500F">514</mn><mo>.</mo></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>To find the margin of error, we can divide the length of the confidence interval by 2.  The interval has a range of 576 – 452 = 124, so half of that should be the margin of error.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-eq" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="eqs"><math display="block" class="eq eq-center"><mtable class="eqa" displaystyle="true"><mtr><mtd><mi style="color:#C00000">E</mi></mtd><mtd><mo>=</mo><mfrac><mrow><mn>576</mn><mo>−</mo><mn>452</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>124</mn><mn>2</mn></mfrac><mo>=</mo><mn style="color:#C00000">62</mn><mo>.</mo></mtd></mtr></mtable></math></span></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Note that because of the symmetry, we could also have subtracted the point estimate from the upper limit (576 – 514 = 62) or subtracted the lower limit from the point estimate (514 – 452 = 62).</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<div class="box with-tip" style="--bc:#C65A2C;background:#FDE9D9"><div class="ianchor"><div class="tip-badge"><img src="images/image9.svg" alt=""><span class="tip-word">Tip!</span></div></div><p style="padding-left:calc(0.45*var(--u));text-indent:calc(7.2*var(--u));background:#FDE9D9">The most common confidence levels are 90%, 95%, and 99%.  The default confidence  level in technology is 0.95 = 95% confidence.  This is because we have used 5% for the  probability that an event is unusual.  We want to say that if we are 95% confident in our results, it would be unusual if the results are incorrect.  (It really means that the process will fail to produce an interval that contains the population parameter about 5% of the time, but you get the idea.)</p></div>
+<p class="empty"></p>
+<h2 class="subhead">Sample Size, Confidence Level, and Margin of Error</h2>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">The goals we have when creating a confidence interval include:</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Get a small margin of error so the interval is precise enough to be useful.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Only obtain as much data as necessary to save time, effort, and cost.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Consider the following examples:  </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">1)  </span>We are 95% confident that the true proportion of adults who sleep less than 7 hours per night is between 4% and 99%.  </p>
+<p class="empty" style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="padding-left:calc(9*var(--u))">What is the problem?  The interval is too wide to be of any help.  Knowing the percent is between 4% and 99% is very nearly useless.  (If you asked your professor what your current grade is in your class, and they told you somewhere between 4% and 99%, they really haven’t told you anything.  They are technically correct, but the interval is too wide to help you to understand your grade.)</p>
+<p class="empty"></p>
+<p style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">2)</span>We are 99% confident that the mean amount of sleep an adult American gets is between 1 hour and 23 hours of sleep per day.</p>
+<p class="empty" style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p style="padding-left:calc(9*var(--u))">Again, the interval is too wide.  There are very few people who average less than one hour per day, or more than 23 hours of sleep per day.  So yes, this interval is accurate, but it is not precise.  We need a smaller margin of error!</p>
+<p class="empty"></p>
+<p style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"><span class="hang" style="min-width:calc(1.8*var(--u))">3)</span>We are 10% confident that the mean amount of sleep an adult American gets is between 6.75 and 7 hours of sleep per night. </p>
+<p class="empty" style="padding-left:calc(9*var(--u));text-indent:calc(-1*calc(1.8*var(--u)))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u))">Well, the interval is narrower with a smaller margin of error.  The problem is the 10% confidence level.  If we are only 10% confident, that means the process we used fails about 90% of the time.  So, although the interval itself looks okay, our lack of confidence dooms it to be of little use.</p>
+<p class="empty"></p>
+<p style="padding-left:calc(3.6*var(--u))">So, the question is, how can we get a small margin of error and keep a relatively high level of confidence? </p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">As the statisticians, we control two factors that impact the margin of error.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>We choose the sample size <span class="i">n</span>. </p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>We choose the level of confidence we want to have in the interval.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u));text-indent:calc(1.35*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">It makes sense that the larger the sample size, the more information we have collected, and the more reliable the results will be.  The central limit theorem tells us that when the sample size is larger, there is less chance that the estimate is far from the true population value, so we have a smaller margin of error.  See <span class="b">figure 9.4</span>.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image11.png" alt="Illustration of small sample size leading to a larger margin of error and of a larger sample size leading to a smaller margin of error." style="width:830px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 9.4</span>:  Large sample sizes lead to narrower intervals.</p>
+<div class="wl"><div class="wl-pics" style="width:371px"><img class="wl-pic" src="images/wl_9-1_01.svg" alt="" aria-hidden="true" style="width:100.00%;margin-left:0.00%"></div><div class="wl-flow"><div class="after-figure" aria-hidden="true"></div><p class="empty"></p><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Larger Sample Size </span><span class="i" style="font-size:0.9em">n</span></p></aside><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Smaller Margin of Error and Narrower Interval</span></p></aside><p class="empty"></p></div></div><p style="padding-left:calc(3.6*var(--u))">Less intuitive is the idea that lowering our confidence allows us to use a smaller margin of error.  It makes more sense when you turn it around.  If you have a very small interval with a tiny margin of error, you might feel less confident about it.  Which of the following two intervals do you have more confidence in?</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">1)</span>The mean age of a college student is between 20.1 and 20.2 years of age.</p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">2)</span>The mean age of a college student is between 7 and 55 years of age.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Given the choice, you probably feel far more confident that the second statement is true.  The first statement might be true, but since the interval is so small, you probably feel less confident about it.</p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Assume you are having a party, and you want to be confident that the average attendee is happy.  When you plan the choice of drinks, you can offer a narrow choice or a wide assortment of drinks.  If you have a narrow choice of drinks, say regular and diet cola, you can’t have a high level of confidence that the average person will like their drink.  On the other hand, if you offer a wide array of choices, root-beer, 2 brands of diet and regular cola, orange drink, lemonade, iced tea, sparkling water, and juice boxes, you can be confident that every person will have a choice they like.  The analogy is that you have lower confidence for a narrower interval, and higher confidence for a wider interval.  See <span class="b">figure 9.5</span>.</p>
+<p class="empty"></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><img src="images/image12.png" alt="Illustration of higher confidence leading to a larger margin of error and of lower confidence leading to a smaller margin of error." style="width:830px" class=""></p>
+<p style="text-align:center;padding-left:calc(1.8*var(--u))"><span class="b">Figure 9.5</span>:  Lower confidence corresponds to narrower intervals.</p>
+<div class="wl"><div class="wl-pics" style="width:371px"><img class="wl-pic" src="images/wl_9-1_02.svg" alt="" aria-hidden="true" style="width:100.00%;margin-left:0.00%"></div><div class="wl-flow"><div class="after-figure" aria-hidden="true"></div><p class="empty"></p><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Larger Margin of Error and Wider Interval</span></p></aside><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Higher confidence</span></p></aside><p class="empty"></p><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Smaller Margin of Error and Narrower Interval</span></p></aside><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Lower confidence</span></p></aside><p class="empty"></p></div></div><p style="padding-left:calc(3.6*var(--u))">So, if we want to have a small margin of error, we have two options.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Increase the sample size.</p>
+<p class="li" style="padding-left:calc(5.4*var(--u) + 1.90em);text-indent:-1.9em"><span class="mk">•</span>Lower the confidence level.</p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Often, this is a trade-off.  Sometimes we would like to be 99% confident in our interval, but it will require too much data.  So, we accept 95%, or 90% to get the margin of error down.  Other times, data is easy to obtain, so we can decrease the error by simply collecting more observations.  See <span class="b">figure 9.6</span>.</p>
+<div class="wl"><div class="wl-pics" style="width:386px"><img class="wl-pic" src="images/wl_9-1_03.svg" alt="" aria-hidden="true" style="width:100.00%;margin-left:0.00%"></div><div class="wl-flow"><p class="empty"></p><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Larger Sample Size </span><span class="i" style="font-size:0.9em">n</span></p></aside><p class="empty"></p><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Smaller Margin of Error and Narrower Interval</span></p></aside><p class="empty" style="padding-left:calc(3.6*var(--u))"></p><aside class="float right callout" style=""><p style="text-align:center;padding-left:calc(0.45*var(--u))"><span style="font-size:0.9em">Lower confidence</span></p></aside><p class="empty"></p></div></div><p style="text-align:center"><span class="b">Figure 9.6</span>:  Large sample size and lower confidence lead to </p>
+<div class="after-figure" aria-hidden="true"></div>
+<p style="text-align:center;text-indent:calc(4.95*var(--u))">smaller margins of error and narrower intervals.</p>
+<p class="empty"></p>
+<div class="box" style="--bc:#365F91;background:#DBE5F1"><h3 class="box-head" style="padding-left:calc(0.45*var(--u));background:#365F91"><span class="b" style="color:#FFFFFF;background:#365F91">Example </span><span class="b" style="color:#FFFFFF;background:#365F91">5</span><span class="b" style="color:#FFFFFF">:  </span><span class="b" style="color:#FFFFFF">Which Interval has the Smallest Margin of Error?</span></h3>
+<p style="padding-left:calc(0.45*var(--u));background:#DBE5F1"><span style="background:#DBE5F1">Assuming that all other factors are equal, which interval will have the smaller margin of error?  Which will have the largest margin of error?  </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">a)</span><span style="background:#DBE5F1">A 90% CI with </span><span class="i" style="background:#DBE5F1">n</span><span style="background:#DBE5F1"> = 60 </span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">b)</span><span style="background:#DBE5F1">A 95% CI with </span><span class="i" style="background:#DBE5F1">n</span><span style="background:#DBE5F1"> = 60</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">c)</span><span style="background:#DBE5F1">A 90% CI with </span><span class="i" style="background:#DBE5F1">n</span><span style="background:#DBE5F1"> = 100</span></p>
+<p class="ex-part" style="padding-left:calc(4.05*var(--u));text-indent:calc(-1*calc(1.8*var(--u)));background:#DBE5F1"><span class="hang" style="min-width:calc(1.8*var(--u))">d)</span><span style="background:#DBE5F1">A 95% CI with </span><span class="i" style="background:#DBE5F1">n</span><span style="background:#DBE5F1"> = 100</span></p>
+<p class="empty" style="padding-left:calc(0.45*var(--u));background:#DBE5F1"></p></div>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-line" style="padding-left:calc(5.4*var(--u));text-indent:calc(-5.4*var(--u))"><span class="sol-lab b">Solution:</span><span class="b"></span>First, let’s consider sample size.  Of the intervals with n = 60, one has 90% confidence, while the other has 95% confidence.  Lower confidence has a smaller margin of error.  So, between these two intervals, the 90% CI has a smaller margin of error, while the 95% has a large margin of error.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u));text-indent:calc(-1*calc(5.4*var(--u)))"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>90% CI with <span class="i">n</span> = 60 • <span style="color:#C00000">Smaller Margin of Error</span><span style="color:#C00000"> due to lower confidence</span></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>95% CI with <span class="i">n</span> = 60 • <span style="color:#0070C0">Larger Margin of Error</span></p>
+<p class="empty" style="padding-left:calc(3.6*var(--u))"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Of the intervals with <span class="i">n</span> = 100, the same argument tells us that the 90% CI has the smaller margin of error, and the 95% CI has the larger margin of error.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em)"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>90% CI with <span class="i">n</span> = 100 • <span style="color:#C00000">Smaller Margin of Error</span><span style="color:#C00000"> due to lower confidence</span></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">d)</span>95% CI with <span class="i">n</span> = 100 • <span style="color:#0070C0">Larger Margin of Error</span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em)"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">Okay, now we compare the two smallest intervals.  They are (a) and (c).  These two intervals have the same 90% level of confidence, so the larger sample size will lead to the smaller margin of error.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em)"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">a)</span>90% CI with <span class="i">n</span> = 60 •<span style="color:#C00000"> </span>Smaller sample size • Larger Margin of Error</p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">c)</span>90% CI with <span class="i">n</span> = 100 • Larger sample size • <span style="color:#C00000">Smallest Margin of Error</span><span style="color:#C00000"> due to larger </span><span class="i" style="color:#C00000">n</span></p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em)"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">So, the smallest margin of error is from the interval with the lowest confidence level AND the largest sample size.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em)"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">To find the largest margin of error, compare the two larger intervals, (b) and (d).  These both have 95% confidence, so the wider interval will have the smaller samples size.</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em)"></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">b)</span>95% CI with <span class="i">n</span> = 60 • Smaller sample size • <span style="color:#0070C0">Largest Margin of Error</span><span style="color:#0070C0"> due to smaller </span><span class="i" style="color:#0070C0">n</span></p>
+<p class="sol-part" style="padding-left:calc(5.4*var(--u) + 2.2em);text-indent:-2.2em"><span class="sol-pl">d)</span>95% CI with <span class="i">n</span> = 100 • Larger sample size • Smaller Error</p>
+<p class="empty" style="padding-left:calc(5.4*var(--u) + 2.2em)"></p>
+<p class="sol-text" style="padding-left:calc(5.4*var(--u) + 2.2em)">So, the largest margin of error is the interval with the highest confidence level AND the smallest sample size.</p>
+<p class="sol-text has-qed qed-only" style="padding-left:calc(5.4*var(--u) + 2.2em)"><span class="qed" role="img" aria-label="end of solution"></span></p>
+<div class="after-qed" aria-hidden="true"></div>
+<p style="padding-left:calc(1.8*var(--u))"><span class="b">What is Confidence?</span></p>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+<p style="padding-left:calc(3.6*var(--u))">Finally, we should mention that confidence is not the same as probability.  When we say we are 95% confident, we mean that if we repeated the same process to estimate a parameter hundreds of times, about 95% of the intervals we created would contain the parameter.  For example, assume we are working with a normally distributed population with mean <math><mi>μ</mi><mo>=</mo><mn>45</mn></math> and standard deviation <math><mi>σ</mi><mo>=</mo><mn>8</mn></math>.  Now, we begin taking samples of size 25 from the population to create 95% confidence intervals.  Let’s do this 100 times, so we have 100 confidence intervals.  Each will be different due to the variation between samples.  The population mean will be contained in <span class="i">about</span> 95 of them. It may be 94, or 97, but if we keep doing this, we will have intervals that contain the mean in approximately 95% of them.  You can see a simulation of this in the Confidence Interval Simulation below.</p>
+<details class="simbox" data-sim="confidence-intervals"><summary><span class="simbox-tag">Simulation</span><span>Try the Confidence Interval Simulation</span></summary><div class="simbox-body"><iframe title="Confidence Interval Simulation" data-src="../sims/confidence-intervals/index.html?embed=1" loading="lazy"></iframe><p class="simbox-links"><a href="../sims/confidence-intervals/index.html" target="_blank" rel="noopener">Open the Confidence Interval Simulation on its own page<span class="vh"> (opens in a new tab)</span></a></p></div></details>
+<p class="empty" style="padding-left:calc(1.8*var(--u))"></p>
+</article>
+<nav class="pager" aria-label="Section navigation"><a class="prev" href="index.html"><small>Previous</small>Chapter 9 home</a><a class="next" href="section-9-2.html"><small>Next</small>9.2 Estimating Population Proportions</a></nav></main><footer class="site-foot"><p class="lic-text">© 2026 Terrill W. Mead II, Contra Costa College. Except where otherwise noted, this textbook is licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0<span class="vh"> (opens in a new tab)</span></a>: free to use, copy, share and adapt for non-commercial purposes with credit to this work, and any adapted version must carry the same license. It may not be sold or bundled into a commercial product.</p>
+<p class="lic-credits">Photos, figures and data from other sources are credited where they appear and keep their own licenses (for example, Unsplash photos are under the Unsplash License and Dan Kernler’s sampling diagrams are under CC BY-NC-SA 3.0). Fonts: STIX Two Math, Tinos and Source Sans 3 (SIL Open Font License and Apache 2.0). Background art: pencil sketches from <em>The Adventures of Stat-Man and Data!</em> by Terrill W. Mead II.</p></footer></div>
+<script id="simbox-js">document.addEventListener("toggle",function(e){var d=e.target;if(!d.classList||!d.classList.contains("simbox")||!d.open)return;var f=d.querySelector("iframe");if(f&&!f.getAttribute("src"))f.setAttribute("src",f.dataset.src);},true);window.addEventListener("message",function(e){if(!e.data||!e.data.simHeight)return;document.querySelectorAll(".simbox iframe").forEach(function(f){if(f.contentWindow===e.source)f.style.height=(e.data.simHeight+4)+"px";});});</script>
+</body></html>

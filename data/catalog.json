@@ -14,7 +14,8 @@
   "title": "Vaccination status and ethnicity",
   "sections": [
    "2.1",
-   "8.2"
+   "8.2",
+   "9.2"
   ],
   "sheet": "1JgrywANKE8-_FHrbg70DOp-Ur2iAopb8nekOa50x7Tc",
   "file": "data/vaccination.csv",
@@ -129,7 +130,8 @@
   "title": "High school and college GPA",
   "sections": [
    "4.4",
-   "8.3"
+   "8.3",
+   "9.3"
   ],
   "sheet": "1skW5Rpst8ZhmCpq79Kv2PUMxAjcn9UbGYKB1bx1yAL0",
   "file": "data/gpa.csv",
