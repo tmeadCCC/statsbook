@@ -194,5 +194,14 @@
   "sheet": "14zU8zlSTypG1upKOpLArOo7gMrUSWiWlU9U_qG74LHc",
   "file": "data/homework-scores.csv",
   "short": "d/homework-scores/"
+ },
+ {
+  "id": "college-destination",
+  "title": "College destinations of graduates",
+  "sections": [
+   "9.1"
+  ],
+  "file": "data/college-destination.csv",
+  "short": "d/college-destination/"
  }
 ]
