@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Confidence Interval Simulation – Introduction to Statistics with Technology</title>
+<meta name="description" content="Create confidence intervals from random samples one at a time or 100 at a time and see what percent of them contain the population mean.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles for this simulation */
+.params{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;align-items:flex-end;margin:0 0 .8rem}
+.params label{display:flex;flex-direction:column;font:600 .9rem/1.2 var(--sans);gap:.2rem}
+.params label i{font-family:var(--serif);font-weight:700}
+.params input,.params select{font:inherit;font-weight:400;width:6.2rem;padding:.35rem .45rem;border:1.5px solid var(--rule);border-radius:6px;background:#fff}
+.params select{width:auto}
+.tally{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1.4rem;margin:.1rem 0 .3rem;padding:.5rem .8rem;border:1.5px solid var(--rule);border-radius:8px;background:#F7F9FC;font-variant-numeric:tabular-nums}
+.tally .big{font:800 1.5rem/1.1 var(--sans);color:#1E7B3A}
+.tally .of{font:600 1.05rem/1.2 var(--sans);color:var(--ink)}
+.tally .pct{font:800 1.5rem/1.1 var(--sans);color:var(--navy)}
+.tally .lab{color:var(--muted);font-size:.9rem}
+.latest{min-height:1.4em;margin:.1rem 0 .4rem;font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.latest b.in{color:#1E7B3A}.latest b.out{color:#C0261D}
+.latest i{font-family:var(--serif)}
+.plot svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-size:.9rem;color:var(--muted);margin:.3rem 0 .6rem}
+.legend span{display:inline-flex;align-items:center;gap:.35rem}
+.legend .k{display:inline-block;width:26px;height:4px;border-radius:2px}
+.note{font-size:.88rem;color:var(--muted);margin:.2rem 0 .6rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Confidence Interval Simulation</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Simulation</p>
+  <h1>Confidence Interval Simulation</h1>
+  <p class="sim-goes">Goes with Chapter 9 Confidence Intervals</p>
+</header>
+<p class="sim-intro">Each click takes a random sample from a normal population and builds a confidence interval for the population mean from it. Intervals that capture the population mean <i>μ</i> are green; intervals that miss it are red. Watch what percent of the intervals contain <i>μ</i> as they stack up.</p>
+
+<section class="sim" aria-label="Confidence Interval Simulation">
+  <div class="params">
+    <label><span>Population mean <i>μ</i></span><input type="number" id="mu" value="45" step="any"></label>
+    <label><span>Population SD <i>σ</i></span><input type="number" id="sd" value="8" min="0.01" step="any"></label>
+    <label><span>Sample size <i>n</i></span><input type="number" id="n" value="25" min="2" max="1000" step="1"></label>
+    <label><span>Confidence level</span><select id="cl"><option value="0.90">90%</option><option value="0.95" selected>95%</option><option value="0.99">99%</option></select></label>
+  </div>
+  <div class="sim-row" role="group" aria-label="Create confidence intervals">
+    <button class="btn" id="b1">Create confidence interval</button>
+    <button class="btn" id="b10">Add 10</button>
+    <button class="btn" id="b100">Add 100</button>
+    <button class="btn alt" id="reset">Start over</button>
+  </div>
+  <div class="tally" aria-live="polite">
+    <span><span class="big" id="tin">0</span> <span class="of">of <span id="ttot">0</span> intervals contain <i>μ</i></span></span>
+    <span><span class="pct" id="tpct">–</span> <span class="lab" id="texp">(about 95% expected)</span></span>
+  </div>
+  <p class="latest" id="latest">Press “Create confidence interval” to take the first sample.</p>
+  <div class="plot"><svg id="g" role="img" aria-label="Stacked confidence intervals with the population mean marked"></svg></div>
+  <div class="legend"><span><span class="k" style="background:#1E9E45"></span>Contains <i>μ</i></span><span><span class="k" style="background:#D7261E"></span>Misses <i>μ</i></span><span><span class="k" style="background:repeating-linear-gradient(90deg,#1d2a4d 0 5px,transparent 5px 8px);height:2px"></span>Population mean <i>μ</i></span></div>
+  <p class="note" id="note"></p>
+</section>
+
+<aside class="sim-notice">
+  <p class="t">What to notice</p>
+  <p>Every sample gives a different interval, because every sample has a different mean <i>x̄</i>. With 95% confidence, about 95% of the intervals contain the population mean <i>μ</i> and about 5% miss it. The confidence level describes the method: in the long run, that percent of intervals made this way capture <i>μ</i>. A larger sample size makes the intervals narrower, and a higher confidence level makes them wider.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const GREEN = '#1E9E45', RED = '#D7261E', INK = '#1d2a4d', MUTED = '#5b6474', MAX = 1000;
+  /* t critical values (degrees of freedom n - 1), from the t distribution's CDF via the regularized incomplete beta function */
+  function lgamma(x){ const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, .1208650973866179e-2, -.5395239384953e-5];
+    let y = x, t = x + 5.5; t -= (x + .5) * Math.log(t); let ser = 1.000000000190015; for (let j = 0; j < 6; j++) ser += c[j] / ++y; return -t + Math.log(2.5066282746310005 * ser / x); }
+  function betacf(a, b, x){ let qab = a + b, qap = a + 1, qam = a - 1, c = 1, d = 1 - qab * x / qap; if (Math.abs(d) < 1e-30) d = 1e-30; d = 1 / d; let h = d;
+    for (let m = 1; m <= 200; m++){ const m2 = 2 * m; let aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30; c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30; d = 1 / d; h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30; c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30; d = 1 / d; const del = d * c; h *= del; if (Math.abs(del - 1) < 3e-12) break; }
+    return h; }
+  function ibeta(a, b, x){ if (x <= 0) return 0; if (x >= 1) return 1;
+    const bt = Math.exp(lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+    return x < (a + 1) / (a + b + 2) ? bt * betacf(a, b, x) / a : 1 - bt * betacf(b, a, 1 - x) / b; }
+  const tUpper = (t, df) => .5 * ibeta(df / 2, .5, df / (df + t * t));      // P(T > t) for t > 0
+  function tcrit(conf, df){ const tail = (1 - conf) / 2; let a = 0, b = 1000; for (let i = 0; i < 100; i++){ const m = (a + b) / 2; if (tUpper(m, df) > tail) a = m; else b = m; } return (a + b) / 2; }
+  const svgNS = 'http://www.w3.org/2000/svg';
+  let mu, sd, n, cl, tc, se, lo, hi, ivs = [], nIn = 0, animT = null;
+
+  function randn(){ let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function read(){
+    const m = parseFloat($('mu').value), s = parseFloat($('sd').value), k = Math.round(parseFloat($('n').value));
+    const bad = [];
+    if (!isFinite(m)) bad.push('the mean');
+    if (!(s > 0)) bad.push('a standard deviation greater than 0');
+    if (!(k >= 2 && k <= 1000)) bad.push('a sample size from 2 to 1000');
+    $('note').textContent = bad.length ? `Please enter ${bad.join(', ')}.` : '';
+    if (bad.length) return false;
+    mu = m; sd = s; n = k; cl = $('cl').value; tc = tcrit(+cl, n - 1);
+    se = sd / Math.sqrt(n);
+    // the x-axis: wide enough for nearly every interval (sample means rarely land more than 3.3 standard errors away,
+    // and the sample SD is rarely far above sigma); an interval that runs past the edge is drawn to the edge
+    const half = se * (tc * Math.min(2, 1 + 2.5 / Math.sqrt(2 * (n - 1))) + 3.3); lo = mu - half; hi = mu + half;
+    return true;
+  }
+  function reset(){
+    clearTimeout(animT);
+    if (!read()){ buttons(true); return; }
+    ivs = []; nIn = 0; buttons(false); tally();
+    $('texp').textContent = `(about ${Math.round(+cl * 100)}% expected)`;
+    $('latest').textContent = 'Press “Create confidence interval” to take the first sample.';
+    draw();
+  }
+  function buttons(off){ ['b1', 'b10', 'b100'].forEach(id => $(id).disabled = off || ivs.length >= MAX); }
+  function make(){
+    const x = Array.from({length: n}, () => mu + sd * randn());   // a real sample of n values
+    const xb = x.reduce((a, b) => a + b, 0) / n, s = Math.sqrt(x.reduce((a, b) => a + (b - xb) ** 2, 0) / (n - 1));
+    const e = tc * s / Math.sqrt(n), a = xb - e, b = xb + e, hit = a <= mu && mu <= b;
+    if (hit) nIn++;
+    ivs.push({xb, s, a, b, hit});
+    return ivs[ivs.length - 1];
+  }
+  const f = (x, d) => x.toFixed(d);
+  function dec(){ return se >= 10 ? 1 : se >= 1 ? 2 : se >= .1 ? 3 : 4; }
+  function tally(){
+    $('tin').textContent = nIn.toLocaleString(); $('ttot').textContent = ivs.length.toLocaleString();
+    $('tpct').textContent = ivs.length ? (100 * nIn / ivs.length).toFixed(1) + '%' : '–';
+  }
+  function latest(iv){
+    const d = dec();
+    $('latest').innerHTML = `Interval ${ivs.length.toLocaleString()}: <i>x̄</i> = ${f(iv.xb, d)}, interval (${f(iv.a, d)}, ${f(iv.b, d)}) ` +
+      (iv.hit ? `<b class="in">contains <i>μ</i> = ${+mu.toFixed(4)}</b>` : `<b class="out">misses <i>μ</i> = ${+mu.toFixed(4)}</b>`) +
+      (ivs.length >= MAX ? ` · That is the most this graph holds (${MAX}). Press Start over to begin again.` : '');
+  }
+
+  /* nice tick spacing */
+  function ticks(a, b, want){
+    const raw = (b - a) / want, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+    const step = (m < 1.5 ? 1 : m < 3 ? 2 : m < 7 ? 5 : 10) * p, out = [];
+    for (let t = Math.ceil(a / step) * step; t <= b + 1e-9; t += step) out.push(+t.toFixed(10));
+    return {out, step};
+  }
+
+  function draw(animateLast){
+    const svg = $('g'), narrow = svg.parentElement.clientWidth < 520;
+    const W = narrow ? 400 : 760, padL = narrow ? 14 : 22, padR = narrow ? 14 : 22, top = 10, F = narrow ? 15 : 14;
+    const cnt = ivs.length;
+    // rows shrink as intervals pile up; the plot grows to a point, then the rows get thinner
+    const rowMax = narrow ? 14 : 12, plotMin = narrow ? 220 : 240, plotMax = narrow ? 460 : 520;
+    const plotH = Math.max(plotMin, Math.min(plotMax, cnt * rowMax + 8));
+    const row = cnt ? Math.min(rowMax, (plotH - 8) / cnt) : rowMax;
+    const axisY = top + plotH, H = axisY + 52;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const X = v => padL + (v - lo) / (hi - lo) * (W - padL - padR);
+    const clampX = v => Math.max(padL, Math.min(W - padR, X(v)));
+    let s = '';
+    // grid and axis
+    const tk = ticks(lo, hi, narrow ? 5 : 8);
+    tk.out.forEach(t => { const x = X(t); s += `<line x1="${x}" y1="${top}" x2="${x}" y2="${axisY}" stroke="#e7e9ef"/>`; });
+    s += `<line x1="${padL - 4}" y1="${axisY}" x2="${W - padR + 4}" y2="${axisY}" stroke="#222" stroke-width="1.5"/>`;
+    const d = Math.max(0, -Math.floor(Math.log10(tk.step) + 1e-9));
+    tk.out.forEach(t => { const x = X(t); s += `<line x1="${x}" y1="${axisY}" x2="${x}" y2="${axisY + 5}" stroke="#222"/><text x="${x}" y="${axisY + 7 + F}" font-size="${F}" text-anchor="middle" fill="${INK}" font-family="Source Sans 3, sans-serif">${t.toFixed(d)}</text>`; });
+    // intervals: first at the bottom, each new one stacked above; red ones are drawn last so they stay visible
+    const thick = Math.max(.6, Math.min(3, row * .45)), cap = Math.min(5, row * .45);
+    const one = (iv, i) => {
+      const y = axisY - 6 - (i + .5) * row, c = iv.hit ? GREEN : RED, xa = clampX(iv.a), xb2 = clampX(iv.b);
+      let t = `<g class="iv${i === cnt - 1 && animateLast ? ' new' : ''}"><line x1="${xa}" y1="${y}" x2="${xb2}" y2="${y}" stroke="${c}" stroke-width="${iv.hit ? thick : thick * 1.25}" stroke-linecap="round"/>`;
+      if (row >= 5) t += `<line x1="${xa}" y1="${y - cap}" x2="${xa}" y2="${y + cap}" stroke="${c}" stroke-width="1.5"/><line x1="${xb2}" y1="${y - cap}" x2="${xb2}" y2="${y + cap}" stroke="${c}" stroke-width="1.5"/><circle cx="${clampX(iv.xb)}" cy="${y}" r="${Math.min(3, row * .25)}" fill="${c}"/>`;
+      return t + '</g>';
+    };
+    ivs.forEach((iv, i) => { if (iv.hit) s += one(iv, i); });
+    ivs.forEach((iv, i) => { if (!iv.hit) s += one(iv, i); });
+    // the population mean
+    const xm = X(mu);
+    s += `<line x1="${xm}" y1="${top - 4}" x2="${xm}" y2="${axisY}" stroke="${INK}" stroke-width="1.6" stroke-dasharray="6 4"/>`;
+    s += `<path d="M${xm} ${axisY + 1} l7 12 h-14 z" fill="${INK}"/>`;
+    s += `<text x="${xm}" y="${axisY + 26 + F}" font-size="${F + 1}" text-anchor="middle" fill="${INK}" font-weight="700" font-family="Source Sans 3, sans-serif"><tspan font-family="Tinos, serif" font-style="italic">μ</tspan> = ${+mu.toFixed(4)}</text>`;
+    if (!cnt) s += `<text x="${W / 2}" y="${top + plotH / 2}" font-size="${F}" text-anchor="middle" fill="${MUTED}" font-family="Source Sans 3, sans-serif">Confidence intervals will stack up here.</text>`;
+    svg.innerHTML = s;
+    if (animateLast){ const g = svg.querySelector('.iv.new'); if (g && !matchMedia('(prefers-reduced-motion: reduce)').matches && g.animate){
+      g.style.transformOrigin = `${clampX(ivs[cnt - 1].xb)}px 0`; g.style.transformBox = 'view-box';
+      g.animate([{transform: 'scaleX(0)', opacity: .3}, {transform: 'scaleX(1)', opacity: 1}], {duration: 420, easing: 'cubic-bezier(.2,.8,.3,1)'}); } }
+  }
+
+  function add(k){
+    if (!read()) return;
+    k = Math.min(k, MAX - ivs.length); if (k <= 0) return;
+    let last; for (let i = 0; i < k; i++) last = make();
+    tally(); latest(last); draw(k === 1); buttons(false);
+  }
+  $('b1').onclick = () => add(1);
+  $('b10').onclick = () => add(10);
+  $('b100').onclick = () => add(100);
+  $('reset').onclick = reset;
+  ['mu', 'sd', 'n', 'cl'].forEach(id => $(id).addEventListener('change', reset));
+  let rw; window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => draw(false), 120); });
+  if (/[?&]selftest\b/.test(location.search)) window.__state = () => ({count: ivs.length, nIn, lo, hi, tc, outOfRange: ivs.filter(v => v.a < lo || v.b > hi).length});
+  reset();
+})();
+</script>
+</body></html>
