@@ -3874,35 +3874,52 @@ function discCustomCalc(pairs,mode,a,b,d){
       <label><input type="radio" name="gf-src" value="col">Column data from the main spreadsheet (the categories are counted for you)</label></fieldset>
       <div id="gf-cntsel"><div class="cl"><label for="gf-cc">Column of categories</label><select id="gf-cc"></select></div><div class="cl"><label for="gf-cn">Column of observed counts</label><select id="gf-cn"></select></div></div>
       <div id="gf-colsel" hidden><div class="cl"><label for="gf-c">Column</label><select id="gf-c"></select></div></div>
-      <div class="cl"><label for="gf-exp">Hypothesized proportions</label><select id="gf-exp"><option value="eq">All categories equally likely</option><option value="spec">I will type the proportions</option></select></div>
+      <div class="cl"><label for="gf-exp">Hypothesized proportions</label><select id="gf-exp"><option value="pcol">Select a column of percents or proportions</option><option value="eq" selected>All outcomes are equally likely</option><option value="spec">I will type the percents or proportions</option></select></div>
+      <div class="cl" id="gf-pcw" hidden><label for="gf-pc">Column of percents or proportions</label><select id="gf-pc"></select></div>
       <div id="gf-grid"></div><p class="small" id="gf-cinfo"></p>`+ALPHA('gf')
-      +`<p class="small" style="margin:6px 0">The test uses χ² = Σ (O − E)² / E, where E is the sample size times the hypothesized proportion. With equally likely categories, each proportion is 1 divided by the number of categories listed. Typed proportions must add to 1 (within 0.001).</p>`;
+      +`<p class="small" style="margin:6px 0">The test uses χ² = Σ (O − E)² / E, where E is the sample size times the hypothesized proportion. With equally likely categories, each proportion is 1 divided by the number of categories listed. Proportions must add to 1 and percents must add to 100. A column of percents or proportions lines up row by row with the categories, so it works with observed counts.</p>`;
+    /* turn typed or column values into proportions: 25%, 25 (when the values add to 100) or 0.25 */
+    const toProps=(vals,names)=>{
+      const raw=vals.map(v=>String(v).trim()),num=raw.map(parseVal);
+      for(let i=0;i<num.length;i++)if(!(num[i]>=0))return {err:`Enter the hypothesized percent or proportion for ${names[i]} as a number, such as 25% or 0.25.`};
+      const plain=raw.map((v,i)=>/%$/.test(v)?num[i]:Number(v)),sum=plain.reduce((a,b)=>a+b,0);
+      const pct=!raw.some(v=>/%$/.test(v))&&Math.abs(sum-100)<=0.1&&plain.some(v=>v>1);
+      const pr=pct?plain.map(v=>v/100):num;
+      for(let i=0;i<pr.length;i++)if(!(pr[i]>0&&pr[i]<=1))return {err:`The hypothesized value for ${names[i]} must be more than 0 and no more than 1 (or 100%).`};
+      const t=pr.reduce((a,b)=>a+b,0);
+      if(Math.abs(t-1)>0.001)return {err:`The hypothesized values add to ${cfx(+(pct?t*100:t).toFixed(6))}${pct?'%':''}. Proportions must add to 1 and percents to 100.`};
+      return {p:pr};
+    };
     const save=()=>{for(let i=0;i<GFMAX;i++){const c=$('gf-p'+i);if(c){if(c.value!==GF.prop[i])GF.auto=false;GF.prop[i]=c.value;}}};
     const fromLists=()=>{
       const cc=$('gf-cc').value,cn=$('gf-cn').value;
       if(cc===''||cn==='')return {cats:[],counts:[],err:'The main spreadsheet needs data in at least two columns: one of categories and one of counts.'};
       if(cc===cn)return {cats:[],counts:[],err:'Choose two different columns, one for the categories and one for the counts.'};
-      const cats=[],counts=[];
+      const cats=[],counts=[],props=[],pc=$('gf-exp').value==='pcol'?$('gf-pc').value:'';
+      if($('gf-exp').value==='pcol'&&(pc===cc||pc===cn))return {cats:[],counts:[],err:'Choose a column of percents or proportions that is different from the categories and counts.'};
       for(let i=0;i<data.length;i++){const c=String(data[i][+cc]).trim(),v=String(data[i][+cn]).trim();if(c===''&&v==='')continue;
         if(c===''||v==='')return {cats:[],counts:[],err:`Row ${i+1} has a category without a count, or a count without a category.`};
         const n=Number(v);if(!(isFinite(n)&&Number.isInteger(n)&&n>=0))return {cats:[],counts:[],err:`The count in row ${i+1} (${v}) must be a whole number, 0 or more.`};
+        if(pc!==''){const q=String(data[i][+pc]).trim();if(q==='')return {cats:[],counts:[],err:`Row ${i+1} has no hypothesized percent or proportion in ${names[+pc]}.`};props.push(q);}
         cats.push(c);counts.push(n);}
-      return {cats,counts};
+      return pc!==''?{cats,counts,props}:{cats,counts};
     };
     const sync=()=>{
       save();
-      const col=document.querySelector('input[name="gf-src"]:checked').value==='col',spec=$('gf-exp').value==='spec';
-      $('gf-cntsel').hidden=col;$('gf-colsel').hidden=!col;
+      const col=document.querySelector('input[name="gf-src"]:checked').value==='col',ex=$('gf-exp');
+      ex.querySelector('option[value="pcol"]').disabled=col;if(col&&ex.value==='pcol')ex.value='eq';
+      const spec=ex.value==='spec',pcol=ex.value==='pcol';
+      $('gf-cntsel').hidden=col;$('gf-colsel').hidden=!col;$('gf-pcw').hidden=!pcol;if(pcol)fillColSel('gf-pc',2);
       let t;
       if(col){fillColSel('gf-c',0);t=$('gf-c').value===''?{cats:[],counts:[]}:tallyCol(+$('gf-c').value);}
       else{fillColSel('gf-cc',0);fillColSel('gf-cn',1);const a=$('gf-cc'),b=$('gf-cn');if(a.value===b.value&&b.options.length>1){const o=[...b.options].find(x=>x.value!==a.value);if(o)b.value=o.value;}t=fromLists();}
       GF.t=t;const n=t.cats.length;
-      const sig=[col,n,spec,t.cats.join('\u0001'),t.counts.join(',')].join('|');
+      const sig=[col,n,ex.value,t.cats.join('\u0001'),t.counts.join(','),(t.props||[]).join('\u0001')].join('|');
       if(sig===GF.sig)return;GF.sig=sig;
       if(spec&&GF.auto&&n>0)for(let i=0;i<GFMAX;i++)GF.prop[i]=i<n?String(+(1/n).toFixed(4)):'';
       if(t.err||n<2||n>GFMAX){$('gf-grid').innerHTML='';return;}
-      const pin=i=>spec?`<td><input type="text" id="gf-p${i}" inputmode="decimal" value="${E(GF.prop[i])}" aria-label="Hypothesized proportion for ${E(t.cats[i])}"></td>`:'';
-      $('gf-grid').innerHTML=`<table class="avgrid gfbox"><thead><tr><th>Category</th><th>Observed count</th>${spec?'<th>Hypothesized proportion</th>':''}</tr></thead><tbody>${t.cats.map((c,i)=>`<tr><td>${E(c)}</td><td class="num">${t.counts[i]}</td>${pin(i)}</tr>`).join('')}</tbody></table>`;
+      const pin=i=>spec?`<td><input type="text" id="gf-p${i}" inputmode="decimal" value="${E(GF.prop[i])}" aria-label="Hypothesized percent or proportion for ${E(t.cats[i])}"></td>`:pcol?`<td class="num">${E(t.props[i])}</td>`:'';
+      $('gf-grid').innerHTML=`<table class="avgrid gfbox"><thead><tr><th>Category</th><th>Observed count</th>${spec||pcol?'<th>Hypothesized percent or proportion</th>':''}</tr></thead><tbody>${t.cats.map((c,i)=>`<tr><td>${E(c)}</td><td class="num">${t.counts[i]}</td>${pin(i)}</tr>`).join('')}</tbody></table>`;
     };
     const rowsOf=()=>{
       const spec=$('gf-exp').value==='spec',t=GF.t,out=[];
@@ -3911,10 +3928,10 @@ function discCustomCalc(pairs,mode,a,b,d){
       if(t.cats.length<2)return {err:'At least two categories are needed.'};
       if(t.cats.length>GFMAX)return {err:`There are ${t.cats.length} categories. The test handles ${GFMAX} or fewer.`};
       const n=t.cats.length;t.cats.forEach((c,i)=>out.push({name:c,obs:t.counts[i]}));
-      if(spec){let s=0;for(let i=0;i<n;i++){const p=parseVal($('gf-p'+i).value);if(!(p>0&&p<=1))return {err:`Enter the hypothesized proportion for ${out[i].name} as a number between 0 and 1.`};out[i].p=p;s+=p;}
-        if(Math.abs(s-1)>0.001)return {err:`The hypothesized proportions add to ${cfx(+s.toFixed(6))}. They must add to 1 (within 0.001).`};}
+      const pcol=$('gf-exp').value==='pcol';
+      if(spec||pcol){const r=toProps(spec?out.map((o,i)=>$('gf-p'+i).value):t.props,out.map(o=>o.name));if(r.err)return r;out.forEach((o,i)=>o.p=r.p[i]);}
       else out.forEach(r=>r.p=1/n);
-      $('gf-cinfo').textContent=spec?'':`${n} categories, so each hypothesized proportion is 1/${n} = ${fmtX(1/n,4)}.`;
+      $('gf-cinfo').textContent=spec||pcol?'':`${n} categories, so each hypothesized proportion is 1/${n} = ${fmtX(1/n,4)}.`;
       return out;
     };
     buildGen('gf','t-gf',body,d=>{
@@ -3924,7 +3941,7 @@ function discCustomCalc(pairs,mode,a,b,d){
       const k=R.length,N=R.reduce((p,q)=>p+q.obs,0);
       if(!(N>0))return {err:'The observed counts add to 0. Enter at least one count.'};
       R.forEach(r=>{r.e=N*r.p;r.c=(r.obs-r.e)*(r.obs-r.e)/r.e;});
-      const chi=R.reduce((p,q)=>p+q.c,0),df=k-1,pv=chiSF(chi,df),cut=chiQ(1-al,df),rej=pv<=al,spec=$('gf-exp').value==='spec';
+      const chi=R.reduce((p,q)=>p+q.c,0),df=k-1,pv=chiSF(chi,df),cut=chiQ(1-al,df),rej=pv<=al,spec=$('gf-exp').value!=='eq';
       const ph=['Category','Observed O','Hypothesized proportion','Expected E','(O − E)² / E'],pr=R.map(r=>[r.name,String(r.obs),fmtX(r.p,4),fmtX(r.e,d),fmtX(r.c,d)]);
       pr.push(['Total',String(N),fmtX(R.reduce((p,q)=>p+q.p,0),4),fmtX(N,d),fmtX(chi,d)]);
       const sh=['Sample size n','Degrees of freedom','Test statistic χ²','P-value'],sr=[String(N),String(df),fmtX(chi,d),fmtP(pv,d)];
