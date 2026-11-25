@@ -128,7 +128,7 @@
    "sections": [
     "4.1"
    ],
-   "blurb": "Look at a random scatterplot, with faint lines at the means of x and y, and guess the correlation r. Get within 0.1 to win the round; win 5 rounds in a row to become a Correlation Whisperer.",
+   "blurb": "Look at a random scatterplot, with faint lines at the means of x and y, and guess the correlation r. Get within 0.15 (0.2 near 0) to win the round; win 5 rounds in a row to become a Correlation Whisperer.",
    "statbelt": false
   }
  ]
