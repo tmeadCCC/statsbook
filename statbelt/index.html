@@ -1367,16 +1367,18 @@ async function pngCanvas(g){
   else{m.font='600 14px Arial,sans-serif';const T0=g.table;
     if(T0.wrap){const cmw=T0.head.map((h,j)=>Math.max(...T0.rows.map(r=>m.measureText(r[j]).width))+28);g.hl=T0.head.map((h,j)=>wrapText(m,h,Math.max(cmw[j],100)-24));g.cw=T0.head.map((h,j)=>Math.max(cmw[j],Math.max(...g.hl[j].map(l=>m.measureText(l).width))+28));g.hh=Math.max(28,Math.max(...g.hl.map(a=>a.length))*17+12);}
     else{g.cw=T0.head.map((h,j)=>Math.max(m.measureText(h).width,...T0.rows.map(r=>m.measureText(r[j]).width))+28);g.hh=28;g.hl=null;}
-    fw=Math.max(W,g.cw.reduce((a,b)=>a+b,0)+32);fh=T0.rows.length*28+g.hh+(T0.top?28:0)+16;}
+    fw=Math.max(W,g.cw.reduce((a,b)=>a+b,0)+32);fh=T0.rows.length*28+g.hh+(T0.top?28:0)+16;
+    if(g.table2){const T2=g.table2;g.cw2=T2.head.map((h,j)=>Math.max(m.measureText(h).width,...T2.rows.map(r=>m.measureText(r[j]).width))+28);fw=Math.max(fw,g.cw2.reduce((a,b)=>a+b,0)+32);fh+=16+26+28+T2.rows.length*28;}}
   m.font='13px Arial,sans-serif';
   m.font=g.big?'600 20px Arial,sans-serif':'15px Arial,sans-serif';
   const eqL=[];(g.eq||[]).forEach((l,k)=>wrapText(m,l,fw-32).forEach(t=>eqL.push([t,k===0])));
+  m.font='15px Arial,sans-serif';const preL=[];(g.pre||[]).forEach(l=>wrapText(m,l,fw-32).forEach(t=>preL.push(t)));
   m.font='13px Arial,sans-serif';
-  const cap=wrapText(m,g.cap,fw-32),eh=eqL.length?eqL.length*(g.big?30:22)+10:0,PH=(g.pre&&g.pre.length)?g.pre.length*22+10:0,H=44+PH+fh+eh+cap.length*18+16;
+  const cap=wrapText(m,g.cap,fw-32),eh=eqL.length?eqL.length*(g.big?30:22)+10:0,PH=preL.length?preL.length*22+10:0,H=44+PH+fh+eh+cap.length*18+16;
   const cv=document.createElement('canvas');cv.width=fw*S;cv.height=H*S;
   const x=cv.getContext('2d');x.scale(S,S);x.fillStyle='#fff';x.fillRect(0,0,fw,H);
   x.textAlign=g.big?'center':'left';x.fillStyle='#241a3a';x.font=g.big?'700 24px Arial,sans-serif':'600 18px Arial,sans-serif';x.fillText(g.title,g.big?fw/2:16,g.big?33:30);x.textAlign='left';
-  if(PH){x.font='15px Arial,sans-serif';(g.pre||[]).forEach((l,i)=>x.fillText(l,16,52+i*22));}
+  if(PH){x.font='15px Arial,sans-serif';preL.forEach((l,i)=>x.fillText(l,16,52+i*22));}
   x.save();x.translate(0,PH);
   if(img) x.drawImage(img,(fw-W)/2,44,W,g.gh||GH);
   else if(g.math){let yy=44+8;g._ml.rows.forEach(r=>{x.save();x.translate(20,yy);r.draw(x,0);x.restore();yy+=r.h;});}
@@ -1397,6 +1399,13 @@ async function pngCanvas(g){
       if(i===0&&g.hl){g.hl.forEach((ls,j)=>{x.textAlign=j===0?'left':'right';ls.forEach((l,q)=>x.fillText(l,j===0?cx+14:cx+g.cw[j]-14,top+rh-9-(ls.length-1-q)*17));cx+=g.cw[j];});return;}
       row.forEach((t,j)=>{if(T.fill&&i>0&&T.fill[i-1]&&T.fill[i-1][j]){x.fillStyle=T.fill[i-1][j];x.fillRect(cx,top,g.cw[j],28);x.fillStyle='#241a3a';}const al=(T.al&&T.al[j])||(j===0?'l':'r');x.textAlign=al==='l'?'left':al==='c'?'center':'right';x.fillText(t,al==='l'?cx+14:al==='c'?cx+g.cw[j]/2:cx+g.cw[j]-14,top+19);cx+=g.cw[j];});
     });
+    if(g.table2){const T2=g.table2,tw2=g.cw2.reduce((a,b)=>a+b,0);let top=44+(T.top?28:0)+g.hh+T.rows.length*28+16;
+      x.textAlign='left';x.fillStyle='#241a3a';x.font='600 15px Arial,sans-serif';x.fillText(T2.title||'',16,top+17);top+=26;
+      [T2.head,...T2.rows].forEach((row,i)=>{if(i===0){x.fillStyle=GS.light;x.fillRect(16,top,tw2,28);}
+        x.strokeStyle='#d3c9e6';x.lineWidth=1;x.beginPath();x.moveTo(16,top+28);x.lineTo(16+tw2,top+28);x.stroke();
+        x.fillStyle='#241a3a';x.font=(i===0?'600 ':'')+'14px Arial,sans-serif';x.textAlign='center';let cx=16;
+        row.forEach((t,j)=>{x.fillText(t,cx+g.cw2[j]/2,top+19);cx+=g.cw2[j];});top+=28;});
+      x.textAlign='left';}
     x.textAlign='left';
   }
   x.restore();
@@ -1509,7 +1518,7 @@ function makePop(g,cv){
       try{await navigator.clipboard.writeText(t);ok=true;}catch(e){try{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;left:-9999px';document.body.appendChild(ta);ta.select();ok=document.execCommand('copy');ta.remove();}catch(e2){}}
       pm.textContent=ok?'Copied as text. Paste it into a document; use a fixed-width font (such as Courier) to keep the columns lined up.':'Copy was blocked here. Select the text with the mouse and copy it instead.';};}
   if(g.table){const cb=document.createElement('button');cb.dataset.a='copytxt';cb.textContent='Copy table as text';p.querySelector('[data-a=copy]').after(cb);
-    cb.onclick=async()=>{pm.textContent=(await copyRows(rowsOfSpec(g.table)))?COPY_OK:COPY_NO;};}
+    cb.onclick=async()=>{pm.textContent=(await copyRows(rowsOfSpec(g.table).concat(g.table2?[[],[g.table2.title||''],g.table2.head,...g.table2.rows]:[])))?COPY_OK:COPY_NO;};}
   p.querySelector('[data-a=copy]').onclick=async()=>{
     try{await navigator.clipboard.write([new ClipboardItem({'image/png':await toBlob(cv)})]);pm.textContent='Copied. Paste it into your document.';}
     catch(e){pm.textContent='Copy was blocked here. Right-click (or long-press) the image and choose Copy image.';}
@@ -3783,7 +3792,7 @@ function discCustomCalc(pairs,mode,a,b,d){
     (window.colHooks=window.colHooks||[]).push(run);
     $(k+'-win').onclick=async()=>{
       const r=last[k],st=$(k+'-st');if(!r||r.err){st.textContent='Fix the entries above first.';return;}
-      const g={title,plain:true,table:r.popTable,cap:'',pre:r.summary.map(([l,v])=>l+': '+v).concat(r.prePop||[]),eq:$(k+'-show').checked?decLines(r):[]};
+      const g={title,plain:true,table:r.popTable,table2:r.popTable2,cap:'',pre:r.summary.map(([l,v])=>l+': '+v).concat(r.prePop||[]),eq:$(k+'-show').checked?decLines(r):[]};
       try{makePop(g,await pngCanvas(g));st.textContent='Opened in a new window. Use Copy image or Save PNG there.';}
       catch(e){st.textContent='The results could not be drawn. Please try again.';}
     };
@@ -3922,7 +3931,7 @@ function discCustomCalc(pairs,mode,a,b,d){
       const html=gtab('Observed and expected counts',ph,pr,{tot:true})+gtab('Goodness-of-fit test results',sh,[sr]);
       const small=R.filter(r=>r.e<5),warn=small.length?`Condition not met: ${small.length===1?'the expected count for '+small[0].name+' is':'the expected counts for '+small.length+' categories are'} below 5 (smallest expected count = ${fmtX(Math.min(...R.map(r=>r.e)),2)}). The chi-square approximation may be unreliable. Consider combining categories.`:'';
       const summary=[['Null hypothesis H₀',spec?'The population follows the hypothesized distribution (each category proportion equals its hypothesized value)':`All ${k} categories are equally likely (each proportion is 1/${k})`],['Alternative hypothesis H_A','At least one category proportion is different from its hypothesized value'],['Significance level α',cfx(al)],['Test statistic','χ² = Σ (O − E)² / E'],['Sample size n',String(N)]];
-      return Object.assign(chiFig(chi,df,cut),{pv,summary,html,warn,popTable:{head:ph,rows:pr,wrap:true},side:'right',
+      return Object.assign(chiFig(chi,df,cut),{pv,summary,html,warn,popTable:{head:ph,rows:pr,wrap:true},popTable2:{title:'Goodness-of-fit test results',head:sh,rows:[sr]},side:'right',
         note:'The conditions are a random sample, each observation in only one category, and every expected count at least 5.',
         decision:mkDecV(rej,pv,al,chi,{lo:0,hi:cut},'right',d,'the population distribution is different from the hypothesized distribution','χ²')});
     },'Goodness-of-Fit Test Results',{pre:sync});
