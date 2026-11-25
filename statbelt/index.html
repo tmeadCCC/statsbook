@@ -1371,12 +1371,13 @@ async function pngCanvas(g){
   m.font='13px Arial,sans-serif';
   m.font=g.big?'600 20px Arial,sans-serif':'15px Arial,sans-serif';
   const eqL=[];(g.eq||[]).forEach((l,k)=>wrapText(m,l,fw-32).forEach(t=>eqL.push([t,k===0])));
+  m.font='15px Arial,sans-serif';const preL=[];(g.pre||[]).forEach(l=>wrapText(m,l,fw-32).forEach(t=>preL.push(t)));
   m.font='13px Arial,sans-serif';
-  const cap=wrapText(m,g.cap,fw-32),eh=eqL.length?eqL.length*(g.big?30:22)+10:0,PH=(g.pre&&g.pre.length)?g.pre.length*22+10:0,H=44+PH+fh+eh+cap.length*18+16;
+  const cap=wrapText(m,g.cap,fw-32),eh=eqL.length?eqL.length*(g.big?30:22)+10:0,PH=preL.length?preL.length*22+10:0,H=44+PH+fh+eh+cap.length*18+16;
   const cv=document.createElement('canvas');cv.width=fw*S;cv.height=H*S;
   const x=cv.getContext('2d');x.scale(S,S);x.fillStyle='#fff';x.fillRect(0,0,fw,H);
   x.textAlign=g.big?'center':'left';x.fillStyle='#241a3a';x.font=g.big?'700 24px Arial,sans-serif':'600 18px Arial,sans-serif';x.fillText(g.title,g.big?fw/2:16,g.big?33:30);x.textAlign='left';
-  if(PH){x.font='15px Arial,sans-serif';(g.pre||[]).forEach((l,i)=>x.fillText(l,16,52+i*22));}
+  if(PH){x.font='15px Arial,sans-serif';preL.forEach((l,i)=>x.fillText(l,16,52+i*22));}
   x.save();x.translate(0,PH);
   if(img) x.drawImage(img,(fw-W)/2,44,W,g.gh||GH);
   else if(g.math){let yy=44+8;g._ml.rows.forEach(r=>{x.save();x.translate(20,yy);r.draw(x,0);x.restore();yy+=r.h;});}
@@ -3922,7 +3923,7 @@ function discCustomCalc(pairs,mode,a,b,d){
       const html=gtab('Observed and expected counts',ph,pr,{tot:true})+gtab('Goodness-of-fit test results',sh,[sr]);
       const small=R.filter(r=>r.e<5),warn=small.length?`Condition not met: ${small.length===1?'the expected count for '+small[0].name+' is':'the expected counts for '+small.length+' categories are'} below 5 (smallest expected count = ${fmtX(Math.min(...R.map(r=>r.e)),2)}). The chi-square approximation may be unreliable. Consider combining categories.`:'';
       const summary=[['Null hypothesis H₀',spec?'The population follows the hypothesized distribution (each category proportion equals its hypothesized value)':`All ${k} categories are equally likely (each proportion is 1/${k})`],['Alternative hypothesis H_A','At least one category proportion is different from its hypothesized value'],['Significance level α',cfx(al)],['Test statistic','χ² = Σ (O − E)² / E'],['Sample size n',String(N)]];
-      return Object.assign(chiFig(chi,df,cut),{pv,summary,html,warn,popTable:{head:ph,rows:pr,wrap:true},side:'right',
+      return Object.assign(chiFig(chi,df,cut),{pv,summary,html,warn,popTable:{head:ph,rows:pr,wrap:true},prePop:[`Degrees of freedom: ${df}`,`Test statistic χ² = ${fmtX(chi,d)}`,`P-value: ${fmtP(pv,d)}`],side:'right',
         note:'The conditions are a random sample, each observation in only one category, and every expected count at least 5.',
         decision:mkDecV(rej,pv,al,chi,{lo:0,hi:cut},'right',d,'the population distribution is different from the hypothesized distribution','χ²')});
     },'Goodness-of-Fit Test Results',{pre:sync});
