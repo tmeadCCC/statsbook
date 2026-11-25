@@ -197,9 +197,9 @@
  },
  {
   "id": "college-destination",
-  "title": "College destinations of graduates",
+  "title": "College Destinations",
   "sections": [
-   "9.1"
+   "11.1"
   ],
   "file": "data/college-destination.csv",
   "short": "d/college-destination/"
