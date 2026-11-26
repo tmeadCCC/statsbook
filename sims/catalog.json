@@ -130,6 +130,16 @@
    ],
    "blurb": "Look at a random scatterplot, with faint lines at the means of x and y, and guess the correlation r. Get within 0.15 (0.2 near 0) to win the round; win 5 rounds in a row to become a Correlation Whisperer.",
    "statbelt": false
+  },
+  {
+   "id": "margin-of-error",
+   "title": "Investigate the Margin of Error",
+   "kind": "Interactive",
+   "sections": [
+    "9.1"
+   ],
+   "blurb": "Slide the sample size n from 1 to 100 and the confidence level from 70% to 99% and watch a confidence interval for a mean (x̄ = 50, s = 10) shrink or grow on a fixed scale.",
+   "statbelt": false
   }
  ]
 }
