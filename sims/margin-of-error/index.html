@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Investigate the Margin of Error – Introduction to Statistics with Technology</title>
+<meta name="description" content="Move the sample size and confidence level sliders and watch the margin of error and the width of a confidence interval for a mean shrink or grow.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../sim.css">
+<style>
+/* page-specific styles */
+.given{margin:0 0 .8rem;color:var(--muted);font-size:.95rem}
+.given i,.read i,.sl i{font-family:var(--serif);font-weight:700;font-style:italic}
+.sliders{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.8rem 1.6rem;margin:0 0 .9rem}
+@media (max-width:640px){.sliders{grid-template-columns:1fr}}
+.sim label.sl{display:flex;flex-direction:column;align-items:stretch;gap:.35rem;cursor:default}
+.sl .top{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;font-weight:600}
+.sl .val{font:700 1.25rem/1 var(--sans);color:var(--navy);font-variant-numeric:tabular-nums}
+.sl .ends{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.sl input[type=range]{width:100%;margin:0;height:32px;accent-color:var(--navy);cursor:pointer}
+.read{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;align-items:baseline;margin:.1rem 0 .5rem;padding:.55rem .8rem;border:1.5px solid var(--rule);border-radius:8px;background:#F7F9FC;font-variant-numeric:tabular-nums}
+.read .lab{color:var(--muted);font-size:.9rem}
+.read .big{font:800 1.45rem/1.1 var(--sans);color:#B0281F}
+.read .mid{font:700 1.15rem/1.2 var(--sans);color:var(--navy)}
+.plot svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-size:.88rem;color:var(--muted);margin:.25rem 0 .7rem}
+.legend>span{display:inline-flex;align-items:center;gap:.35rem}
+.legend .k{display:inline-block;width:26px;height:5px;border-radius:2px}
+.note{min-height:1.3em;font-size:.9rem;color:var(--muted);margin:.1rem 0 .6rem}
+</style>
+</head><body>
+<header class="runhead"><div class="in"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Introduction to Statistics with Technology</a><span class="sep" aria-hidden="true">›</span><a href="../index.html">Simulations and Games</a><span class="sep" aria-hidden="true">›</span><span>Investigate the Margin of Error</span></nav><a class="toollink" href="/statbelt/" target="_blank" rel="noopener"><span class="tl-name">STATBELT Utility</span><span class="tl-beta">beta</span><span class="vh"> (opens in a new tab)</span></a></div></header>
+<div class="wrap"><main>
+<header class="sim-head">
+  <p class="sim-kind">Interactive</p>
+  <h1>Investigate the Margin of Error</h1>
+  <p class="sim-goes">Goes with <a href="../../chapter-9/section-9-1.html">Section 9.1 Confidence Intervals</a></p>
+</header>
+<p class="sim-intro">Move the sliders for the sample size and the confidence level, and watch the confidence interval for the population mean shrink or grow as the margin of error changes.</p>
+
+<section class="sim" aria-label="Investigate the Margin of Error">
+  <p class="given">A sample from a normally distributed population has sample mean <i>x̄</i> = 50 and sample standard deviation <i>s</i> = 10.</p>
+  <div class="sliders">
+    <label class="sl"><span class="top"><span>Sample size <i>n</i></span><span class="val" id="nv">10</span></span>
+      <input type="range" id="n" min="1" max="100" step="1" value="10" aria-describedby="nends">
+      <span class="ends" id="nends"><span>1</span><span>100</span></span></label>
+    <label class="sl"><span class="top"><span>Confidence level</span><span class="val" id="cv">95%</span></span>
+      <input type="range" id="c" min="70" max="99" step="1" value="95" aria-describedby="cends">
+      <span class="ends" id="cends"><span>70%</span><span>99%</span></span></label>
+  </div>
+  <div class="read" aria-live="polite">
+    <span><span class="lab">Margin of error</span> <span class="big" id="e">E = 7.15</span></span>
+    <span><span class="lab">Interval</span> <span class="mid" id="iv">(42.85, 57.15)</span></span>
+    <span><span class="lab">Width</span> <span class="mid" id="w">14.31</span></span>
+  </div>
+  <div class="plot"><svg id="g" role="img" aria-label="Confidence interval on a number line from 10 to 90"></svg></div>
+  <div class="legend"><span><span class="k" style="background:#365F91"></span><span>Confidence interval <i>x̄</i> ± <i>E</i></span></span><span><span class="k" style="background:#c9ced8"></span><span>Starting interval (<i>n</i> = 10, 95%)</span></span></div>
+  <p class="note" id="note"></p>
+  <div class="sim-row"><button class="btn alt" id="reset"><span>Back to <i style="font-family:var(--serif)">n</i> = 10 and 95%</span></button></div>
+</section>
+
+<aside class="sim-notice">
+  <p class="t">What you should notice</p>
+  <p><b>Sample size:</b> as you increase the sample size <i>n</i>, the margin of error decreases and the confidence interval gets narrower. A smaller sample size gives a larger margin of error and a wider interval. More data gives a more precise estimate.</p>
+  <p><b>Confidence level:</b> as you increase the confidence level, the margin of error increases and the confidence interval gets wider. A lower confidence level gives a smaller margin of error and a narrower interval. To be more confident that the interval captures the population mean, we need a wider net.</p>
+  <p>The interval is always centered at the point estimate <i>x̄</i> = 50. Only the margin of error changes. Notice too that the margin of error shrinks quickly at first, then more slowly: going from <i>n</i> = 10 to <i>n</i> = 40 cuts it by more than half, but going from <i>n</i> = 70 to <i>n</i> = 100 changes it much less.</p>
+</aside>
+<p class="sim-back"><a href="../index.html">All simulations and games</a></p>
+</main></div>
+<script src="../sim.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const XBAR = 50, S = 10, LO = 10, HI = 90, N0 = 10, C0 = 95;
+  const NAVY = '#365F91', INK = '#1d2a4d', MUTED = '#5b6474', RED = '#B0281F', GHOST = '#c9ced8';
+  /* t critical values (degrees of freedom n - 1), from the t distribution's CDF via the regularized incomplete beta function */
+  function lgamma(x){ const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, .1208650973866179e-2, -.5395239384953e-5];
+    let y = x, t = x + 5.5; t -= (x + .5) * Math.log(t); let ser = 1.000000000190015; for (let j = 0; j < 6; j++) ser += c[j] / ++y; return -t + Math.log(2.5066282746310005 * ser / x); }
+  function betacf(a, b, x){ let qab = a + b, qap = a + 1, qam = a - 1, c = 1, d = 1 - qab * x / qap; if (Math.abs(d) < 1e-30) d = 1e-30; d = 1 / d; let h = d;
+    for (let m = 1; m <= 200; m++){ const m2 = 2 * m; let aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30; c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30; d = 1 / d; h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30; c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30; d = 1 / d; const del = d * c; h *= del; if (Math.abs(del - 1) < 3e-12) break; }
+    return h; }
+  function ibeta(a, b, x){ if (x <= 0) return 0; if (x >= 1) return 1;
+    const bt = Math.exp(lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+    return x < (a + 1) / (a + b + 2) ? bt * betacf(a, b, x) / a : 1 - bt * betacf(b, a, 1 - x) / b; }
+  const tUpper = (t, df) => .5 * ibeta(df / 2, .5, df / (df + t * t));      // P(T > t) for t > 0
+  function tcrit(conf, df){ const tail = (1 - conf) / 2; let a = 0, b = 1000; for (let i = 0; i < 100; i++){ const m = (a + b) / 2; if (tUpper(m, df) > tail) a = m; else b = m; } return (a + b) / 2; }
+  const moe = (n, c) => n < 2 ? Infinity : tcrit(c / 100, n - 1) * S / Math.sqrt(n);
+  const E0 = moe(N0, C0);
+  const f2 = x => x.toFixed(2).replace('-', '−');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+  let target = E0, shown = E0, raf = 0;
+  const CAP = (HI - LO) / 2 + 6;          // drawing cap for off-scale (and infinite) margins
+
+  function update(){
+    const n = +$('n').value, c = +$('c').value, e = moe(n, c);
+    $('nv').textContent = n; $('cv').textContent = c + '%';
+    $('n').setAttribute('aria-valuetext', `n = ${n}`); $('c').setAttribute('aria-valuetext', `${c} percent`);
+    if (isFinite(e)){
+      $('e').textContent = `E = ${f2(e)}`; $('iv').textContent = `(${f2(XBAR - e)}, ${f2(XBAR + e)})`; $('w').textContent = f2(2 * e);
+      $('note').textContent = (XBAR - e < LO) ? 'The interval is so wide that it runs off both ends of the scale (shown by the arrows).' : '';
+    } else {
+      $('e').textContent = 'E: none'; $('iv').textContent = 'none'; $('w').textContent = '–';
+      $('note').textContent = 'With only n = 1 value, there is no variation to measure (the t-distribution needs n − 1 ≥ 1 degree of freedom), so no interval can be made. Move the slider to n = 2 or more.';
+    }
+    target = Math.min(e, CAP);
+    if (reduce.matches){ shown = target; draw(); return; }
+    if (!raf) raf = requestAnimationFrame(step);
+  }
+  function step(){
+    shown += (target - shown) * .22;
+    if (Math.abs(target - shown) < .01) shown = target;
+    draw();
+    raf = shown === target ? 0 : requestAnimationFrame(step);
+  }
+
+  function draw(){
+    const svg = $('g'), narrow = svg.parentElement.clientWidth < 520;
+    const W = narrow ? 420 : 760, pad = narrow ? 18 : 26, F = narrow ? 19 : 14;
+    const H = narrow ? 230 : 190, axisY = H - 46, yGhost = axisY - 28, yIv = axisY - 82;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const X = v => pad + (v - LO) / (HI - LO) * (W - 2 * pad);
+    const L = 'font-family="Source Sans 3, sans-serif"';
+    let s = '';
+    for (let t = LO; t <= HI; t += 10) s += `<line x1="${X(t)}" y1="12" x2="${X(t)}" y2="${axisY}" stroke="#eceef3"/>`;
+    s += `<line x1="${pad - 6}" y1="${axisY}" x2="${W - pad + 6}" y2="${axisY}" stroke="#222" stroke-width="1.5"/>`;
+    for (let t = LO; t <= HI; t += 10) s += `<line x1="${X(t)}" y1="${axisY}" x2="${X(t)}" y2="${axisY + 6}" stroke="#222"/><text x="${X(t)}" y="${axisY + 8 + F}" font-size="${F}" text-anchor="middle" fill="${INK}" ${L}>${t}</text>`;
+    // starting interval, for reference
+    s += `<line x1="${X(XBAR - E0)}" y1="${yGhost}" x2="${X(XBAR + E0)}" y2="${yGhost}" stroke="${GHOST}" stroke-width="6" stroke-linecap="round"/>`;
+    // the current interval (clipped to the scale, with arrows when it runs off)
+    const a = XBAR - shown, b = XBAR + shown, off = a < LO, xa = off ? X(LO) : X(a), xb = off ? X(HI) : X(b);
+    const none = !isFinite(moe(+$('n').value, +$('c').value));
+    s += `<line x1="${X(XBAR)}" y1="${yIv - 30}" x2="${X(XBAR)}" y2="${axisY}" stroke="${INK}" stroke-width="1.2" stroke-dasharray="5 4"/>`;
+    s += `<g opacity="${none ? .35 : 1}">`;
+    s += `<line x1="${xa}" y1="${yIv}" x2="${xb}" y2="${yIv}" stroke="${NAVY}" stroke-width="9" stroke-linecap="${off ? 'butt' : 'round'}"/>`;
+    if (off){
+      s += `<path d="M${xa - 4} ${yIv} l14 -11 v22 z" fill="${NAVY}"/><path d="M${xb + 4} ${yIv} l-14 -11 v22 z" fill="${NAVY}"/>`;
+    } else {
+      s += `<line x1="${xa}" y1="${yIv - 14}" x2="${xa}" y2="${yIv + 14}" stroke="${NAVY}" stroke-width="3"/><line x1="${xb}" y1="${yIv - 14}" x2="${xb}" y2="${yIv + 14}" stroke="${NAVY}" stroke-width="3"/>`;
+      // E brackets above each half
+      const yb = yIv - 22, half = (x1, x2) => (x2 - x1 > 30)
+        ? `<path d="M${x1 + 2} ${yb + 5} v-5 h${x2 - x1 - 4} v5" fill="none" stroke="${RED}" stroke-width="1.6"/><text x="${(x1 + x2) / 2}" y="${yb - 5}" font-size="${F}" text-anchor="middle" fill="${RED}" font-weight="700" ${L}><tspan font-family="Tinos, serif" font-style="italic">E</tspan></text>` : '';
+      s += half(xa, X(XBAR)) + half(X(XBAR), xb);
+      // limits below the ends
+      const lab = (x, v, anc) => `<text x="${x}" y="${yIv + 30}" font-size="${F}" text-anchor="${anc}" fill="${NAVY}" font-weight="700" ${L}>${f2(v)}</text>`;
+      const close = xb - xa < (narrow ? 110 : 100);
+      s += lab(xa + (close ? 2 : 0), a, close ? 'end' : 'middle') + lab(xb - (close ? 2 : 0), b, close ? 'start' : 'middle');
+    }
+    s += `</g><circle cx="${X(XBAR)}" cy="${yIv}" r="6" fill="#fff" stroke="${INK}" stroke-width="2.5"/>`;
+    s += `<text x="${X(XBAR)}" y="${yIv - (narrow ? 52 : 40)}" font-size="${F}" text-anchor="middle" fill="${INK}" font-weight="700" ${L}><tspan font-family="Tinos, serif" font-style="italic">x̄</tspan> = 50</text>`;
+    svg.innerHTML = s;
+    const e = moe(+$('n').value, +$('c').value);
+    svg.setAttribute('aria-label', isFinite(e) ? `Confidence interval from ${f2(XBAR - e)} to ${f2(XBAR + e)} on a number line from 10 to 90, centered at 50, with margin of error ${f2(e)}` : 'No confidence interval: n = 1');
+  }
+
+  $('n').addEventListener('input', update);
+  $('c').addEventListener('input', update);
+  $('reset').onclick = () => { $('n').value = N0; $('c').value = C0; update(); };
+  let rw; window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(draw, 120); });
+  if (/[?&]selftest\b/.test(location.search)) window.__moe = moe;
+  update(); shown = target; draw();
+})();
+</script>
+</body></html>
